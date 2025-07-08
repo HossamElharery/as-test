@@ -1,0 +1,21 @@
+@if (done) {
+  <div id="cookies"  class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 button-fixed">
+      <div class=" bg-custom text-white">
+        <div class="row">
+          <div class="col-12 ">
+            <div class="text w-100">
+              <div class="icon-cookie"><i class="fas fa-cookie-bite"></i></div>
+              <h2>{{ "This website uses cookies" | translate }}</h2>
+            </div>
+          </div>
+          <div class="icon-close"><i (click)="hide()" class="fas fa-times"></i></div>
+        </div>
+        <p>
+          {{"We use cookies to enhance site navigation, analyze site usage & personalize content to provide social media features and to improve our marketing efforts. We also share information about your use of our site with our social media, advertising and analytics partners. By clicking “Accept All Cookies”" | translate}}
+        </p>
+        <button type="button" (click)="show()" class="btn mb-3  w-75">Accept Cookies</button>
+      </div>
+    </div>
+  </div>
+}

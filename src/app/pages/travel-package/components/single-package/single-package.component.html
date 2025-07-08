@@ -1,0 +1,497 @@
+@if (!loading) {
+  <section class="">
+    <section
+      class="sec-banner text-center"
+  [ngStyle]="{
+    'background-image': 'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + lights?.banner + ')'
+  }"
+      >
+      <div class="container mt-2">
+        <div class="head first-character-c d-inline-block font-weight-bold pb-1 mt-5">
+          <h1>
+            <span  class="main-color font-weight-bold">{{ lights?.name }} </span>
+          </h1>
+        </div>
+      </div>
+      <!-- <div  class="over_banner">
+      <img  src="{{ overBanner == 1 ? overBaner : overBanner}}" alt="{{banner_alt}}"  />
+    </div> -->
+    <div class="over_banner">
+      <img  src="{{ overBaner }}" alt="{{banner_alt}}"  />
+    </div>
+    <p class=" mx-auto des-Pack mt-3 d-none d-md-block">{{ lights?.description }}</p>
+  </section>
+</section>
+}
+
+@if (loading) {
+  <section  class="min-banner">
+    <section  >
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span>  </h1>
+          </div>
+          <div class="over_banner">
+            <img  src="{{ overBaner }}" alt="{{banner_alt}}"  />
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+}
+
+
+<!-- Bread Crumb -->
+<section>
+  <div class="container">
+    @if (!loading) {
+      <div class="page-links py-2">
+        <a class="hover-color" routerLink="/">
+          <span>{{ "Home" | translate }} / </span>
+        </a>
+        <a class="hover-color" routerLink="/all-destinations/{{ desSlug }}">
+          <span> {{ desName }} / </span>
+        </a>
+        <a class="hover-color" routerLink="/all-destinations/{{ desSlug }}/travel-packages">
+          <span> {{ packName }} / </span>
+        </a>
+        <span class="main-color">{{ lights?.name }}</span>
+      </div>
+    }
+    @if (loading) {
+      <div class="ph-item">
+        <div class="ph-row">
+          <div class="ph-col-6"></div>
+        </div>
+      </div>
+    }
+
+  </div>
+
+</section>
+
+<section   class="content">
+  <section class="sec-bg">
+
+    <div class="container">
+
+      <!-- <app-tags *ngIf="!loading" [cruise]=false></app-tags> -->
+
+      <div  class="services text-center bg-white d-flex justify-content-between rounded mt-1">
+        <div class="services-content">
+          <div class="active"  (click)="scrool('Itinerary')" >
+            <i class="fas fa-map-marked-alt"></i>
+            <p class="d-none d-sm-block mb-0">{{ "Package Itinerary" | translate }}</p>
+          </div>
+        </div>
+
+        <div class="services-content">
+          <div (click)="scrool('prices')" >
+            <i class="fas fa-dollar-sign"></i>
+            <p class="d-none d-sm-block mb-0">{{ "Prices & Dates" | translate }}</p>
+          </div>
+        </div>
+
+        <div class="services-content">
+          <div (click)="scrool('included')"><i class="fas fa-plus-circle"></i>
+          <p class="d-none d-sm-block mb-0">{{ "What's Included" | translate }}</p></div>
+        </div>
+
+        <div class="services-content">
+          <div (click)="scrool('highlights')"  > <i class="far fa-lightbulb"></i>
+          <p class="d-none d-sm-block mb-0">{{ "Highlights" | translate }}</p></div>
+        </div>
+
+        <div class="services-content">
+          <div (click)="scrool('accomodation')">
+            <i class="fas fa-hotel"></i>
+            <p class="d-none d-sm-block mb-0">{{ "Hotels We Use" | translate }}</p></div>
+          </div>
+
+          <div class="services-content">
+            <div (click)="scrool('optional')" > <i class="fas fa-filter"></i>
+            <p class="d-none d-sm-block mb-0">{{ "Optional Tours" |translate }}</p></div>
+          </div>
+          <div class="services-content">
+            <div (click)="scrool('map')" > <i class="fas fa-map-marker-alt"></i>
+            <p class="d-none d-sm-block mb-0">{{ "Location" | translate  }}</p></div>
+          </div>
+
+          <div class="services-content">
+            <div (click)="scrool('trav')" > <i class="fas fa-globe-americas"></i>
+            <p class="d-none d-sm-block mb-0">{{ "Travel Experiences" | translate  }}</p></div>
+          </div>
+
+          <div class="services-content">
+            <div (click)="scrool('reviews')" > <i class="fas fa-star-half-alt"></i>
+            <p class="d-none d-sm-block mb-0">{{"Tour Reviews"|translate}}</p></div>
+          </div>
+
+          <div class="services-content">
+            <div (click)="scrool('videos')" > <i class="far fa-play-circle"></i>
+            <p class="d-none d-sm-block mb-0">{{ 'Videos'}}</p></div>
+          </div>
+
+        </div>
+
+
+
+        @if (loading) {
+          <div class="ph-item">
+            <div class="ph-col-12">
+              <div class="ph-row">
+                <div class="ph-col-4"></div>
+                <div class="ph-col-8 empty"></div>
+                <div class="ph-col-6"></div>
+                <div class="ph-col-6 empty"></div>
+                <div class="ph-col-12"></div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <div class="row flex-box">
+          <div class="col-12 col-md-9 mb-2 mobile-container">
+
+            @if (loading) {
+              <div class="ph-item">
+                <div class="ph-col-12">
+                  <div class="ph-row">
+                    <div class="ph-col-4"></div>
+                    <div class="ph-col-8 empty"></div>
+                    <div class="ph-col-6"></div>
+                    <div class="ph-col-6 empty"></div>
+                    <div class="ph-col-12"></div>
+                  </div>
+                </div>
+              </div>
+            }
+
+            <!-- <div id="Itinerary" class="section" style="min-height: 500px; background-color: brown;"></div>
+
+            <div id="price" style="height: 500px; background-color: rgb(23, 21, 21);" class="section"></div> -->
+            <div id="Itinerary" #remainingHeight class="section" [style.height.%]="remainingHeight"  >
+              @if (!loading) {
+                <app-splander [splander]="lights" [package]="type"></app-splander>
+              }
+
+            </div>
+
+            @if (pricesCompnent?.length>0) {
+              <div id="prices" #price class="section" [style.height.%]="price"  >
+                @if (!loading) {
+                  <app-price-data [prices]="pricesCompnent" [package]="type"></app-price-data>
+                }
+                @if (!loading) {
+                  <app-prices-policy [price_policy]="price_policy" [payment_policy]="payment_policy"[repeated_travellers]="repeated_travellers"[travel_schedule]="travel_schedule"></app-prices-policy>
+                }
+              </div>
+            }
+
+
+            @if (loading) {
+              <div class="ph-item">
+                @for (n of numSequence(20); track $index) {
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+
+            <div id="included" #included class="section" [style.height.%]="included">
+              @if (!loading) {
+                <app-package-included [includ]="lights" [package]="type"></app-package-included>
+              }
+
+            </div>
+
+            @if (loading) {
+              <div class="ph-item">
+                @for (n of numSequence(30); track $index) {
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+
+            @if (!loading) {
+              <div [style.height.%]="highlightss" #highli id="highlights" class="section pt-3">
+                <app-hightlightes   [lights]="toHighlight"></app-hightlightes>
+              </div>
+            }
+
+
+
+            <div class="section"  #accom [style.height.%]="accomodationn" id="accomodation">
+              <div>
+                @if (!loading) {
+                  <app-accomodation [desName]="desName" [desSlug]="desSlug" [flag1]="flag1" [flag2]="flag2" [flag3]="flag3" [flag4]="flag4" [accomodation]="lights" [package]="type" [destination]="id"></app-accomodation>
+                }
+
+              </div>
+
+            </div>
+            @if (loading) {
+              <div class="ph-item">
+                @for (n of numSequence(30); track $index) {
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+
+            <div id="optional" #opti [style.height.%]="optionall" class="section">
+              @if (!loading && ptional.length>0) {
+                <div class="bg-white mt-3 p-3 " >
+                  <h3 class="font-weight-bold"> <span class="single-style" >Optional </span>Tours</h3>
+                  @for (tours of ptional; track $index) {
+                    <section   class="mt-3">
+                      <div  class="">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h4 >{{ tours?.title }}</h4>
+                          </div>
+                          <div class="col-md-7 mt-2 splendor inner-html">
+                <app-safe-html [htmlContent]="getSafeContent(tours?.overview)"></app-safe-html>
+              </div>
+                          <div class="col-md-5 mt-2">
+                            <img [src]="tours?.image" class="img-fluid" alt="{{tours?.title}}"/>
+                            <span class="opsnltrrow_top_colr_label">
+                              <h5>
+                                <span>${{ tours?.price }}</span></h5>
+                              </span>
+                            </div>
+                          </div>
+                          <hr class="mt-3">
+                        </div>
+                      </section>
+                    }
+                  </div>
+                }
+              </div>
+
+
+
+
+              @if (!loading) {
+                <section id="map"  #map [style.height.%]="map" class="bg-white mt-3 p-3 section" >
+                  <div  class="head mb-4">
+                    <h3 class="pl-2 font-weight-bold"> <span class="single-style">Package</span> {{" Destination Map"|translate}}</h3>
+                  </div>
+                  <div class="map-details border mt-2">
+                    <div class="embed-responsive">
+                      <iframe
+                        class="embed-responsive-item"
+                        [src]="location_url | safe"
+                        allowfullscreen=""
+                        >
+                      </iframe>
+                    </div>
+                  </div>
+                </section>
+              }
+
+
+              <div id="trav" class="section" #travv [style.height.%]="travv">
+                @if (!loading) {
+                  <app-experiences [datapackage]="travel_experiences" [package]="type"></app-experiences>
+                }
+
+              </div>
+
+              <div id="revieews" class="section" #rev [style.height.%]="revieewss">
+
+                @if (!loading) {
+                  <app-reviews [package]="type"></app-reviews>
+                }
+
+              </div>
+
+
+              @if (!loading) {
+                <section #videoo [style.height.%]="videoss" id="videos" class="bg-white mt-3 pl-2 section">
+                  @if (video.length > 0; ) {
+                    <div class=" px-2 pb-1 pt-4">
+                      <h3 class="font-weight-bold">
+                        <span class="single-style"> Package</span> {{"Videos"|translate}}
+                      </h3>
+                    </div>
+                  }
+                  @if (video.length > 0;) {
+                    <div class="row">
+                      @for (vid of video; track $index; let i = $index) {
+                        <div class="col-lg-6  col-md-6 col-sm-12   mt-3">
+                          <div class="main-youtupe" (click)="stopVideo(i)" data-toggle="modal" [attr.data-target]="'#myModal' + i" style="cursor: pointer;">
+                            <div class="frame-youtupe">
+                              @if (isBrowser) {
+                                <iframe [src]="vid |safe" width="100%" class="p-2" height="100%"  title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen  frameborder="0"></iframe>
+                              }
+                            </div>
+                            <div class="layer-youtupe">
+                              <div class="play-button">
+                                <i class="fas fa-play"></i>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal" [id]="'myModal' + i" tabindex="-1" aria-labelledby="youtupeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-body">
+                                  @if (!ifTrue && isBrowser) {
+                                    <iframe id="player"  [src]="vid |safe"  width="100%"  height="100%" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen  frameborder="0"></iframe>
+                                  }
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  }
+                </section>
+              }
+
+              @if (loading) {
+                <div class="ph-item">
+                  @for (n of numSequence(30); track $index) {
+                    <div class="ph-col-12">
+                      <div class="ph-row">
+                        <div class="ph-col-4"></div>
+                        <div class="ph-col-8 empty"></div>
+                        <div class="ph-col-6"></div>
+                        <div class="ph-col-6 empty"></div>
+                        <div class="ph-col-12"></div>
+                      </div>
+                    </div>
+                  }
+                </div>
+              }
+
+
+
+
+
+          </div>
+          <div class="col-12 col-md-3">
+            <app-side-bar></app-side-bar>
+
+            @if (!loading) {
+              <app-start-from [start]="lights" [includeds]="lights.included" [package]="type"></app-start-from>
+            }
+            @if (loading) {
+              <div class="ph-item">
+                @for (n of numSequence(5); track $index) {
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+
+            @if (!loading) {
+              <app-expert-reviews [name]="'packages'"></app-expert-reviews>
+            }
+
+
+
+            @if (loading) {
+              <div class="ph-item">
+                @for (n of numSequence(15); track $index) {
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+            @if (!loading) {
+              <app-optional-experts [related]="lights.related_packages" [categoryName]="'Related Packages'" [category]="'travel-packages'" [des]="desSlug" [package]="type"></app-optional-experts>
+            }
+
+
+            @if (loading) {
+              <div class="ph-item">
+                @for (n of numSequence(10); track $index) {
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+
+            @if (!loading) {
+              <app-tour-booking [id]="lights.id"  [package]="type"></app-tour-booking>
+            }
+
+            @if (loading) {
+              <div class="ph-item">
+                @for (n of numSequence(10); track $index) {
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class=".sec-bg">
+      <!-- <app-reviews></app-reviews> -->
+    </section>
+    <!-- videos -->
+  </section>
+
+  <app-we-are></app-we-are>
+  <app-scroll-button></app-scroll-button>
+

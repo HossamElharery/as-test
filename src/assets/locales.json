@@ -1,0 +1,10 @@
+{
+  "locales": [
+    "",
+    "fr",
+    "de",
+    "ru",
+    "es"
+  ],
+  "prefix": "ROUTES."
+}

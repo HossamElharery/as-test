@@ -1,0 +1,128 @@
+<section>
+  <section
+    class="banner text-center"
+    [ngStyle]="{
+      'background-image':
+        'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' +
+        GuidesContent.thumb +
+        ')'
+    }"
+    >
+    <div class="container">
+      <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+        <h1>
+          <span class="main-color des-Name font-weight-bold">
+            {{ GuidesContent.name }}</span
+            >
+          </h1>
+        </div>
+        <p class="mt-2"></p>
+
+        <app-ask-expert-btn></app-ask-expert-btn>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div  class="page-links py-2">
+          <a class="hover-color" routerLink="/"> <span >{{"Home"|translate}} / </span>  </a>
+          <span class="main-color">{{"All Travel Guides"|translate}} </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec-bg py-4 pb-5">
+      <div class="container">
+        <div class="head-title text-center mb-4">
+          <h2 class="font-weight-bold"></h2>
+        </div>
+
+        @if (!loading) {
+          <div class="row">
+            <!-- Travel Guide  -->
+            <!-- <div *ngFor="let guid of GuidesNames" class="col-12 col-md-4 mb-4">
+            <div class="blogs overflow-hidden">
+              <a
+                routerLink="/all-destinations/{{ guid.slug }}/travel-guides"
+                class="text-dark"
+                >
+                <div class="card main-card text-center">
+                  <img loading="lazy"   [src]="guid.thumb" class="img-fluid" alt="{{guid.name}}" />
+                  <div class="card-led">
+                    <div class="card-body card-details">
+                      <h5 class="card-title mt-2">
+                        {{ guid.name }} {{ GuidesContent.name }}
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div> -->
+          @for (guid of GuidesNames; track $index) {
+            <div class="col-sm-12 col-md-4  service" >
+              <div class="service-words">
+                <a routerLink="/all-destinations/{{ guid.slug }}/travel-guides">
+                  <h3 class="service-title">{{ guid.name }} {{ GuidesContent.name }}</h3>
+                </a>
+                <div class="desc text-white">
+                  <app-safe-html [htmlContent]="getSafeContent(guid.description)"></app-safe-html>
+                  <div class="cm-wrapper ">
+                    <a aria-label="Read More" routerLink="/all-destinations/{{ guid.slug }}/travel-guides">
+                      <button class="cm-navbar-btn">
+                        Read More
+                        <span class="annimation-line"></span>
+                        <span class="annimation-line"></span>
+                        <span class="annimation-line"></span>
+                        <span class="annimation-line"></span>
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <a routerLink="/all-destinations/{{ guid.slug }}/travel-guides">
+                <img loading="lazy" [src]="guid.thumb" [alt]="guid.name" [title]="guid.name + ' Travel Guide'">
+              </a>
+            </div>
+          }
+          <!-- Travel blogs  -->
+        </div>
+      }
+
+      @if (loading) {
+        <div class="row">
+          @for (n of numSequence(6); track $index) {
+            <div class="col-md-4">
+              <div class="ph-item">
+                <div class="ph-col-12">
+                  <div class="ph-picture"></div>
+                  <div class="ph-row">
+                    <div class="ph-col-6 big"></div>
+                    <div class="ph-col-4 empty big"></div>
+                    <div class="ph-col-2 big"></div>
+                    <div class="ph-col-4"></div>
+                    <div class="ph-col-8 empty"></div>
+                    <div class="ph-col-6"></div>
+                    <div class="ph-col-6 empty"></div>
+                    <div class="ph-col-12"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </section>
+</section>
+
+
+
+
+
+
+
+
+<!-- <app-city-guide></app-city-guide>
+<app-travel-tips></app-travel-tips> -->

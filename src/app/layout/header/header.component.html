@@ -1,0 +1,402 @@
+<section class="main-section d-flex justify-content-between">
+  @if (loading) {
+  <ul class="d-none d-md-flex align-items-center p-0 m-0 ms-3 list-style">
+    <li class="me-4"><i class="fas fa-envelope main-color"></i>
+      <span class="sr-only">Mail</span>
+      <a class="ms-3 text-white">{{'------------loading@ask'}}</a>
+    </li>
+    <li class="me-4"><i class="fas fa-phone-alt main-color"></i>
+      <span class="sr-only">Phone</span>
+      <a class="ms-3 text-white">------------loading ..</a>
+    </li>
+  </ul>
+  }
+
+  @if (!loading) {
+  <ul class="d-none d-md-flex align-items-center p-0 m-0 ms-3">
+    <li class="me-4"><i class="fas fa-envelope main-color"></i>
+      <span class="sr-only">Mail</span>
+      <a aria-label="mail" [title]="'mail'" href="mailto:{{mail}}" class="ms-3 text-white">{{mail}}</a>
+    </li>
+    <li class="me-4"><i class="fas fa-phone-alt main-color"></i>
+      <span class="sr-only">Phone</span>
+      <a aria-label="phone" [title]="'phone'" href="tel:{{phone1}}" class="ms-3 text-white">{{phone1}}</a>
+    </li>
+    <li>
+      @for (social of socialsContainer; track $index) {
+      <div>
+        <ul class="link-social">
+          <li>
+            <a aria-label="face" class="fb " [title]="'facebook'" target="_blank" href="{{social.facebook}}">
+          <span class="me-2 social "> <i class="fab fa-facebook-f"></i>
+          </span>
+          </a>
+    </li>
+    <li>
+      <a aria-label="twitter" [title]="'twitter'" class="twt" target="_blank" href="{{social.twitter}}">
+    <span class="me-2 social"><i class="fab fa-twitter"></i></span>
+    </a>
+    </li>
+    <li>
+      <a aria-label="pinterest" [title]="'pinterest'" class="pain" target="_blank" href="{{social.pinterest}}">
+    <span class="me-2 social"><i class="fab fa-pinterest-p"></i></span>
+    </a>
+    </li>
+    <li>
+      <a aria-label="linkedin" class="lin" [title]="'linkedin'" target="_blank" href="{{social.linkedin}}">
+    <span class="me-2 social"><i class="fab fa-linkedin-in"></i></span>
+    </a>
+    </li>
+    <li>
+      <a aria-label="instagram" class="ins" [title]="'instagram'" target="_blank" href="{{social.instagram}}">
+    <span class="me-2 social"><i class="fab fa-instagram"></i></span>
+    </a>
+    </li>
+    <li>
+      <a aria-label="youtube" class="yout" [title]="'youtube'" target="_blank" href="{{social.youtube}}">
+    <span class="me-2 social"><i class="fab fa-youtube"></i></span>
+    </a>
+    </li>
+  </ul>
+  </div>
+  }
+  </li>
+  </ul>
+  }
+
+
+  <ul class="d-flex align-items-center justify-content-between contacts p-0 m-0">
+    <li>
+      <div (click)="focusInput()" class="input-group  m-auto">
+
+        <i class="fas fa-search" data-toggle="modal" data-target="#exampleModal"></i>
+        <span class="sr-only">search</span>
+      </div>
+    </li>
+
+    <li class=" align-items-center lang-btn ps-2">
+      <img loading="lazy" width="20px" height="12px" alt="US" title="en" src="../../../../assets/imgs/US.png">
+      <div class="btn-group dropdown">
+
+        <span class="main-btn text-white dropdown-toggle" type="button" data-toggle="dropdown">
+          {{'English' |translate}} <span class="caret"></span>
+        </span>
+
+        <ul id="dropdown-basic" class="dropdown-menu dropdownMenu d-none" role="menu" aria-labelledby="button-basic">
+          @if (en) {
+          <div>
+            @for (language of Languages|slice:0:1; track $index) {
+            <li class="list-dropdown " role="menuitem">
+              <a aria-label="lang" #on (click)="changeCurrentLang('en', on) "
+                href="/{{language.lang == 'en' ? '' : language.lang}}" class="dropdown-item">
+                <div>
+                  <h3> {{language.lnaguage}}</h3>
+                </div>
+                <div> <img loading="lazy" alt="img" class="flag " [src]="language.image" /></div>
+              </a>
+            </li>
+            }
+          </div>
+          }
+        </ul>
+      </div>
+    </li>
+  </ul>
+
+  <div class="modal " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <button type="button" #closee class="close" data-dismiss="modal" (click)="close()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-body ">
+
+            <label for="search" class="labelSearch w-100 d-flex">
+
+              <input id="search" #searchInput type="search mt-5" (keyup)="searchFire(term)" [(ngModel)]="term"
+                class="form-control  mt-1 " placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+
+
+            </label>
+            @if (searchFlag) {
+            <div class="">
+              <div>
+                @if (package.length>0) {
+                <div class="searchTitle ">
+                  <div>
+                    <h2 class="mt-3">Results on Packages </h2>
+                  </div>
+                  <div class="row">
+
+                    <div class="d-flex flex-wrap">
+                      @for (packag of package; track $index) {
+                      <div class="blogs overflow-hidden">
+                        <a aria-label="result" [title]="packag?.name" (click)="ddToggle()"
+                          routerLink="/all-destinations/{{packag.destination.slug}}/travel-packages/{{packag?.slug}}"
+                          class="text-dark">
+                          <div class="card main-card text-center blogCard anotherCard">
+                            <img loading="lazy" width="300" height="300" [src]="packag.thumb=='1'?img: packag.thumb"
+                              class="img-fluid" alt="{{ packag?.thumb_alt }}" />
+                            <div class="card-body card-detailss des-antherCard">
+                              <h6 class="card-title">{{ packag?.name }}</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      }
+
+                    </div>
+
+                  </div>
+                </div>
+                }
+
+
+                @if (destinations.length>0) {
+                <div class="searchTitle">
+                  <div>
+                    <h2 class="mt-3"> <a (click)="ddToggle()" routerLink="/all-destinations">Results on Destinations
+                      </a> </h2>
+                  </div>
+                  <div class="row">
+                    <div class="d-flex flex-wrap">
+                      @for (destination of destinations; track $index) {
+                      <div class="blogs overflow-hidden">
+                        <a [title]="destination?.name" routerLink="/all-destinations/{{destination.slug}}"
+                          (click)="ddToggle()" class="text-dark">
+                          <div class="card main-card text-center blogCard anotherCard">
+                            <img loading="lazy" width="300" height="300" [src]="destination.thumb" class="img-fluid"
+                              alt="{{ destination.thumb_alt }}" />
+                            <div class="card-body card-detailss des-antherCard">
+                              <h6 class="card-title">{{ destination?.name }}</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+                }
+
+                @if (blogs.length>0) {
+                <div class="searchTitle">
+                  <h2 class="mt-3">Results on Blogs</h2>
+                  <div class="row">
+
+                    <div class="d-flex flex-wrap">
+                      @for (blog of blogs; track $index) {
+                      <div class="blogs overflow-hidden">
+                        <a (click)="ddToggle()" [title]="blog?.name"
+                          routerLink="/all-destinations/{{blog.destination.slug}}/blog/{{blog.slug}}" class="text-dark">
+                          <div class="card main-card text-center blogCard anotherCard">
+                            <img loading="lazy" width="300" height="300" [src]="blog.thumb" class="img-fluid"
+                              alt="{{ blog?.thumb_alt }}" />
+                            <div class="card-body card-detailss des-antherCard">
+                              <h6 class="card-title">{{ blog?.name }}</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      }
+                    </div>
+
+
+                  </div>
+                </div>
+                }
+                @if (cruise.length>0) {
+                <div class="searchTitle">
+                  <h2 class="mt-3">Results on Travel Cruise </h2>
+                  <div class="row">
+
+                    <div class="d-flex flex-wrap">
+                      @for (blog of cruise; track $index) {
+                      <div class="blogs overflow-hidden">
+                        <a (click)="ddToggle()" [title]="blog?.name"
+                          routerLink="/all-destinations/{{blog.destination.slug}}/travel-cruises/{{blog.slug}}"
+                          class="text-dark">
+                          <div class="card main-card text-center blogCard anotherCard">
+                            <img loading="lazy" width="300" height="300" [src]="blog.thumb" class="img-fluid"
+                              alt="{{ blog.thumb_alt }}" />
+                            <div class="card-body card-detailss des-antherCard">
+                              <h6 class="card-title">{{ blog.name }}</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      }
+                    </div>
+
+
+                  </div>
+                </div>
+                }
+
+                @if (excursion.length>0) {
+                <div class="searchTitle">
+                  <h2 class="mt-3">Results on Excursion </h2>
+                  <div class="row">
+
+                    <div class="d-flex flex-wrap">
+                      @for (blog of excursion; track $index) {
+                      <div class="blogs overflow-hidden">
+                        <a (click)="ddToggle()" [title]="blog?.name"
+                          routerLink="/all-destinations/{{blog.destination.slug}}/travel-excursions/{{blog.city.slug}}/{{blog?.slug}}"
+                          class="text-dark">
+                          <div class="card main-card text-center blogCard anotherCard">
+                            <img loading="lazy" width="300" height="300" [src]="blog?.thumb" class="img-fluid"
+                              alt="{{ blog?.thumb_alt }}" />
+                            <div class="card-body card-detailss des-antherCard">
+                              <h6 class="card-title">{{ blog?.name }}</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      }
+                    </div>
+
+
+                  </div>
+                </div>
+                }
+
+                @if (category.length>0) {
+                <div class="searchTitle">
+                  <h2 class="mt-3"><a>Results on main categories </a></h2>
+                  <div class="row">
+
+                    <div class="d-flex flex-wrap">
+                      @for (blog of category; track $index) {
+                      <div class="blogs overflow-hidden">
+                        <a (click)="ddToggle()" [title]="blog?.name"
+                          routerLink="/all-destinations/{{blog.destination.slug}}/category/{{blog?.slug}}"
+                          class="text-dark">
+                          <div class="card main-card text-center blogCard anotherCard">
+                            <img loading="lazy" width="300" height="300" [src]="blog?.thumb" class="img-fluid"
+                              alt="{{ blog?.thumb_alt }}" />
+                            <div class="card-body card-detailss des-antherCard">
+                              <h6 class="card-title">{{ blog?.name }}</h6>
+                            </div>.
+                          </div>
+                        </a>
+                      </div>
+                      }
+                    </div>
+
+
+                  </div>
+                </div>
+                }
+
+                @if (travel_guide.length>0) {
+                <div class="searchTitle">
+                  <h2 class="mt-3 ">Results on main Travel Guides</h2>
+                  <div class="row">
+
+                    <div class="d-flex flex-wrap">
+                      @for (blog of travel_guide; track $index) {
+                      <div class="blogs overflow-hidden">
+                        <a (click)="ddToggle()" [title]="blog?.name"
+                          routerLink="/all-destinations/{{blog.destination.slug}}/travel-guide/{{blog.slug}}"
+                          class="text-dark">
+                          <div class="card main-card text-center blogCard anotherCard">
+                            <img loading="lazy" width="300" height="300" [src]="blog.thumb" class="img-fluid"
+                              alt="{{ blog.thumb_alt }}" />
+                            <div class="card-body card-detailss des-antherCard">
+                              <h6 class="card-title">{{ blog.name }}</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      }
+                    </div>
+
+
+                  </div>
+                </div>
+                }
+
+
+                @if (hotel.length>0) {
+                <div class="searchTitle">
+                  <h2 class="mt-3 ">Results on Hotels</h2>
+                  <div class="row">
+
+                    <div class="d-flex flex-wrap">
+                      @for (blog of hotel; track $index) {
+                      <div class="blogs overflow-hidden">
+                        <a (click)="ddToggle()" [title]="blog?.name"
+                          routerLink="/all-destinations/{{blog.destination.slug}}/hotel/{{blog.slug}}"
+                          class="text-dark">
+                          <div class="card main-card text-center blogCard anotherCard">
+                            <img loading="lazy" width="300" height="300" [src]="blog.thumb" class="img-fluid"
+                              alt="{{ blog.thumb_alt }}" />
+                            <div class="card-body card-detailss des-antherCard">
+                              <h6 class="card-title">{{ blog.name }}</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      }
+                    </div>
+
+
+                  </div>
+                </div>
+                }
+
+                @if (page.length>0) {
+                <div class="searchTitle">
+                  <h2 class="mt-3">Results on info Pages</h2>
+                  <div class="row">
+
+                    <div class="d-flex flex-wrap">
+                      @for (blog of page; track $index) {
+                      <div class="blogs overflow-hidden">
+                        <a (click)="ddToggle()" [title]="blog?.name"
+                          routerLink="/all-destinations/{{blog.destination.slug}}/category/{{blog?.category?.slug}}/page/{{blog?.slug}}"
+                          class="text-dark">
+                          <div class="card main-card text-center blogCard anotherCard">
+                            <img loading="lazy" width="300" height="300" [src]="blog.thumb" class="img-fluid"
+                              alt="{{ blog.thumb_alt }}" />
+                            <div class="card-body card-detailss des-antherCard">
+                              <h6 class="card-title">{{ blog.name }}</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      }
+                    </div>
+
+
+                  </div>
+                </div>
+                }
+
+                @if (empty) {
+                <div class='text-center empty-result'>
+                  <h2>No result found.</h2>
+                </div>
+                }
+
+              </div>
+            </div>
+            }
+
+          </div>
+        </div>
+      </div>
+      <ng-template #search>
+        <h4 class=" text-center  ">
+          <i class="far fa-dot-circle"></i>
+          <span class="sr-only">dot</span>
+          {{"Not Search Result "|translate}}
+        </h4>
+      </ng-template>
+    </div>
+  </div>
+</section>

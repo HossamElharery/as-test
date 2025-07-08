@@ -1,0 +1,33 @@
+.list-group-item {
+    border: 0px;
+}
+.head h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.1rem;
+}
+.img-rev{
+    width: 100%;
+    /* width: 200px; */
+    height: 100%;
+    margin: auto;
+}
+.styl{
+  width: 80%;
+}
+
+@media only screen and (max-width:768px) {
+  .expert{
+    display: none;
+  }
+}
+.expert-reviews{
+  border-radius: 8px;
+  /* min-height: 1781px; */
+
+}
+/* ================ tablet Responsive ========== */
+@media only screen and (min-width: 768px) and (max-width:992px){
+  .expert-reviews{
+    padding: 15px;
+  }
+}

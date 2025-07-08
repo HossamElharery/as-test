@@ -1,0 +1,68 @@
+.btn {
+  position: relative;
+  display: inline-block;
+  margin: 15px;
+  padding: 12px 27px;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #ffffff;
+  background: #ffffff00;
+  border: 3px solid #ffffff;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  -webkit-transition: ease-out 0.5s;
+  -moz-transition: ease-out 0.5s;
+}
+
+.btn.btn-border-1::after,
+.btn.btn-border-1::before {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 0%;
+  visibility: hidden;
+}
+
+.btn.btn-border-1::after {
+  bottom: -3px;
+  right: -3px;
+  border-left: 3px solid #f68800;
+  border-bottom: 3px solid #f68800;
+  transition: width .1s ease .1s, height .1s ease, visibility 0s .2s;
+}
+
+.btn.btn-border-1::before {
+  top: -3px;
+  left: -3px;
+  border-top: 3px solid #f68800;
+  border-right: 3px solid #f68800;
+  transition: width .1s ease .3s, height .1s ease .2s, visibility 0s .4s;
+}
+
+.btn.btn-border-1:hover {
+  animation: pulse 1s ease-out .4s;
+  border: 0 solid transparent;
+  color: #f68800;
+}
+
+.btn.btn-border-1:hover::after,
+.btn.btn-border-1:hover::before {
+  width: calc(100% + 3px);
+  height: calc(100% + 3px);
+  visibility: visible;
+  transition: width .1s ease .2s, height .1s ease .3s, visibility 0s .2s;
+}
+
+.btn.btn-border-1:hover::after {
+  transition: width .1s ease .2s, height .1s ease .3s, visibility 0s .2s;
+}
+
+.btn.btn-border-1:hover::before {
+  transition: width .1s ease, height .1s ease .1s;
+}
+.carousel-caption{
+  z-index: 0!important;
+}
+

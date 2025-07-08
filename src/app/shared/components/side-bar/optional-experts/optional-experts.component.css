@@ -1,0 +1,201 @@
+.car-item {
+  position: relative;
+  overflow: hidden;
+}
+.fixx-rel{
+  z-index: 11;
+  position: relative;
+}
+.car-item .car-content {
+  /* background: url(../../../../../assets/imgs/map.png); */
+  padding: 10px 10px 14px;
+  background-size: cover;
+  display: grid;
+
+}
+.car-item .car-content a {
+  font-size: 16px;
+  font-weight: 600;
+  color: #5f3808;
+  margin-bottom: 10px;
+  display: block;
+}
+.car-item .car-content a:hover {
+  color: #363636;
+}
+.car-item .price span {
+  color: #363636;
+  font-weight: 700;
+  font-size: 16px;
+}
+.car-item .price span.old-price {
+  color: #999999;
+  text-decoration: line-through;
+  padding-right: 5px;
+  font-size: 13px;
+  font-weight: 400;
+}
+.car-item .separator {
+  margin-bottom: 15px;
+}
+.car-item .separator:after {
+  width: 50px;
+  display: block;
+  margin: auto;
+  content: "";
+  height: 1px;
+  background: #000000;
+  bottom: 0px;
+  left: 50%;
+  transition: width 0.8s ease, background-color 0.8s ease;
+  -webkit-transition: width 0.8s ease, background-color 0.8s ease;
+  -o-transition: width 0.8s ease, background-color 0.8s ease;
+  -ms-transition: width 0.8s ease, background-color 0.8s ease;
+  -moz-transition: width 0.8s ease, background-color 0.8s ease;
+}
+.car-item .separator:before {
+  content: "";
+  display: block;
+  margin: auto;
+  left: 50%;
+  height: 1px;
+  width: 30px;
+  bottom: -10px;
+  background: #000000;
+  transition: width 0.8s ease, background-color 0.8s ease;
+  -webkit-transition: width 0.8s ease, background-color 0.8s ease;
+  -o-transition: width 0.8s ease, background-color 0.8s ease;
+  -ms-transition: width 0.8s ease, background-color 0.8s ease;
+  -moz-transition: width 0.8s ease, background-color 0.8s ease;
+  margin-bottom: 4px;
+}
+.car-item:hover .separator:before {
+  width: 50px;
+  left: 0;
+  background: #f68800;
+}
+.car-item:hover .separator:after {
+  width: 30px;
+  left: 0;
+  background: #f68800;
+}
+.car-item .car-list {
+  background: #d8673b;
+  color: #fff;
+  overflow: hidden;
+  bottom: 0px;
+  height: 0;
+  left: 0;
+  position: absolute;
+  transition: all 0.3s ease-out 0s;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  width: 100%;
+  z-index: 2;
+  text-align: center;
+}
+.car-item .car-list li {
+  line-height: 38px;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  padding-left: 5px;
+}
+.car-item .car-list li i {
+  padding-right: 3px;
+}
+.car-item:hover .car-list {
+  height: 40px;
+  border-bottom: 1px solid #f6f6f6;
+}
+.car-item .car-image {
+  position: relative;
+  overflow: hidden;
+}
+.car-item .car-overlay-banner {
+  background: rgba(231, 102, 15, 0.7);
+  position: absolute;
+  top: -100%;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.5s ease-out 0s;
+  -webkit-transition: all 0.5s ease-out 0s;
+  -moz-transition: all 0.5s ease-out 0s;
+  -ms-transition: all 0.5s ease-out 0s;
+  -o-transition: all 0.5s ease-out 0s;
+}
+.car-item .car-overlay-banner ul {
+  left: 0;
+  position: absolute;
+  right: 12%;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  z-index: 99;
+}
+.car-item .car-overlay-banner ul li {
+  display: inline-block;
+}
+.car-item .car-overlay-banner ul li a {
+  background: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 50%;
+}
+.car-item .car-overlay-banner ul li a:hover {
+  background: #ffffff;
+  color: #f68800;
+}
+
+.car-item:hover .car-overlay-banner {
+  opacity: 1;
+  top: 0;
+}
+.car-item.gray-bg .car-content {
+  background: #f6f6f6;
+}
+.orange-color {
+  color: #f68800;
+}
+.image-sizee {
+  height: 161px;
+  width: 100%;
+  object-fit: cover;
+
+}
+.list-inline {
+  padding-left: 0;
+  list-style: none;
+}
+
+@media only screen and (max-width:768px) {
+  .related{
+    display: none;
+  }
+}
+/* ================ tablet Responsive ========== */
+@media only screen and (min-width: 768px) and (max-width:992px){
+  .image-sizee {
+    height: 100%;
+    width: 100%;
+  }
+  .head h3{
+    font-size: 1.1rem;
+  }
+  .isotope{
+    padding: 15px;
+  }
+}

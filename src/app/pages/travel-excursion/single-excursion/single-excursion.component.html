@@ -1,0 +1,156 @@
+@if (!loading) {
+  <section >
+    <section
+      class="banner text-center"
+    [ngStyle]="{
+      'background-image':
+        'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + imageEx
+         +
+        ')'
+    }"
+      >
+      <div class="container">
+        <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+          <h1 class="text-white des-Name font-weight-bold">
+            {{nameEx}}</h1
+            >
+          </div>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  }
+
+
+  @if (loading) {
+    <section  class="min-banner">
+      <section  >
+        <section class="banner text-center"
+          [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+          <div class="container">
+            <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+              <h1><span class="text-white des-Name font-weight-bold"> loading..</span>  </h1>
+            </div>
+            <p class="mt-2"></p>
+            <app-ask-expert-btn></app-ask-expert-btn>
+          </div>
+        </section>
+      </section>
+    </section>
+  }
+
+  <section >
+    <div class="container">
+      <div class="page-links py-2">
+        <a class="hover-color" routerLink="/"> <span >{{"Home"|translate}} / </span>  </a>
+        <a class="hover-color" routerLink="/all-destinations/{{desSlug}}"> <span > {{ desName }} / </span>  </a>
+        <a class="hover-color" routerLink="/all-destinations/{{desSlug}}/travel-excursions"> <span > Cities / </span>  </a>
+
+
+        <a class="hover-color" routerLink="/all-destinations/{{ desSlug }}/travel-excursions/{{citySlug}}"> <span > {{cityName}} / </span>  </a>
+        <span class="main-color">{{nameEx}}</span>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="sec-bg ">
+
+    <section class="container ">
+      <div class="row ">
+
+        <div class="col-lg-9 my-2 col-sm-12 ">
+
+          @if (!loading) {
+            <section >
+              <section class="bg-white mt-3 px-3">
+                <div class="pt-2">
+                  <!-- <app-gallery [gallery]="galleryy" ></app-gallery> -->
+                  <app-gallery-new [gallery]="galleryy" ></app-gallery-new>
+                </div>
+              </section>
+              <section class="bg-white ">
+                <app-splander [splander]="included" [excur]="type"></app-splander>
+              </section>
+              <section  id="map" class="bg-white mt-3 p-3">
+                <div class="head mb-4">
+                  <h3 class="pl-2 font-weight-bold">{{"Location"|translate}}</h3>
+                </div>
+                <div class="map-details border mt-2">
+                  <div class="embed-responsive">
+                    <iframe
+                      class="embed-responsive-item"
+                      [src]="included?.map_url | safe"
+                      allowfullscreen=""
+                      >
+                    </iframe>
+                  </div>
+                </div>
+                <div class="pl-2 font-weight-bold mt-4 d-flex justify-content-between">
+                  <h3 class="h6"><span> <i class="far fa-caret-square-right"></i> {{"Arrive Location"|translate}} </span>  : {{ included.arrive_location }}</h3>
+                  <h3 class="h6"> <span> <i class="far fa-caret-square-left"></i> {{"Departure Location"|translate}}</span>  : {{ included.departure_location }}</h3>
+                </div>
+              </section>
+              <section id="includedEx">
+                <app-package-included [includ]="included"  [excur]="type"></app-package-included>
+              </section>
+              <section  class="bg-white mt-3 px-3 pb-3">
+                <app-price-data [prices]="included" [excur]="type"></app-price-data>
+                <app-prices-policy [price_policy]="price_policy" [payment_policy]="payment_policy"[repeated_travellers]="repeated_travellers"[travel_schedule]="travel_schedule"></app-prices-policy>
+              </section>
+              <app-reviews></app-reviews>
+            </section>
+          }
+
+          @if (loading) {
+            <div class="ph-item">
+              @for (n of numSequence(25); track $index) {
+                <div class="ph-col-12">
+                  <div class="ph-row">
+                    <div class="ph-col-4"></div>
+                    <div class="ph-col-8 empty"></div>
+                    <div class="ph-col-6"></div>
+                    <div class="ph-col-6 empty"></div>
+                    <div class="ph-col-12"></div>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+
+        </div>
+        <div class="col-lg-3 my-3 col-sm-12">
+
+          <div class="submit">
+
+            @if (script != null) {
+              <div>
+                <div class="mt-2" id="demo" >
+                  <div appDynamicScript>
+                    <div
+                      src="https://assets.ticketinghub.com/checkout.js"
+                      [attr.data-widget]="included.code"
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- <app-tour-booking ></app-tour-booking> -->
+
+
+
+
+        </div>
+
+
+      </div>
+
+    </section>
+  </section>
+
+  <app-scroll-button></app-scroll-button>

@@ -1,0 +1,37 @@
+
+<!--  ================ Old card style ================  -->
+@if (!loading) {
+  <div  class=" item">
+    <div class="card item-card card-block">
+      <a routerLink="/{{url}}">   <img loading="lazy"  width="300" height="300"   class="img-relat" [src]="img" alt="{{alt}}"></a>
+      <h5 class="card-tiitle text-center  mt-2 " > <a  routerLink="/{{url}}">{{title}} </a> </h5>
+      <a class="rel-p text-center" routerLink="/{{url}}">@if (des!=='') {
+        <app-safe-html class="card-text" [htmlContent]="getSafeContent(des)"></app-safe-html>
+      }</a>
+    </div>
+  </div>
+}
+
+<!-- <div *ngIf="!loading">
+<div class="offer-view">
+  <span>offer</span>
+</div>
+<div class="card_marsa">
+  <img loading="lazy" [src]="img" alt="{{alt}}">
+  <div class="card_marsa_desc overflow-hidden" >
+    <div>
+      <h5 class=""> <a  routerLink="/{{url}}">{{title}} </a> </h5>
+                <a class="" routerLink="/{{url}}"><app-safe-html *ngIf="des!==''" class="" [htmlContent]="getSafeContent(des)"></app-safe-html></a>
+    </div>
+  </div>
+</div>
+</div> -->
+@if (loading) {
+  <div class=" item ph-item">
+    <div class="card item-card card-block ph-col-12">
+      <a >   <img loading="lazy"  width="300" height="300"   class="img-relat ph-col-12" src="../../../../assets/imgs/default.png" alt="loading"></a>
+      <h5 class="card-tiitle text-center  mt-2 " > <a >loading .. </a> </h5>
+      <a class="rel-p text-center" ><p  class="card-text" ></p></a>
+    </div>
+  </div>
+}

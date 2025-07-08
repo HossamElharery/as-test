@@ -1,0 +1,17 @@
+<div
+  class="swiper-section"
+  [class.no-pagination]="!swiperConfig.pagination"
+  [class.has-navigation]="swiperConfig.navigation"
+  >
+  <swiper #swiper class="general-swiper" [config]="swiperConfig">
+    @for (item of data; track $index) {
+      <ng-template swiperSlide>
+        <ng-container
+          [ngTemplateOutlet]="content.templateRef"
+          [ngTemplateOutletContext]="{ item }"
+          >
+        </ng-container>
+      </ng-template>
+    }
+  </swiper>
+</div>

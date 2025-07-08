@@ -1,0 +1,565 @@
+<footer class="footer bg-3  tesst" >
+  <div class="video-overlay ">
+  <div class="container">
+  <div class="row">
+    <!-- Our Top destinations -->
+    <div class="col-lg-3 col-md-6 mb-3">
+      <div class="usefull-link">
+        <h3 class="text-white h6">{{"Our Top Destinations"|translate}} </h3>
+
+
+          <ul>
+            <li>
+              <a [attr.aria-label]="'Egypt' | translate"
+                 [title]="'Egypt' | translate"
+                 routerLink="/all-destinations/egypt">
+                <i class="fa fa-angle-double-right"></i>{{ 'Egypt' | translate }}
+
+              </a>
+            </li>
+            <li>
+              <a [attr.aria-label]="'Jordan' | translate"
+                 [title]="'Jordan' | translate"
+                 routerLink="/all-destinations/jordan">
+                <i class="fa fa-angle-double-right"></i>{{ 'Jordan' | translate }}
+
+              </a>
+            </li>
+            <li>
+              <a [attr.aria-label]="'Morocco' | translate"
+                 [title]="'Morocco' | translate"
+                 routerLink="/all-destinations/morocco">
+                <i class="fa fa-angle-double-right"></i>{{ 'Morocco' | translate }}
+
+              </a>
+            </li>
+            <li>
+              <a [attr.aria-label]="'Turkey' | translate"
+                 [title]="'Turkey' | translate"
+                 routerLink="/all-destinations/turkey">
+                <i class="fa fa-angle-double-right"></i>{{ 'Turkey' | translate }}
+
+              </a>
+            </li>
+            <li>
+              <a [attr.aria-label]="'Saudi Arabia' | translate"
+                 [title]="'Saudi Arabia' | translate"
+                 routerLink="/all-destinations/saudi-arabia">
+                <i class="fa fa-angle-double-right"></i>{{ 'Saudi Arabia' | translate }}
+
+              </a>
+            </li>
+            <li>
+              <a [attr.aria-label]="'UAE' | translate"
+                 [title]="'UAE' | translate"
+                 routerLink="/all-destinations/uae">
+                <i class="fa fa-angle-double-right"></i>{{ 'UAE' | translate }}
+
+              </a>
+            </li>
+            <li>
+              <a [attr.aria-label]="'Oman' | translate"
+                 [title]="'Oman' | translate"
+                 routerLink="/all-destinations/oman">
+                <i class="fa fa-angle-double-right"></i>{{ 'Oman' | translate }}
+
+              </a>
+            </li>
+            <li>
+              <a [attr.aria-label]="'Bahrain' | translate"
+                 [title]="'Bahrain' | translate"
+                 routerLink="/all-destinations/bahrain">
+                <i class="fa fa-angle-double-right"></i>{{ 'Bahrain' | translate }}
+
+              </a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+    <!-- Travel Packages -->
+    <div class="col-lg-3 col-md-6">
+      <div class="usefull-link">
+        <h3 class="text-white h6">{{"Travel Packages"|translate}} </h3>
+
+        <ul>
+          <li>
+            <a [attr.aria-label]="'All Travel Packages' | translate"
+               [title]="'All Travel Packages' | translate"
+               routerLink="/all-packages">
+              <i class="fa fa-angle-double-right"></i>{{ 'All Travel Packages' | translate }}
+
+            </a>
+          </li>
+          <li>
+            <a [attr.aria-label]="'Small Group Tours' | translate"
+               [title]="'Small Group Tours' | translate"
+               routerLink="/useful-links/small-group-tours">
+              <i class="fa fa-angle-double-right"></i>{{ 'Small Group Tours' | translate }}
+
+            </a>
+          </li>
+          <li>
+            <a [attr.aria-label]="'Custom & Group Travel' | translate"
+               [title]="'Custom & Group Travel' | translate"
+               routerLink="/useful-links/custom-group-travel">
+              <i class="fa fa-angle-double-right"></i>{{ 'Custom & Group Travel' | translate }}
+
+            </a>
+          </li>
+          <li>
+            <a [attr.aria-label]="'Budget Tours' | translate"
+               [title]="'Budget Tours' | translate"
+               routerLink="/useful-links/budget-tour-packages">
+              <i class="fa fa-angle-double-right"></i>{{ 'Budget Tours' | translate }}
+
+            </a>
+          </li>
+          <li>
+            <a [attr.aria-label]="'Family Tours' | translate"
+               [title]="'Family Tours' | translate"
+               routerLink="/useful-links/family-tours">
+              <i class="fa fa-angle-double-right"></i>{{ 'Family Tours' | translate }}
+
+            </a>
+          </li>
+          <li>
+            <a [attr.aria-label]="'Adventure Tours' | translate"
+               [title]="'Adventure Tours' | translate"
+               routerLink="/useful-links/adventure-tour-packages">
+              <i class="fa fa-angle-double-right"></i>{{ 'Adventure Tours' | translate }}
+
+            </a>
+          </li>
+          <li>
+            <a [attr.aria-label]="'Multi Country Tours' | translate"
+               [title]="'Multi Country Tours' | translate"
+               routerLink="/multi-country-tours">
+              <i class="fa fa-angle-double-right"></i>{{ 'Multi Country Tours' | translate }}
+
+            </a>
+          </li>
+          <li>
+            <a [attr.aria-label]="'Packages With Flights' | translate"
+               [title]="'Packages With Flights' | translate"
+               routerLink="/all-destinations/egypt/travel-packages"
+               (click)="clickLink('packages-with-flights')">
+              <i class="fa fa-angle-double-right"></i>{{ 'Packages With Flights' | translate }}
+
+            </a>
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+    <!-- useful Info -->
+    <div class="col-lg-3 col-md-6 mb-3">
+          <div class="usefull-link">
+            <h3 class="text-white h6">{{"USEFUL INFO"|translate}}
+            </h3>
+
+            <ul>
+              <li><a [attr.aria-label]="'Blogs' | translate" [title]="'Blogs' | translate" routerLink="/all-blogs">
+                <i class="fa fa-angle-double-right"></i>{{ 'Blogs' | translate }}
+              </a></li>
+              <li><a [attr.aria-label]="'Travel Advice' | translate" [title]="'Travel Advice' | translate" routerLink="/useful-links/travel-advice"
+                ><i class="fa fa-angle-double-right"></i>{{ 'Travel Advice' | translate }}
+              </a></li>
+              <li><a [attr.aria-label]="'Travel Information' | translate" [title]="'Travel Information' | translate" routerLink="/all-destinations">
+                <i class="fa fa-angle-double-right"></i>{{ 'Travel Information' | translate }}</a></li>
+              <li><a [attr.aria-label]="'Responsible Tourism' | translate" [title]="'Responsible Tourism' | translate" routerLink="/useful-links/responsible-tourism">
+                <i class="fa fa-angle-double-right"></i>{{ 'Responsible Tourism' | translate }}</a></li>
+              <li><a [attr.aria-label]="'Book With Confidence' | translate" [title]="'Book With Confidence' | translate" routerLink="/useful-links/book-with-confidence"
+                ><i class="fa fa-angle-double-right"></i>{{ 'Book With Confidence' | translate }}</a></li>
+              <li><a [attr.aria-label]="'Rewards Program' | translate" [title]="'Rewards Program' | translate" routerLink="/useful-links/rewards-program">
+                <i class="fa fa-angle-double-right"></i>{{ 'Rewards Program' | translate }}</a></li>
+              <li><a [attr.aria-label]="'Travel Agents' | translate" [title]="'Travel Agents' | translate" routerLink="/useful-links/travel-agents">
+                <i class="fa fa-angle-double-right"></i>{{ 'Travel Agents' | translate }}</a></li>
+              <li><a [attr.aria-label]="'Become a Partner' | translate" [title]="'Become a Partner' | translate" routerLink="/useful-links/become-a-partner">
+                <i class="fa fa-angle-double-right"></i>{{ 'Become a Partner' | translate }}</a></li>
+            </ul>
+
+
+          </div>
+
+
+    </div>
+    <!-- Ask logo -->
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="usefull-link">
+          <h3 class="text-white h6" >{{"DON'T MISS OUT!"|translate}} </h3>
+
+                    <ul>
+                      <li>
+                        <div class="news-letter">
+                          <p>Stay up to date with our latest special offers:</p>
+
+                          <form [formGroup]="subscribe" (ngSubmit)="save()">
+                            <!-- It is good practice to use a label for input, even if it's visually hidden, it helps screen readers -->
+                            <label for="subscribe-email" class="sr-only">Email Address</label>
+                            <input
+                              formControlName="email"
+                              type="email"
+                              placeholder="Enter Your Email ID"
+                              id="subscribe-email"
+                              class="footer_col_row_newltr_input inputw8"
+                              aria-describedby="emailHelpBlock"
+                            >
+                            <!-- Conditional message for successful subscription -->
+                             @if (twister) {
+                              <small
+                              id="emailHelpBlock"
+                              class="text-white d-flex m-2"
+                            >
+                              <span><i class="fas fa-check-double text-success mr-2"></i><span class="sr-only">doublecheck</span></span> Thanks for Subscribing
+                            </small>
+                             }
+
+                            <!-- Descriptive aria-label for the button -->
+                            <button
+                              aria-label="Subscribe to newsletter"
+                              type="submit"
+                              class="my-2"
+                            >
+                              Subscribe
+                            </button>
+                          </form>
+
+                        </div>
+
+                        <a class="d-inline-block h-100"
+     [attr.aria-label]="'Read Ask-Aladdin reviews on Trustpilot' | translate"
+     rel="noopener noreferrer"
+     target="_blank"
+     href="https://www.trustpilot.com/review/www.ask-aladdin.com">
+    <img [attr.title]="'Trustpilot Reviews for Ask-Aladdin' | translate"
+         width="251"
+         height="100"
+         src="../../../../assets/imgs/trastt.webp"
+         [attr.alt]="'Trustpilot logo' | translate">
+  </a>
+
+                      </li>
+                    </ul>
+
+                  </div>
+    </div>
+
+
+  <!-- About Askaladdin -->
+  <div class="col-lg-3 col-md-6">
+    <div class="usefull-link">
+      <h3 class="text-white h6">{{"About AskALADDIN"|translate}} </h3>
+
+
+      <ul>
+        <li>
+          <a [attr.aria-label]="'About Us' | translate"
+             [title]="'About Us' | translate"
+             routerLink="/about-us">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>{{ 'About Us' | translate }}
+
+          </a>
+        </li>
+        <li>
+          <a [attr.aria-label]="'Our Story' | translate"
+             [title]="'Our Story' | translate"
+             routerLink="/our-story">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>{{ 'Our Story' | translate }}
+
+          </a>
+        </li>
+        <li>
+          <a [attr.aria-label]="'Why Askaladdin' | translate"
+             [title]="'Why Askaladdin' | translate"
+             routerLink="/useful-links/ask-aladdin-foundation">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>{{ 'Why Askaladdin' | translate }}
+
+          </a>
+        </li>
+        <li>
+          <a [attr.aria-label]="'Meet The Team' | translate"
+             [title]="'Meet The Team' | translate"
+             routerLink="/useful-links/meet-the-team">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>{{ 'Meet The Team' | translate }}
+
+          </a>
+        </li>
+        <li>
+          <a [attr.aria-label]="'Terms & Conditions' | translate"
+             [title]="'Terms & Conditions' | translate"
+             routerLink="/useful-links/tour-terms-and-conditions">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>{{ 'Terms & Conditions' | translate }}
+
+          </a>
+        </li>
+        <li>
+          <a [attr.aria-label]="'Reviews & Testimonals' | translate"
+             [title]="'Reviews & Testimonals' | translate"
+             routerLink="/useful-links/customer-reviews">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>{{ 'Reviews & Testimonals' | translate }}
+
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- Quick links -->
+  <div class="col-lg-3 col-md-6 mb-3">
+  <div class="usefull-link">
+    <h3 class="text-white h6">{{"QUICK LINKS"|translate}}</h3>
+
+    <ul>
+      <li>
+        <a [attr.aria-label]="'Access Our eBrochure' | translate"
+           [title]="'Access Our eBrochure' | translate"
+           routerLink="/useful-links/access-our-ebrochure">
+          <i class="fa fa-angle-double-right"></i>{{ 'Access Our eBrochure' | translate }}
+
+        </a>
+      </li>
+      <li>
+        <a [attr.aria-label]="'Newsroom & Media' | translate"
+           [title]="'Newsroom & Media' | translate"
+           routerLink="/useful-links/traveler-photos">
+          <i class="fa fa-angle-double-right"></i>{{ 'Newsroom & Media' | translate }}
+
+        </a>
+      </li>
+      <li>
+        <a [attr.aria-label]="'Travel Protection' | translate"
+           [title]="'Travel Protection' | translate"
+           routerLink="/useful-links/travel-insurance">
+          <i class="fa fa-angle-double-right"></i>{{ 'Travel Protection' | translate }}
+
+        </a>
+      </li>
+      <li>
+        <a [attr.aria-label]="'Special Offers' | translate"
+           [title]="'Special Offers' | translate"
+           routerLink="/useful-links/special-offers">
+          <i class="fa fa-angle-double-right"></i>{{ 'Special Offers' | translate }}
+
+        </a>
+      </li>
+      <li>
+        <a [attr.aria-label]="'Advertise With Us' | translate"
+           [title]="'Advertise With Us' | translate"
+           routerLink="/useful-links/advertise-with-us">
+          <i class="fa fa-angle-double-right"></i>{{ 'Advertise With Us' | translate }}
+
+        </a>
+      </li>
+      <li>
+        <a [attr.aria-label]="'Honeymoon Gift Services' | translate"
+           [title]="'Honeymoon Gift Services' | translate"
+           routerLink="/useful-links/gift-certificates">
+          <i class="fa fa-angle-double-right"></i>{{ 'Honeymoon Gift Services' | translate }}
+
+        </a>
+      </li>
+    </ul>
+
+  </div>
+  </div>
+  <!-- Be Connected -->
+  <div class="col-lg-3 col-md-6 mb-3">
+  <div class="usefull-link">
+    <h3 class="text-white h6">{{"BE CONNECTED"|translate}}</h3>
+
+    <ul>
+      <li>
+        <a [attr.aria-label]="'Contact Us' | translate"
+           [title]="'Contact Us' | translate"
+           routerLink="/contact-us">
+          <i class="fa fa-angle-double-right"></i>{{ 'Contact Us' | translate }}
+
+        </a>
+      </li>
+      <li>
+        <a [attr.aria-label]="'Travel Help Center' | translate"
+           [title]="'Travel Help Center' | translate"
+           routerLink="/useful-links/travel-help-center">
+          <i class="fa fa-angle-double-right"></i>{{ 'Travel Help Center' | translate }}
+
+        </a>
+      </li>
+      <li>
+        <a [attr.aria-label]="'Request A Call Back' | translate"
+           [title]="'Request A Call Back' | translate"
+           routerLink="/useful-links/request-a-call-back">
+          <i class="fa fa-angle-double-right"></i>{{ 'Request A Call Back' | translate }}
+
+        </a>
+      </li>
+      <li>
+        <a [attr.aria-label]="'FAQs' | translate"
+           [title]="'FAQs' | translate"
+           routerLink="/myths-facts">
+          <i class="fa fa-angle-double-right"></i>{{ 'FAQs' | translate }}
+
+        </a>
+      </li>
+      <li>
+        <a [attr.aria-label]="'Site Map' | translate"
+           [title]="'Site Map' | translate"
+           href="/sitemap.html">
+          <i class="fa fa-angle-double-right"></i>{{ 'Site Map' | translate }}
+
+        </a>
+      </li>
+    </ul>
+
+  </div>
+  </div>
+  <!-- Reviews -->
+  <div class="col-lg-3 col-md-6">
+            <div class="usefull-link">
+              <h3 class="text-white h6">{{"Contact us"|translate}} </h3>
+
+              <ul>
+                <li>
+                  <a aria-label="Email AskAladdin Support" [title]="'Email AskAladdin Support'" href="mailto:support@ask-aladdin.com">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span class="sr-only">mail</span>
+                    {{'support@ask-aladdin.com'}}
+                  </a>
+                </li>
+                @for (social of socialsContainer; track $index) {
+                  <li >
+                    <a aria-label="Call AskAladdin Phone" [title]="'Call AskAladdin Phone'" href="tel:{{social.phone1}}">
+                      <i class="fa fa-phone-alt" aria-hidden="true"></i>
+                      <span class="sr-only">phone</span>
+                      {{ social.phone1 }}
+                    </a>
+                  </li>
+                }
+
+
+                <li class="mt-2 d-flex">
+                  <div class="app">
+                    <img loading="lazy" [title]="'app store'"  src="../../../../assets/imgs/app-store.png" alt="Download from the App Store" width="110px" height="35px" class="mr-2 storre-play">
+                  </div>
+                  <div class="app">
+                    <img loading="lazy" [title]="'google play'"   src="../../../../assets/imgs/google-play-btn.webp" alt="Get it on Google Play" height="35px" width="110px" class="storre-play">
+                  </div>
+                </li>
+              </ul>
+
+
+            </div>
+  </div>
+
+  </div>
+  <div class="row mt-3 d-flex justify-content-between">
+  <div class="col-md-4">
+    <!-- <div *ngFor="let social of socialsContainer" class="social-icons">
+      <a   aria-label="Visit AskAladdin Facebook Account" [title]="'Visit AskAladdin Facebook Account'" target="_blank" href="{{social.facebook}}" class="social-icon social-icon--facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a aria-label="Visit AskAladdin twitter Account " [title]="'twitter'" target="_blank" href="{{social.twitter}}" class="social-icon social-icon--twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a aria-label="Visit AskAladdin linkedin Account " [title]="'linkedin'" href="{{social.linkedin}}" target="_blank" class="social-icon social-icon--linkedin">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a  aria-label="Visit AskAladdin instagram Account " [title]="'instagram'" target="_blank" href="{{social.instagram}}" class="social-icon social-icon--instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a aria-label="Visit AskAladdin pinterest Account " [title]="'pinterest'" href="{{social.pinterest}}" target="_blank" class="social-icon social-icon--pinterest">
+        <i class="fab fa-pinterest"></i>
+      </a>
+      <a aria-label="Visit AskAladdin youtube Account " [title]="'youtube'" target="_blank" href="{{social.youtube}}" class="social-icon social-icon--youtube">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div> -->
+    @for (social of socialsContainer; track $index) {
+      <div  class="social-icons">
+        <a aria-label="Visit AskAladdin on Facebook" [title]="'Visit AskAladdin on Facebook'" rel="noopener noreferrer" target="_blank" href="{{social.facebook}}" class="social-icon social-icon--facebook">
+          <i class="fab fa-facebook-f"></i>
+          <span class="sr-only">Facebook</span>
+        </a>
+        <a aria-label="Visit AskAladdin on Twitter" [title]="'Visit AskAladdin on Twitter'" rel="noopener noreferrer" target="_blank" href="{{social.twitter}}" class="social-icon social-icon--twitter">
+          <i class="fab fa-twitter"></i>
+          <span class="sr-only">Twitter</span>
+        </a>
+        <a aria-label="Visit AskAladdin on LinkedIn" [title]="'Visit AskAladdin on LinkedIn'" rel="noopener noreferrer" target="_blank" href="{{social.linkedin}}" class="social-icon social-icon--linkedin">
+          <i class="fab fa-linkedin"></i>
+          <span class="sr-only">LinkedIn</span>
+        </a>
+        <a aria-label="Visit AskAladdin on Instagram" [title]="'Visit AskAladdin on Instagram'" rel="noopener noreferrer" target="_blank" href="{{social.instagram}}" class="social-icon social-icon--instagram">
+          <i class="fab fa-instagram"></i>
+          <span class="sr-only">Instagram</span>
+        </a>
+        <a aria-label="Visit AskAladdin on Pinterest" [title]="'Visit AskAladdin on Pinterest'" rel="noopener noreferrer" target="_blank" href="{{social.pinterest}}" class="social-icon social-icon--pinterest">
+          <i class="fab fa-pinterest"></i>
+          <span class="sr-only">Pinterest</span>
+        </a>
+        <a aria-label="Visit AskAladdin on YouTube" [title]="'Visit AskAladdin on YouTube'" rel="noopener noreferrer" target="_blank" href="{{social.youtube}}" class="social-icon social-icon--youtube">
+          <i class="fab fa-youtube"></i>
+          <span class="sr-only">YouTube</span>
+        </a>
+      </div>
+    }
+
+
+  </div>
+  <div class="col-md-5 mt-2 coppy-right hove-2">
+    <ul>
+      <li><a aria-label="Cookie Policy" [title]="'Cookie Policy' |translate" routerLink="/useful-links/cookie-policy">{{"Cookie Policy  |"|translate}}</a></li>
+      <li><a aria-label="page" [title]="'Privacy Policy' |translate" routerLink="/privacy-policy">{{"Privacy Policy  |"|translate}}</a></li>
+      <li><a aria-label="page" [title]="'Terms & Conditions' |translate" routerLink="/useful-links/tour-terms-and-conditions">{{"Terms & Conditions  |"|translate}}</a></li>
+      <li><a aria-label="page" [title]="'Disclaimer' |translate" routerLink="/useful-links/disclaimer">{{"Disclaimer"|translate}}</a></li>
+    </ul>
+  </div>
+  <div class="col-md-3 mt-2">
+  <ul class="list-inline ">
+
+
+    <li class="visa d-flex align-items-center">
+      <p class="text-white d-inline mr-1 mb-0">{{ 'We Accept' | translate }}:</p>
+      <div class="pt-1" title="{{ 'Accepted Payment Methods' | translate }}">
+        <a routerLink="/" class="payment-icon" [attr.aria-label]="'Pay with Visa' | translate" title="{{ 'Pay with Visa' | translate }}">
+          <i class="fab fa-cc-visa"></i><span class="sr-only">Visa</span>
+        </a>
+        <a routerLink="/" class="payment-icon" [attr.aria-label]="'Pay with Mastercard' | translate" title="{{ 'Pay with Mastercard' | translate }}">
+          <i class="fab fa-cc-mastercard"></i><span class="sr-only">Mastercard</span>
+        </a>
+        <a routerLink="/" class="payment-icon" [attr.aria-label]="'Pay with PayPal' | translate" title="{{ 'Pay with PayPal' | translate }}">
+          <i class="fab fa-cc-paypal"></i><span class="sr-only">PayPal</span>
+        </a>
+        <a routerLink="/" class="payment-icon" [attr.aria-label]="'Pay with American Express' | translate" title="{{ 'Pay with American Express' | translate }}">
+          <i class="fab fa-cc-amex"></i><span class="sr-only">American Express</span>
+        </a>
+        <!-- Additional payment methods can be added here -->
+      </div>
+    </li>
+
+
+
+
+
+  </ul>
+  </div>
+  </div>
+  <hr/>
+  <div class="copyright text-center">
+  <div class="row text-center">
+  <div class="col-lg-12 col-md-12 text-center">
+    <div class=" text-center pt-2 copyright-p d-flex justify-content-between">
+      <p>
+        <a aria-label="Copyright info" [title]="'Copyright' |translate" routerLink="/privacy-policy"> Copyright © 1999 - {{date | date:'yyyy'}} AskAladdin, The Travel Experts LLC. All Rights Reserved. Privacy Policy </a>
+      </p>
+      <p class="text-white">Powered By <a class="main-color" href="https://digitalexperts.ae/">Digital Experts</a></p>
+    </div>
+    <div></div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  </footer>

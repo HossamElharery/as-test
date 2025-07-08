@@ -1,0 +1,167 @@
+.tesst{
+  /* position: relative; */
+    bottom: 0px;
+    width: 100%;
+    margin-bottom: 10px;
+    background-image: url(../../../assets/imgs/pyramids-02.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.storre-play{
+  border: 0.1px solid #7a7979;
+  border-radius: 5px;
+}
+
+  /* ============= Laptop Responsive=============== */
+
+a,
+.btn {
+  -webkit-transition: all 0.5s ease-out 0s;
+  -moz-transition: all 0.5s ease-out 0s;
+  -ms-transition: all 0.5s ease-out 0s;
+  -o-transition: all 0.5s ease-out 0s;
+  transition: all 0.5s ease-out 0s;
+}
+/* ============= Titles ============= */
+.footer h3 {
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.footer h3:before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: #f58220;
+  left: 0;
+  bottom: 0px;
+}
+/* ============= usefull-link =============*/
+.usefull-link input{
+  padding: 7px;
+    background: #ffffff;
+    width: 85%;
+    margin: 10px 0 0;
+    border: 0;
+}
+.usefull-link button[type=submit]{
+  background-color: #f68800;
+  color: white;
+  text-transform: capitalize;
+  font-size: 12px;
+  padding: 9px 12px;
+  border: 0px;
+}
+.usefull-link ul li {
+  display: block;
+  padding: 0px 0px 4px;
+}
+.usefull-link ul li:last-child {
+  border-bottom: 0px;
+}
+.usefull-link ul li a i {
+  padding-right: 10px;
+}
+.usefull-link ul li a {
+  color: #ffffff!important;
+  font-weight: 400;
+  font-size: 13px;
+    letter-spacing: 0.4px;
+}
+.usefull-link ul li a:hover {
+  color: #f58220!important;
+  padding-left: 5px;
+  cursor: pointer;
+}
+.news-letter p{
+  font-size: 13px;
+  color: white;
+  margin-bottom: 5px;
+}
+.footer hr {
+  margin-top: 0px;
+  border-color: rgba(255, 255, 255, 0.11);
+}
+.footer .copyright {
+  margin: 10px 0 0px;
+  padding-bottom: 10px;
+}
+footer .copyright a {
+  color: #f68800;
+}
+footer .copyright ul li {
+  padding: 0px;
+}
+footer .copyright ul li a {
+  color: #909090;
+  text-transform: capitalize;
+  padding: 0px 3px;
+}
+footer .copyright ul li a:hover {
+  color: #f68800;
+}
+.social-icons .fa {
+  font-size: 18px;
+}
+.hove-2 a {
+  color: #fff;
+  padding: 0px 6px;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}
+ .visa a i{
+  padding-right:10px;
+}
+.visa a{
+  color: white;
+}
+ .visa a i:hover{
+  color: #f68800;
+}
+.coppy-right ul {
+  margin: 0;
+  padding: 0px;
+}
+.coppy-right ul.social-icons::after {
+  content: "";
+  border-top: 49px solid transparent;
+  border-left: 28px solid #c66e0052;
+  border-bottom: 0 solid transparent;
+  position: absolute;
+  top: 0;
+  right: 16px;
+}
+
+.coppy-right ul li {
+  display: inline-block;
+  border-bottom: 0px solid rgba(255, 255, 255, 0.11);
+  padding: 10px 0px;
+}
+.coppy-right ul a:hover  {
+  color: #f68800;
+}
+
+@media only  screen and (max-width:1024px){
+  .usefull-link ul li a{
+    font-size: 1rem;
+}
+.usefull-link ul li {
+
+  padding: 11px 0px 4px;
+}
+
+}
+@media only  screen and (max-width:768px){
+  .usefull-link{
+    margin-top: 0.5rem;
+}
+.social-icon{
+  margin: 5px 0.24rem;
+  width: 40px;
+  height: 40px;
+}
+}
+

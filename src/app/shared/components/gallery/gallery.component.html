@@ -1,0 +1,53 @@
+<div class="swipper">
+  <swiper
+    [config]="config"
+    style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+    [spaceBetween]="10"
+    [autoplay]="{
+      delay: 2500,
+      disableOnInteraction: false
+    }"
+    [loop]="true"
+    [navigation]="true"
+    [pagination]="{
+      clickable: true
+    }"
+    [thumbs]="{ swiper: thumbsSwiper }"
+    class="mySwiper2"
+    >
+    @for (gall of gallery; track $index) {
+      <ng-template swiperSlide>
+        <img
+          loading="lazy"
+          style="object-fit: cover;"
+          width="100%"
+          height="100%"
+          [src]="gall.url"
+          [alt]="gall.title"
+          />
+        </ng-template>
+      }
+    </swiper>
+
+    <swiper
+      (swiper)="thumbsSwiper = $event"
+      [spaceBetween]="10"
+      [slidesPerView]="4"
+      [freeMode]="true"
+      [watchSlidesProgress]="true"
+      class="mySwiper"
+      >
+      @for (gall of gallery; track $index) {
+        <ng-template swiperSlide>
+          <img
+            loading="lazy"
+            style="object-fit: cover;"
+            width="100%"
+            height="100%"
+            [src]="gall.url"
+            [alt]="gall.title"
+            />
+          </ng-template>
+        }
+      </swiper>
+    </div>

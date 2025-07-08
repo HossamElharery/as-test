@@ -1,0 +1,119 @@
+@if (packageOffer.length!>0) {
+  <section  class=" py-4 hotOffer">
+    <div class="container">
+      <div class="head-title mb-4">
+        <h3 class="font-weight-bold">{{"Hot Offers"|translate}}</h3>
+      </div>
+      <owl-carousel-o [options]="customOwl">
+        @for (pack of packageOffer; track trackBy($index, pack)) {
+          <ng-template carouselSlide>
+            <div class="slide">
+              <div class="blogs overflow-hidden">
+                <a routerLink="/all-destinations/{{pack.destination.slug}}/travel-packages/{{pack.slug}}" class="text-dark">
+                  <div class="deals-ufi-card__floating-badge-container ">
+                    <span class="bui-badge bui-badge--constructive" style="padding: 0px 0 8px 0;">
+                      <span class="bui-badge__text">
+                        {{ "Hot Offer" | translate }}
+                      </span>
+                    </span>
+                  </div>
+                  <div class="card main-card text-center anotherCard offerCard">
+                    <img loading="lazy"
+                      [src]="pack.thumb"
+                      class="main-top"
+                      alt="{{ pack.thumb_alt }}"
+                      />
+                      <div class="card-body card-details des-antherCard">
+                        <h6 class="card-title">{{ pack.name }}</h6>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </ng-template>
+          }
+          @for (excurs of excursionsOffer ; track trackBy($index, excurs)) {
+            <ng-template carouselSlide>
+              <div class="slide">
+                <div class="blogs overflow-hidden">
+                  <a [attr.aria-label]="excurs.name" routerLink="/all-destinations/{{excurs.destination.slug}}/travel-excursions/{{excurs.city.slug}}/{{excurs.slug}}" class="text-dark">
+                    <div class="card main-card text-center anotherCard offerCard">
+                      <p  class="affe">
+                        <span class="offerr">
+                          {{"Hot Offer"|translate}}
+                        </span>
+                      </p>                   <img loading="lazy"
+                      [src]="excurs.thumb"
+                      class="min-top"
+                      alt="{{ excurs.thumb_alt }}"
+                      />
+                      <div class="card-body card-details des-antherCard">
+                        <h6 class="card-title">{{ excurs.name }}</h6>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </ng-template>
+          }
+          @for (curies of cruisesOffer ; track trackBy($index, curies)) {
+            <ng-template carouselSlide>
+              <div class="slide">
+                <div class="blogs overflow-hidden">
+                  <a [attr.aria-label]="curies.name"  routerLink="/all-destinations/{{curies.destination.slug}}/travel-cruises//{{curies.slug}}" class="text-dark">
+                    <div class="card main-card text-center anotherCard offerCard">
+                      <p  class="affe">
+                        <span class="offerr">
+                          {{"Hot Offer"|translate}}
+                        </span>
+                      </p>                   <img loading="lazy"
+                      [src]="curies.thumb"
+                      class="min-top"
+                      alt="{{ curies.thumb_alt }}"
+                      />
+                      <div class="card-body card-details des-antherCard">
+                        <h6 class="card-title">{{ curies.name }}</h6>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </ng-template>
+          }
+        </owl-carousel-o>
+      </div>
+    </section>
+  }
+
+  @if (dataTrue == false) {
+    <section class="bg-white py-4">
+      <div class="container">
+        <div  class="head-title mb-4">
+          <h3  class="font-weight-bold">{{"Related Articles"|translate}}</h3>
+        </div>
+        <owl-carousel-o [options]="customOptions">
+          @for (page of relatedPages; track trackBy($index, page)) {
+            <ng-template carouselSlide>
+              <div class="slide">
+                <div class="blogs overflow-hidden">
+                  <a [attr.aria-label]="page.name" routerLink="/all-destinations/{{page.destination.slug}}/category/{{page.category.slug}}/page/{{page.slug}}" class="text-dark">
+                    <div class="card main-card text-center anotherCard offerCard">
+                      <img loading="lazy"
+                        [src]="page.thumb"
+                        class="min-top"
+                        alt="{{ page.thumb_alt }}"
+                        />
+                        <div class="card-body card-details des-antherCard">
+                          <h6 class="card-title">{{ page.name }}</h6>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </ng-template>
+            }
+          </owl-carousel-o>
+        </div>
+      </section>
+    }
+    <app-second-footer></app-second-footer>

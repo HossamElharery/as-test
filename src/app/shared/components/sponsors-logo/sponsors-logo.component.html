@@ -1,0 +1,19 @@
+<section class="  p-3">
+  <div class="container">
+    <div  class="row "  >
+
+      @for (spon of show|slice:1:5; track $index) {
+        <div class="col-12 col-md-3">
+          <a alt="img" target="_blank" href="{{spon.link}}">
+            <div class="logo-img">
+              <img loading="lazy" alt="img"   [src]="spon?.img" class="img-fluid" />
+            </div>
+          </a>
+        </div>
+      }
+
+    </div>
+
+
+  </div>
+</section>

@@ -1,0 +1,58 @@
+<div  class="services text-center bg-white d-flex justify-content-between rounded mt-3">
+  <div class="services-content">
+     <a spyAnchor  (click)="Itinerary()" id="IItineraryTag "[class.IItineraryTag]="IItineraryTag2" #myElem>
+      <i class="fas fa-map-marked-alt"></i>
+      <p class="d-none d-sm-block mb-0">{{ "Package Itinerary" | translate }}</p>
+    </a>
+  </div>
+
+  <div class="services-content">
+    <a (click)="prices()" [class.priceTag]="priceTag2"> <i class="fas fa-dollar-sign"></i>
+     <p class="d-none d-sm-block mb-0">{{ "Prices & Dates" | translate }}</p></a>
+ </div>
+
+ <div class="services-content">
+  <a (click)="Included()" id="IncludedTag" [class.IncludedTag]="includeTag2"><i class="fas fa-plus-circle"></i>
+  <p class="d-none d-sm-block mb-0">{{ "What's Included" | translate }}</p></a>
+</div>
+
+<div class="services-content">
+  <a (click)="highlights()" id="highlightsTag" > <i class="far fa-lightbulb"></i>
+   <p class="d-none d-sm-block mb-0">{{ "Highlights" | translate }}</p></a>
+</div>
+
+<div class="services-content">
+  <a (click)="accomodation()" [class.accomodationTag]="accomodationTag2">
+      <i class="fas fa-hotel"></i>
+ <p class="d-none d-sm-block mb-0">{{ "Hotels We Use" | translate }}</p></a>
+</div>
+
+<div class="services-content">
+  <a  (click)="Optional()" [class.OptionalTag]="OptionalTag2"> <i class="fas fa-filter"></i>
+   <p class="d-none d-sm-block mb-0">{{ "Optional Tours" |translate }}</p></a>
+</div>
+<div class="services-content">
+  <a (click)="location()" [class.travTag]="travTag2"> <i class="fas fa-map-marker-alt"></i>
+   <p class="d-none d-sm-block mb-0">{{ "Location" | translate  }}</p></a>
+</div>
+
+<div class="services-content">
+  <a (click)="trav()" [class.travTag]="travTag2"> <i class="fas fa-globe-americas"></i>
+   <p class="d-none d-sm-block mb-0">{{ "Travel Experiences" | translate  }}</p></a>
+</div>
+
+<div class="services-content">
+
+  <a (click)="reviews()" [class.reviewsTag]="reviewsTag2"> <i class="fas fa-star-half-alt"></i>
+   <p class="d-none d-sm-block mb-0">{{"Tour Reviews"|translate}}</p></a>
+</div>
+
+<div class="services-content">
+  <a (click)="videos()" [class.videosTag]="videosTag2"> <i class="far fa-play-circle"></i>
+   <p class="d-none d-sm-block mb-0">{{cruise ?  "Gallery" : 'Videos'}}</p></a>
+</div>
+
+</div>
+
+
+

@@ -1,0 +1,231 @@
+.sec-banner{
+  background-image: linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) ,url('.././../../../assets/imgs/meet-team.jpg');
+  background-attachment: fixed;
+  filter: hue-rotate(45deg);
+
+}
+.title h1{
+  font-size: 30px;
+  font-weight: 700;
+}
+.profile{
+  display: flex;
+
+}
+.card
+{
+  width: 270px;
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+}
+.card img{
+  transition: all ease .5s;
+
+}
+.profile:hover img{
+  transform: scale(1.1);
+}
+
+.card-body{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  top: 0;
+}
+.profile:hover .card-body{
+  background-color: #af838367;
+
+}
+.card-img-top
+{
+  height: 320px;
+}
+.layer
+{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.card-title{
+  background-color: rgba(0, 0, 0, 0.568);
+  width: 80%;
+  position: absolute;
+  bottom: -2%;
+  right: 10%;
+  font-size: 20px;
+  font-weight: 600;
+  padding-top: 10px;
+  font-family: 'Domine', serif;
+  height: 80px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.icons-profile
+{
+  position: absolute;
+  top: 6%;
+  left: 0%;
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all ease-in .5s;
+  transition: ease-out .1s;
+  background-color: rgba(0, 0, 0, 0.61);
+
+  overflow: hidden;
+
+
+}
+.card-body:hover .icons-profile
+{
+  width: 80%;
+}
+
+.details-social{
+  width: 100%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  overflow: hidden;
+}
+.details-social i
+{
+  opacity: 1;
+  margin-left: 10px;
+  left: 5%;
+}
+.details-social p
+{
+opacity: 0;
+width: 0;
+transition-delay: .2s;
+}
+.card-body:hover .details-social p
+{
+  opacity: 1;
+  width: 100%;
+}
+
+.description-profile{
+  border-right: 2px solid #888 ;
+  border-bottom: 2px solid #888;
+  border-top: 2px solid #888;
+  margin-left: 10px;
+  text-align: justify;
+
+  padding: 10px;
+  border-radius: 5px;
+
+}
+.description-profile .descrip
+{
+  font-size: 14px;
+}
+.description-profile a
+{
+  text-decoration: none;
+  color: #f68800;
+}
+
+@media only  screen and (max-width:768px) {
+  .profile{
+      flex-direction: column;
+      justify-content: center;
+
+  }
+}
+
+
+/*  */
+
+.our-team{
+  border-radius: 15px;
+  text-align: center;
+  padding: 20px 15px 30px;
+  background: #fff;
+
+}
+.our-team .pic{
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 25px;
+  display: inline-block;
+  /* width: 100%; */
+  height: 100%;
+  transition: all 0.1s ease 0s;
+}
+.our-team:hover .pic{
+  background: #f68800;
+  border-radius: 50%;
+}
+.pic img{
+  width: 205px;
+  height: 205px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+ 
+}
+.our-team .title{
+  font-weight: 600;
+  color: #2e282a;
+  /* text-transform: uppercase; */
+  display: block;
+  font-size: 20px;
+  margin: 0 0 7px 0;
+}
+.our-team .post{
+  color: #f68800;
+  /* text-transform: capitalize; */
+  display: block;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+.our-team .social{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.our-team .social li{
+  display: inline-block;
+  margin-right: 5px;
+}
+a{
+  text-decoration: none;
+}
+.our-team .social li i{
+  border-radius: 50%;
+  font-size: 15px;
+  color: #f68800;
+  border: 1px solid #f68800;
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  transition: all 0.5s ease 0s;
+}
+.our-team:hover .social li i{
+  background: #f68800;
+  color: #fff;
+}
+.our-team:hover .pic{
+  background: #f68800;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.our-team:hover .social li i{
+  background: #f68800;
+  color: #fff;
+  transition: 0.3s;
+}
+@font-face {
+  font-family: 'k';
+  src: url('https://fonts.googleapis.com/css?family=Lobster');
+}

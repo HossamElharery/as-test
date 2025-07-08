@@ -1,0 +1,342 @@
+
+@if (!loading) {
+  <section>
+    <section >
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + destination_banner }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> {{category_name}} </span> </h1>
+          </div>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+    <section>
+      <div class="container">
+        <div  class="page-links py-2">
+          <a class="hover-color" routerLink="/"> <span > {{"Home"|translate}} / </span>  </a>
+          <a class="hover-color" routerLink="/all-destinations/{{destination_slug}}"> <span >{{destination_name}} / </span>  </a>
+          <span class="main-color">{{category_name}}</span>
+        </div>
+      </div>
+    </section>
+  </section>
+}
+
+@if (loading) {
+  <section  class="min-banner">
+    <section  >
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span>  </h1>
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+}
+
+
+<section class="sec-bg padding-pack mb-3">
+  <div class="container">
+
+    <div class="row  pt-2">
+      <div class="col-12 col-md-3 ">
+        <section class="bg-white px-3 py-2">
+          <div class="head mb-2">
+            <span class="filter-by">{{ "Filter By" | translate }}</span>
+          </div>
+          <form >
+
+            <div class="filter-content border-bottom">
+              <a class="filter d-flex justify-content-between align-items-center p-3 text-dark sec-bg font-weight-bold first-character-c"
+                (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+                <div class=""><i class="fas far fa-calendar-alt mr-2"></i>{{ "Duration" | translate }}</div>
+                <i class="fas" [ngClass]="{ 'fa-angle-down': isCollapsed, 'fa-angle-up': !isCollapsed }"></i>
+              </a>
+
+              <div id="collapseBasic" class="sec-bg p-3 pt-2" [ngbCollapse]="isCollapsed"  >
+
+
+
+                <div class="form">
+                  <span>
+                    <label for="minText"><span class="main-color line">Min </span> Days </label>
+                    <input class="input-filter" type="number" ngModel disabled id="minTextDays" #minday="ngModel" name="minday" [value]="rangeSDay"
+                      [(ngModel)]="rangeSDay" placeholder="1" />
+                    </span>
+
+                    <span>
+                      <label for="maxText"><span class="main-color line">Max </span> Days </label>
+                      <input class="input-filter" type="number" #maxday="ngModel" ngModel disabled id="maxText" name="maxday" [value]="rangeMDay"
+                        [(ngModel)]="rangeMDay" placeholder="30" />
+                      </span>
+
+                      <div class="range">
+                        <input type="range" #minDay min="1" max="30" value="1" step="2" id="minRange" (change)="rangeStartDay(minDay)" />
+
+                        <input type="range" #maxD min="1" max="30" value="30" id="maxRange" (change)="rangeEndDay(maxD)" />
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <!-- --------------------- -->
+                <div class="filter-content border-bottom">
+                  <a class="filter d-flex justify-content-between align-items-center sec-bg p-3 text-dark font-weight-bold first-character-c"
+                    (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed2"
+                    aria-controls="collapseBasic">
+                    <div class=""><i class="fas fa-dollar-sign"></i> {{ "Prices" | translate }}</div>
+
+                    <i class="fas" [ngClass]="{ 'fa-angle-down': isCollapsed2, 'fa-angle-up': !isCollapsed2 }"></i>
+                  </a>
+
+                  <div id="collapseBasic" class="sec-bg p-3 pt-2" [ngbCollapse]="isCollapsed2"  >
+
+                    <div class="form">
+                      <span>
+                        <label for="minText"><span class="main-color line">Min </span> value</label>
+                        <input class="input-filter" type="number" ngModel #min="ngModel" disabled id="minText" name="min" [value]="rangePric"
+                          [(ngModel)]="rangePric" placeholder="0" #val3 />
+                        </span>
+                        <span>
+                          <label for="maxText"> <span class="main-color line">Max </span> value</label>
+                          <input class="input-filter" type="number" ngModel #max="ngModel" disabled id="maxText" name="max" [value]="rangePrice"
+                            [(ngModel)]="rangePrice" placeholder="10000" />
+                          </span>
+                          <div class="range">
+                            <input type="range" #val min="0" max="10000" value="0" step="400" id="minRange"
+                              (change)="rangePri1(val)" />
+                              <input type="range" #val2 min="0" max="10000" value="10000" id="maxRange"
+                                (change)="rangePri2(val2)" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                      </form>
+
+
+                    </section>
+                  </div>
+                  <!-- travel-excursions -->
+                  <div class="col-12 col-md-9 ">
+                    <section>
+
+                      @if (!loading) {
+                        <div  class="">
+                          <div class="head-title text-center des-text mb-4 splendor">
+                            <!-- <h2 class="font-weight-bold">{{ des.name }}</h2> -->
+                            <app-safe-html class=" inner-html" [htmlContent]="getSafeContent(destination_description)"></app-safe-html>
+                          </div>
+                        </div>
+                      }
+                      @if (loading) {
+                        <div class="ph-item">
+                          <div class="ph-col-12">
+                            <div class="ph-row">
+                              <div class="ph-col-4"></div>
+                              <div class="ph-col-8 empty"></div>
+                              <div class="ph-col-6"></div>
+                              <div class="ph-col-6 empty"></div>
+                              <div class="ph-col-12"></div>
+                            </div>
+                          </div>
+                        </div>
+                      }
+
+                      <h2 class="info main-bg text-white font-weight-bold">{{count}}  {{category_name}} {{destination_name}}</h2>
+                      @if (!loading) {
+                        <div>
+                          @for (cru of filter ; track $index) {
+                            <div class="data-box bg-white mt-3 p-2">
+                              <div class="row mx-0">
+                                <div class="col-xl-10">
+                                  <div class="card border-0">
+                                    <div class="row px-0">
+                                      <div class="col-md-5 px-0">
+                                        <img loading="lazy"   src="{{cru.thumb}}" alt="{{cru?.thumb_alt}}" class="img-fluid package-img">
+                                        @if (cru?.hot_offer) {
+                                          <p class="affe">
+                                            <span class="offerr">
+                                              {{"Hot Offer"|translate}}
+                                            </span>
+                                          </p>
+                                        }
+                                        @if (cru?.best_sale) {
+                                          <p class="top-sale">
+                                            <span class="sale ">
+                                              {{"Best Sale"|translate}}
+                                            </span>
+                                          </p>
+                                        }
+                                        @if (cru.discount) {
+                                          <p class="orang">
+                                            @if (cru.discount!==null) {
+                                              <span  class="orang-sale ">
+                                                {{cru?.discount + "% off"}}
+                                              </span>
+                                            }
+                                          </p>
+                                        }
+                                        <!-- <div class="map-details border mt-2">
+                                        <div class="row mx-0 px-0">
+                                          <div class="col-12 px-0">
+                                            <div *ngIf="cru?.location !== null " class="embed-responsive">
+                                              <iframe class="embed-responsive-item"
+                                                [src]="cru?.location|safe"
+                                              allowfullscreen=""></iframe>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div> -->
+                                    </div>
+                                    <div class="col-md-7 px-0">
+                                      <div
+                                        class="card-body package-content pt-0 pb-1 h-100  d-flex flex-column justify-content-between">
+                                        <h5 class="card-title font-weight-bold mb-2 mt-3">
+                                          {{cru?.name}}
+                                        </h5>
+                                        <div>
+                                          <div>
+                                            <!-- <ngb-rating class="rate" [(ngModel)]="cru.rate" [readonly]="isReadonly"></ngb-rating> -->
+                                            <ngb-rating class="rate" [rate]="cru.rate" [max]="5"  [readonly]="isReadonly"></ngb-rating>
+
+                                            <!-- <span class="reviews"> of {{cru?.reviews}} {{"Reviews"|translate}}</span> -->
+                                          </div>
+                                        </div>
+                                        <app-safe-html class="package-text  pt-3 inner-html" [htmlContent]="getSafeContent(cru?.description)"></app-safe-html>
+                                        <div class="">
+                                          <div class="tour "> {{"Tour Type   "|translate}}:  <i class="fas fa-ship">  </i>   Nile Cruise </div>
+                                        </div>
+                                        <div class="">
+                                          <div class="row mt-2 px-0 pt-4">
+                                            <div class="col-6 col-sm-4 px-0">
+                                              <div class="advatnage">
+                                                <i class="fas fa-snowboarding main-color"></i>
+                                                <span class="text-center ml-1">{{cru?.activities_number}} {{"Activities"|translate}}</span>
+                                              </div>
+                                            </div>
+                                            <div class="col-6 col-sm-4 px-0">
+                                              <div class="advatnage">
+                                                <i class="fas fa-clipboard-list main-color"></i>
+                                                <span class="text-center ml-1">{{cru?.itinerary}} {{"Days"|translate}}</span>
+                                              </div>
+                                            </div>
+                                            <div class="col-6 col-sm-4 px-0">
+                                              <div class="advatnage">
+                                                <i class="fas fa-hotel main-color"></i>
+                                                <span class="text-center ml-1">{{cru?.accommodations}} {{"Hotels"|translate}}</span>
+                                              </div>
+                                            </div>
+                                            <div class="col-6 col-sm-4 px-0">
+                                              <div class="advatnage">
+                                                <i class="fas fa-utensils main-color"></i>
+                                                <span class="text-center ml-1">{{cru?.meals}} {{"Meals"|translate}}</span>
+                                              </div>
+                                            </div>
+                                            <div class="col-6 col-sm-4 px-0">
+                                              <div class="advatnage">
+                                                <i class="fas fa-wifi main-color"></i>
+                                                <span class="text-center ml-1">{{cru?.services_number}} {{"Services"|translate}}</span>
+                                              </div>
+                                            </div>
+                                            <div class="col-6 col-sm-4 px-0">
+                                              <div class="advatnage">
+                                                <i class="fab fa-guilded main-color"></i>
+                                                <span class="text-center ml-1">{{cru?.guide_tour}} {{"Guided Tour"|translate}}</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-xl-2 px-0">
+                                <div class="pricing text-center pt-4 h-100 sec-bg">
+                                  <span>{{"Pricing"|translate}}</span>
+                                  <h4 class="font-weight-bold mb-2">Start From</h4>
+                                  <span class="price main-color font-weight-bold">${{cru?.start_price}} USD</span>
+                                  <p class="text-center my-2 mb-3">{{cru?.duration_in_days}}
+                                  {{"Days"|translate}}/{{cru?.duration_in_days -x}} {{"Nights"|translate}}</p>
+                                  <a class="main-btn p-2 d-block mb-2 font-weight-bold py-2 view"
+                                  routerLink="/all-destinations/{{desSlug}}/travel-cruises/{{cru.slug}}">{{"View Tour Details"|translate}}</a>
+                                  <a class="main-btn book bg-white p-2 d-block font-weight-bold pt-2"
+                                  (click)="openVerticallyCentered(content)">{{"Booking Inquiry"|translate}}</a>
+                                  <div class="mb-3 text-center pt-4">
+                                  </div>
+                                </div>
+                                <ng-template #content let-modal>
+                                  <div class="modal-body">
+                                    <section class="bg-white mt-3 px-3 py-4 booking">
+                                      <div class="head mb-2">
+                                        <h3 class="font-weight-bolder">{{"Cruises Booking"|translate}}</h3>
+                                      </div>
+                                      <iframe onload="javascript:parent.scrollTo(0,0);" height="2000" allowTransparency="true"
+                                        scrolling="no" frameborder="0" style="width:100%;border:none"
+                                        src="https://ask-aladdin.com/machform/embed.php?id=4"
+                                        title="AskAladdin Tour Booking Center:"><a
+                                        href="https://ask-aladdin.com/machform/view.php?id=4"
+                                      title="AskAladdin Tour Booking Center:">AskAladdin Tour Booking Center:</a></iframe>
+                                    </section>
+                                  </div>
+                                </ng-template>
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    }
+
+                    @if (loading) {
+                      <div class="row">
+                        @for (n of numSequence(32); track $index) {
+                          <div class="col-md-12">
+                            <div class="ph-item">
+                              <div class="ph-col-12">
+                                <div class="ph-picture"></div>
+                                <div class="ph-row">
+                                  <div class="ph-col-6 big"></div>
+                                  <div class="ph-col-4 empty big"></div>
+                                  <div class="ph-col-2 big"></div>
+                                  <div class="ph-col-4"></div>
+                                  <div class="ph-col-8 empty"></div>
+                                  <div class="ph-col-6"></div>
+                                  <div class="ph-col-6 empty"></div>
+                                  <div class="ph-col-12"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    }
+
+
+                    @if (this.count== 0&&!loading) {
+                      <div >
+                        <p class="text-center main-color font-weight-bold mt-2">No Result Found</p>
+                      </div>
+                    }
+                  </section>
+
+                </div>
+                <!-- End travel-excursions -->
+              </div>
+            </div>
+
+
+
+          </section>
+

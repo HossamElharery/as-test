@@ -1,0 +1,189 @@
+
+// Variables
+$main-color: #f68800;
+$secondary-color: #7f7f89;
+$secondary-bg: #f4f4f9;
+$hover-dark: #d17607;
+$highlight-color: #ff5948;
+$sale-color: #7fcb35;
+
+// Mixin for Buttons
+@mixin button-style {
+  background-color: $main-color;
+  color: #fff;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: all 0.5s;
+  border: 0;
+  border-radius: 5px;
+  &:hover {
+    color: rgb(20, 20, 20);
+    text-decoration: none;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url(https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat&display=swap);
+  font-display: swap;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  font-weight: bold;
+}
+
+h1 { font-size: 2rem !important; }
+h2 { font-size: 1.625rem; }
+h3 { font-size: 1.375rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+p { font-size: 15px; }
+
+ul { list-style: none; }
+
+#top-btn {
+  scroll-behavior: auto !important;
+}
+
+.inner-html {
+  * {
+    font-family: "Inter", sans-serif;
+  }
+  img {
+    width: 100%;
+  }
+  h2 {
+    margin: 20px 0;
+  }
+  p {
+    font-size: 18px !important;
+  }
+}
+
+.splendor p {
+  font-size: 18px !important;
+}
+
+.min-hie {
+  min-height: 1100px;
+}
+
+.container {
+  max-width: 1300px !important;
+}
+
+.main-color { color: $main-color; }
+.main-bg { background-color: $main-color; }
+.sec-color { color: $secondary-color; }
+.sec-bg { background-color: $secondary-bg; }
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 13px;
+}
+::-webkit-scrollbar-track {
+  background: #f7f7f7;
+  border: 1px solid $main-color;
+}
+::-webkit-scrollbar-thumb {
+  background: $main-color;
+  border-radius: 5px;
+  &:hover {
+    background: $hover-dark;
+  }
+}
+
+// Buttons
+.main-btn {
+  @include button-style;
+}
+
+.hover-color {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    color: $main-color;
+    text-decoration: none;
+  }
+}
+
+// Various Elements
+.title-category {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.first-character-c {
+  text-transform: capitalize;
+}
+
+.head-title h2 {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.head-title p {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.sat-font {
+  font-family: satisfy, cursive;
+  font-size: 1.5rem;
+}
+
+// Sponsors
+.sponsors .carousel-cell img {
+  height: 62px !important;
+  width: 132px !important;
+  display: block;
+  margin: auto;
+  margin-top: 35px;
+}
+
+.tour-slider .carousel-cell img {
+  height: 175px !important;
+  object-fit: cover !important;
+}
+
+.alaadin-banner .carousel-cell img {
+  height: 85vh;
+  width: 100%;
+}
+
+// Example Responsive
+@media only screen and (max-width: 767px) {
+  .head-title h2 {
+    font-size: 2rem;
+  }
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  p {
+    font-size: 14px !important;
+  }
+  h3 {
+    font-size: 1.5rem !important;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
+}

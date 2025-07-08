@@ -1,0 +1,13 @@
+@use "sass:map";
+@use "bootstrap/scss/bootstrap-utilities" as bootstrap-utilities;
+
+// Generate utilities for Cursor
+$utilities: map.merge(
+  bootstrap-utilities.$utilities,
+  (
+    "cursor": (
+      property: cursor,
+      values: auto default pointer wait text move help not-allowed
+    ),
+  )
+);

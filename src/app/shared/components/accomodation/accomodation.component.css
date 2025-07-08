@@ -1,0 +1,133 @@
+.accomodation .acco-image img {
+    object-fit: cover;
+    transition: all 0.5s ease 0s;
+    width: 380px;
+    height: 150px;
+}
+.accomodation .acco-image:hover img {
+    transform: scale(1.1)
+}
+
+.accomodation .card {
+    background-color: #f4f5f9;
+    height: 220px;
+}
+.acco-link a {
+    font-size: 0.8rem;
+    padding: 0.3rem 1.3rem;
+    border-radius: 5px
+}
+.accomodation a{
+    text-decoration: none;
+}
+.accomodation .card .card-body p {
+    font-size: .8rem;
+}
+
+h4 img {
+    height: 20px;
+    margin-top: 3px;
+}
+.card-body{
+    height: 150px;
+}
+.text-dark{
+    height: 49px;
+}
+
+.blogs{
+    border-radius: 0;
+}
+.blogs a {
+    text-decoration: none;
+}
+.blogs img {
+    height: 300px;
+    object-fit: cover;
+    transform: scale(1);
+    transition: all 0.5s ease 0s;
+}
+.blogs:hover img {
+    transform: scale(1.1);
+
+
+
+}
+
+
+.sliide{
+  padding: 0px 27px 0px 0px;
+}
+
+.main-card{
+    box-shadow: 0 0 0 0 rgba(0,0,0,0.5);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+}
+/* .grid{
+    padding-right: 0 !important;
+} */
+.card-title{
+    font-size: 14px;
+    line-height: 25px;
+
+}
+.main-card:hover .card-details
+{
+   background-color: rgba(0, 0, 0, 0.952);
+   height: 100%;
+   top: 0;
+
+   color: #fff;
+
+}
+.main-card:hover .blog-btn
+{
+    display: block;
+    opacity: 1;
+}
+.card-details{
+    position: absolute;
+    top: 79%;
+    width: 100%;
+    height: 90px;
+    color: #f68800;
+    background: rgba(0, 0, 0, 0.9);
+    transition: ease .5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.anotherCard{
+
+
+
+    height: 250px;
+    /* width: 200px; */
+    margin: 10px;
+
+
+}
+.offerCard{
+    position: relative;
+    height: 250px;
+    width: 250px;
+
+}
+h4 span{
+    color: #f68800;
+}
+hr{
+    color: #f68800;
+    height: 1px;
+}
+.sim i{
+    color:#39B678 ;
+}

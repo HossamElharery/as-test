@@ -1,0 +1,21 @@
+.safety{
+  background-image: url(../../../../../assets/imgs/egypty2.webp);
+  background-size: cover;
+  background-position: center;
+  .layer
+{
+  background-color: rgba(246, 136, 0,0.8);
+  width: 100%;
+  height: inherit;
+  padding: 30px 0;
+  .head-tit{
+    font-size: 25px;
+    color:#fff;
+  }
+  .descrip{
+    color: #fff;
+    text-align: justify;
+  }
+}
+}
+

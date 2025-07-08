@@ -1,0 +1,32 @@
+@if (showBanner) {
+  <div class="consent-overlay" [@fadeInOut]>
+    <div class="consent-modal">
+      <div class="consent-header">
+        <h2>🍪 Cookie Preferences</h2>
+      </div>
+      <div class="consent-body">
+        <!-- <p>We use cookies to enhance your experience and analyze our website's performance and traffic.</p> -->
+        <p>This website uses cookies to ensure you get the best experience on our website.</p>
+        <div class="consent-options">
+          <!-- <div class="consent-option">
+          <span>Analytics cookies</span>
+          <p>Help us understand how visitors interact with our website</p>
+        </div> -->
+        <div class="consent-option">
+          <span>Advertisement cookies</span>
+          <p>Allow us to personalize the ads you see</p>
+        </div>
+      </div>
+    </div>
+    <div class="consent-footer">
+      <button class="accept-btn" (click)="acceptAll()" id="accept-consent">Accept All</button>
+      <button class="reject-btn" (click)="rejectAll()" id="reject-consent">Reject All</button>
+    </div>
+    <!-- Testing Tools (only visible in development) -->
+    <!-- <div class="testing-tools" *ngIf="isDevelopment">
+    <button class="test-btn" (click)="testConsent()">Test Consent Status</button>
+    <button class="test-btn" (click)="resetConsent()">Reset Consent</button>
+  </div> -->
+</div>
+</div>
+}

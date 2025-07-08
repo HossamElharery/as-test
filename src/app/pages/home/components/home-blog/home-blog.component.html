@@ -1,0 +1,47 @@
+
+
+
+
+<section class="my-5 mt-5">
+  <div class="container">
+      <div class="row">
+          <div class=" col-sm-12">
+              <div class="blog-section">
+                  <div class="head-title text-center">
+                      <h2 class=" mb-3">{{"From Our Blogs"|translate}}</h2>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+            <!-- Topic Cards -->
+            <div class="container mt-3">
+                <div class="">
+                  <app-swiper-section [swiperConfig]="swiperConfig" [data]="blogContainer">
+                    <ng-template appMultiContent let-blog="item">
+                      <div class="">
+                        <a [attr.aria-label]="blog.name" routerLink="/all-destinations/{{blog.destination.slug}}/blog/{{blog.slug}}">
+                            <div class="card">
+                                <div class="" [ngStyle]="{'background': ' url(' + blog.thumb  + ') no-repeat 0 0', 'background-size': 'cover'}"
+                                 class="image-box card1" >
+                                    <div class="container-date">
+                                    </div>
+                                    <div class="text-container">
+                                        <h3 class="subtitle">{{blog?.name}}<i class="fa fa-angle-double-down"></i></h3>
+                                        <p class="inner-html">
+                                          <app-safe-html [htmlContent]="getSafeContent(blog.description)"></app-safe-html>
+                                        </p>
+                                    </div>
+                                    <div class="button-down">
+                                        <span>Read more</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    </ng-template>
+                  </app-swiper-section>
+                </div>
+            </div>
+</section>

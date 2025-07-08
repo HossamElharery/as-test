@@ -1,0 +1,37 @@
+.ccard{
+  border: none;
+  background-color: none !important;
+  margin: 0 8px;
+}
+
+.ccard img{
+margin: auto;
+  /* height: 86px;
+  width: 200px; */
+  filter: grayscale();
+  height: 80px;
+
+}
+.ccard:hover img{
+filter: grayscale(0);
+}
+
+@media only screen and (max-width: 768px){
+
+.card-main{
+    justify-content: space-evenly;
+}
+.ccard{
+
+  margin: 5px 10px;
+}
+
+}
+.sponsors{
+    border-top: 0.5px solid #f68800}
+@media only  screen and (max-width:480px) {
+  .ccard img{
+    width: 60%;
+  }
+
+}

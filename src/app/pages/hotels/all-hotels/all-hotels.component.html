@@ -1,0 +1,262 @@
+@if (loading) {
+  <section class="min-banner">
+    <section>
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span></h1>
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+}
+
+@if (!loading) {
+  <section>
+    @for (item of cityData; track item) {
+      <div>
+        <section class="banner text-center"
+          [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + item.banner + ')' }">
+          <div class="container">
+            <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+              <h1><span class="main-color des-Name font-weight-bold">{{item.name}} Hotels</span></h1>
+            </div>
+            <app-ask-expert-btn></app-ask-expert-btn>
+          </div>
+        </section>
+      </div>
+    }
+  </section>
+}
+
+<section>
+  @for (item of cityData; track item) {
+    <div class="container">
+      <div class="page-links py-2">
+        <a aria-label="home" class="hover-color" routerLink="/"><span>{{"Home"|translate}} / </span></a>
+        <a aria-label="des" class="hover-color" routerLink="/all-destinations/{{des}}"><span class="cap">{{des}} / </span></a>
+        <a aria-label="hotel" class="hover-color" routerLink="/all-destinations/{{des}}/hotels"><span>{{"Hotels"|translate}} / </span></a>
+        <span class="main-color cap">{{item.name}}</span>
+      </div>
+    </div>
+  }
+</section>
+
+<section class="sec-bg padding-pack mb-2">
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-3 col-sm-12">
+        <!-- Sidebar content can go here -->
+      </div>
+
+      <div class="col-12 col-md-9 mt-4">
+        <div class="pl-0">
+          @if (!loading) {
+            <div>
+              @for (item of cityData; track item) {
+                <div class="head-title text-center mb-4">
+                  <div class="des-text inner-html">
+                    <app-safe-html [htmlContent]="getSafeContent(item.description)"></app-safe-html>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+          @if (loading) {
+            <div class="ph-item">
+              <div class="ph-col-12">
+                <div class="ph-row">
+                  <div class="ph-col-4"></div>
+                  <div class="ph-col-8 empty"></div>
+                  <div class="ph-col-6"></div>
+                  <div class="ph-col-6 empty"></div>
+                  <div class="ph-col-12"></div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+        @if (!loading) {
+          <div>
+            <ng-container>
+              @for (singleDes of Filter| paginate : { itemsPerPage: itemsPerPage, currentPage: page,totalItems: totalItems  }; track singleDes) {
+                <div class="data-box bg-white mt-3 p-2">
+                  <div id="pack" class="row mx-0">
+                    <div class="col-xl-10">
+                      <div class="card border-0 h-100 min-f">
+                        <div class="row px-0 min-f">
+                          <div class="col-md-5 px-0">
+                            <a aria-label="name" routerLink="/all-destinations/{{des}}/hotel/{{ singleDes.slug }}">
+                              <img loading="lazy" class="img-fluid package-img" [alt]="singleDes.name" [title]="singleDes.name"
+                                src="{{ singleDes.thumb }}" />
+                            </a>
+                            @if (singleDes.hot_offer) {
+                              <div class="deals-ufi-card__floating-badge-container">
+                                <span class="bui-badge bui-badge--constructive">
+                                  <span class="bui-badge__text">{{ "Hot Offer" | translate }}</span>
+                                </span>
+                              </div>
+                            }
+                            @if (singleDes.top_sale) {
+                              <p class="sale-ufi-card__floating-badge-container">
+                                <span class="sale-badge sale-badge--constructive">
+                                  <span class="sale-badge__text">{{ "Best Sale" | translate }}</span>
+                                </span>
+                              </p>
+                            }
+                            @if (singleDes.discount) {
+                              <p class="per-ufi-card__floating-badge-container">
+                                @if (singleDes.discount !== null) {
+                                  <span class="per-badge per-badge--constructive">
+                                    <span class="per-badge__text">{{ singleDes.discount  + "% off" }}</span>
+                                  </span>
+                                }
+                              </p>
+                            }
+                          </div>
+                          <div class="col-md-7 px-0">
+                            <div class="card-body package-content pt-0 pb-1 h-100 d-flex flex-column justify-content-between">
+                              <h5 class="card-title font-weight-bold mb-2 mt-3">{{ singleDes.name }}</h5>
+                              <div>
+                                <div>
+                                  <ngb-rating class="rate" [rate]="singleDes.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                                </div>
+                              </div>
+                              <div class="package-text inner-html">
+                                <app-safe-html [htmlContent]="getSafeContent(singleDes.description)"></app-safe-html>
+                              </div>
+                              <div class="row mt-2 px-0">
+                                @if (singleDes.free_barking==1) {
+                                  <div class="col-6 col-sm-4 px-0">
+                                    <div class="advatnage">
+                                      <i class="fas fa-car main-color"></i>
+                                      <span class="text-center ml-1">{{ "Free parking" | translate }}</span>
+                                    </div>
+                                  </div>
+                                }
+                                @if (singleDes.free_wifi==1) {
+                                  <div class="col-6 col-sm-4 px-0">
+                                    <div class="advatnage">
+                                      <i class="fas fa-wifi main-color"></i>
+                                      <span class="text-center ml-1">{{ "Free WiFi" | translate }}</span>
+                                    </div>
+                                  </div>
+                                }
+                                @if (singleDes.air_condition==1) {
+                                  <div class="col-6 col-sm-4 px-0">
+                                    <div class="advatnage">
+                                      <i class="fab fa-empire main-color"></i>
+                                      <span class="text-center ml-1">{{ "Air conditioning" | translate }}</span>
+                                    </div>
+                                  </div>
+                                }
+                                @if (singleDes.pool==1) {
+                                  <div class="col-6 col-sm-4 px-0">
+                                    <div class="advatnage">
+                                      <i class="fas fa-swimmer main-color"></i>
+                                      <span class="text-center ml-1">{{ "Pool" | translate }}</span>
+                                    </div>
+                                  </div>
+                                }
+                                @if (singleDes.gym==1) {
+                                  <div class="col-6 col-sm-4 px-0">
+                                    <div class="advatnage">
+                                      <i class="fas fa-dumbbell main-color"></i>
+                                      <span class="text-center ml-1">{{ "Gym" | translate }}</span>
+                                    </div>
+                                  </div>
+                                }
+                                @if (singleDes.bathtub==1) {
+                                  <div class="col-6 col-sm-4 px-0">
+                                    <div class="advatnage">
+                                      <i class="fas fa-hot-tub main-color"></i>
+                                      <span class="text-center ml-1">{{ "Bathtub" | translate }}</span>
+                                    </div>
+                                  </div>
+                                }
+                                @if (singleDes.pool==1) {
+                                  <div class="col-6 col-sm-4 px-0">
+                                    <div class="advatnage">
+                                      <i class="fas fa-glass-cheers main-color"></i>
+                                      <span class="text-center ml-1">{{ "Bar" | translate }}</span>
+                                    </div>
+                                  </div>
+                                }
+                                @if (singleDes.gym==1) {
+                                  <div class="col-6 col-sm-4 px-0">
+                                    <div class="advatnage">
+                                      <i class="fas fa-spa main-color"></i>
+                                      <span class="text-center ml-1">{{ "Spa" | translate }}</span>
+                                    </div>
+                                  </div>
+                                }
+                                @if (singleDes.bathtub==1) {
+                                  <div class="col-6 col-sm-4 px-0 d-none d-lg-block">
+                                    <div class="advatnage">
+                                      <i class="fas fa-users main-color"></i>
+                                      <span class="text-center ml-1">{{ "Family rooms" | translate }}</span>
+                                    </div>
+                                  </div>
+                                }
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-2 px-0">
+                      <div class="pricing text-center h-100 sec-bg">
+                        <div class="mt-4">
+                          <span class="mt-3">{{ "Pricing" | translate }}</span>
+                          <h4 class="font-weight-bold mb-2 mt-2">{{ "Start From" | translate }}</h4>
+                          <span class="price main-color font-weight-bold">${{ singleDes.start_price }} USD</span>
+                          <a aria-label="destinatio" class="main-btn p-2 view d-block mb-2 mt-3 font-weight-bold"
+                            routerLink="/all-destinations/{{des}}/hotel/{{ singleDes.slug }}">
+                            {{ "View Hotel" | translate }}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+              <div class="d-flex justify-content-center mt-4">
+                <pagination-controls (pageChange)="gty((page = $event))"></pagination-controls>
+              </div>
+            </ng-container>
+          </div>
+        }
+
+        @if (loading) {
+          <div class="row">
+            @for (n of numSequence(32); track n) {
+              <div class="col-md-12">
+                <div class="ph-item">
+                  <div class="ph-col-12">
+                    <div class="ph-picture"></div>
+                    <div class="ph-row">
+                      <div class="ph-col-6 big"></div>
+                      <div class="ph-col-4 empty big"></div>
+                      <div class="ph-col-2 big"></div>
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

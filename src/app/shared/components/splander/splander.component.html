@@ -1,0 +1,317 @@
+<section  class="bg-white mt-3 px-2 py-4 ">
+  <div class="container">
+    <div class="splendor mb-4">
+      @if (excur) {
+        <div class="head mb-2">
+          <h1 class="  font-weight-bold">{{splander?.name}}</h1>
+        </div>
+      }
+
+      <p [innerHTML]="splander?.overview| codeHtml:'html'"></p>
+    </div>
+
+    @if (package && splander?.tour_type?.length >0) {
+      <div  class=" my-2 text-muted">
+        <!-- <div class="row">
+        <div class="col-md-3">
+          <span style="font-size: 22px;" class=" font-weight-bold">{{"Tour Type"|translate}}: </span>
+        </div>
+        <div class="">
+          <span *ngIf="package">
+            <span  class="tour ml-2 mt-2 col-md-3" *ngFor='let ggu of splander?.tour_type'>
+              <i class="far fa-dot-circle"></i>
+              {{ ggu}}
+            </span>
+          </span>
+        </div>
+      </div> -->
+      <div class="row">
+        <!-- <div class="col-md-3">
+        <span style="font-size: 22px;" class="font-weight-bold">{{"Tour Type"|translate}}: </span>
+      </div> -->
+      <div class="col-md-12" style="display: contents;">
+        @if (package) {
+          <span style="margin-left: 12px">
+            <span style="font-size: 22px;" class="font-weight-bold">{{"Tour Type"|translate}}: </span>
+            @for (ggu of splander.tour_types; track $index) {
+              <span class="tour">
+                <a routerLink="/all-destinations/{{ggu.destination.slug}}/tour-type/{{ggu.slug}}">
+                  <i [class]="ggu.icon? ggu.icon:'fa-dot-circle'" class="fa-dot-circle"></i>
+                  {{ ggu.name}}
+                </a>
+              </span>
+            }
+          </span>
+        }
+      </div>
+    </div>
+    <!-- <span style="font-size: 22px;" class=" font-weight-bold">{{"Tour Type"|translate}}: </span>
+    <span *ngIf="package">
+      <span  class="tour ml-2 mt-2" *ngFor='let ggu of splander?.tour_type'>
+        <i class="far fa-dot-circle"></i>
+        {{ ggu}}
+      </span>
+    </span> -->
+  </div>
+}
+
+
+
+@if (cruise) {
+  <span class="tour ml-2 mt-2" > <i class="fas fa-ship">  </i>Nile Cruise </span>
+}
+
+@if (cruise) {
+  <div  class="package-itinerary">
+    <div  class="head mb-4 mt-4">
+      <h3 class=" h3 font-weight-bold "> <span class="single-style"> Cruise</span> {{"Itinerary" |translate}} </h3>
+    </div>
+    @if (splander?.three_nights && hasDayData(splander.three_nights)) {
+      <div id="main">
+        <div class="">
+          <div class="accordion" id="faq1">
+            <div class="card" >
+              <div class="card-header" id="head">
+                <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" [attr.data-target]="'#sec'+1"
+                  aria-expanded="false" [attr.aria-controls]="'sec'+1">
+                  <!-- <i class="far fa-calendar"></i> -->
+                  <!-- <i class="fas fa-calendar-alt"></i> -->
+                  <span class="font-weight-bold "> <span class="text-white font-weight-bold">4 Days / 3 Nights Program (Every {{splander?.every_day_3 || 'Day'}}) </span> </span>
+                </a>
+              </div>
+              <!-- [ngClass]="{'collapsed': i==0, 'show': i==0 } "   {{price?.attributes.season_start_date |date}} <span class="">To </span>{{price?.attributes.season_end_date|date}}-->
+              <div [attr.id]="'sec'+1" class="collapsed collapse"  [attr.aria-labelledby]="'head'+1" data-parent="#faq1">
+                <div class="card-body mt-3">
+                  <div class="package-details" class="package">
+                    @for (day of splander?.three_nights; track $index) {
+                      <div class="package-details">
+                        <h3 class="position-relative">
+                          <div class="py-2">
+                            <span class="font-weight-bold py-2">{{"Day" |translate}} {{day.day_number || ($index + 1)}}- {{day.day_title || ''}}</span>
+                          </div>
+                          <div class="number d-none d-xl-block">
+                            <p class="main-bg text-center d-flex align-items-center justify-content-center">
+                              <span class="d-flex align-items-center justify-content-center text-white m-auto">{{day.day_number || ($index + 1)}}</span>
+                            </p>
+                          </div>
+                        </h3>
+                        <div class="inner-html">
+                          <app-safe-html [htmlContent]="getSafeDaySummary(day)"></app-safe-html>
+                        </div>
+                        @if (isBrowser) {
+                          <div class="offers d-flex">
+                            <div class="meal mr-2 ml-2 py-2">
+                              <img loading="lazy"  alt="ask" src="../../../../assets/imgs/meal.png" />
+                              <span>{{"Meals" |translate}} </span>
+                            </div>
+                            <div class="meal-details d-flex">
+                              <div class="detail ml-2 py-2">
+                                <img loading="lazy"  alt="ask" [src]="day.breakfast ?  imageTrue  : imageFalse " />
+                                <span>{{"breakfast"|translate}}</span>
+                              </div>
+                              <div class="detail ml-2 py-2">
+                                <img loading="lazy" alt="ask"  [src]="day.lunch ? imageTrue : imageFalse" />
+                                <span>{{"Lunch" |translate}}</span>
+                              </div>
+                              <div class="detail ml-2 py-2">
+                                <img loading="lazy" alt="ask"  [src]="day.dinner ? imageTrue  : imageFalse" />
+                                <span>{{"dinner" |translate}}</span>
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+    @if (splander?.four_nights && hasDayData(splander.four_nights)) {
+      <div id="main">
+        <div class="">
+          <div class="accordion" id="faqq">
+            <div class="card" >
+              <div class="card-header" id="head">
+                <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" [attr.data-target]="'#sec'+2"
+                  aria-expanded="false" [attr.aria-controls]="'sec'+2">
+                  <!-- <i class="far fa-calendar"></i> -->
+                  <!-- <i class="fas fa-calendar-alt"></i> -->
+                  <span class="font-weight-bold "> <span class="text-white font-weight-bold">5 Days / 4 Nights Program  (Every {{splander?.every_day_4 || 'Day'}})  </span> </span>
+                </a>
+              </div>
+              <!-- [ngClass]="{'collapsed': i==0, 'show': i==0 } "   {{price?.attributes.season_start_date |date}} <span class="">To </span>{{price?.attributes.season_end_date|date}}-->
+              <div [attr.id]="'sec'+2" class="collapsed collapse"  [attr.aria-labelledby]="'head'+2" data-parent="#faqq">
+                <div class="card-body mt-3">
+                  <div class="package-details" class="package">
+                    @for (day of splander?.four_nights; track $index) {
+                      <div class="package-details">
+                        <h3 class="position-relative">
+                          <div class="py-2">
+                            <span class="font-weight-bold py-2">{{"Day" |translate}} {{day.day_number || ($index + 1)}}- {{day.day_title || ''}}</span>
+                          </div>
+                          <div class="number d-none d-xl-block">
+                            <p class="main-bg text-center d-flex align-items-center justify-content-center">
+                              <span class="d-flex align-items-center justify-content-center text-white m-auto">{{day.day_number || ($index + 1)}}</span>
+                            </p>
+                          </div>
+                        </h3>
+                        <div class="inner-html">
+                          <app-safe-html [htmlContent]="getSafeDaySummary(day)"></app-safe-html>
+                        </div>
+                        @if (isBrowser) {
+                          <div class="offers d-flex">
+                            <div class="meal mr-2 ml-2 py-2">
+                              <img loading="lazy"  alt="ask" src="../../../../assets/imgs/meal.png" />
+                              <span>{{"Meals" |translate}} </span>
+                            </div>
+                            <div class="meal-details d-flex">
+                              <div class="detail ml-2 py-2">
+                                <img loading="lazy"  alt="ask" [src]="day.breakfast ?  imageTrue  : imageFalse " />
+                                <span>{{"breakfast"|translate}}</span>
+                              </div>
+                              <div class="detail ml-2 py-2">
+                                <img loading="lazy" alt="ask"  [src]="day.lunch ? imageTrue : imageFalse" />
+                                <span>{{"Lunch" |translate}}</span>
+                              </div>
+                              <div class="detail ml-2 py-2">
+                                <img loading="lazy" alt="ask"  [src]="day.dinner ? imageTrue  : imageFalse" />
+                                <span>{{"dinner" |translate}}</span>
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+    @if (splander?.seven_nights && hasDayData(splander.seven_nights)) {
+      <div id="main">
+        <div class="">
+          <div class="accordion" id="faq3">
+            <div class="card" >
+              <div class="card-header" id="head">
+                <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" [attr.data-target]="'#sec'+3"
+                  aria-expanded="false" [attr.aria-controls]="'sec'+3">
+                  <!-- <i class="far fa-calendar"></i> -->
+                  <!-- <i class="fas fa-calendar-alt"></i> -->
+                  <span class="font-weight-bold "> <span class="text-white font-weight-bold">6 Days / 5 Nights Program (Every {{splander?.every_day_7 || 'Day'}}) </span> </span>
+                </a>
+              </div>
+              <!-- [ngClass]="{'collapsed': i==0, 'show': i==0 } "   {{price?.attributes.season_start_date |date}} <span class="">To </span>{{price?.attributes.season_end_date|date}}-->
+              <div [attr.id]="'sec'+3" class="collapsed collapse"  [attr.aria-labelledby]="'head'+3" data-parent="#faq3">
+                <div class="card-body mt-3">
+                  <div class="package-details" class="package">
+                    @for (day of splander?.seven_nights; track $index) {
+                      <div class="package-details">
+                        <h3 class="position-relative">
+                          <div class="py-2">
+                            <span class="font-weight-bold py-2">{{"Day" |translate}} {{day.day_number || ($index + 1)}}- {{day.day_title || ''}}</span>
+                          </div>
+                          <div class="number d-none d-xl-block">
+                            <p class="main-bg text-center d-flex align-items-center justify-content-center">
+                              <span class="d-flex align-items-center justify-content-center text-white m-auto">{{day.day_number || ($index + 1)}}</span>
+                            </p>
+                          </div>
+                        </h3>
+                        <div class="inner-html">
+                          <app-safe-html [htmlContent]="getSafeDaySummary(day)"></app-safe-html>
+                        </div>
+                        @if (isBrowser) {
+                          <div class="offers d-flex">
+                            <div class="meal mr-2 ml-2 py-2">
+                              <img loading="lazy"  alt="ask" src="../../../../assets/imgs/meal.png" />
+                              <span>{{"Meals" |translate}} </span>
+                            </div>
+                            <div class="meal-details d-flex">
+                              <div class="detail ml-2 py-2">
+                                <img loading="lazy"  alt="ask" [src]="day.breakfast ?  imageTrue  : imageFalse " />
+                                <span>{{"breakfast"|translate}}</span>
+                              </div>
+                              <div class="detail ml-2 py-2">
+                                <img loading="lazy" alt="ask"  [src]="day.lunch ? imageTrue : imageFalse" />
+                                <span>{{"Lunch" |translate}}</span>
+                              </div>
+                              <div class="detail ml-2 py-2">
+                                <img loading="lazy" alt="ask"  [src]="day.dinner ? imageTrue  : imageFalse" />
+                                <span>{{"dinner" |translate}}</span>
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
+
+
+@if (package && splander?.day_data && hasDayData(splander.day_data)) {
+  <div class="package-itinerary">
+    <div class="head mb-4 mt-4">
+      <h3 class=" h3 font-weight-bold "> <span class="single-style"> Package</span> {{"Itinerary" |translate}} </h3>
+    </div>
+    <div class="package-details" class="package">
+      @for (day of splander?.day_data; track $index) {
+        <div class="package-details">
+          <h3 class="position-relative">
+            <div class="py-2">
+              <span class="font-weight-bold py-2">{{"Day" |translate}} {{day.day_number || ($index + 1)}} - {{day.day_title || ''}}</span>
+            </div>
+            <div class="number d-none d-xl-block">
+              <p class="main-bg text-center d-flex align-items-center justify-content-center">
+                <span class="d-flex align-items-center justify-content-center text-white m-auto">{{day.day_number || ($index + 1)}}</span>
+              </p>
+            </div>
+          </h3>
+          <div class="inner-html">
+            <app-safe-html [htmlContent]="getSafeDaySummary(day)"></app-safe-html>
+          </div>
+          @if (isBrowser) {
+            <div class="offers d-flex">
+              <div class="meal mr-2 ml-2 py-2">
+                <img loading="lazy"  alt="ask" src="../../../../assets/imgs/meal.png" />
+                <span>{{"Meals" |translate}} </span>
+              </div>
+              <div class="meal-details d-flex">
+                <div class="detail ml-2 py-2">
+                  <img loading="lazy"  alt="ask" [src]="day.breakfast ?  imageTrue  : imageFalse " />
+                  <span>{{"breakfast"|translate}}</span>
+                </div>
+                <div class="detail ml-2 py-2">
+                  <img loading="lazy" alt="ask"  [src]="day.lunch ? imageTrue : imageFalse" />
+                  <span>{{"Lunch" |translate}}</span>
+                </div>
+                <div class="detail ml-2 py-2">
+                  <img loading="lazy" alt="ask"  [src]="day.dinner ? imageTrue  : imageFalse" />
+                  <span>{{"dinner" |translate}}</span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+}
+
+
+</div>
+</section>
+

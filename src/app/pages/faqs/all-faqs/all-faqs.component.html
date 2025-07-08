@@ -1,0 +1,116 @@
+<section  >
+
+  <section class="sec-banner text-center min-fix">
+    <div class="container">
+      <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+        <h1 class="des-Name"><span class="main-color font-weight-bold">{{"Myths & Facts"|translate}}</span>
+      </h1>
+    </div>
+    <app-ask-expert-btn></app-ask-expert-btn>
+  </div>
+</section>
+
+
+<section>
+  <div class="container" >
+    <div  class="page-links py-2">
+      <a aria-label="home" class="hover-color" routerLink="/"> <span > {{"Home"|translate}} / </span>  </a>
+      <span class="main-color">{{"Myths & Facts"|translate}}</span>
+    </div>
+  </div>
+</section>
+
+<!-- End  descriptipon  for destination -->
+<section class="sec-bg py-4" >
+  <div class="container" >
+    <div class="head-title text-center mb-4">
+      <h2 class="font-weight-bold"></h2>
+    </div>
+
+
+    <div class="row">
+      <!-- Travel Guide  -->
+
+      <!-- <ng-container  *ngIf="!loading">
+      <div *ngFor="let faq of faqNames; trackBy: trackBy" class="col-12 col-md-4 mb-4 test-2">
+        <div class="blogs overflow-hidden">
+          <a
+            routerLink="/all-destinations/{{ faq.slug }}/myths-facts"
+            class="text-dark"
+            >
+            <div class="card main-carddd text-center">
+              <img loading="lazy" height="300px" width="402px"  [src]="faq.thumb" class="img-fluid" [alt]=" faq.thumb_alt" />
+              <div class="card-led">
+                <div class="card-body card-details">
+                  <h5 class="card-title mt-2">
+                    {{ faq.name }} {{"Myths & Facts"|translate}}
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </ng-container> -->
+
+
+    @if (!loading) {
+      @for (faq of faqNames; track trackBy($index, faq)) {
+        <div class="col-sm-12 col-md-4  service" >
+          <div class="service-words">
+            <a aria-label="faq" routerLink="/all-destinations/{{ faq.slug }}/myths-facts">
+              <h3 class="service-title">{{ faq.name }} {{"Myths & Facts"|translate}}</h3>
+            </a>
+            <div class="desc text-white">
+              <app-safe-html [htmlContent]="getSafeContent(faq.description)"></app-safe-html>
+              <div class="cm-wrapper ">
+                <a aria-label="Read More" routerLink="/all-destinations/{{ faq.slug }}/myths-facts">
+                  <button class="cm-navbar-btn">
+                    Read More
+                    <span class="annimation-line"></span>
+                    <span class="annimation-line"></span>
+                    <span class="annimation-line"></span>
+                    <span class="annimation-line"></span>
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <a aria-label="faq" routerLink="/all-destinations/{{ faq.slug }}/myths-facts">
+            <img loading="lazy" [src]="faq.thumb" class="img-fluid" [alt]="faq.thumb_alt || faq.name + ' Myths & Facts'" [title]="faq.name + ' Myths & Facts'">
+          </a>
+        </div>
+      }
+    }
+
+
+
+  </div>
+  @if (loading) {
+    <div class="row mt-3">
+      @for (n of numSequence(6); track $index) {
+        <div class="col-md-4">
+          <div class="ph-item">
+            <div class="ph-col-12">
+              <div class="ph-picture"></div>
+              <div class="ph-row">
+                <div class="ph-col-6 big"></div>
+                <div class="ph-col-4 empty big"></div>
+                <div class="ph-col-2 big"></div>
+                <div class="ph-col-4"></div>
+                <div class="ph-col-8 empty"></div>
+                <div class="ph-col-6"></div>
+                <div class="ph-col-6 empty"></div>
+                <div class="ph-col-12"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
+</section>
+</section>
+

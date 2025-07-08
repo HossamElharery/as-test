@@ -1,0 +1,292 @@
+@if (package) {
+  <div  class="accomodation my-3 bg-white mt-3  ">
+    <!-- *ngIf="flag1?.length > 0 && flag2?.length > 0 && flag3?.length > 0 && flag4?.length > 0;else accommodation" -->
+    @if (flag1?.length > 0 || flag2?.length > 0 || flag3?.length > 0 || flag4?.length > 0) {
+      <div  >
+        @if (flag1?.length > 0 ) {
+          <div class="container">
+            <div class="head mb-3 ">
+              <h4 class="  font-weight-bold pt-3 pl-2"><span> {{"Package Standard"|translate}}</span>{{" Hotels"|translate}}
+            </h4>
+          </div>
+          @if (flag1?.length > 4) {
+            <div>
+              <owl-carousel-o [options]="customOptions">
+                @for (acc of accomodation.standard_hotels; track $index) {
+                  <ng-template carouselSlide>
+                    <div class="slide ">
+                      <div class="blogs overflow-hidden sliide">
+                        <a  routerLink="/all-destinations/{{destination}}/hotel/{{acc.slug}}" class="text-dark">
+                          <div class="card main-card text-center anotherCard">
+                            <img loading="lazy"  width="400" height="400" [src]="acc.thumb" class="img-fluid" alt="{{ acc.thumb_alt }}" />
+                            <div class="card-body card-details des-antherCard">
+                              <h6 class="card-title">{{ acc.name }}</h6>
+                              <ngb-rating [rate]="acc.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </ng-template>
+                }
+              </owl-carousel-o>
+            </div>
+          } @else {
+            <div class="" >
+              <div class="row pr-3">
+                @for (acc of accomodation.standard_hotels; track $index) {
+                  <div class="grid col-md-3">
+                    <div class="slide  ">
+                      <div class="blogs overflow-hidden ">
+                        <a  routerLink="/all-destinations/{{destination}}/hotel/{{acc.slug}}" class="text-dark">
+                          <div class="  card main-card text-center anotherCard" style="width: 100%;">
+                            <img loading="lazy"  width="400" height="400" [src]="acc.thumb" class="img-fluid" alt="{{ acc.thumb_alt }}" />
+                            <div class="card-body card-details des-antherCard">
+                              <h6 class="card-title">{{ acc.name }}</h6>
+                              <ngb-rating [rate]="acc.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+      @if (flag2?.length > 0 ) {
+        <div class="container">
+          <div class="head mb-3 ">
+            <h4 class="  font-weight-bold pt-3 pl-2"><span> {{"Package Comfort"|translate}}</span>{{" Hotels"|translate}}
+          </h4>
+        </div>
+        @if (flag2?.length > 4) {
+          <div>
+            <owl-carousel-o [options]="customOptions">
+              @for (acc of accomodation.comfort_hotels; track $index) {
+                <ng-template carouselSlide>
+                  <div class="slide ">
+                    <div class="blogs overflow-hidden sliide">
+                      <a  routerLink="/all-destinations/{{destination}}/hotel/{{acc.slug}}" class="text-dark">
+                        <div class="card main-card text-center anotherCard">
+                          <img loading="lazy"  width="400" height="400" [src]="acc.thumb" class="img-fluid" alt="{{ acc.thumb_alt }}" />
+                          <div class="card-body card-details des-antherCard">
+                            <h6 class="card-title">{{ acc.name }}</h6>
+                            <ngb-rating [rate]="acc.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </ng-template>
+              }
+            </owl-carousel-o>
+          </div>
+        } @else {
+          <div class="" >
+            <div class="row pr-3">
+              @for (acc of accomodation.comfort_hotels; track $index) {
+                <div class="grid col-lg-3 col-md-5">
+                  <div class="slide  ">
+                    <div class="blogs overflow-hidden ">
+                      <a  routerLink="/all-destinations/{{destination}}/hotel/{{acc.slug}}" class="text-dark">
+                        <div class="  card main-card text-center anotherCard" style="width: 100%;">
+                          <img loading="lazy"  width="400" height="400" [src]="acc.thumb" class="img-fluid" alt="{{ acc.thumb_alt }}" />
+                          <div class="card-body card-details des-antherCard">
+                            <h6 class="card-title">{{ acc.name }}</h6>
+                            <ngb-rating [rate]="acc.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+    @if (flag3?.length > 0 ) {
+      <div class="container">
+        <div class="head mb-3 ">
+          <h4 class="  font-weight-bold pt-3 pl-2"><span> {{"Package Deluxe"|translate}}</span>{{" Hotels"|translate}}
+        </h4>
+      </div>
+      @if (flag3?.length > 4) {
+        <div>
+          <owl-carousel-o [options]="customOptions">
+            @for (acc of accomodation.deluxe_hotels; track $index) {
+              <ng-template carouselSlide>
+                <div class="slide ">
+                  <div class="blogs overflow-hidden sliide">
+                    <a  routerLink="/all-destinations/{{destination}}/hotel/{{acc.slug}}" class="text-dark">
+                      <div class="card main-card text-center anotherCard">
+                        <img loading="lazy"  width="400" height="400" [src]="acc.thumb" class="img-fluid" alt="{{ acc.thumb_alt }}" />
+                        <div class="card-body card-details des-antherCard">
+                          <h6 class="card-title">{{ acc.name }}</h6>
+                          <ngb-rating [rate]="acc.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </ng-template>
+            }
+          </owl-carousel-o>
+        </div>
+      } @else {
+        <div class="" >
+          <div class="row pr-3">
+            @for (acc of accomodation.deluxe_hotels; track $index) {
+              <div class="grid col-lg-3 col-md-4">
+                <div class="slide  ">
+                  <div class="blogs overflow-hidden ">
+                    <a  routerLink="/all-destinations/{{destination}}/hotel/{{acc.slug}}" class="text-dark">
+                      <div class="  card main-card text-center anotherCard" style="width: 100%;">
+                        <img loading="lazy"  width="400" height="400" [src]="acc.thumb" class="img-fluid" alt="{{ acc.thumb_alt }}" />
+                        <div class="card-body card-details des-antherCard">
+                          <h6 class="card-title">{{ acc.name }}</h6>
+                          <ngb-rating [rate]="acc.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+  <!-- cruise -->
+  @if (flag4?.length > 0 ) {
+    <div class="container">
+      <div class="head mb-3 ">
+        <h4 class="  font-weight-bold pt-3 pl-2"><span> {{"Package Cruise"|translate}}</span>{{" Hotels"|translate}}
+      </h4>
+    </div>
+    @if (flag4?.length > 4) {
+      <div>
+        <owl-carousel-o [options]="customOptions">
+          @for (acc of accomodation.cruise_hotels; track $index) {
+            <ng-template carouselSlide>
+              <div class="slide ">
+                <div class="blogs overflow-hidden sliide">
+                  <a  routerLink="/all-destinations/{{destination}}/hotel/{{acc.slug}}" class="text-dark">
+                    <div class="card main-card text-center anotherCard">
+                      <img loading="lazy"  width="400" height="400" [src]="acc.thumb" class="img-fluid" alt="{{ acc.thumb_alt }}" />
+                      <div class="card-body card-details des-antherCard">
+                        <h6 class="card-title">{{ acc.name }}</h6>
+                        <ngb-rating [rate]="acc.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </ng-template>
+          }
+        </owl-carousel-o>
+      </div>
+    } @else {
+      <div class="" >
+        <div class="row p-0">
+          @for (acc of accomodation.cruise_hotels; track $index) {
+            <div class="grid col-lg-3 col-md-4">
+              <div class="slide  ">
+                <div class="blogs overflow-hidden ">
+                  <a  routerLink="/all-destinations/{{destination}}/hotel/{{acc.slug}}" class="text-dark">
+                    <div class="  card main-card text-center anotherCard" style="width: 100%;">
+                      <img loading="lazy"  width="400" height="400" [src]="acc.thumb" class="img-fluid" alt="{{ acc.thumb_alt }}" />
+                      <div class="card-body card-details des-antherCard">
+                        <h6 class="card-title">{{ acc.name }}</h6>
+                        <ngb-rating [rate]="acc.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}
+<ng-template #cruise>
+  <div class="" >
+    <div class="row p-0">
+      @for (acc of accomodation.cruise_hotels; track $index) {
+        <div class="grid col-lg-3 col-md-4">
+          <div class="slide  ">
+            <div class="blogs overflow-hidden ">
+              <a  routerLink="/all-destinations/{{destination}}/hotel/{{acc.slug}}" class="text-dark">
+                <div class="  card main-card text-center anotherCard" style="width: 100%;">
+                  <img loading="lazy"  width="400" height="400" [src]="acc.thumb" class="img-fluid" alt="{{ acc.thumb_alt }}" />
+                  <div class="card-body card-details des-antherCard">
+                    <h6 class="card-title">{{ acc.name }}</h6>
+                    <ngb-rating [rate]="acc.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</ng-template>
+</div>
+}
+</div>
+}
+
+
+
+<!-- Accomodation For Cruises -->
+@if (cruise) {
+  <div id="accomodation" class="accomodation my-3 bg-white mt-3 px-2 py-4">
+    <div class="container">
+      <div class="head mb-4">
+        <h3 class=" font-weight-bold">{{ "Accommodations For This Cruises" | translate }}</h3>
+      </div>
+      <div>
+        <div class="row">
+          @for (acc of cruises; track $index) {
+            <div class="col-12 col-md-3 pt-2">
+              <div class="card overflow-hidden" >
+                <a routerLink="/all-destinations/{{pushDes}}/hotel/{{acc.slug}}">
+                  <div class="row ">
+                    <div class="col-sm-12 ">
+                      <div class="acco-image m-auto">
+                        <img loading="lazy"  width="400" height="400" src="{{acc.thumb}}" alt="{{acc.thumb_alt}}"
+                          class="img-fluid  " />
+                        </div>
+                      </div>
+                      <div class="col-sm-12 text-center p-0">
+                        <div class="card-body">
+                          <h6 class="text-dark  px-2 font-weight-bold">
+                            {{acc.name}}
+                          </h6>
+                          <div class="mb-1">
+                            <ngb-rating [rate]="acc.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                          </div>
+                          <div class="acco-link mb-2">
+                            <a routerLink="/all-destinations/{{pushDes}}/hotel/{{acc.slug}}" class="main-btn">{{"View Details" | translate}}</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+

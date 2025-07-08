@@ -1,0 +1,118 @@
+.consent-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.consent-modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.consent-header {
+  background-color: #f68800;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.consent-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.consent-body {
+  padding: 20px;
+  color: black;
+}
+
+.consent-options {
+  margin: 20px 0;
+}
+
+.consent-option {
+  margin-bottom: 15px;
+}
+
+.consent-option span {
+  font-weight: bold;
+  color: #f68800;
+}
+
+.consent-option p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  /* color: #666; */
+}
+
+.consent-footer {
+  padding: 0px 20px 20px 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+button {
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+.accept-btn {
+  background-color: #f68800;
+  color: white;
+}
+
+.reject-btn {
+  background-color: black;
+  color: white;
+}
+
+.testing-tools {
+  padding: 10px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.test-btn {
+  background-color: #e0e0e0;
+  color: black;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+}
+
+@media (max-width: 600px) {
+  .consent-modal {
+    max-width: 95%;
+    margin: 10px;
+  }
+
+  .consent-footer {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}

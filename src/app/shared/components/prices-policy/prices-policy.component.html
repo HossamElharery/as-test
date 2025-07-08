@@ -1,0 +1,88 @@
+<div id="accordion" class="myaccordion">
+
+  @if (price_policy!=='') {
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0 mt-1">
+          <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Price Policy:
+            <span class="fa-stack fa-sm">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+            </span>
+          </button>
+        </h2>
+      </div>
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body splendor">
+          <p class="inner-html"><app-safe-html [htmlContent]="getSafeContent(price_policy)"></app-safe-html></p>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (payment_policy!=='') {
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h2 class="mb-0 mt-1">
+          <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Payment Policy:
+            <span class="fa-stack fa-2x">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+            </span>
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body splendor">
+          <p class="inner-html"><app-safe-html [htmlContent]="getSafeContent(payment_policy)"></app-safe-html></p>
+        </div>
+      </div>
+    </div>
+  }
+  @if (repeated_travellers!=='') {
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h2 class="mb-0 mt-1">
+          <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Repeated Travellers:
+            <span class="fa-stack fa-2x">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+            </span>
+          </button>
+        </h2>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body splendor">
+          <p class="inner-html"><app-safe-html [htmlContent]="getSafeContent(repeated_travellers)"></app-safe-html></p>
+        </div>
+      </div>
+    </div>
+  }
+
+
+  @if (travel_schedule!=='') {
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h2 class="mb-0 mt-1">
+          <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            Travel on your own Schedule:
+            <span class="fa-stack fa-2x">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+            </span>
+          </button>
+        </h2>
+      </div>
+      <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body splendor">
+          <p class="inner-html"><app-safe-html [htmlContent]="getSafeContent(travel_schedule)"></app-safe-html></p>
+        </div>
+      </div>
+    </div>
+  }
+
+
+</div>

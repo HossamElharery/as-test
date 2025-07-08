@@ -1,0 +1,149 @@
+
+@if (!loading) {
+  <section  class="banner text-center"
+    [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + genral_data?.banner + ')' }">
+    <div class="container">
+      <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+        <h1><span class="main-color des-Name font-weight-bold"> {{genral_data?.name}}</span> </h1>
+        <p class="mt-2"></p>
+        <app-ask-expert-btn></app-ask-expert-btn>
+      </div>
+    </div>
+  </section>
+}
+
+@if (loading) {
+  <section  class="min-banner">
+    <section  >
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span>  </h1>
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+}
+
+
+
+<section  >
+  <section>
+    <div class="container  ">
+      <div class="page-links py-2">
+        <a class="hover-color" routerLink="/"> <span> Home / </span> </a>
+        <a class="hover-color" (click)="backClicked()"> <span> {{destination}} / </span> </a>
+        <span class="main-color">{{genral_data?.name}}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-bg">
+    <div class="container">
+      <div class="row py-4">
+        @if (!loading) {
+          <div class="col-lg-9  col-sm-12 bg-white ">
+            <div   class="">
+              <section  class=" ">
+                <div class=" row  ">
+                  <div class="col-md-12 mt-2 splendor">
+                    <!-- <h2 class="main-color font-weight-bold pt-2">{{genral_data?.name}} </h2> -->
+                    <div class=" mx-auto mt-3 inner-html " [innerHTML]="genral_data?.description|safeHtml"></div>
+                  </div>
+                </div>
+              </section>
+              <section class=" my-1 pb-2">
+                <div class=" ">
+                  <div class="row m-auto">
+                    @for (page of pages; track $index) {
+                      <div class="col-lg-3 col-md-6 col-sm-12 mt-3">
+                        <app-related-card-ribbon  [url]="'/all-destinations/'+page.destination.slug+'/category/'+page.category.slug+'/page/'+'/'+page.slug" [title]="page.name" [alt]="page.name" [img]="page.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </section>
+              @if (accordion?.length>0) {
+                <section class="mb-5" >
+                  @for (acc of accordion ; track acc; let i = $index) {
+                    <div>
+                      <div id="accordion{{i}}" class=" mt-2  ocorrd">
+                        <div class="card ">
+                          <div class="card-header" id="headingOne{{i}}">
+                            <div class="d-flex justify-content-between "  data-toggle="collapse" [attr.data-target]="'#collapseOne' + i" aria-expanded="true" [attr.aria-controls]="'#collapseOne' + i">
+                              <div>
+                                <h5 class="mb-0">
+                                  <button class="btn  main-color name-tab" data-toggle="collapse" [attr.data-target]="'#collapseOne' + i" aria-expanded="true" [attr.aria-controls]="'#collapseOne' + i"   >
+                                    {{acc?.category_title}}
+                                  </button>
+                                </h5>
+                              </div>
+                              <div class="">
+                                <i class="fas fa-sort-down"></i>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="collapseOne{{i}}" class="collapse " [attr.aria-labelledby]="'headingOne' + i" [attr.data-parent]="'#collapseOne' + i"  >
+                            <div class="card-body inner-html" [innerHTML]="acc?.category_description|safeHtml">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </section>
+              }
+              @if (related_pages_list.length>0) {
+                <div  class="   pt-2">
+                  <h2 class="mb-3 mt-3 relatedd">{{"Related Articles"|translate}}</h2>
+                  <!-- <hr class="hr mb-3 mt-3"> -->
+                  <div class="row">
+                    @for (page of related_pages_list; track $index) {
+                      <div class="col-md-3 mb-3 ">
+                        <app-related-card-ribbon  [url]="'/all-destinations/'+page.destination.slug+'/category/'+page.category.slug+'/page/'+'/'+page.slug" [title]="page.name" [des]="''" [img]="page.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        @if (loading) {
+          <div   class="col-lg-9  col-sm-12 bg-white mt-3">
+            <div  class="ph-item">
+              @for (n of numSequence(50); track n) {
+                <div class="ph-col-12">
+                  <div class="ph-row">
+                    <div class="ph-col-4"></div>
+                    <div class="ph-col-8 empty"></div>
+                    <div class="ph-col-6"></div>
+                    <div class="ph-col-6 empty"></div>
+                    <div class="ph-col-12"></div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+        <div class="col-lg-3 col-md-3">
+          <app-expert-reviews  [name]="'categories'"></app-expert-reviews>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</section>
+
+<app-second-footer  (sendSlug)="showSlug($event)" ></app-second-footer>
+
+
+
+<app-scroll-button></app-scroll-button>

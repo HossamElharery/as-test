@@ -1,0 +1,12 @@
+@if (side.length >0) {
+  <section class="bg-white expert-reviews py-4">
+    @for (item of side; track $index) {
+      <ul class="p-0">
+        <li class=" list-group-item d-flex justify-content-center px-0 py-2 mb-2 " >
+          <a [attr.aria-label]="item.image_alt" target="_blank" title="{{item?.image_alt}}"  href="{{item?.link}}" class="styl">
+            <img loading="lazy" [src]="item?.image" alt="{{item?.image_alt}}" class="img-rev "></a>
+          </li>
+        </ul>
+      }
+    </section>
+  }

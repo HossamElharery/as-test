@@ -1,0 +1,14 @@
+<div>
+  <div class="offer-view" [style.display]="top_sale == 1 ? 'block' : 'none'">
+    <span>Top Sale</span>
+  </div>
+  <div class="card_marsa">
+    <img loading="lazy" [src]="img || '../../../../assets/imgs/default.png'" [alt]="alt || title || 'Related content image'" title="{{alt || title || 'Related content'}}">
+    <div class="card_marsa_desc overflow-hidden">
+      <a aria-label="related" routerLink="/{{url}}">
+        <h5 class="">{{title || 'Loading...'}}</h5>
+        <app-safe-html [htmlContent]="getSafeContent(des, 45) + (des && des.length > 45 ? ' ...' : '')"></app-safe-html>
+      </a>
+    </div>
+  </div>
+</div>

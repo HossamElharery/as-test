@@ -1,0 +1,379 @@
+@if (loading) {
+  <section  class="min-banner">
+    <section  >
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span>  </h1>
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+}
+
+@if (!loading) {
+  <section class="sec-banner text-center"
+    [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + panner + ')' }">
+    <div class="container">
+      <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+        <h2><span class="main-color font-weight-bold">{{name}} </span>
+      </h2>
+    </div>
+    <p class="mt-2">{{pannerDescription}}</p>
+  </div>
+</section>
+}
+
+<section>
+  <div class="container">
+
+    <div  class="page-links py-2">
+      <a class="hover-color" routerLink="/"> <span>{{"Home"|translate}} / </span> </a>
+      <!-- <a class="hover-color" routerLink="/all-destinations/{{desName}}"> <span> {{desName}} / </span> </a>
+
+      <a class="hover-color" routerLink="/all-destinations/{{desName}}/travel-packages/"> <span> Travel Package / </span> </a> -->
+
+      <a class="hover-color"  (click)="backClicked()"> <span> Hotel / </span> </a>
+      <span class="main-color">{{name}}</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec-bg p-2 mb-4">
+  <div class="container">
+    <div class="row ">
+      @if (!loading) {
+        <div class="col-12 col-md-9">
+          <section >
+            <section id="gallery" class="pt-3">
+              <div class="m-auto bg-white">
+                <!-- <app-gallery [gallery]="galleryy" ></app-gallery> -->
+                <app-gallery-new [gallery]="galleryy" ></app-gallery-new>
+              </div>
+            </section>
+            <section id="Itinerary" class="bg-white  px-2 py-4 mt-2">
+              <div class="container">
+                @for (hot of hotel; track $index) {
+                  <div class="splendor">
+                    <div class="d-flex ">
+                      <h1 class="h3 font-weight-bold">{{hot?.name}}</h1>
+                    </div>
+                    <div class="pl-3 pt-1">
+                      <ngb-rating class="rate" [rate]="hot.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                    </div>
+                    <div class="mt-3 inner-html">
+                      <app-safe-html [htmlContent]="getSafeContent(hot?.overview)"></app-safe-html>
+                    </div>
+                  </div>
+                }
+              </div>
+            </section>
+            <section id="Location" class="bg-white mt-3  py-2">
+              <div class="container">
+                <div class="head mb-4">
+                  <h4 class="pl-2 mt-2 font-weight-bold"><span class="single-style" >Hotel </span> {{"Location"|translate}}</h4>
+                </div>
+                @for (hot of hotel; track $index) {
+                  <div class=" pl-2  ">
+                    @if (hot?.checkin!==null) {
+                      <h5 class="check"><i class="fas fa-share"></i> <span class="font-weight-bold">{{ " Check In"|translate}} </span> <span class="location">: </span>{{ hot?.checkin }}</h5>
+                    }
+                    @if (hot?.checkout!==null) {
+                      <h5 class="check"><i class="fas fa-reply"></i> <span class="font-weight-bold">{{ " Check Out"|translate}}</span> <span class="location">: </span> {{ hot?.checkout }}</h5>
+                    }
+                  </div>
+                }
+                @for (hot of hotel; track $index) {
+                  <div    class="col-sm-12">
+                    @if (hot.location_map !==null && isBrowser) {
+                      <div class="map-details border mt-2">
+                        <div class="embed-responsive" >
+                          <iframe class="embed-responsive-item" [src]="hot?.location_map | safe"
+                            allowfullscreen="">
+                          </iframe>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </section>
+            <section id="Services" class="bg-white mt-2 px-2 py-2">
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 col-md-12">
+                    <div class="head mb-2">
+                      <h4 class="font-weight-bold pt-2 small-tit"><span class="single-style" >Most </span>{{" popular facilities"|translate}}</h4>
+                    </div>
+                    @for (hot of hotel; track $index) {
+                      <div class=" row pb-3">
+                        @if (hot.free_barking==1) {
+                          <div class="col-6 col-sm-4 ">
+                            <div class="advatnage my-2">
+                              <i class="fas fa-car main-color"></i>
+                              <span class="text-center ml-1"> {{ "Free parking" |
+                                translate }}
+                              </span>
+                            </div>
+                          </div>
+                        }
+                        @if (hot.free_wifi==1) {
+                          <div class="col-6 col-sm-4 ">
+                            <div class="advatnage my-2">
+                              <i class="fas fa-wifi main-color"></i>
+                              <span class="text-center ml-1"> {{ "Free WiFi" | translate  }}</span>
+                            </div>
+                          </div>
+                        }
+                        @if (hot.air_condition==1) {
+                          <div class="col-6 col-sm-4 ">
+                            <div class="advatnage my-2">
+                              <i class="fab fa-empire main-color"></i>
+                              <span class="text-center ml-1"> {{ "Air conditioning" | translate
+                              }}</span>
+                            </div>
+                          </div>
+                        }
+                        @if (hot.pool==1) {
+                          <div   class="col-6 col-sm-4 ">
+                            <div class="advatnage my-2">
+                              <i class="fas fa-swimmer main-color"></i>
+                              <span class="text-center ml-1"> {{ "Pool" | translate }}</span>
+                            </div>
+                          </div>
+                        }
+                        @if (hot.gym==1) {
+                          <div   class="col-6 col-sm-4 ">
+                            <div class="advatnage my-2">
+                              <i class="fas fa-dumbbell main-color"></i>
+                              <span class="text-center ml-1">{{ "Gym" | translate
+                              }}</span>
+                            </div>
+                          </div>
+                        }
+                        @if (hot.bathtub==1) {
+                          <div  class="col-6 col-sm-4 ">
+                            <div class="advatnage my-2">
+                              <i class="fas fa-hot-tub main-color"></i>
+                              <span class="text-center ml-1"> {{ "Bathtub" | translate
+                              }}</span>
+                            </div>
+                          </div>
+                        }
+                        <!-- check -->
+                        @if (hot.bar==1) {
+                          <div  class="col-6 col-sm-4 ">
+                            <div class="advatnage my-2">
+                              <i class="fas fa-glass-cheers main-color"></i>
+                              <span class="text-center ml-1"> {{ "Bar" | translate
+                              }}</span>
+                            </div>
+                          </div>
+                        }
+                        @if (hot.spa_and_wellness_centre==1) {
+                          <div  class="col-6 col-sm-4 ">
+                            <div class="advatnage my-2">
+                              <i class="fas fa-spa main-color"></i>
+                              <span class="text-center ml-1"> {{ "Spa" | translate
+                              }}</span>
+                            </div>
+                          </div>
+                        }
+                        @if (hot.family_rooms==1) {
+                          <div  class="col-6 col-sm-4 ">
+                            <div class="advatnage my-2">
+                              <i class="fas fa-users main-color"></i>
+                              <span class="text-center ml-1"> {{ "Family rooms" | translate
+                              }}</span>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    }
+                  </div>
+                  @if (hotel && hotel[0] && hotel[0].amenities && hotel[0].amenities.category) {
+                    <div class="col-12 col-md-12 mt-3">
+                      <div class="head mb-2">
+                        <h4 class="font-weight-bold pt-2 small-tit"><span class="single-style" >Room </span>{{"Amenities"|translate}}</h4>
+                      </div>
+                      <div class="row">
+                        @for (gg of hotel[0].amenities.category; track $index) {
+                          <div class=" col-md-4  statr ">
+                            <i class="fas fa-check"></i>
+                            <span>{{gg?.content}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                  <!-- amenities -->
+                  @if (hotel && hotel[0] && hotel[0].amenities && hotel[0].amenities.food_drink) {
+                    <div class=" col-md-4 mt-3">
+                      <div class="head mb-2">
+                        <h4 class="font-weight-bold pt-2 small-tit">
+                          <span class="single-style" >
+                            <i class="fas fa-utensils"></i>
+                          </span>
+                        {{"Food & Drink"|translate}}</h4>
+                      </div>
+                      <div class="row">
+                        @for (gg of hotel[0].amenities.food_drink; track $index) {
+                          <div class=" col-md-12  statr ">
+                            <i class="fas fa-check"></i>
+                            <span>{{gg?.content}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                  @if (hotel && hotel[0] && hotel[0].amenities && hotel[0].amenities.accessibility) {
+                    <div class=" col-md-4 mt-3">
+                      <div class="head mb-2">
+                        <h4 class="font-weight-bold pt-2 small-tit">
+                          <span class="single-style" >
+                            <i class="fab fa-accessible-icon"></i>
+                          </span>
+                        {{"Accessibility"|translate}}</h4>
+                      </div>
+                      <div class="row">
+                        @for (gg of hotel[0].amenities.accessibility; track $index) {
+                          <div class=" col-md-12  statr ">
+                            <i class="fas fa-check"></i>
+                            <span>{{gg?.content}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                  @if (hotel && hotel[0] && hotel[0].amenities && hotel[0].amenities.safety_security) {
+                    <div class=" col-md-4 mt-3">
+                      <div class="head mb-2">
+                        <h4 class="font-weight-bold pt-2 small-tit">
+                          <span class="single-style" >
+                            <i class="fab fa-accessible-icon"></i>
+                          Hotel </span>
+                        {{"Safety Security"|translate}}</h4>
+                      </div>
+                      <div class="row">
+                        @for (gg of hotel[0].amenities.safety_security; track $index) {
+                          <div class=" col-md-12  statr ">
+                            <i class="fas fa-check"></i>
+                            <span>{{gg?.content}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                  @if (hotel && hotel[0] && hotel[0].amenities && hotel[0].amenities.activities) {
+                    <div class=" col-md-4 mt-3">
+                      <div class="head mb-2">
+                        <h4 class="font-weight-bold pt-2 small-tit">
+                          <span class="single-style" >
+                            <i class="fas fa-skating"></i>
+                          </span>
+                        {{"Activities"|translate}}</h4>
+                      </div>
+                      <div class="row">
+                        @for (gg of hotel[0].amenities.activities; track $index) {
+                          <div class=" col-md-12  statr ">
+                            <i class="fas fa-check"></i>
+                            <span>{{gg?.content}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                  @if (hotel && hotel[0] && hotel[0].amenities && hotel[0].amenities.business_facilities) {
+                    <div class=" col-md-4 mt-3">
+                      <div class="head mb-2">
+                        <h4 class="font-weight-bold pt-2 small-tit">
+                          <span class="single-style" >
+                            <i class="far fa-building"></i>
+                          </span>
+                        {{"Business Facilities"|translate}}</h4>
+                      </div>
+                      <div class="row">
+                        @for (gg of hotel[0].amenities.business_facilities; track $index) {
+                          <div class=" col-md-12  statr ">
+                            <i class="fas fa-check"></i>
+                            <span>{{gg?.content}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                  @if (hotel && hotel[0] && hotel[0].amenities && hotel[0].amenities.bathroom_amenities) {
+                    <div class=" col-md-4 mt-3">
+                      <div class="head mb-2">
+                        <h4 class="font-weight-bold pt-2 small-tit">
+                          <span class="single-style" >
+                            <i class="fas fa-bath"></i>
+                          </span>
+                        {{"Bathroom Amenities"|translate}}</h4>
+                      </div>
+                      <div class="row">
+                        @for (gg of hotel[0].amenities.bathroom_amenities; track $index) {
+                          <div class=" col-md-12  statr ">
+                            <i class="fas fa-check"></i>
+                            <span>{{gg?.content}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            </section>
+          </section>
+        </div>
+      }
+
+      @if (loading) {
+        <div class="col-12 col-md-9">
+          <div class="row" >
+            @for (n of numSequence(35); track n) {
+              <div class="col-md-12">
+                <div class="ph-item">
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-6 big"></div>
+                      <div class="ph-col-4 empty big"></div>
+                      <div class="ph-col-2 big"></div>
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+      <div class="col-12 col-md-3">
+        @for (hot of hotel; track $index) {
+          <section  class="bg-white mt-3 px-3 py-2 d-flex justify-content-center">
+            <div >
+              <div class="head ">
+                <h3 class="font-weight-bolder mt-1">Starting from <span class="main-color">$ {{hot?.start_price}} USD</span></h3>
+                <!-- <p class="mb-1">per person in a double room</p> -->
+              </div>
+            </div>
+          </section>
+        }
+
+        <app-expert-reviews  [name]="'hotels'"></app-expert-reviews>
+        <!-- <app-tour-booking></app-tour-booking> -->
+        <app-booking-enquiry-hotel></app-booking-enquiry-hotel>
+        <!-- <app-optional-experts></app-optional-experts> -->
+      </div>
+    </div>
+  </div>
+</section>
+<app-scroll-button></app-scroll-button>

@@ -1,0 +1,65 @@
+<form [formGroup]="arrayForm">
+  <div class="form-input" formArrayName="dataArray">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <label class="mb-0">
+        {{ label | translate }}
+        @if (dataArray.controls?.length) {
+          <span class="asterisk">*</span>
+        }
+      </label>
+      @if (!dataArray.controls?.length) {
+        <button class="update-control" (click)="addControl()">
+          {{ "buttons.add" | translate }}
+          <i class="bi bi-plus-lg"></i>
+        </button>
+      }
+      @if (!default && dataArray.controls?.length) {
+        <button class="update-control remove" (click)="removeAllControls()">
+          {{ "buttons.remove_all" | translate }}
+          <i class="bi bi-x-lg"></i>
+        </button>
+      }
+    </div>
+
+    @for (control of dataArray.controls; track $index; let i = $index; let last = $last) {
+      <div
+        class="form-input-group d-flex align-items-end justify-content-between mb-2"
+        >
+        <div class="my-custom-input">
+          @if (inputType == 'input') {
+            <input
+              type="text"
+              [formControlName]="i"
+              [placeholder]="label | translate"
+              >
+          }
+          @if (inputType == 'textarea') {
+            <textarea
+              [formControlName]="i"
+              [placeholder]="label | translate"
+              >
+            </textarea>
+          }
+        </div>
+        <div class="array-actions d-flex flex-nowrap">
+          @if ((default && (i != 0 || !last)) || (!default)) {
+            <button type="button" class="p-0 border-0 bg-transparent remove" (click)="removeControl(i)">
+              <i class="bi bi-dash-circle"></i>
+            </button>
+          }
+          @if (last) {
+            <button type="button" class="p-0 border-0 bg-transparent add" (click)="addControl()">
+              <i class="bi bi-plus-circle"></i>
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    @if (dataArray.touched && dataArray.invalid) {
+      <span class="error">
+        {{ label | translate }} {{ "errors.is_required" | translate }}
+      </span>
+    }
+  </div>
+</form>

@@ -1,0 +1,63 @@
+.bg-custom{
+  background-color:#000;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  }
+  .button-fixed{
+  bottom: 3%;
+  width: 400px;
+  padding: 10px;
+  position: fixed;
+  left: 2%;
+  z-index: 99999;
+  border-radius: 10px;
+  }
+  .btn{
+      background-color: #f68800;
+      font-weight: 600;
+      color: #000;
+      width: 80%;
+  }
+  .fas{
+  cursor: pointer;
+  color: #f68800;
+  font-size: 24px;
+  }
+  .icon-close{
+      position: absolute;
+      top: 8%;
+      right: 8%;
+
+  }
+  .text h2{
+      font-size: 25px;
+      text-align: center;
+  }
+  p{
+  font-size: 14px;
+  text-align: center;
+  }
+
+  .icon-cookie i{
+      color: #f68800;
+      font-size: 100px;
+  }
+
+
+  @media only screen  and (max-width:768px){
+      .button-fixed{
+          width: 350px;
+          left: 2%
+
+          }
+  }
+  @media only screen  and (max-width:320px){
+      .button-fixed{
+          width: 320px;
+          left: 2%
+
+          }
+  }

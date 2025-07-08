@@ -1,0 +1,102 @@
+@if (loading) {
+  <section  class="min-banner">
+    <section  >
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span>  </h1>
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+}
+
+@if (!loading) {
+  <section  class="min-banner">
+    @for (pack of packageContent |slice:1:2; track $index) {
+      <section >
+        <section class="banner text-center"
+          [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + pack?.thumb + ')' }">
+          <div class="container">
+            <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+              <h1><span class="main-color des-Name font-weight-bold"> {{pack?.name}}</span>  </h1>
+            </div>
+            <p class="mt-2"></p>
+            <app-ask-expert-btn></app-ask-expert-btn>
+          </div>
+        </section>
+      </section>
+    }
+  </section>
+}
+
+
+
+<section>
+  <div class="container">
+    <div  class="page-links py-2">
+      <a class="hover-color" routerLink="/"> <span > {{"Home"| translate}} / </span>  </a>
+      <span class="main-color">{{"All Packages"|translate}}</span>
+    </div>
+  </div>
+</section>
+
+<!-- End  descriptipon  for destination -->
+<section class="sec-bg py-4">
+  <div class="container">
+
+
+    @if (!loading) {
+      <div  class="row">
+        @for (package of packagesNames; track $index) {
+          <div class="col-12 col-md-4 mb-4">
+            @for (pack of packageContent|slice:1:2; track $index) {
+              <div class="card-wrapper">
+                <div class="card-3 card-object card-object-hf">
+                  <a routerLink="/all-destinations/{{package.slug}}/travel-packages" [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + package?.thumb }" class="face front">
+                    <div class="title-wrapper">
+                      <div class="title"> {{package?.name}} Travel Packages</div>
+                      <!-- {{pack?.name}} -->
+                      <div class="subtitle"> View All </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+
+    @if (loading) {
+      <div class="row mt-3">
+        @for (n of numSequence(6); track $index) {
+          <div class="col-md-4">
+            <div class="ph-item">
+              <div class="ph-col-12">
+                <div class="ph-picture"></div>
+                <div class="ph-row">
+                  <div class="ph-col-6 big"></div>
+                  <div class="ph-col-4 empty big"></div>
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-4"></div>
+                  <div class="ph-col-8 empty"></div>
+                  <div class="ph-col-6"></div>
+                  <div class="ph-col-6 empty"></div>
+                  <div class="ph-col-12"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+  </div>
+
+</section>
+

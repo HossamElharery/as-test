@@ -1,0 +1,14 @@
+.sec-banne {
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.sec-banne .head h1 {
+  border-bottom: 1px solid rgba(255, 255, 255, .6);
+}
+.sec-banne p {
+  font-size: 1.2rem;
+}

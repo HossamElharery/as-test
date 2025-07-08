@@ -1,0 +1,13 @@
+main{
+  /* min-height: 1150px ; */
+  background-color:#eae9e8 ;
+  margin-top: -45px;
+}
+.link404{
+  color: #f2973c;
+  border: 0.5px solid;
+}
+
+.link404:hover{
+  color: grey;
+}

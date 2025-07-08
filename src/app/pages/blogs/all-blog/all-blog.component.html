@@ -1,0 +1,120 @@
+@if (!loading) {
+  <section class="min-banner">
+    <section [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + banner + ')' }" class="sec-banner text-center">
+      <div class="container">
+        <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+          <h1><span class="main-color des-name font-weight-bold"> {{blog_name}}</span>
+        </h1>
+      </div>
+      <app-ask-expert-btn></app-ask-expert-btn>
+    </div>
+  </section>
+</section>
+}
+
+@if (loading) {
+  <section  class="min-banner">
+    <section  >
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span>  </h1>
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+}
+
+<section>
+  <div class="container">
+    <div  class="page-links py-2">
+      <a aria-label="home" class="hover-color" routerLink="/"> <span >{{"Home"|translate}} / </span>  </a>
+      <a aria-label="destination" class="hover-color" routerLink="/all-destinations/{{desSlug}}"> <span >{{desName}} / </span>  </a>
+      <span class="main-color">{{blogName}} </span>
+    </div>
+  </div>
+</section>
+
+<section class="sec-bg py-4">
+  <div class="container">
+    <div class="head-title text-center mb-5">
+      <h2 class="font-weight-bold">{{blog_name}}</h2>
+    </div>
+
+
+    <div   class="head-title text-center des-text inner-html mb-4 splendor">
+      <!-- <h2 class="font-weight-bold">{{ des.name }}</h2> -->
+      @if (blogDes != '' && !loadingDes) {
+        <app-safe-html class="  inner-html" [htmlContent]="getSafeContent(blogDes)"></app-safe-html>
+      }
+    </div>
+
+    @if (loadingDes) {
+      <div class="ph-item">
+        <div class="ph-col-12">
+          <div class="ph-row">
+            <div class="ph-col-4"></div>
+            <div class="ph-col-8 empty"></div>
+            <div class="ph-col-6"></div>
+            <div class="ph-col-6 empty"></div>
+            <div class="ph-col-12"></div>
+          </div>
+        </div>
+      </div>
+    }
+    @if (loading) {
+      <div class="row">
+        @for (n of numSequence(9); track n) {
+          <div class="col-md-4">
+            <div class="ph-item">
+              <div class="ph-col-12">
+                <div class="ph-picture"></div>
+                <div class="ph-row">
+                  <div class="ph-col-6 big"></div>
+                  <div class="ph-col-4 empty big"></div>
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-4"></div>
+                  <div class="ph-col-8 empty"></div>
+                  <div class="ph-col-6"></div>
+                  <div class="ph-col-6 empty"></div>
+                  <div class="ph-col-12"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="row " >
+        @for (blog of blogContainer| paginate : { itemsPerPage: itemsPerPage, currentPage: page,totalItems: totalItems  }; track $index) {
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 ">
+            <div class="blogs overflow-hidden">
+              <div class="card text-center">
+                <a aria-label="blog" routerLink="/all-destinations/{{desSlug}}/blog/{{blog.slug}}" class="text-dark">
+                  <img loading="lazy" src="{{blog.thumb}}" class="card-img-top" alt="{{blog.thumb_alt}}">
+                </a>
+                <div class="card-body">
+                  <a aria-label="blog" routerLink="/all-destinations/{{desSlug}}/blog/{{blog.slug}}" class="text-dark">
+                    <h3 class="card-title title-category">{{blog.name}}</h3>
+                  </a>
+                  <app-safe-html class="card-text h-50" [htmlContent]="getSafeContent(blog.description, 200)"></app-safe-html>
+                  <a aria-label="read more" routerLink="/all-destinations/{{desSlug}}/blog/{{blog.slug}}" class="btn main-btn blog-btn w-75 m-auto">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="d-flex justify-content-center mt-2">
+        <pagination-controls (pageChange)="gty((page = $event))"></pagination-controls>
+      </div>
+    }
+
+  </div>
+</section>
+<app-scroll-button></app-scroll-button>
+

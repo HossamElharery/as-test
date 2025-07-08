@@ -1,0 +1,43 @@
+
+
+
+
+<section class="bg-white mt-3 px-3 py-4 fixx-rel">
+  <div class="head mb-2">
+    <h3 class="font-weight-bolder">{{ categoryName | translate }}</h3>
+  </div>
+
+  <div class="isotope column-4 mb-3 mt-2">
+    <div class="grid-item mercedes audi">
+
+      @for (relate of related; track $index) {
+        <div class="car-item text-center mt-2">
+          <div class="car-image">
+            <img loading="lazy"   class="img-fluid image-sizee"
+              src="{{ relate.thumb }}" alt="{{ relate.thumb_alt }}">
+              <div class="car-overlay-banner">
+                <ul>
+                  <li><a routerLink="/all-destinations/{{ relate.destination.slug }}/{{category}}/{{ relate.slug }}"  ><i class="fa fa-link"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="car-list">
+              <ul class="list-inline">
+                <li><i class="fa fa-calendar"></i> {{relate.days}} Dayes </li>
+                <li><i class="fas fa-money-bill-wave"></i> Price {{relate.start_price}} $ </li>
+              </ul>
+            </div>
+            <div class="car-content">
+              <ngb-rating class="rate" color="warning" [rate]="getRateAsNumber(relate.rate)" [max]="5" [readonly]="isReadonly"></ngb-rating>
+              <a  routerLink="/all-destinations/{{ relate.destination.slug }}/{{category}}/{{ relate.slug }}">{{ relate.name }}</a>
+              <div class="separator"></div>
+            </div>
+          </div>
+        }
+
+      </div>
+    </div>
+
+  </section>
+
+

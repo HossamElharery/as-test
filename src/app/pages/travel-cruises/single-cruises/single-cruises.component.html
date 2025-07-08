@@ -1,0 +1,365 @@
+@if (!loading) {
+  <section>
+  <section class="sec-banner text-center" [ngStyle]="{
+    'background-image':
+      'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + cruises?.banner + ')'
+  }">
+      <div class="container">
+        <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+          <h2>
+            <span class="main-color font-weight-bold">{{ cruises?.name }} </span>
+          </h2>
+        </div>
+        <app-ask-expert-btn></app-ask-expert-btn>
+      </div>
+    </section>
+  </section>
+}
+
+
+
+
+@if (loading) {
+  <section class="min-banner">
+    <section>
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span> </h1>
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+}
+
+<section>
+  <div class="container">
+    <div class="page-links py-2">
+      <a class="hover-color" routerLink="/">
+        <span>{{ "Home" | translate }} / </span>
+      </a>
+      <a class="hover-color" routerLink="/all-destinations/{{ id }}">
+        <span> {{ desName }} / </span>
+      </a>
+      <a class="hover-color" routerLink="/all-destinations/{{ id }}/travel-cruises">
+        <span> {{ cruName }} / </span>
+      </a>
+      <span class="main-color">{{ cruises?.name }}</span>
+    </div>
+  </div>
+</section>
+<section class="sec-bg">
+  <div class="container">
+    <!-- <app-tags [cruise]="type"></app-tags> -->
+
+    <div class="row flex-box">
+      @if (!loading) {
+        <div class="col-lg-9 pt-3">
+          <section class="bg-white mt-3 px-3">
+            <div class="pt-2">
+              <!-- <app-gallery [gallery]="gallery"></app-gallery> -->
+              <app-gallery-new [gallery]="gallery" ></app-gallery-new>
+            </div>
+          </section>
+          <app-splander [splander]="cruises" [cruise]="cruis1"></app-splander>
+
+          <!-- Prices Section -->
+          <section id="prices-section" class="bg-white mt-3 px-2 py-4">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="head mb-3">
+                    <h3 class="font-weight-bold">Prices</h3>
+                  </div>
+                  <div id="main-prices">
+                    <div class="accordion" id="faqPrices">
+                      <div class="card">
+                        <div class="card-header" id="headPrices">
+                          <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#secPrices"
+                            aria-expanded="false" aria-controls="secPrices">
+                            <span class="font-weight-bold text-white">View Prices & Seasons</span>
+                          </a>
+                        </div>
+                        <div id="secPrices" class="collapsed collapse" aria-labelledby="headPrices" data-parent="#faqPrices">
+                          <div class="card-body mt-3">
+                            @if (cruises?.prices && cruises.prices.length > 0) {
+                              <div class="table-responsive">
+                                <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Duration</th>
+                                      <th>Season</th>
+                                      <th>Triple Cabin</th>
+                                      <th>Double Cabin</th>
+                                      <th>Single Cabin</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    @for (price of cruises.prices; track $index) {
+                                      <tr>
+                                        <td class="font-weight-bold">{{ price.duration }}</td>
+                                        <td>{{ price.season }}</td>
+                                        <td>${{ price.triple_cabin }}</td>
+                                        <td>${{ price.double_cabin }}</td>
+                                        <td>${{ price.single_cabin }}</td>
+                                      </tr>
+                                    }
+                                  </tbody>
+                                </table>
+                              </div>
+                            } @else {
+                              <p class="p-2">No pricing information available.</p>
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Policies Section -->
+          <section id="policies-section" class="bg-white mt-3 px-2 py-4">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div id="accordion" class="myaccordion">
+
+                    @if (cruises?.price_policy) {
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h2 class="mb-0 mt-1">
+                            <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                              Price Policy:
+                              <span class="fa-stack fa-sm">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+                              </span>
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                          <div class="card-body splendor">
+                            <p class="inner-html"><app-safe-html [htmlContent]="getSafeContent(cruises.price_policy)"></app-safe-html></p>
+                          </div>
+                        </div>
+                      </div>
+                    }
+
+                    @if (cruises?.payment_policy) {
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h2 class="mb-0 mt-1">
+                            <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Payment Policy:
+                              <span class="fa-stack fa-2x">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+                              </span>
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                          <div class="card-body splendor">
+                            <p class="inner-html"><app-safe-html [htmlContent]="getSafeContent(cruises.payment_policy)"></app-safe-html></p>
+                          </div>
+                        </div>
+                      </div>
+                    }
+
+                    @if (cruises?.repeated_travellers) {
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h2 class="mb-0 mt-1">
+                            <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Repeated Travellers:
+                              <span class="fa-stack fa-2x">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+                              </span>
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                          <div class="card-body splendor">
+                            <p class="inner-html"><app-safe-html [htmlContent]="getSafeContent(cruises.repeated_travellers)"></app-safe-html></p>
+                          </div>
+                        </div>
+                      </div>
+                    }
+
+                    @if (cruises?.travel_schedule) {
+                      <div class="card">
+                        <div class="card-header" id="headingFour">
+                          <h2 class="mb-0 mt-1">
+                            <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                              Travel on your own Schedule:
+                              <span class="fa-stack fa-2x">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+                              </span>
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                          <div class="card-body splendor">
+                            <p class="inner-html"><app-safe-html [htmlContent]="getSafeContent(cruises.travel_schedule)"></app-safe-html></p>
+                          </div>
+                        </div>
+                      </div>
+                    }
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="services-activities" class="bg-white mt-3 px-2 py-4">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-md-7">
+                  <div class="head mb-2">
+                    <h3 class="font-weight-bold ">Services</h3>
+                  </div>
+                  <div class="">
+                    <ul class="list-group p-0">
+                      @for (cruis of cruises?.services; track $index) {
+                        <li class="list-group-item d-flex px-0 py-2">
+                          <img loading="lazy" alt="right" src="assets/imgs/right.png" class="img-fluid">
+                          <span>{{cruis?.content}}</span>
+                        </li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12 col-md-5">
+                  <div class="head mb-2">
+                    <h3 class="font-weight-bold">Activities</h3>
+                  </div>
+                  <div class="">
+                    <ul class="p-0">
+                      @for (cruis of cruises?.activities; track $index) {
+                        <li class="list-group-item d-flex px-0 py-2">
+                          <img loading="lazy" alt="right" src="assets/imgs/right.png" class="img-fluid">
+                          <span>{{cruis?.content}}</span>
+                        </li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          @if (cruises?.travel_experiences && cruises.travel_experiences.length > 0) {
+            <app-experiences [datapackage]="cruises.travel_experiences" [cruise]="type"></app-experiences>
+          }
+          <!-- <app-accomodation [slug]="cruises?.slug" [pushDes]="id" [desName]="desName" [desSlug]="desSlug" [cruises]="cruisesHotels" [cruise]="cruis2"></app-accomodation> -->
+          <app-reviews></app-reviews>
+        </div>
+      }
+
+
+      @if (loading) {
+        <div class="col-lg-9 pt-3">
+          <div class="ph-item">
+            @for (n of numSequence(20); track $index) {
+              <div class="ph-col-12">
+                <div class="ph-row">
+                  <div class="ph-col-4"></div>
+                  <div class="ph-col-8 empty"></div>
+                  <div class="ph-col-6"></div>
+                  <div class="ph-col-6 empty"></div>
+                  <div class="ph-col-12"></div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+      <div class="col-lg-3 mt-3">
+        <div class="bg-white mt-3 px-3 pt-3 pb-2 fixx-rel">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="cruu-all">
+                <h4 class="cru-name">{{ cruises?.name }}</h4>
+                <ngb-rating class="rate" [rate]="rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+
+                <!-- <div class="pricee">
+                <i class="fas fa-map-marker-alt main-color"></i>
+                <span class="ml-1">{{desName}}</span>
+              </div> -->
+
+              <div class=" d-flex justify-content-center align-items-center ">
+                <div class=" font-weight-bold mr-1"><span class="main-color ">Start</span> From </div>
+                <div> <span class="main-color ffir font-weight-bold">$</span> <span
+              class="font-weight-bold sffir">{{cruises?.double_room_price}}</span> </div>
+            </div>
+
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- <app-start-from [start]="cruises_push"  [cruise]="type"></app-start-from> -->
+    <app-expert-reviews [name]="'cruises'"> </app-expert-reviews>
+    <app-optional-experts [related]="related_cruises" [categoryName]="'Related Cruises'"
+    [category]="'travel-cruises'" [cruise]="type"></app-optional-experts>
+
+    <!-- Reserve now & pay later sticky section -->
+    @if (widgetId && widgetId.trim() !== '') {
+      <div class="reserve-sticky-section">
+        <div class="container">
+          <button class="btn check-availability-btn" (click)="openWidget()">Check Availability</button>
+          <div class="reserve-info">
+            <img src="../../../../assets/imgs/credit_card_clock.svg" alt="Credit Card Clock" class="reserve-icon">
+            <div class="reserve-text">
+              <h4 class="reserve-title">Reserve now & pay later</h4>
+              <p class="reserve-subtitle">Keep your travel plans flexible — book your spot and pay nothing today.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+        }
+
+    <!-- Booking Widget Overlay (CSS Modal-like) -->
+    @if (isWidgetVisible && widgetId) {
+      <div class="booking-widget-overlay" (click)="onWidgetBackdropClick($event)">
+        <div class="booking-widget-container">
+          <button class="booking-widget-close" (click)="closeWidget()" aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+          <div class="booking-widget-content">
+            <!-- Simplified widget loading - matches excursion pattern -->
+            <div class="mt-2" id="cruise-booking-widget">
+              <div appDynamicScript>
+                <div
+                  src="https://assets.ticketinghub.com/checkout.js"
+                  [attr.data-widget]="widgetId">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- <app-tour-booking [id]="id_num" [cruise]="type"></app-tour-booking> -->
+
+
+  </div>
+</div>
+</div>
+</section>
+<app-scroll-button></app-scroll-button>

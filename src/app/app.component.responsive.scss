@@ -1,0 +1,18 @@
+@media (max-width: 991.98px) {
+    .app_route {
+        &.home-page {
+            ::ng-deep {
+                header {
+                    height: 68px !important;
+                }
+
+                .offcanvas {
+                    top: 68px !important;
+                    &-backdrop {
+                        top: 68px !important;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+<section class="my-5">
+  <div  class="container">
+      <div  class="row">
+          <div  class="col-12 col-md-4">
+              <div class="count text-center position-relative sec-bg pt-5 pb-2 mt-3">
+                  <span class="d-inline-block position-absolute count-circle main-bg">
+                     <img   width="80px" height="105px" src="assets/imgs/travel-icon-186.webp" class="img-fluid" alt="Tour Listed" />
+                  </span>
+                  <h5 class="font-weight-bold">{{ "Tour Listed" | translate }}</h5>
+                  <span class="text font-weight-bold sec-color"  [options]="opts" [countUp]="  count == true ? Tour : 0"></span>
+              </div>
+          </div>
+          <div  class="col-12 col-md-4">
+              <div class="count text-center position-relative sec-bg pt-5 pb-2 mt-3">
+                  <span class="d-inline-block position-absolute count-circle main-bg">
+                       <img  width="80px" height="105px" src="assets/imgs/verified.webp" class="img-fluid" alt="Verified" />
+                  </span>
+                  <h5 class="font-weight-bold">{{ "Verified Agent" | translate }}</h5>
+                  <span class="text font-weight-bold sec-color"  [options]="opts" [countUp]=" count == true ? Verified : 0"></span>
+
+
+              </div>
+          </div>
+          <div  class="col-12 col-md-4">
+              <div class="count text-center position-relative sec-bg pt-5 pb-2 mt-3">
+                  <span class="d-inline-block position-absolute count-circle main-bg">
+                      <img  width="80px" height="105px"  src="assets/imgs/satisfied.png" class="img-fluid" alt="satisfied" />
+                  </span>
+                  <h5 class="font-weight-bold">{{ "Satisfied Customer" | translate  }}</h5>
+                  <span class="text font-weight-bold sec-color"  [options]="opts" [countUp]=" count == true ? satisfied : 0"></span>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

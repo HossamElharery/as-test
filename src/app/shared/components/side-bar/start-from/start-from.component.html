@@ -1,0 +1,44 @@
+<section  class="bg-white mt-3 px-3 py-2 d-flex justify-content-center sstiky" >
+  @if (package) {
+    <div >
+      <div class="head ">
+        <h3 class="font-weight-bolder text-dark mt-0">Starting from <span class="main-color start-price">${{start?.start_price}}</span></h3>
+      </div>
+    </div>
+  }
+
+
+
+
+</section>
+
+@if (cruise) {
+  <div   class="bg-white mt-3 px-3 py-2 d-flex justify-content-center ">
+    <div >
+      @for (item of start; track $index) {
+        <div>
+          <div class="head mb-2 mt-2">
+            <h4 class="h6 font-weight-bolder"> I Room : {{item.single_room_price}}<span
+              class="main-color">
+            USD</span></h4>
+            <h4 class="h6 font-weight-bolder"> II Room : {{item.double_room_price}} <span
+            class="main-color"> USD</span></h4>
+            <h4 class="h6"> <span> <i class="fas fa-route"></i> check in</span> {{item.checkin}} </h4>
+            <h4 class="h6"> <span> <i class="fas fa-route"></i> check out</span> {{item.checkout}} </h4>
+            <ngb-rating [rate]="item.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+          </div>
+          <div class="">
+            <ul class="p-0">
+              @for (x of item.services; track $index) {
+                <li class="list-group-item d-flex px-0 py-2">
+                  <img loading="lazy"  alt="right" src="assets/imgs/right.png" class="img-fluid">
+                  <span>{{x?.content}}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}

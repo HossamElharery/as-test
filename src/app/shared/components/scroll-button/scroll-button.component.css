@@ -1,0 +1,28 @@
+/* ==== Back to top button ===== */
+.scroll-to-top {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+ }
+ .show-scrollTop {
+  opacity: 1;
+  transition: all .2s ease-in-out;
+  background: #f68800;
+  border-radius: 10px;
+  z-index: 1;
+ }
+ .scroll-to-top:hover{
+  border: 2.5px solid #f68800;
+  background: transparent;
+ }
+.btn i{
+  color: white;
+}
+.scroll-to-top:hover i{
+  color: #f68800;
+}
+.btn.focus, .btn:focus{
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 0%);
+}

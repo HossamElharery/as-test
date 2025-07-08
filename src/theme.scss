@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+@use './colors' as *;
+
+// After @use statements, include the rest of your code
+$custom-primary: mat.m2-define-palette($primary-palette, 500);
+$custom-warn: mat.m2-define-palette($warn-palette, 500);
+$custom-accent: mat.m2-define-palette($accent-palette, 500);
+
+$custom-theme: mat.m2-define-light-theme((
+ color: (
+   primary: $custom-primary,
+   warn: $custom-warn,
+   accent: $custom-accent,
+ ),
+ typography: mat.m2-define-typography-config(
+  $font-family: 'Ubuntu',
+ ),
+ density: 0
+));
+
+@include mat.all-component-themes($custom-theme);

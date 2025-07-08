@@ -1,0 +1,27 @@
+.map-details {
+  border-radius: 5px;
+  width: 100%;
+}
+.embed-responsive{
+  height: 450px!important;
+}
+.embed-responsive-item{
+  height: 100%;
+}
+
+
+.submit{
+    position: sticky;
+    top:15%;
+    z-index: 99;
+}
+
+
+
+h3 span{
+  font-weight: bold;
+}
+
+h3 span i{
+  color: #f68800;
+}

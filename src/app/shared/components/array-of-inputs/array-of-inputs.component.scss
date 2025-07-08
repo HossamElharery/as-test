@@ -1,0 +1,33 @@
+.my-custom-input {
+    width: -webkit-fill-available;
+}
+span.error {
+    margin-top: -5px !important;
+}
+.array-actions {
+    width: 60px;
+    button {
+        font-size: 20px;
+        color: var(--primary);
+        margin-inline-start: 5px;
+        &.remove {
+            color: var(--danger);
+        }
+    }
+}
+.update-control {
+    border: 1px solid var(--primary);
+    color: #fff;
+    background-color: var(--primary);
+    font-weight: 400;
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    i {
+        margin-inline-start: 5px;
+    }
+    &.remove {
+        background-color: var(--danger);
+        border: 1px solid var(--danger);
+    }
+}

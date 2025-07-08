@@ -1,0 +1,108 @@
+
+  /*---- Card ----*/
+  .card {
+    border-radius: 8px;
+    margin-top: 0px;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -ms-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.50);
+  }
+  .card:hover {
+    box-shadow: 0px 9px 17px rgba(0, 0, 0, 0.70);
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -ms-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+  }
+  .card .image-box {
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.50);
+    border-radius: 5px;
+    height: 450px;
+  }
+  .card .card1{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /*---- Date Box ----*/
+  .card .container-date {
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;
+    color: #FFFFFF !important;
+    font-weight: 900;
+  }
+
+
+  /*---- Text Container ----*/
+  .card .image-box .text-container {
+    padding: 18px 20px;
+    margin-top: 324px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    height: 200px;
+  }
+  .card .image-box:hover .text-container {
+    padding: 16px 20px;
+    margin-top: 204px;
+    background: rgba(0, 0 ,0 , 0.7);
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  .card .image-box .text-container p {
+    overflow: hidden;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    margin: 12px 0px 5px 0px;
+    padding: 0px;
+    max-height: 60px;
+  }
+  .subtitle {
+    font-size: 28px;
+    text-align: left;
+    color: #FFFFFF;
+    font-weight: 700;
+    /* line-height: 46px; */
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 0px;
+    min-height: 95px;
+  }
+  .subtitle i {
+    color: #f68800;
+    visibility: hidden;
+    margin-left: 8px;
+  }
+  .card:hover .subtitle i {
+    visibility: visible;
+  }
+  /*---- Button ----*/
+  .button-down {
+    background: #f68800;
+    padding: 12px 0px;
+    text-align: center;
+    font-size: 15px;
+    color: #000000 !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+
+
+
+

@@ -1,0 +1,27 @@
+<div class="submit">
+  <div class="position-relative ">
+<!-- <button (click)="openVerticallyCentered(content)" data-toggle="modal" data-target="#exampleModalLong"
+  class="main-btn w-100 mt-3  "> {{ "Send Booking Enquiry" | translate }}</button>
+  <div class="send"><i class="fab fa-telegram-plane fa-2x mt-2"></i></div> -->
+<img (click)="openVerticallyCentered(content)" data-toggle="modal" data-target="#exampleModalLong" class="w-100 mt-2" src="../../../../../assets/imgs/check availability.jpeg" alt="check availability" srcset="">
+
+</div>
+
+</div>
+
+
+
+
+
+<ng-template #content let-modal>
+  <i class="fas fa-times-circle close-booking" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
+
+  <div class="modal-body">
+      <section class="bg-white px-3  booking">
+
+          <iframe onload="javascript:parent.scrollTo(0,0);" height="1400" allowTransparency="true" scrolling="no" frameborder="0" sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation" style="width:100%;border:none" src="https://www.ask-aladdin.com/machform/embed.php?id=4" title="AskAladdin Tour Package Booking Center:"><a href="https://www.ask-aladdin.com/machform/view.php?id=4" title="AskAladdin Tour Package Booking Center:">AskAladdin Tour Package Booking Center:</a></iframe>
+        </section>
+
+  </div>
+
+</ng-template>

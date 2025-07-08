@@ -1,0 +1,62 @@
+<section class=" sponsors py-4">
+  <div  class="container" >
+
+    @if (!loading ) {
+      <div class="card-main">
+        <owl-carousel-o [options]="customOptions" dir="ltr" >
+          @for (log of logo; track $index) {
+            <ng-template carouselSlide >
+              <a [attr.aria-label]="log.small_img_alt" href="{{log.link}}" target="_blank" class="text-dark">
+                <div class="ccard ">
+                  <img height="86px" width="200px" loading="lazy"
+                    [src]="log.small_image_on_slider"
+                    [alt]="log.small_img_alt"
+                    [title]="log.small_img_alt"
+                    class="image img-fluid">
+                  </div>
+                </a>
+              </ng-template>
+            }
+          </owl-carousel-o>
+        </div>
+      }
+
+
+      <!-- <div *ngIf="!loading && !mobile" class="card-main">
+      <ng-container  >
+
+        <div class="row">
+          <div  class="col-md-2 m-auto p-1" *ngFor="let log of logo">
+            <a [attr.aria-label]="log.small_img_alt" [title]="log.small_img_alt" href="{{log.link}}" target="_blank" class="text-dark">
+              <div class="ccard ">
+                <img height="86px" width="200px" [title]="log.small_img_alt" loading="lazy"
+                  [src]="log.small_image_on_slider" [alt]="log.small_img_alt"
+                  class="image img-fluid">
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </ng-container>
+
+      </div> -->
+
+
+
+      @if (loading) {
+        <div  class="row">
+          @for (n of numSequence(4); track $index) {
+            <div class="col-12 col-md-3">
+              <div class="ph-item">
+                <div class="ph-col-12">
+                  <div class="ph-picture"></div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+
+  </section>

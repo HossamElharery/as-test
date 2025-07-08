@@ -1,0 +1,191 @@
+<section>
+
+  @if (loading) {
+  <section class="min-banner">
+    <section>
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span> </h1>
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+  }
+
+  @if (!loading) {
+  <section class="min-fix">
+    <section class="banner text-center"
+      [ngStyle]="{ 'background-image': 'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' +  blogBanner + ')' }">
+      <div class="container">
+        <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+          <h1>
+            <span class="main-color des-Name font-weight-bold">
+              {{faName}}
+            </span>
+          </h1>
+        </div>
+        <p class="mt-2"></p>
+        <app-ask-expert-btn></app-ask-expert-btn>
+      </div>
+    </section>
+  </section>
+  }
+
+
+
+  @for (item of allFaqs; track $index) {
+  <section>
+    <div class="container">
+      <div class="page-links py-2">
+        <a class="hover-color" routerLink="/"> <span> {{"Home"|translate}} / </span> </a>
+        <a class="hover-color" routerLink="/myths-facts"> <span> {{id}} / </span> </a>
+        <span class="main-color">{{item.name}} </span>
+      </div>
+    </div>
+  </section>
+  }
+
+  <section class="py-4">
+    <div class="container">
+      <div>
+
+
+
+        @if (!loading) {
+        <div>
+          @for (item of allFaqs; track $index) {
+          <div class="head-title text-center mb-4">
+            <!-- <h2 class="font-weight-bold">{{ des.name }}</h2> -->
+            @if (item.description != '') {
+            <div class="des-text">
+              <app-safe-html [htmlContent]="getSafeContent(item.description)"></app-safe-html>
+            </div>
+            }
+          </div>
+          }
+        </div>
+        }
+
+        @if (loading) {
+        <div class="ph-item">
+          <div class="ph-col-12">
+            <div class="ph-row">
+              <div class="ph-col-4"></div>
+              <div class="ph-col-8 empty"></div>
+              <div class="ph-col-6"></div>
+              <div class="ph-col-6 empty"></div>
+              <div class="ph-col-12"></div>
+            </div>
+          </div>
+        </div>
+        }
+
+        <div class="row ">
+
+          <div class="col-lg-9 fix-2">
+
+            <div class="accordion-head-line">
+              <h2 class="head-accordion">{{"Myths & Facts"|translate}}</h2>
+            </div>
+
+            @if (!loading) {
+            <div>
+              @if (!noData) {
+              <ng-container class="row">
+                @for (faq of faqsContainer; track $index; let i = $index) {
+                <div>
+                  <h2 class="mt-3">{{faq.category_name}}</h2>
+                  <hr>
+                  @for (single of faq.faqs; track $index; let j = $index) {
+                  <div>
+                    <!-- Updated accordion with simple Unicode arrows -->
+                    <div class="card mb-3">
+                      <div class="card-header" (click)="togglePanel(i, j)">
+                        <h2 class="my-0">
+                          <button class="btn btn-link w-100 text-left d-flex justify-content-between align-items-center"
+                            type="button">
+                            <span>Myth: {{i+1}}- {{single.myth}}</span>
+                            <span class="accordion-arrow">{{ isPanelOpen(i, j) ? '▲' : '▼' }}</span>
+                          </button>
+                        </h2>
+                      </div>
+                      <div class="card-body"
+                        [ngClass]="{'accordion-open': isPanelOpen(i, j), 'accordion-closed': !isPanelOpen(i, j)}">
+                        <!-- Content remains the same -->
+                        <div class="row">
+
+                          <div class="type-name col-md-6">
+                            <h3>Fact: {{single.fact}}</h3>
+
+                          <!-- <div class="cate-date d-flex justify-content-between">
+                            <p class="">{{faq.faq_created_at}}</p>
+                          </div> -->
+                          <div class="desc  splendor">
+                            <div class="inner-html">
+                              <app-safe-html [htmlContent]="getSafeContent(single.overview)"></app-safe-html>
+                            </div>
+                          </div>
+                          <div class="dir"></div>
+
+                          </div>
+                          <div class="thumb col-md-6">
+                            <img loading="lazy" [alt]="single.myth" [src]="single.image" class="img-fluid w-100">
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  }
+                </div>
+                }
+              </ng-container>
+              }
+            </div>
+            }
+
+
+            @if (loading) {
+            <div class="ph-item">
+              @for (n of numSequence(10); track $index) {
+              <div class="ph-col-12">
+                <div class="ph-row">
+                  <div class="ph-col-4"></div>
+                  <div class="ph-col-8 empty"></div>
+                  <div class="ph-col-6"></div>
+                  <div class="ph-col-6 empty"></div>
+                  <div class="ph-col-12"></div>
+                </div>
+              </div>
+              }
+            </div>
+            }
+
+            @if (noData) {
+            <div>
+              <div class="d-flex justify-content-center ">
+                <h4 class="mt-4 ">No Data Yet</h4>
+              </div>
+            </div>
+            }
+
+
+          </div>
+          <div class="col-lg-3 review">
+            <app-expert-reviews [name]="'myths-facts'"></app-expert-reviews>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+</section>

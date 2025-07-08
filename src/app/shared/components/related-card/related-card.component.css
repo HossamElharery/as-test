@@ -1,0 +1,99 @@
+ /* ========================================
+ ================ Old card style ==========
+ ======================================== */
+ .img-relat{
+  height:150px;
+  width:100%;
+  object-fit: cover;
+}
+@media only screen and (max-width:480px){
+  .img-relat{
+    height:200px;
+    width:100%;
+    object-fit: cover;
+  }
+}
+.item{
+  padding-left:5px;
+  padding-right:5px;
+}
+.item-card{
+  transition:0.5s;
+  cursor:pointer;
+}
+
+.card-tiitle{
+  font-weight: 700;
+  font-size: 16px;
+  position: relative;
+  height: 35px;
+  overflow: hidden;
+  line-height: 28px;
+}
+.card-tiitle::after{
+  content: "";
+  transform: translate(-50%, -50%);
+  position: absolute;
+    width: 30px;
+    height: 2px;
+    margin-top: 1px;
+    background: #f68800;
+    left: 50%;
+    bottom: -1px;
+}
+.card-tiitle a{
+  text-decoration: none;
+  color: black;
+}
+.card:hover{
+  transform: scale(1.05) ;
+  box-shadow:10px 10px 15px rgb(255 164 0 / 8%)
+}
+
+.card:hover .card-tiitle::after{
+
+  width: 100px;
+  transition-duration: 1.5s ;
+
+}
+h1 {
+  display: none;
+
+}
+
+.card-text{
+  height:70px;
+  overflow: hidden;
+  margin: 0px 9px 9px 9px;
+
+
+}
+
+.card::before, .card::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: scale3d(0, 0, 1);
+  transition: transform .3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  content: '';
+  pointer-events: none;
+}
+.card::before {
+  transform-origin: left top;
+}
+.card::after {
+  transform-origin: right bottom;
+}
+.card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
+  transform: scale3d(1, 1, 1);
+}
+.rel-p{
+  color: #212529;
+}
+
+/* ============================================================ */
+
+/* ========================================== */

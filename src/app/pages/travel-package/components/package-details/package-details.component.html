@@ -1,0 +1,451 @@
+@if (loading) {
+<section class="min-banner">
+  <section>
+    <section class="banner text-center"
+      [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../../assets/imgs/default-banner.webp)' }">
+      <div class="container">
+        <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+          <h1><span class="main-color des-Name font-weight-bold"> loading..</span> </h1>
+        </div>
+        <p class="mt-2"></p>
+        <app-ask-expert-btn></app-ask-expert-btn>
+      </div>
+    </section>
+  </section>
+</section>
+}
+
+@if (!loading) {
+<section>
+  <section class="banner text-center"
+    [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + banner + ')' }">
+    <div class="container">
+      <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+        <h1><span class="main-color des-Name font-weight-bold"> {{nameCategories}}</span> </h1>
+      </div>
+      <app-ask-expert-btn></app-ask-expert-btn>
+    </div>
+  </section>
+</section>
+}
+
+<section>
+  <div class="container">
+    <div class="page-links py-2">
+      <a class="hover-color" routerLink="/"> <span>{{"Home"|translate}} / </span> </a>
+      <a class="hover-color" routerLink="/all-destinations/{{desSlug}}"> <span> {{nameCountry}} / </span> </a>
+      <span class="main-color">{{nameCategories}}</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec-bg p-1">
+  <div class="container">
+
+    <section class="sec-bg padding-pack mb-5">
+      <div class="container">
+        <div class="">
+
+          <div class="row mt-4">
+            <div class="col-md-3 col-sm-12">
+              <section class="bg-white px-3 py-2">
+                <div class="head mb-2">
+                  <span class="filter-by">{{ "Filter By" | translate }}</span>
+                </div>
+
+                @if (id == 'egypt') {
+                <div class="tags ">
+                  <!-- <span *ngFor="let Pack of categoryPack; let i = index" class="tag text-dark bg-white font-weight-bold">
+                    <a class="cat-pack"  (click)="sendData(desSlug , i + 1)"> {{ Pack.name }} </a>
+                  </span> -->
+                </div>
+                }
+                <form>
+                  <div class="filter-content border-bottom">
+                    <a class="filter d-flex justify-content-between align-items-center sec-bg p-3 text-dark font-weight-bold first-character-c"
+                      (click)="isCollapsed1 = !isCollapsed1" [attr.aria-expanded]="!isCollapsed1"
+                      aria-controls="collapseBasic">
+                      <div class=""><i class="fas far fa-calendar-alt mr-2"></i>{{ "Tour Type" | translate }}</div>
+                      <i class="fas" [ngClass]="{ 'fa-angle-down': isCollapsed1, 'fa-angle-up': !isCollapsed1 }"></i>
+                    </a>
+
+                    <div id="collapseBasic" class="sec-bg p-3 pt-2" [ngbCollapse]="isCollapsed1">
+                      <div class="form">
+
+                        @if (id == 'egypt') {
+                        <div class="tags ">
+                          <!-- <span *ngFor="let Pack of categoryPack; let i = index" class="tag text-dark bg-white font-weight-bold">
+                          <a class="cat-pack"  (click)="sendData(desSlug , i + 1)"> {{ Pack.name }} </a>
+                        </span> -->
+                          <div class="row">
+                            @for (Pack of categoryPack; track $index; let i = $index) {
+                            <div class="col-md-12 tag text-dark  font-weight-bold">
+                              <!-- (click)="this._TourTypeTransferService.navigateWithHiddenParam(Pack.slug,'/all-destinations/' + this.id + '/travel-packages')" -->
+                              <a routerLink="/all-destinations/{{id}}/tour-type/{{Pack.slug}}"
+                                class="cat-pack bg-white">
+                                <i [class]="Pack.icon? Pack.icon:'
+                                 fa-dot-circle'"></i> {{ Pack.name }} </a>
+                            </div>
+                            }
+                          </div>
+                        </div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="filter-content border-bottom">
+                    <a class="filter d-flex justify-content-between align-items-center sec-bg p-3 text-dark font-weight-bold first-character-c"
+                      (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+                      aria-controls="collapseBasic">
+                      <div class=""><i class="fas far fa-calendar-alt mr-2"></i>{{ "Duration" | translate }}</div>
+                      <i class="fas" [ngClass]="{ 'fa-angle-down': isCollapsed, 'fa-angle-up': !isCollapsed }"></i>
+                    </a>
+
+                    <div id="collapseBasic" class="sec-bg p-3 pt-2" [ngbCollapse]="isCollapsed1">
+
+                      <!-- Days -->
+                      <div class="form">
+                        <span>
+                          <label for="minText"><span class="main-color line">Min </span> Days</label>
+                          <input type="number" ngModel #mini="ngModel" disabled id="minTextDays" name="mini"
+                            [value]="rangeSDay" [(ngModel)]="rangeSDay" placeholder="1" />
+                        </span>
+
+                        <span>
+                          <label for="maxText"><span class="main-color line">Max </span> Days</label>
+                          <input type="number" #maxx="ngModel" ngModel disabled id="maxText" name="maxx"
+                            [value]="rangeMDay" [(ngModel)]="rangeMDay" placeholder="30" />
+                        </span>
+
+                        <div class="range">
+                          <input type="range" #minD min="1" max="30" value="1" step="2" id="minRange"
+                            (change)="rangeStartDay(minD)" />
+
+                          <input type="range" #maxD min="1" max="30" value="30" id="maxRange"
+                            (change)="rangeEndDay(maxD)" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- --------------------- -->
+
+                  <!-- Prices -->
+                  <div class="filter-content border-bottom">
+                    <a class="filter d-flex justify-content-between align-items-center sec-bg p-3 text-dark font-weight-bold first-character-c"
+                      (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed2"
+                      aria-controls="collapseBasic">
+                      <div class=""><i class="fas fa-dollar-sign"></i> {{ "Prices" | translate }}</div>
+                      <i class="fas" [ngClass]="{ 'fa-angle-down': isCollapsed2, 'fa-angle-up': !isCollapsed2 }"></i>
+                    </a>
+                    <div id="collapseBasic" class="sec-bg p-3 pt-2" [ngbCollapse]="isCollapsed1">
+                      <div class="form">
+                        <span>
+                          <label for="minText"><span class="main-color line">Min </span> value</label>
+                          <input type="number" ngModel #min="ngModel" disabled id="minText" name="min"
+                            [value]="rangePric" [(ngModel)]="rangePric" placeholder="0" #val3 />
+                        </span>
+                        <span>
+                          <label for="maxText"><span class="main-color line">Max </span> value</label>
+                          <input type="number" ngModel #max="ngModel" disabled id="maxText" name="max"
+                            [value]="rangePrice" [(ngModel)]="rangePrice" placeholder="10000" />
+                        </span>
+                        <div class="range">
+                          <input type="range" #val min="0" max="10000" value="0" step="400" id="minRange"
+                            (change)="rangePri1(val)" />
+                          <input type="range" #val2 min="0" max="10000" value="10000" id="maxRange"
+                            (change)="rangePri2(val2)" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Tour Type -->
+
+                  <!-- <div class="filter-content border-bottom">
+                                <a class="filter d-flex justify-content-between align-items-center sec-bg p-3 text-dark font-weight-bold first-character-c"
+                                  (click)="isCollapsed3 = !isCollapsed3" [attr.aria-expanded]="!isCollapsed3"
+                                  aria-controls="collapseBasic">
+                                  <div class=""><i class="fas fa-plane-departure mr-2"></i>{{ "Tour Type" | translate }}</div>
+                                  <i class="fas" [ngClass]="{ 'fa-angle-down': isCollapsed3, 'fa-angle-up': !isCollapsed3 }"></i>
+                                </a>
+                                <div id="collapseBasic" class="sec-bg p-3 pt-2" [collapse]="isCollapsed3" [isAnimated]="true">
+                                  <div *ngFor="let tour of tourType; let i = index" class="divBox">
+                                    <input type="checkbox" value="{{i}}" id="{{i}}" [name]="tour[i]" />
+                                    <label for="{{i}}">{{ tour }}</label>
+                                  </div>
+                                </div>
+                              </div> -->
+                  <!-- End Tour Type -->
+
+                </form>
+              </section>
+            </div>
+
+            <section class="col-12 col-md-9 ">
+
+              <div class=" pl-0">
+                @if (!loading) {
+                <div>
+
+                  <div class="head-title text-center mb-4 splendor">
+                    @for (item of desOne | slice:0:1; track $index)
+                    {
+                      <div class="des-text inner-html">
+                        <app-safe-html [htmlContent]="getSafeContent(item.description)"></app-safe-html>
+                      </div>
+                    }
+                  </div>
+
+                </div>
+                }
+
+                @if (loading) {
+                <div class="ph-item">
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+                }
+              </div>
+
+
+
+              <h2 class="info main-bg text-white font-weight-bold">
+
+                {{ count }} {{ nameCountry }} {{ "Tour Packages" | translate }}
+
+              </h2>
+
+              @if (!loading) {
+              <div>
+                @for (singleDes of Filter; track $index) {
+                <div class="data-box   bg-white mt-3 p-2">
+                  <div id="pack" class="row mx-0 ">
+                    <div class="col-xl-10 ">
+                      <div class="card border-0">
+                        <div class="row px-0 ">
+                          <div class="col-md-5 px-0 " style="height: 400px;">
+                            <a routerLink="/all-destinations/{{desSlug}}/travel-packages/{{ singleDes.slug }}">
+                              <img loading="lazy" class="img-fluid package-img"
+                                src="{{ singleDes.thumb == '1' ? image : singleDes.thumb }}" />
+                            </a>
+                            @if (singleDes.hot_offer) {
+                            <div class="deals-ufi-card__floating-badge-container ">
+                              <span class="bui-badge bui-badge--constructive">
+                                <span class="bui-badge__text">
+                                  {{ "Hot Offer" | translate }}</span>
+                              </span>
+                            </div>
+                            }
+                            @if (singleDes.top_sale) {
+                            <p class="sale-ufi-card__floating-badge-container ">
+                              <span class="sale-badge sale-badge--constructive ">
+                                <span class="sale-badge__text">{{ "Best Sale" | translate }} </span>
+                              </span>
+                            </p>
+                            }
+                            @if (singleDes.discount) {
+                            <p class="per-ufi-card__floating-badge-container ">
+                              @if (singleDes.discount !== null) {
+                              <span class="per-badge per-badge--constructive ">
+                                <span class="per-badge__text">{{ singleDes.discount + "% off" }} </span>
+                              </span>
+                              }
+                            </p>
+                            }
+                            <!-- <div class="map-details border mt-2">
+                                              <div class="row mx-0 px-0">
+                                                <div class="col-12 px-0">
+                                                  <div *ngIf="singleDes?.location_package_map !== null " class="embed-responsive">
+                                                    <iframe  class="embed-responsive-item" [src]="singleDes?.location_package_map | safe"
+                                                      allowfullscreen="">
+                                                    </iframe>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div> -->
+                          </div>
+                          <div class="col-md-7 px-0">
+                            <div
+                              class="card-body  package-content pt-0 pb-1 h-100  d-flex flex-column justify-content-between">
+                              <h5 class="card-title font-weight-bold mb-2 mt-3">{{ singleDes.name }}</h5>
+                              <div>
+                                <div>
+                                  <ngb-rating class="rate" [rate]="singleDes.rate" [max]="5"
+                                    [readonly]="isReadonly"></ngb-rating>
+                                  <span class="reviews"> of {{ "Reviews" | translate }}</span>
+                                </div>
+                              </div>
+                              <div class="package-text splendor inner-html">
+                                <app-safe-html [htmlContent]="getSafeContent(singleDes.description)"></app-safe-html>
+                              </div>
+                              <div class="tour">
+                                <div class=" tour-title font-weight-bold d-flex justify-content-between ">
+                                  {{ "Tour Type" | translate }}
+                                  <span class="arrow"></span>
+                                </div>
+                                @for (x of singleDes.tour_type; track $index) {
+                                <div class="tour-type">
+                                  <a [attr.aria-label]="x.name" [title]="x.name" class="touur"
+                                    routerLink="/all-destinations/{{x.destination.slug}}/tour-type/{{x.slug}}">
+                                    <i [class]="x.icon? x.icon:' fa-dot-circle'" class=" fa-dot-circle"></i>
+                                    @if (!isMobile) {
+                                    <span class="popup"> {{ x.name }}</span>
+                                    }
+                                    @if (isMobile) {
+                                    {{ x.name }}
+                                    }
+                                  </a>
+                                </div>
+                                }
+                              </div>
+                              <div class="row mt-2 px-0">
+                                <div class="col-12 mb-3  font-weight-bold d-flex justify-content-between ">
+                                  {{ "Tour Features :" | translate }}
+                                  <span class="arrow"></span>
+                                </div>
+                                <div class="col-6 col-sm-4 px-0">
+                                  <div class="advatnage">
+                                    <i class="fas fa-eye main-color"></i>
+                                    <span class="text-center ml-1">{{ singleDes?.number_highlights }} {{ "Highlights" |
+                                      translate }}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="col-6 col-sm-4 px-0">
+                                  <div class="advatnage">
+                                    <i class="fas fa-clipboard-list main-color"></i>
+                                    <span class="text-center ml-1">{{ singleDes?.itinerary }} {{ "Days" | translate
+                                      }}</span>
+                                  </div>
+                                </div>
+                                <div class="col-6 col-sm-4 px-0">
+                                  <div class="advatnage">
+                                    <i class="fas fa-hotel main-color"></i>
+                                    <span class="text-center ml-1">{{ singleDes?.accommodations }} {{ "Hotels" |
+                                      translate
+                                      }}</span>
+                                  </div>
+                                </div>
+                                <div class="col-6 col-sm-4 px-0">
+                                  <div class="advatnage">
+                                    <i class="fas fa-utensils main-color"></i>
+                                    <span class="text-center ml-1">{{ singleDes?.meals }} {{ "Meals" | translate
+                                      }}</span>
+                                  </div>
+                                </div>
+                                <div class="col-6 col-sm-4 px-0">
+                                  <div class="advatnage">
+                                    <i class="fas fa-plane main-color"></i>
+                                    <span class="text-center ml-1">{{ singleDes?.flights }} {{ "Flights" | translate
+                                      }}</span>
+                                  </div>
+                                </div>
+                                <div class="col-6 col-sm-4 px-0">
+                                  <div class="advatnage">
+                                    <i class="fab fa-guilded main-color"></i>
+                                    <span class="text-center ml-1"> {{ singleDes?.guid_tour }} {{ " Guided Tour" |
+                                      translate
+                                      }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-2 px-0 ">
+                      <div class="pricing text-center h-100 sec-bg d-flex flex-wrap">
+                        <div class="mt-3 col-12">
+                          <span class="mt-3">{{ "Pricing" | translate }}</span>
+                          <h4 class="font-weight-bold mb-2 mt-2">{{ "Start From" | translate }}</h4>
+                          <span class="price main-color font-weight-bold">${{ singleDes.start_price }} USD</span>
+                          <h6 class="text-center my-2 mb-3 mt-2 night">
+                            {{ singleDes.duration_in_days }} {{ "Days" | translate }}/{{ singleDes.duration_in_days - x
+                            }}
+                            {{ "Nights" | translate }}
+                          </h6>
+                          <a class="main-btn p-2 view d-block mb-2 mt-3 font-weight-bold"
+                            routerLink="/all-destinations/{{desSlug}}/travel-packages/{{ singleDes.slug }}">{{
+                            "View Tour Details" | translate }}</a>
+                          <a class="main-btn book bg-white p-2 d-block mt-3 font-weight-bold pt-2"
+                            (click)="openVerticallyCentered(content)">{{ "Booking Inquiry" | translate }}
+                          </a>
+                        </div>
+                        <!-- <div class="col-12 m-auto">
+                                        <div class="tour-type" *ngFor="let x of singleDes.tour_type">
+                                          <a [attr.aria-label]="x.name" [title]="x.name" class="touur" routerLink="/all-destinations/{{x.destination.slug}}/tour-type/{{x.slug}}">
+                                            <i [class]="x.icon? x.icon:' fa-dot-circle'" class=" fa-dot-circle"></i>
+                                            <span class="popup" *ngIf="!isMobile"> {{ x.name }}</span>
+                                            <ng-container *ngIf="isMobile">{{ x.name }}</ng-container>
+                                          </a>
+                                        </div>
+                                      </div> -->
+                      </div>
+                      <ng-template #content let-modal>
+                        <div class="modal-body">
+                          <section class="bg-white mt-3 px-3 py-4 booking">
+                            <!-- <div class="head mb-2">
+                                          <h3 class="font-weight-bolder">{{ "Package Booking" | translate }}</h3>
+                                        </div> -->
+                            <iframe onload="javascript:parent.scrollTo(0,0);" height="1500" allowTransparency="true"
+                              scrolling="no" frameborder="0" style="width:100%;border:none"
+                              src="https://ask-aladdin.com/machform/embed.php?id=4"
+                              title="AskAladdin Tour Booking Center:"><a
+                                href="https://ask-aladdin.com/machform/view.php?id=4"
+                                title="AskAladdin Tour Booking Center:">AskAladdin Tour Booking Center:</a></iframe>
+                          </section>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+                }
+              </div>
+              }
+
+              @if (loading) {
+              <div class="row">
+                @for (n of numSequence(32); track $index) {
+                <div class="col-md-12">
+                  <div class="ph-item">
+                    <div class="ph-col-12">
+                      <div class="ph-picture"></div>
+                      <div class="ph-row">
+                        <div class="ph-col-6 big"></div>
+                        <div class="ph-col-4 empty big"></div>
+                        <div class="ph-col-2 big"></div>
+                        <div class="ph-col-4"></div>
+                        <div class="ph-col-8 empty"></div>
+                        <div class="ph-col-6"></div>
+                        <div class="ph-col-6 empty"></div>
+                        <div class="ph-col-12"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                }
+              </div>
+              }
+
+
+
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+
+</section>
+
+<!-- <iframe allowfullscreen="" class="embed-responsive-item" src="https://www.google.com/maps/d/embed?mid=1mGgtylMQHGAKR6HR8r8YLe5W4LU&amp;ehbc=2E312F" width="400" height="200" ></iframe> -->

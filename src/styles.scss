@@ -1,0 +1,51 @@
+
+@use "./colors" as *;
+// @use "./colors" as *;
+
+/* add custom bootstrap classes */
+@use "./custom-bootstrap-utilities"as *;
+
+/* import bootstrap */
+@use "bootstrap/scss/bootstrap"as *;
+@use 'swiper/css'as *;
+@use 'swiper/css/navigation'as *;
+@use 'swiper/css/pagination'as *;
+@use 'swiper/css/scrollbar'as *;
+@use 'swiper/css/thumbs'as *;
+@use 'swiper/css/free-mode'as *;
+
+// @use "./assets/styles/style.scss";
+@use "./assets/styles/style-new.scss" as *;
+
+ngb-rating span{
+  color: #f68800 !important;
+
+}
+ngb-rating{
+  margin: auto;
+}
+.btn:hover{
+  background-color: white !important;
+  span{
+    color: #f68800 !important;
+
+  }
+}
+.modal-backdrop.show{
+  opacity: .8 !important;
+}
+// :root {
+//   --primary: #1988b9;
+//   --secondary: #ff621f;
+//   --danger: #f2656d;
+//   --bs-body-font-family: "Ubuntu";
+//   --bs-link-color-rgb: #f2656d;
+//   --mat-form-field-filled-with-label-container-padding-top: 16px;
+//   --mat-form-field-filled-with-label-container-padding-bottom: 4px;
+//   --mat-form-field-container-height: 47px;
+//   --mat-select-arrow-transform: translateY(-4px);
+//   font-size: 16px;
+// }
+
+
+

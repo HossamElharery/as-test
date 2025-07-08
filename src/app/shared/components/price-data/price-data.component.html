@@ -1,0 +1,164 @@
+@if (package) {
+  <div class="bg-white mt-3 px-2 py-4 ">
+    <div    class="container">
+      <div class="head mb-4">
+        <h3 class=" font-weight-bold"><span class="single-style">Prices & </span> {{ "Dates" | translate }}</h3>
+      </div>
+      <div  >
+        @for (price of prices ; track $index; let i = $index; let last = $last) {
+          <div class="tab">
+            <div id="main">
+              <div class="">
+                <div class="accordion" id="faq">
+                  <div class="card" [ngClass]="{'carddd':last}">
+                    <div class="card-header" id="head">
+                      <a href="#" class="btn btn-header-link" [ngClass]="{'collapsed': i !== 0}" data-toggle="collapse" [attr.data-target]="'#sec'+i"
+                        [attr.aria-expanded]="i === 0 ? 'true' : 'false'" [attr.aria-controls]="'sec'+i">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span class="font-weight-bold text-dark"> <span class="text-dark"> Rates Valid For {{ price?.attributes.season}}</span> </span>
+                      </a>
+                    </div>
+                    <div [attr.id]="'sec'+i" [ngClass]="{'collapsed': i !== 0, 'collapse': true, 'show': i === 0}"  [attr.aria-labelledby]="'head'+1">
+                      <div class="card-body mt-3">
+                        <div class=" ">
+                          <ul class="nav nav-tabs" >
+                            <li class="nav-item " role="present0ation">
+                              <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile{{i}}" role="tab" aria-controls="profile" aria-selected="false">
+                                <i class="fas fa-user-friends"></i>
+                              2-3 Persons</a>
+                            </li>
+                            <li class="nav-item " role="presentation">
+                              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact{{i}}" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-user-friends"></i> 4-7 Persons</a>
+                            </li>
+                            <li class="nav-item " role="presentation">
+                              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#per{{i}}" role="tab" aria-controls="contact" aria-selected="false">                                                <i class="fas fa-users"></i>
+                            7-10 Persons</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content "  id="myTabConten">
+                          <div #profile class="tab-pane  show active" id="profile{{i}}"  role="tabpane" aria-labelledby="profile-tab">
+                            <table class="table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">{{ "Per Person In" | translate }}</th>
+                                  <th scope="col">{{ "Standard Hotels" | translate }}</th>
+                                  <th scope="col">{{ "Comfort Hotels" | translate }}</th>
+                                  <th scope="col">{{ "Deluxe Hotels" | translate }}</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td class="font-weight-bold" >{{ "Double Room" | translate }}</td>
+                                  <td><span class="doller">$</span>{{price?.attributes.double_room_standard_2}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.double_room_comfort_2}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.double_room_deluxe_2}} <span>USD</span></td>
+                                </tr>
+                                <tr>
+                                  <td class="w-25 font-weight-bold" >{{ "Single Room Supplement" | translate }}</td>
+                                  <td><span class="doller">$</span>{{price?.attributes.single_room_standard_2}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.Single_room_comfort_2}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.Single_room_deluxe_2}} <span>USD</span></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="tab-pane " id="contact{{i}}"  role="tabpane" aria-labelledby="contact-tab">
+                            <table class="table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">{{ "Per Person In" | translate }}</th>
+                                  <th scope="col">{{ "Standard Hotels" | translate }}</th>
+                                  <th scope="col">{{ "Comfort Hotels" | translate }}</th>
+                                  <th scope="col">{{ "Deluxe Hotels" | translate }}</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td class="font-weight-bold" >{{ "Double Room" | translate }}</td>
+                                  <td><span class="doller">$</span>{{price?.attributes.double_room_standard_3}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.double_room_comfort_3}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.double_room_deluxe_3}} <span>USD</span></td>
+                                </tr>
+                                <tr>
+                                  <td class="w-25 font-weight-bold">{{ "Single Room Supplement" | translate }}</td>
+                                  <td><span class="doller">$</span>{{price?.attributes.single_room_standard_3}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.Single_room_comfort_3}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.Single_room_deluxe_3}} <span>USD</span></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="tab-pane " id="per{{i}}"  role="tabpane" aria-labelledby="contact-tab">
+                            <table class="table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">{{ "Per Person In" | translate }}</th>
+                                  <th scope="col">{{ "Standard Hotels" | translate }}</th>
+                                  <th scope="col">{{ "Comfort Hotels" | translate }}</th>
+                                  <th scope="col">{{ "Deluxe Hotels" | translate }}</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td  class="font-weight-bold" >{{ "Double Room" | translate }}</td>
+                                  <td><span class="doller">$</span>{{price?.attributes.double_room_standard_4}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.double_room_comfort_4}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.double_room_deluxe_4}} <span>USD</span></td>
+                                </tr>
+                                <tr>
+                                  <td class="w-25 font-weight-bold">{{ "Single Room Supplement" | translate }}</td>
+                                  <td><span class="doller">$</span>{{price?.attributes.single_room_standard_4}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.Single_room_comfort_4}} <span>USD</span></td>
+                                  <td><span class="doller">$</span>{{price?.attributes.Single_room_deluxe_4}} <span>USD</span></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+}
+
+
+
+
+<!-- prices-dates -->
+@if (excur) {
+  <div  >
+    <div id="pricesEx" class="specs mt-2">
+      <h5 class="pt-3 p-2 font-weight-bold">{{ "Price Per Person" | translate }}</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr  class="text-white">
+            <th class="righ" scope="col">{{"One Person"|translate}}</th>
+            <th class="righ" scope="col">2-3 {{"Persons"|translate}}</th>
+            <th  class="righ" scope="col">4-6 {{"Persons"|translate}}</th>
+            <th  class="righ" scope="col">7-10 {{"Persons"|translate}}</th>
+            <th  class="righ" scope="col">+11 {{"Persons"|translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="righ" ><span class="doller">$</span>{{ prices.price_1 }} <span>USD</span></td>
+            <td class="righ" ><span class="doller">$</span>{{ prices.price_2_3 }} <span>USD</span></td>
+            <td class="righ" ><span class="doller">$</span>{{ prices.price_4_6 }} <span>USD</span></td>
+            <td class="righ" ><span class="doller">$</span>{{ prices.price_7_10 }} <span>USD</span></td>
+            <td class="righ" ><span class="doller">$</span>{{ prices.price_11 }} <span>USD</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noDeata></ng-template>
+    <!-- End prices-dates -->
+  </div>
+}

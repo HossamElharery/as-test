@@ -1,0 +1,14 @@
+.feelo{
+    width: 250px;
+}
+ .logo-img img{
+    filter: grayscale();
+}
+.logo-img:hover img{
+  filter: grayscale(0);
+}
+@media only screen and (max-width:767px){
+    .logo-img{
+        margin-top: 10px;
+    }
+}

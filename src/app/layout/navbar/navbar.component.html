@@ -1,0 +1,414 @@
+<section id="nav-bar" class="main-nav  w-100 ">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" aria-label="AskAladdin Tours" routerLink="/">
+        <picture>
+          <source [attr.srcset]="'assets/imgs/ask.png'" >
+          <img  style="object-fit: cover;" [ngSrc]="'assets/imgs/ask.png'" alt="ask-aladdin" title="ask-aladdin" class="logo" width="200" height="88" priority>
+        </picture>
+
+      </a>
+      <button #closee class="navbar-toggler" (click)="navbarCollapsed = !navbarCollapsed" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="navbarCollapsed">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+          <li class="nav-item px-2">
+            <a class="nav-link font-weight-bold" aria-label="Go To Home" (click)="ddToggle()" routerLink="/">{{"Home"
+              |translate}}</a>
+          </li>
+
+
+
+          <li class="nav-item px-2">
+            <div class="dropdown" (mouseover)="destinationDropdownVisible = true"
+              (mouseout)="destinationDropdownVisible = false" (click)="ddToggle()">
+              <a class="nav-link drop-link font-weight-bold" aria-label="Read more about Destinations"
+                routerLink="/all-destinations">
+                {{"Destinations" |translate}}</a>
+              <div class="">
+                <div class="dropdown-content" [style.display]="destinationDropdownVisible ? 'block' : 'none'"
+                  aria-labelledby="mega-one" style="height: 440px;">
+                  <div class="row">
+
+                    <div class="col-sm-6 col-lg-3">
+                      <h5 class="mega-title">Destinations</h5>
+                      @for (destination of categories; track $index ; ) {
+                      <div [ngClass]="{ 'dest_color': destination[0]?.destination?.slug == slugDestinatios }"
+                        class="tess dest-nav d-flex justify-content-between align-items-center">
+                        @if (destination.length != 0) {
+                        <span [attr.aria-label]="destination[0]?.destination?.slug"
+                          (mouseenter)="destinatios(destination[0]?.destination?.slug , $index)"
+                          class="dropdown-item spaann">{{destination[0]?.destination?.slug | titlecase}}
+                          <i class="fa fa-arrow-right hidden-xs"></i>
+                           <img src="../../../assets/imgs/AskAladdin-character-01.png" alt="Aladdin">
+                        </span>
+                        }
+                      </div>
+                      }
+
+                    </div>
+                    <div class="col-sm-12 col-lg-9 height-4">
+                      <div class="row">
+                        <div class="col-sm-6 col-lg-12">
+                          <div class="row ">
+                            @for (Des of singleDestinationContent |slice:0:8; track $index ; ){
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-4 ">
+                              <div class="card_4">
+                                <a [attr.aria-label]="'Read more about '+Des.slug" (click)="hideDropdown('destination')"
+                                  (mouseover)="chooseSlug(Des.slug)"
+                                  [routerLink]="slugCheck
+                                  ? '/all-destinations/' + slugDestinatios + '/' + Des.slug
+                                  : '/all-destinations/' + slugDestinatios + '/category/' + Des.slug">
+                                  <img src="{{Des.thumb}}" alt="{{Des.thumb_alt}}" [title]="Des.thumb_alt"
+                                    class="w-100 h-100 card_4_img">
+                                  <div class="card_4_content">
+                                    <h6>{{Des.name}}</h6>
+                                    <div class="card_4_dash"></div>
+                                  </div>
+                                </a>
+                              </div>
+                            </div>
+                            }
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="cm-cont">
+                        <a [attr.aria-label]="'Explore  more about ' + slugDestinatios"
+                          routerLink="/all-destinations/{{slugDestinatios}}"> Explore More About {{ slugDestinatios |
+                          capitalize }}</a>
+
+                        <i class="fa fa-arrow-right hidden-xs bounce-right  ps-3"></i>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+
+          <li class="nav-item px-2">
+            <div class="dropdown" (mouseover)="tourTypeDropdownVisible = true"
+              (mouseout)="tourTypeDropdownVisible = false">
+              <a aria-label="read more about travel packages" class="nav-link drop-link font-weight-bold"
+                routerLink="/all-packages" (click)="ddToggle()"> {{"Travel Packages" |translate}}</a>
+              <div class="">
+                <div class="dropdown-content" [style.display]="tourTypeDropdownVisible ? 'block' : 'none'"
+                  aria-labelledby="mega-one">
+                  <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                      <h5 class="mega-title">{{"Travel Packages" |translate}}</h5>
+                      @for (destination of tour_type; track $index) {
+                      <div [ngClass]="{ 'dest_color': destination[0]?.destination?.slug == hotOfferSlug }"
+                        class="dest-nav d-flex justify-content-between align-items-center">
+                        @if (destination.length != 0) {
+                        <span [attr.aria-label]="destination[0]?.destination?.slug"
+                          (mouseenter)="tourTypeDesHover(destination[0]?.destination?.slug , $index)"
+                          class="dropdown-item spaann">{{destination[0]?.destination?.slug | titlecase}}
+                          <i class="fa fa-arrow-right hidden-xs"></i>
+                          <img src="../../../../assets/imgs/AskAladdin-character-01.png" alt="Aladdin">
+                        </span>
+                        }
+                      </div>
+                      }
+                    </div>
+                    <div class="col-sm-12 col-lg-9 height-4">
+                      <div class="row">
+                        <div class="col-sm-6 col-lg-12">
+                          <div class="row ">
+                            @for (Des of tourTypes |slice:0:8; track $index) {
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-4 ">
+                              <div class="card_4">
+                                <a routerLink="/all-destinations/{{Des.destination.slug}}/tour-type/{{Des.slug}}"
+                                  [attr.aria-label]="Des.slug" (click)="hideDropdown('tourtype')">
+                                  <img src="{{Des.thumb}}" alt="{{Des.thumb_alt}}" [title]="Des.thumb_alt"
+                                    class="w-100 h-100 card_4_img">
+                                  <div class="card_4_content">
+                                    <h6>{{Des.name }} </h6>
+                                    <div class="card_4_dash"></div>
+                                  </div>
+                                </a>
+                              </div>
+                            </div>
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Hot offers -->
+          <li class="nav-item px-2 remmove">
+            <div class="dropdown" (mouseover)="hotoffersDropdownVisible = true"
+              (mouseout)="hotoffersDropdownVisible = false">
+              <div class="nav-link drop-link font-weight-bold" (click)="ddToggle()"> {{"Best Offers" |translate}}</div>
+              <div class="">
+                <div class="dropdown-content" [style.display]="hotoffersDropdownVisible ? 'block' : 'none'"
+                  aria-labelledby="mega-one">
+                  <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                      <h5 class="mega-title">{{"Hot Offers" |translate}}</h5>
+                      @for (destination of hot_offer_packages; track $index) {
+                      <div [ngClass]="{ 'dest_color': destination[0]?.destination?.slug == hotOfferSlug }"
+                        class="dest-nav d-flex justify-content-between align-items-center">
+                        @if (destination.length != 0) {
+                        <span (mouseenter)="hotOfferDesHover(destination[0]?.destination?.slug , $index)"
+                          class="dropdown-item spaann">{{destination[0]?.destination?.slug | titlecase}}
+                          <i class="fa fa-arrow-right hidden-xs"></i>
+
+                          <img src="../../../../assets/imgs/AskAladdin-character-01.png" alt="Aladdin">
+                        </span>
+                        }
+                      </div>
+                      }
+                    </div>
+                    <div class="col-sm-12 col-lg-9 height-4">
+                      <div class="row">
+                        <div class="col-sm-6 col-lg-12">
+                          <div class="row ">
+                            @for (Des of hotOffers |slice:0:8; track $index) {
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-4 ">
+                              <div class="card_4">
+                                <a [attr.aria-label]="'Explore more about '+Des.slug"
+                                  (click)="hideDropdown('destination')"
+                                  [routerLink]="'/all-destinations/'+hotOfferSlug+'/travel-packages/'+Des.slug">
+                                  <img src="{{Des.thumb}}" alt="{{Des.thumb_alt}}" [title]="Des.thumb_alt"
+                                    class="w-100 h-100 card_4_img">
+                                  <div class="card_4_content">
+                                    <h6>{{Des.name}}</h6>
+                                    <div class="card_4_dash"></div>
+                                  </div>
+                                </a>
+                              </div>
+                            </div>
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- travel excursion mega  -->
+          <li class="nav-item px-2 remmove">
+            <div class="dropdown" (mouseover)="excursionDropdownVisible = true"
+              (mouseout)="excursionDropdownVisible = false">
+              <div class="nav-link drop-link font-weight-bold" (click)="ddToggle()">
+                {{"Daily Excursions" |translate}}</div>
+              <div class="">
+                <div class="dropdown-content" [style.display]="excursionDropdownVisible ? 'block' : 'none'"
+                  aria-labelledby="mega-one" style="height: 440px;">
+                  <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                      <h5 class="mega-title">{{"Travel Excursions" |translate}}</h5>
+                      @for (destination of city_excursions; track $index) {
+                      <div [ngClass]="{ 'dest_color': destination[0]?.destination?.slug == Excursionslug }"
+                        class="dest-nav d-flex justify-content-between align-items-center">
+                        @if (destination.length != 0) {
+                        <span [attr.aria-label]="destination[0]?.destination?.slug"
+                          (mouseenter)="ExcursionDesHover(destination[0]?.destination?.slug , $index)"
+                          class="dropdown-item spaann">{{destination[0]?.destination?.slug | titlecase }}
+                          <i class="fa fa-arrow-right hidden-xs"></i>
+
+                          <img src="../../../../assets/imgs/AskAladdin-character-01.png" alt="Aladdin">
+                        </span>
+                        }
+                      </div>
+                      }
+                    </div>
+                    <div class="col-sm-12 col-lg-9 height-4">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-9 col-sm-12">
+                          <div class="row">
+                            @for (city of citys | slice:0:8; track $index) {
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                              <div class="blogs-2 overflow-hidden">
+                                <a (click)="hideDropdown('excursion')"
+                                  [routerLink]="'/all-destinations/'+Excursionslug+'/travel-excursions/'+city?.slug"
+                                  [attr.aria-label]="'read more about '+city?.name" class="text-dark">
+                                  <div class="card_4 text-center">
+                                    <img loading="lazy" src="{{city?.thumb}}" class=" w-100 h-100 card_4_img" alt="">
+                                    <div class="card_4_content">
+                                      <h6 class="card-title m-1 title-category">{{city?.name}}</h6>
+                                    </div>
+                                  </div>
+                                </a>
+                              </div>
+
+
+
+
+                              <!-- <ul>
+                                        <li style="background: url();">
+                                          Things to do in {{city.name}}
+                                        </li>
+                                      </ul> -->
+                            </div>
+                            }
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="cm-cont">
+                        <a [attr.aria-label]="'Explore more about ' + Excursionslug"
+                          routerLink="/all-destinations/{{Excursionslug}}/travel-excursions"> Explore More About {{
+                          Excursionslug | capitalize }}</a>
+
+                        <i class="fa fa-arrow-right hidden-xs bounce-right  ps-3"></i>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- End Mega  -->
+
+          <li class="nav-item px-2">
+            <div class="dropdown" (mouseover)="guideDropdownVisible = true" (mouseout)="guideDropdownVisible = false">
+              <a aria-label="read more about TravelGuides" class="nav-link drop-link font-weight-bold"
+                (click)="ddToggle()" routerLink="/travel-guides"> {{"Travel Guides" |translate}}</a>
+              <div class="">
+                <div class="dropdown-content" aria-labelledby="mega-three" style="height: 440px;"
+                  [style.display]="guideDropdownVisible ? 'block' : 'none'">
+                  <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                      <h5 class="mega-title">{{"Travel Guides" |translate}}</h5>
+                      @for (destination of travel_guides; track $index) {
+                      <div [ngClass]="{ 'dest_color': destination[0]?.destination?.slug == guideDes }"
+                        class="dest-nav d-flex justify-content-between align-items-center">
+                        @if (destination.length != 0) {
+                        <span [attr.aria-label]="destination[0]?.destination?.slug" (click)="hideDropdown('guide')"
+                          (mouseenter)="guideDesHover(destination[0]?.destination?.slug , $index)"
+                          class="dropdown-item spaann">{{destination[0]?.destination?.slug | titlecase }}
+                          <i class="fa fa-arrow-right hidden-xs"></i>
+
+                          <img src="../../../../assets/imgs/AskAladdin-character-01.png" alt="Aladdin">
+                        </span>
+                        }
+                      </div>
+                      }
+                    </div>
+
+                    <div class="col-sm-12 col-lg-9 height-4">
+                      @if (!flagGuide) {
+                      <div class="row  mt-4">
+                        @for (city of guidesContainer |slice:0:12; track $index) {
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                          <a class="card_5 mt-1"
+                            [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0 ,0 ,0, .6)) , url(' + city.thumb }"
+                            [attr.aria-label]="'read more about '+city.name"
+                            routerLink="/all-destinations/{{guideDes}}/travel-guide/{{city.slug}}">
+                            <div class="card_5_content">
+                              <p>{{city.name}}</p>
+                              <i class="fa fa-arrow-right hidden-xs bounce-right"></i>
+
+                            </div>
+                          </a>
+                        </div>
+                        }
+                      </div>
+                      }@else {
+                      <div>
+                        <p class="text-center main-color font-weight-bold mt-2">No Result Found</p>
+                      </div>
+                      }
+
+                      <div class="cm-cont">
+                        <a [attr.aria-label]="'Read more about ' + guideDes"
+                          routerLink="/all-destinations/{{guideDes}}/travel-guides"> Explore More About {{ guideDes |
+                          capitalize }}</a>
+
+                        <i class="fa fa-arrow-right hidden-xs bounce-right  ps-3"></i>
+
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-sm-6 col-lg-3 mt-3">
+                                   <img loading="lazy"   [src]="thumb" alt="" width="100%"    height="76%">
+                              </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+
+          <li class="nav-item px-2">
+            <a aria-label="Myths&Facts" class="nav-link font-weight-bold" routerLink="/myths-facts"
+              (click)="ddToggle()">{{"Myths & Facts" |translate}}</a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link font-weight-bold" aria-label="TravelBlogs" (click)="ddToggle()"
+              routerLink="/all-blogs">{{"Travel Blogs" |translate}}</a>
+          </li>
+
+
+
+          <li class="nav-item px-2">
+            <div class="dropdown" (mouseover)="contacts = true" (mouseout)="contacts = false">
+              <div class="nav-link drop-link font-weight-bold" (click)="ddToggle()">
+                {{"Contacts" |translate}}</div>
+              <div class="">
+                <div class="dropdown-content-links" aria-labelledby="mega-three"
+                  [style.display]="contacts ? 'block' : 'none'">
+                  <ul>
+                    <li class="card_5 mt-1">
+                      <a class="card_5_content" routerLink="/contact-us">
+                        <p>Contact Us</p>
+                        <i class="fa fa-arrow-right hidden-xs bounce-right"></i>
+
+                      </a>
+                    </li>
+                    <li class="card_5 mt-1">
+                      <a class="card_5_content" routerLink="/about-us">
+                        <p>About Us</p>
+                        <i class="fa fa-arrow-right hidden-xs bounce-right"></i>
+
+                      </a>
+                    </li>
+                    <li class="card_5 mt-1">
+                      <a class="card_5_content" routerLink="/useful-links/request-a-call-back">
+                        <p>Request A Call back</p>
+                        <i class="fa fa-arrow-right hidden-xs bounce-right"></i>
+
+                      </a>
+                    </li>
+                    <li class="card_5 mt-1">
+                      <a class="card_5_content" routerLink="/ask-experts">
+                        <p>Ask The Experts</p>
+                        <i class="fa fa-arrow-right hidden-xs bounce-right"></i>
+
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</section>

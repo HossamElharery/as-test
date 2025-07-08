@@ -1,0 +1,27 @@
+section {
+    border-radius: 8px;
+}
+.head h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.1rem;
+}
+.head p {
+    font-size: 0.8rem;
+    color: #ababab;
+}
+
+.sstiky{
+  position: sticky;
+  top: 192px;
+  z-index: 0;
+  padding: 10px 25px !important;
+
+}
+.start-price{
+  font-size: 25px;
+}
+@media only screen and (min-width: 768px) and (max-width:992px) {
+  .start-price{
+    font-size: 20px;
+  }
+}

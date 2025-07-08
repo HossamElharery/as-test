@@ -1,0 +1,114 @@
+
+.offerr{
+
+  color: white;
+  text-align: center;
+  font-size: 0.7rem;
+  display: inline-block;
+  width: 100%;
+  padding: 0.1rem 1.5rem;
+  background-color: #ff5948;
+}
+
+.des-antherCard{
+  width: 100%;
+  height: 50px;
+
+}
+.hover-color{
+  color: #000;
+  text-decoration: none;
+  font-size: 13px !important;
+}
+.hover-color:hover{
+  color: #f68800;
+  text-decoration: none;
+}
+.main{
+  background-color: #f4f4f9;
+  background-position: center;
+  padding:30px 0;
+  overflow: hidden;
+}
+
+.category{
+  width: 97%;
+  margin-left: 12%;
+
+}
+.second-footer{
+  border-top: 1px solid #f68121;
+}
+.title-category{
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding-bottom: 10px;
+  transform: translateX(-20px);
+  padding-left: 20px;
+
+}
+.title-category::before{
+  position: absolute;
+    content: "";
+    width: 20px;
+    height: 2px;
+    background: #f58220;
+    left: 20;
+    bottom: 0px;
+}
+footer .shortcuts a{
+  font-size: 16px;
+
+}
+.list li{
+  margin-top: 7px;
+}
+
+.hover-color:hover li{
+  color: #f58220;
+  text-decoration: none;
+  padding-left: 10px;
+  transition: all 0.5s ease-out 0s;
+}
+.title-category{
+  font-weight: 800;
+  font-size: 1.0rem !important;
+  transform: translateX(-20px);
+
+}
+@media only screen and (max-width: 1550px) {
+
+  .list li{
+      font-size: 0.7rem;
+      margin-top: 7px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .title-category{
+      font-weight: 800;
+      font-size: 0.5rem;
+      transform: translateX(-20px);
+
+  }
+  .list li{
+      font-size: 0.6rem;
+      margin-top: 7px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+.anotherCard{
+
+
+
+  height: 275px;
+  width: 250px;
+  margin: auto;
+
+
+}
+
+.fix-res{
+  width: 50% !important;
+}
+}

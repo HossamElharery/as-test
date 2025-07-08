@@ -1,0 +1,50 @@
+.submit {
+  position: sticky;
+  top: 242px !important;
+  z-index: 1;
+}
+.fa-2x{
+  font-size: 1.5em !important;
+
+}
+@media only screen and (min-width: 768px) and (max-width:992px){
+
+  .fa-2x {
+    font-size: 1.15em !important;
+}
+    .main-btn, .trip{
+      font-size: 13px;
+      padding: 5px 9px 5px 20px;
+    }
+}
+@media only screen and (max-width: 767px){
+  .submit{
+    position: fixed;
+    bottom: 6px !important;
+    top: auto !important;
+    display: flex;
+  }
+  .main-btn span{
+    display: none;
+  }
+  .main-btn{
+    font-size: 13px;
+    width: 150px!important;
+    margin:0.5rem 0rem 0.5rem -0.5rem!important;
+    padding:10px 20px;
+    padding-left: 25px;
+  }
+  .send{
+    top:8px;
+    left:-2px;
+  }
+  .position-relative{
+    margin: 0 10px!important;
+  }
+  .fa-2x {
+    font-size: 1.1em !important;
+    margin-top: .7rem!important;
+}
+}
+
+

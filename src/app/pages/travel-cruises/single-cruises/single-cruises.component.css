@@ -1,0 +1,852 @@
+.cruu-all{
+    letter-spacing: normal;
+    text-align: center;
+}
+
+.cru-name{
+  font-size: 1.14em;
+  margin: 0;
+  font-weight: 700;
+  color: #000000;
+}
+.pricee{
+
+  border-bottom: 1px solid #f5f5f5;
+  padding: 0px 0px 8px 0px;
+
+}
+.ffir{
+  font-size:25px ;
+}
+.sffir{
+  font-size: 18px;
+}
+
+
+/* v */
+.card-header{
+  background-color: transparent;
+}
+
+#main #faq .card {
+  margin-bottom: 15px;
+  border: 0;
+}
+
+#main #faq .carddd {
+  margin-bottom: 0px;
+  border: 0;
+}
+
+#main #faq .card .card-header {
+  border: 0;
+   /* -webkit-box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
+          box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5); */
+  border-radius: 2px;
+  padding: 0;
+}
+
+#main #faq .card .card-header .btn-header-link {
+  display: block;
+  text-align: left;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  background-color: #ff7c02;
+  padding: 15px 20px;
+}
+
+.accordion{
+  box-shadow: 1px 2px 3px 0 #5b5b5b;
+
+
+}
+.ng-scope{
+  font-weight: 600;
+  line-height: 1.2;
+}
+#main #faq .card .card-header .btn-header-link:after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f068";
+  font-weight: 900;
+  float: right;
+  background-color: #ff8200;
+  color: white;
+  padding: 8px;
+  border-radius: 35px;
+  height: 29px;
+  line-height: 13px;
+}
+
+
+
+#main #faq .card .card-header .btn-header-link.collapsed:after {
+  font-family: "Font Awesome 5 Free";
+
+  content: "\f067";
+
+  background-color: #ff8200;
+  color: white;
+  padding: 8px;
+  border-radius: 35px;
+  height: 29px;
+  line-height: 13px;
+}
+
+#main #faq .card .collapsing {
+  line-height: 30px;
+}
+
+#main #faq .card .collapse {
+  border: 0;
+}
+
+#main #faq .card .collapse.show {
+  line-height: 30px;
+  color: #222;
+}
+
+.btn:focus{
+  box-shadow:none !important
+}
+.card-body{
+  padding: 1px !important;
+}
+
+.doller{
+  font-size: 19px;
+  margin-right: 2px;
+  font-weight: 700;
+}
+
+/*  */
+
+
+.collapse2.in {
+  display: block
+}
+
+.panel {
+  margin-bottom: 22px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 0;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: 0 1px 1px rgba(0,0,0,.05)
+}
+
+.panel-body {
+  padding: 15px
+}
+
+.panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 18px;
+  color: inherit
+}
+
+.panel-body:after,.panel-body:before {
+  content: " ";
+  display: table
+}
+
+.panel-body:after {
+  clear: both
+}
+.card-room__departure-alerts {
+  padding-top: 35px;
+  padding-bottom: 19px;
+  background: #e0dede4a;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.card-room__departure-price {
+  padding-top: 22px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+.card-room__price {
+  font-size: 30px;
+  font-weight: 700;
+  color: #ff7b00;
+}
+/*  */
+
+
+.card-header{
+  background-color: transparent;
+}
+
+#main #faq .card {
+  margin-bottom: 15px;
+  border: 0;
+}
+
+#main #faq .carddd {
+  margin-bottom: 0px;
+  border: 0;
+}
+
+#main #faq .card .card-header {
+  border: 0;
+   /* -webkit-box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
+           box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5); */
+  border-radius: 2px;
+  padding: 0;
+}
+
+#main #faq .card .card-header .btn-header-link {
+  color: #fff;
+  display: block;
+  text-align: left;
+   /* background: #FFE472; */
+  color: #ff8200;
+  padding: 6px 0px;
+}
+
+#main #faq .card .card-header .btn-header-link:after {
+  font-family: "Font Awesome 5 Free";
+
+  content: "\f068";
+  font-weight: 900;
+  float: right;
+  background-color: #ff8200;
+  color: white;
+  padding: 8px;
+  border-radius: 35px;
+  height: 29px;
+  line-height: 13px;
+}
+
+#main #faq .card .card-header .btn-header-link.collapsed {
+  color: #fff;
+}
+
+
+#main #faq .card .card-header .btn-header-link.collapsed:after {
+  font-family: "Font Awesome 5 Free";
+
+  content: "\f067";
+
+  background-color: #ff8200;
+  color: white;
+  padding: 8px;
+  border-radius: 35px;
+  height: 29px;
+  line-height: 13px;
+}
+
+#main #faq .card .collapsing {
+  line-height: 30px;
+}
+
+#main #faq .card .collapse {
+  border: 0;
+}
+
+#main #faq .card .collapse.show {
+  line-height: 30px;
+  color: #222;
+}
+
+.btn:focus{
+  box-shadow:none !important
+}
+.card-body{
+  padding: 1px !important;
+}
+
+/* myaccordion styles - same as prices-policy component */
+.myaccordion {
+  margin: 16px auto;
+}
+
+.myaccordion .card,
+.myaccordion .card:last-child .card-header {
+  border: none;
+  margin: 4px 0px 4px 0px;
+}
+
+.myaccordion .card-header {
+  border-bottom-color: #EDEFF0;
+  background: transparent;
+}
+
+.myaccordion .fa-stack, .iccon {
+  font-size: 14px;
+}
+
+.myaccordion .btn {
+  width: 100%;
+  font-weight: bold;
+  color: #ff8200;
+  padding: 0;
+}
+
+.myaccordion .btn-link:hover,
+.myaccordion .btn-link:focus {
+  text-decoration: none;
+}
+
+.myaccordion li + li {
+  margin-top: 10px;
+}
+
+.btn.focus, .btn:focus {
+  box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 25%);
+}
+
+/* Price Table Styles */
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table th {
+  background-color: #ff7c02;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  padding: 15px 10px;
+}
+
+.table td {
+  text-align: center;
+  padding: 12px 10px;
+  border-top: 1px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0,123,255,.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .myaccordion .btn {
+    font-size: 14px;
+    padding: 12px 15px;
+  }
+}
+
+/* Prices accordion - same styling as main accordion */
+#main-prices #faqPrices .card {
+  margin-bottom: 15px;
+  border: 0;
+}
+
+#main-prices #faqPrices .card .card-header {
+  border: 0;
+  border-radius: 2px;
+  padding: 0;
+}
+
+#main-prices #faqPrices .card .card-header .btn-header-link {
+  display: block;
+  text-align: left;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  background-color: #ff7c02;
+  padding: 15px 20px;
+}
+
+#main-prices #faqPrices .card .card-header .btn-header-link:after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f068";
+  font-weight: 900;
+  float: right;
+  background-color: #ff8200;
+  color: white;
+  padding: 8px;
+  border-radius: 35px;
+  height: 29px;
+  line-height: 13px;
+}
+
+#main-prices #faqPrices .card .card-header .btn-header-link.collapsed:after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f067";
+  background-color: #ff8200;
+  color: white;
+  padding: 8px;
+  border-radius: 35px;
+  height: 29px;
+  line-height: 13px;
+}
+
+#main-prices #faqPrices .card .collapsing {
+  line-height: 30px;
+}
+
+#main-prices #faqPrices .card .collapse {
+  border: 0;
+}
+
+#main-prices #faqPrices .card .collapse.show {
+  line-height: 30px;
+  color: #222;
+}
+
+.btn:focus{
+  box-shadow:none !important
+}
+.card-body{
+  padding: 1px !important;
+}
+
+/* Reserve now & pay later sticky section */
+.reserve-sticky-section {
+  position: sticky;
+  top: 105px;
+  z-index: 100;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin: 20px 0;
+  border: 1px solid #e0e0e0;
+}
+
+.check-availability-btn {
+  background-color: #f68800;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(246, 136, 0, 0.3);
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.check-availability-btn:hover {
+  background-color: #e57a00;
+  color: rgb(0, 0, 0);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(246, 136, 0, 0.4);
+}
+
+.reserve-info {
+  display: flex;
+  /* align-items: center; */
+  gap: 15px;
+  color: #333;
+}
+
+.reserve-icon {
+  flex-shrink: 0;
+  background-color: rgba(246, 136, 0, 0.1);
+  padding: 8px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  object-fit: contain;
+}
+
+.reserve-text {
+  flex: 1;
+}
+
+.reserve-title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 22px;
+  text-align: left;
+  color: rgba(25, 30, 59, 0.8);
+  margin-bottom: 5px;
+}
+
+.reserve-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  color: rgba(25, 30, 59, 0.5);
+  margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .reserve-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .check-availability-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .reserve-info {
+    justify-content: center;
+  }
+
+  .reserve-title {
+    font-size: 16px;
+  }
+
+  .reserve-subtitle {
+    font-size: 13px;
+  }
+}
+
+/* Booking Widget Overlay (CSS Modal-like) Styles */
+.booking-widget-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.booking-widget-container {
+  background: transparent;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.booking-widget-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.booking-widget-close:hover {
+  background-color: rgba(255, 255, 255, 1);
+  color: #374151;
+  transform: scale(1.05);
+}
+
+.booking-widget-close:active {
+  transform: scale(0.95);
+}
+
+.booking-widget-content {
+  padding: 0;
+  /* max-height: 100vh; */
+  overflow-y: auto;
+  /* overflow-x: hidden; */
+  min-height: 600px;
+  background: transparent;
+}
+
+/* Widget container styling */
+#cruise-booking-widget {
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: transparent;
+  max-height: 100vh;
+}
+
+/* TicketingHub checkout widget specific styling */
+#cruise-booking-widget #checkout,
+#cruise-booking-widget iframe,
+#cruise-booking-widget div[id*="checkout"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 400px !important;
+  max-height: 65vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  position: relative !important;
+  transform: none !important;
+  top: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+}
+
+/* Ensure iframe scales properly */
+#cruise-booking-widget iframe {
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  width: 100% !important;
+  height: 500px !important;
+  max-height: 60vh !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Override any absolute positioning from TicketingHub */
+#cruise-booking-widget * {
+  position: relative !important;
+  max-width: none !important;
+}
+
+/* Make checkout container fully visible with scroll */
+#cruise-booking-widget #checkout-container,
+#cruise-booking-widget div[class*="container"] {
+  max-height: none !important;
+  overflow: auto !important;
+  width: 100% !important;
+}
+
+/* Ensure scrollable content */
+#cruise-booking-widget .checkout-content,
+#cruise-booking-widget .widget-content {
+  overflow-y: auto !important;
+  /* max-height: 75vh !important; */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .booking-widget-overlay {
+    padding: 5px;
+  }
+
+  .booking-widget-container {
+    max-height: 98vh;
+    max-width: 98vw;
+    border-radius: 10px;
+  }
+
+  .booking-widget-content {
+    padding: 5px;
+    min-height: 400px;
+  }
+
+  .booking-widget-close {
+    top: 10px;
+    right: 10px;
+    padding: 6px;
+  }
+
+  #cruise-booking-widget iframe {
+    min-height: 500px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-widget-overlay {
+    padding: 2px;
+  }
+
+  .booking-widget-container {
+    max-height: 99vh;
+    max-width: 99vw;
+  }
+
+  .booking-widget-content {
+    padding: 5px;
+  }
+
+  .booking-widget-close {
+    top: 8px;
+    right: 8px;
+    padding: 5px;
+  }
+
+  #cruise-booking-widget iframe {
+    min-height: 450px !important;
+  }
+}
+
+/* Focus styles for accessibility */
+.booking-widget-close:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* More aggressive hiding of widgets outside modal */
+:not(#cruise-booking-widget) #checkout,
+:not(#cruise-booking-widget) iframe[src*="ticketinghub"],
+:not(#cruise-booking-widget) div[data-widget*="TH"],
+:not(#cruise-booking-widget) [id*="ticketing"],
+:not(#cruise-booking-widget) [class*="ticketing"],
+:not(#cruise-booking-widget) [id*="th-"],
+:not(#cruise-booking-widget) [class*="th-"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: fixed !important;
+  left: -99999px !important;
+  top: -99999px !important;
+  z-index: -999 !important;
+  pointer-events: none !important;
+}
+
+/* Global hiding of common TicketingHub elements when modal is not open */
+body:not(.widget-modal-open) #checkout,
+body:not(.widget-modal-open) iframe[src*="ticketinghub"],
+body:not(.widget-modal-open) div[data-widget],
+body:not(.widget-modal-open) .th-widget,
+body:not(.widget-modal-open) [id*="ticketing"],
+body:not(.widget-modal-open) [class*="ticketing"] {
+  display: none !important;
+}
+
+/* Ultra aggressive widget hiding - target all possible TicketingHub elements */
+#checkout:not(#cruise-booking-widget #checkout),
+iframe[src*="ticketinghub"]:not(#cruise-booking-widget iframe),
+iframe[src*="assets.ticketinghub.com"]:not(#cruise-booking-widget iframe),
+div[data-widget]:not(#cruise-booking-widget div[data-widget]),
+[id*="th-widget"]:not(#cruise-booking-widget [id*="th-widget"]),
+[class*="th-widget"]:not(#cruise-booking-widget [class*="th-widget"]),
+[id*="th_widget"]:not(#cruise-booking-widget [id*="th_widget"]),
+[class*="th_widget"]:not(#cruise-booking-widget [class*="th_widget"]),
+[data-th-widget]:not(#cruise-booking-widget [data-th-widget]),
+iframe[allowpaymentrequest]:not(#cruise-booking-widget iframe),
+iframe[allow*="payment"]:not(#cruise-booking-widget iframe) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: fixed !important;
+  left: -99999px !important;
+  top: -99999px !important;
+  z-index: -9999 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  max-width: 0 !important;
+  max-height: 0 !important;
+}
+
+/* Extra aggressive hiding for any iframe under footer */
+app-footer iframe,
+footer iframe,
+body > iframe[src*="ticketinghub"],
+body > iframe[src*="assets.ticketinghub.com"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: fixed !important;
+  left: -99999px !important;
+  top: -99999px !important;
+  z-index: -9999 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Show widgets only when they are properly inside the modal - HIGHEST SPECIFICITY */
+.booking-widget-overlay #cruise-booking-widget #checkout,
+.booking-widget-overlay #cruise-booking-widget iframe[src*="ticketinghub"],
+.booking-widget-overlay #cruise-booking-widget iframe[src*="assets.ticketinghub.com"],
+.booking-widget-overlay #cruise-booking-widget iframe[allowpaymentrequest],
+.booking-widget-overlay #cruise-booking-widget iframe[allow*="payment"],
+.booking-widget-overlay #cruise-booking-widget div[data-widget],
+.booking-widget-overlay #cruise-booking-widget .th-widget {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: auto !important;
+  pointer-events: auto !important;
+  height: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  max-height: 70vh !important;
+  overflow: auto !important;
+}
+
+/* Extra specific for iframes in modal */
+#cruise-booking-widget iframe,
+.booking-widget-content iframe,
+.booking-widget-overlay iframe {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: auto !important;
+  pointer-events: auto !important;
+}
+
+/* Nuclear option - highest specificity override for widgets in modal */
+.booking-widget-overlay .booking-widget-container .booking-widget-content #cruise-booking-widget iframe[src*="ticketinghub"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: auto !important;
+  pointer-events: auto !important;
+  width: 100% !important;
+  height: 500px !important;
+  max-width: 100% !important;
+  max-height: 70vh !important;
+  overflow: auto !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+

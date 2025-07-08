@@ -1,0 +1,206 @@
+<!-- <section >
+  <section class="banner text-center"
+      [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + destination_banner + ')' }">
+      <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+              <h1><span class="main-color des-Name font-weight-bold"> {{ destination_name}}</span>  </h1>
+          </div>
+          <p class="mt-2"></p>
+          <div class="contact-btns d-none d-sm-flex justify-content-center mt-3">
+              <a href="tel:{{phone}}" class="call-btn d-flex align-items-center text-decoration-none">
+                  <span class="phone-icon"><i class="fas fa-phone-alt main-color"></i></span>
+                  <span class="phone-text text-dark">{{"Call Us"|translate}}: <strong>{{phone}}</strong></span>
+              </a>
+          </div>
+      </div>
+  </section>
+</section>
+<section>
+  <section>
+      <div class="container">
+        <div   class="page-links py-2">
+         <a class="hover-color" routerLink="/"> <span >{{"Home"|translate}} / </span>  </a>
+         <a class="hover-color" routerLink="/{{this.ide}}/all-destinations"> <span > {{this.ide}}  /</span>  </a>
+
+
+        </div>
+      </div>
+    </section>
+</section>
+<section class="sec-bg p-3 mb-5">
+  <div class="container">
+          <div class="">
+              <section class="sec-bg p-3 mb-5">
+                  <div class="container">
+                          <div class="">
+                              <div class="row mt-4">
+                                  <div class="col-md-3 col-3">
+                                     <app-expert-reviews></app-expert-reviews>
+                                  </div>
+                              <section  class="col-12 col-md-9">
+                                  <h2 class="info main-bg text-white font-weight-bold">{{count}} {{nameCountry}}
+                                      {{"Tour Packages"|translate}}</h2>
+                                  <div>
+                                      <ng-container *ngFor="let singleDes of categorypack">
+                                          <div class="data-box   bg-white mt-3 p-2">
+                                              <div id="pack" class="row mx-0 ">
+                                                  <div class="col-xl-10 ">
+                                                      <div class="card border-0">
+                                                          <div class="row px-0 ">
+                                                              <div class="col-md-5 px-0">
+                                                                   <img loading="lazy"   class="img-fluid package-img"
+                                                                      src="{{singleDes.thumb=='1'?image: singleDes.thumb}}">
+                                                                  <p *ngIf="singleDes.hot_offer" class="affe">
+                                                                      <span class="offerr">
+                                                                          {{"Hot Offer"|translate}}
+                                                                      </span>
+                                                                  </p>
+
+                                                                  <p *ngIf="singleDes.top_sale" class="top-sale">
+                                                                      <span class="sale ">
+                                                                          {{"Best Sale"|translate}}
+                                                                      </span>
+                                                                  </p>
+                                                                  <p *ngIf="singleDes.discount" class="orang">
+                                                                      <span  *ngIf="singleDes.discount!==null" class="orang-sale ">
+
+                                                                              {{singleDes.discount + "% off"}}
+                                                                      </span>
+                                                                  </p>
+                                                                  <div class="map-details border mt-2">
+                                                                      <div class="row mx-0 px-0">
+                                                                          <div class="col-12 px-0">
+                                                                              <div *ngIf="singleDes?.location_package_map !== null " class="embed-responsive">
+                                                                                  <iframe class="embed-responsive-item"
+                                                                                      [src]="singleDes?.location_package_map|safe"
+                                                                                      allowfullscreen=""></iframe>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="col-md-7 px-0">
+                                                                  <div
+                                                                      class="card-body  package-content pt-0 pb-1 h-100  d-flex flex-column justify-content-between">
+                                                                      <h5 class="card-title font-weight-bold mb-2 mt-3">{{singleDes?.name}}
+                                                                      </h5>
+                                                                      <div>
+                                                                          <div>
+
+                                                                              <rating class="rate" [(ngModel)]="singleDes.rate"
+                                                                                  [readonly]="isReadonly">
+
+                                                                              </rating>
+                                                                              <span class="reviews"> of  {{"Reviews"|translate}}</span>
+
+                                                                          </div>
+
+                                                                      </div>
+
+                                                                      <p class="package-text" [innerHTML]="singleDes.description| codeHtml:'html'"></p>
+
+                                                                      <div class="tour">
+                                                                          <div class="  font-weight-bold pl-2  d-flex justify-content-between ">{{"Tour Type"|translate}}: </div>
+                                                                          <div class="pl-2 " *ngFor="let x of singleDes.tour_type">  <i class="far fa-dot-circle"></i> {{ x}}
+                                                                          </div>
+                                                                      </div>
+
+                                                                      <div class="row mt-2 px-0">
+                                                                          <div class="col-6 col-sm-4 px-0">
+                                                                              <div class="advatnage">
+                                                                                  <i class="fas fa-eye main-color"></i>
+                                                                                  <span class="text-center ml-1">{{singleDes?.number_highlights}}
+                                                                                      {{"Highlights"|translate}} </span>
+                                                                              </div>
+                                                                          </div>
+                                                                          <div class="col-6 col-sm-4 px-0">
+                                                                              <div class="advatnage">
+                                                                                  <i class="fas fa-clipboard-list main-color"></i>
+                                                                                  <span class="text-center ml-1">{{singleDes?.itinerary}} {{"Days"|translate}}</span>
+
+                                                                              </div>
+                                                                          </div>
+                                                                          <div class="col-6 col-sm-4 px-0">
+                                                                              <div class="advatnage">
+                                                                                  <i class="fas fa-hotel main-color"></i>
+                                                                                  <span class="text-center ml-1">{{singleDes?.accommodations}}
+                                                                                      {{"Hotels"|translate}}</span>
+                                                                              </div>
+                                                                          </div>
+                                                                          <div class="col-6 col-sm-4 px-0">
+                                                                              <div class="advatnage">
+                                                                                  <i class="fas fa-utensils main-color"></i>
+                                                                                  <span class="text-center ml-1">{{singleDes?.meals}} {{"Meals"|translate}}</span>
+                                                                              </div>
+                                                                          </div>
+                                                                          <div class="col-6 col-sm-4 px-0">
+                                                                              <div class="advatnage">
+                                                                                  <i class="fas fa-plane main-color"></i>
+                                                                                  <span class="text-center ml-1">{{singleDes?.flights}} {{"Flights"|translate}}</span>
+                                                                              </div>
+                                                                          </div>
+
+                                                                          <div class="col-6 col-sm-4 px-0">
+                                                                              <div class="advatnage">
+                                                                                  <i class="fab fa-guilded main-color"></i>
+                                                                                  <span class="text-center ml-1">{{singleDes?.guid_tour}} {{"Guided Tour"|translate}}</span>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+
+
+                                                  <div class="col-xl-2 px-0 ">
+                                                      <div class="pricing text-center h-100 sec-bg">
+                                                          <div class=" ">
+                                                          <span>{{"Pricing"|translate}}</span>
+                                                          <h4 class="font-weight-bold mb-2">{{"Start From"|translate}}</h4>
+                                                          <span class="price main-color font-weight-bold">${{singleDes.start_price}} USD</span>
+                                                          <h6 class="text-center my-2 mb-3 mt-2 night">{{singleDes.duration_in_days}}
+                                                              {{"Days"|translate}}/{{singleDes.duration_in_days -x}} {{"Nights"|translate}}
+                                                          </h6>
+                                                          <a class="main-btn p-2 view d-block mb-2 font-weight-bold"
+                                                              routerLink="/{{singleDes.destination_slug}}/travel-packages/{{singleDes.slug}}">{{"View Tour Details"|translate}}</a>
+
+                                                          <a class="main-btn book bg-white p-2 d-block font-weight-bold pt-2"
+                                                              (click)="openVerticallyCentered(content)">{{"Booking Inquiry"|translate}}</a>
+                                                      </div>
+                                                  </div>
+                                                      <ng-template #content let-modal>
+                                                          <div class="modal-body">
+
+
+                                                              <section class="bg-white mt-3 px-3 py-4 booking">
+                                                                  <div class="head mb-2">
+                                                                      <h3 class="font-weight-bolder">{{"Package Booking"|translate}}</h3>
+                                                                  </div>
+                                                                  <iframe onload="javascript:parent.scrollTo(0,0);" height="1300" allowTransparency="true"
+                                                                  scrolling="no" frameborder="0" style="width:100%;border:none"
+                                                                  src="https://ask-aladdin.com/machform/embed.php?id=4"
+                                                                  title="AskAladdin Tour Booking Center:"><a
+                                                                    href="https://ask-aladdin.com/machform/view.php?id=4"
+                                                                    title="AskAladdin Tour Booking Center:">AskAladdin Tour Booking Center:</a></iframe>
+                                                              </section>
+                                                          </div>
+                                                      </ng-template>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </ng-container>
+                                  </div>
+
+
+                              </section>
+
+                              </div>            </div>
+                      </div>
+              </section>
+
+
+          </div>
+      </div>
+</section> -->

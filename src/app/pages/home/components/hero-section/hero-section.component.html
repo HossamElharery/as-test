@@ -1,0 +1,124 @@
+
+@if (loading) {
+  <section   class="video-banner alaadin-banner">
+    <div  >
+      <div class="videoo-banner text-center"
+          [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../../assets/imgs/default-banner.webp)' }">
+
+          <div class="container">
+            <!-- <img  class="img-png m-auto" title="trustpilot"  src="../../../../assets/imgs/trustpilot.webp" alt="trustpilot"> -->
+              <p class="mt-2 text-white">loading...</p>
+              <!-- <app-ask-expert-btn></app-ask-expert-btn> -->
+          </div>
+      </div>
+
+  </div>
+  </section>
+}@else {
+  <div  >
+    <section class="alaadin-banner text-center">
+      <!-- <ngx-slick-carousel *ngIf="!imgCondation" class="carousel"
+      #slickModal="slick-carousel"
+      [config]="slideConfig"
+      >
+    <div ngxSlickItem #imge *ngFor="let img of image|slice:1" class="slide" >
+      <div class=" banner banner-2" [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + img.img }">
+
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active " *ngFor="let slide of smallSlider|slice:0:1">
+                  <div class="animated carousel-cap delay-1s">
+                     <img   class="img-png m-auto"  src="{{slide.image}}" [alt]="slide.title">
+                      <h1 class="h3-responsive">{{slide.title}}</h1>
+                      <p class="mt-2">{{slide.small_text}}</p>
+                      <a class="btn btn-border-1" routerLink="/{{slide.call_to_action_link}}">{{slide.call_to_action_title}}</a>
+                  </div>
+                </div>
+                <div class="carousel-item  " *ngFor="let slide of smallSlider|slice:1:5">
+                  <div class="animated carousel-cap delay-1s">
+                     <img    class="img-png m-auto" src="{{slide.image}}" [alt]="slide.title">
+                    <h1 class="h3-responsive ">{{slide.title}}</h1>
+                    <p class="mt-2">{{slide.small_text}}</p>
+
+                      <a class="btn btn-border-1" routerLink="/{{slide.call_to_action_link}}">{{slide.call_to_action_title}}</a>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+      </div>
+
+    </div>
+
+    </ngx-slick-carousel> -->
+    <!-- <a *ngIf="!imgCondation" class="btn-next" (click)="next()"><i class="fas fa-chevron-right"></i></a>
+    <a  *ngIf="!imgCondation" #imge class="btn-prev" (click)="prev()"><i class="fas fa-chevron-left"></i></a> -->
+    @for (video of videos|slice:1; track $index) {
+     <div class="private">
+
+          <div id="video" class="videos w-100">
+              <video class="vid " autoplay [muted]="true"  loop   [src]="video.video" >
+                  <source   [src]="video.video">
+                  <track [src]="video.video" kind="captions" srclang="en" label="english_captions">
+              </video>
+          </div>
+
+
+            <div class="layout">
+
+              <div class="carousel-caption">
+                <div id="carouselExampleControls "  class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    @for (slide of smallSlider|slice:0:1; track $index) {
+                    <div class="carousel-item active " >
+                      <div class="animated carousel-cap delay-1s">
+                         <!-- <img   class="img-png m-auto"  src="{{slide.image}}" [alt]="slide.title"> -->
+                          <h1 class="h3-responsive ">{{slide.title}}</h1>
+                          <p class="mt-2">{{slide.small_text}}</p>
+                          <a [attr.aria-label]="slide.small_text" class="btn btn-border-1" routerLink="/{{slide.call_to_action_link}}">{{slide.call_to_action_title}}</a>
+                      </div>
+                    </div>
+                  }
+                  @for (slide of smallSlider|slice:1:5; track $index) {
+                    <div class="carousel-item  " >
+                      <div class="animated carousel-cap delay-1s">
+                         <!-- <img  class="img-png m-auto" src="{{slide.image}}" [alt]="slide.title"> -->
+                        <h1 class="h3-responsive ">{{slide.title}}</h1>
+                        <p class="mt-2">{{slide.small_text}}</p>
+
+                          <a aria-label="text" class="btn btn-border-1" routerLink="/{{slide.call_to_action_link}}">{{slide.call_to_action_title}}</a>
+                      </div>
+                    </div>
+                  }
+                  </div>
+                  <a aria-label="text" class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a aria-label="text" class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+
+                </div>
+                </div>
+
+
+            </div>
+      </div>
+    }
+    </section>
+  </div>
+}
+
+
+
+
+

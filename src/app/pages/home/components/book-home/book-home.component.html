@@ -1,0 +1,40 @@
+@if (isComeData) {
+<section>
+  @for (item of data; track $index) {
+  <div>
+    <div class="container book_now">
+      <h2 class="head-tit m-1"><strong>{{ item.first_title }}</strong></h2>
+      <p class="text-center mb-2 inner-html">
+        <app-safe-html [htmlContent]="getSafeContent(item.first_block)"></app-safe-html>
+      </p>
+
+    </div>
+  </div>
+  }
+
+
+</section>
+}@else {
+<section class="safety">
+  <div class="layer">
+    <div class="container">
+      <div class="">
+        @for (n of numSequence(5); track $index) {
+        <div class="descrip">
+          <div class="ph-row">
+            <div class="ph-col-6 big"></div>
+            <div class="ph-col-2 big"></div>
+            <div class="ph-col-4"></div>
+            <div class="ph-col-6"></div>
+
+            <div class="ph-col-12"></div>
+          </div>
+        </div>
+        }
+
+
+      </div>
+    </div>
+  </div>
+</section>
+}

@@ -1,0 +1,302 @@
+@if (loading) {
+  <section  class="min-banner">
+    <section  >
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span>  </h1>
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+}
+
+@if (!loading) {
+  <section >
+    <section class="banner text-center"
+      [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + cityBanner + ')' }">
+      <div class="container">
+        <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+          <h1><span class="main-color des-Name font-weight-bold"> {{ cityName }} </span>  </h1>
+        </div>
+        <app-ask-expert-btn></app-ask-expert-btn>
+      </div>
+    </section>
+  </section>
+}
+<section>
+  <div class="container">
+    <div  class="page-links py-2">
+      <a class="hover-color" routerLink="/"> <span > {{"Home"|translate}}/ </span>  </a>
+      <a class="hover-color" routerLink="/all-destinations/{{desSlug}}"> <span >{{desName}} / </span>  </a>
+      <a class="hover-color" routerLink="/all-destinations/{{desSlug}}/travel-excursions"> <span > Cities / </span>  </a>
+
+      <span class="main-color">{{cityName}}</span>
+      <span class="main-color">{{exName}}</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec-bg padding-pack pb-2 mb-2">
+  <div class="container">
+
+
+    <div class="row mt-1">
+      <div class="col-12 col-md-3 pt-3">
+
+        <section class="bg-white px-3 py-2">
+          <div class="head mb-2">
+            <span class="filter-by">{{ "Filter By" | translate }}</span>
+          </div>
+          <form >
+
+            <div class="filter-content border-bottom">
+              <a class="filter d-flex justify-content-between align-items-center sec-bg p-3 text-dark font-weight-bold first-character-c"
+                (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseBasic">
+                <div class=""><i class="fas far fa-calendar-alt mr-2"></i>{{ "Duration" | translate }}</div>
+                <i class="fas" [ngClass]="{ 'fa-angle-down': isCollapsed, 'fa-angle-up': !isCollapsed }"></i>
+              </a>
+
+              <div id="collapseBasic" class="sec-bg p-3 pt-2" [ngbCollapse]="isCollapsed" >
+
+
+
+                <div class="form">
+                  <span>
+                    <label for="minText"><span class="main-color line">Min </span> hours</label>
+                    <input type="number" ngModel #mini="ngModel" disabled id="minTextDays" name="mini"
+                      [value]="rangeSDay" [(ngModel)]="rangeSDay" placeholder="1" />
+                    </span>
+
+                    <span>
+                      <label for="maxText"><span class="main-color line">Max </span> hours</label>
+                      <input type="number" #maxxD="ngModel" ngModel disabled id="maxText" name="maxxD" [value]="rangeMDay"
+                        [(ngModel)]="rangeMDay" placeholder="30" />
+                      </span>
+
+                      <div class="range">
+                        <input type="range" #minD min="1" max="30" value="1" step="2" id="minRange"
+                          (change)="rangeStartDay(minD)" />
+
+                          <input type="range" #maxD min="1" max="30" value="30" id="maxRange"
+                            (change)="rangeEndDay(maxD)" />
+                          </div>
+
+                        </div>
+
+                      </div>
+
+
+                    </div>
+                    <!-- --------------------- -->
+                    <div class="filter-content border-bottom">
+                      <a class="filter d-flex justify-content-between align-items-center sec-bg p-3 text-dark font-weight-bold first-character-c"
+                        (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed2"
+                        aria-controls="collapseBasic">
+                        <div class=""><i class="fas fa-dollar-sign"></i> {{ "Prices" | translate }}</div>
+
+                        <i class="fas" [ngClass]="{ 'fa-angle-down': isCollapsed2, 'fa-angle-up': !isCollapsed2 }"></i>
+                      </a>
+
+                      <div id="collapseBasic" class="sec-bg p-3 pt-2" [ngbCollapse]="isCollapsed2" >
+
+                        <div class="form">
+                          <span>
+                            <label for="minText"><span class="main-color line">Min </span> value</label>
+                            <input class="input-filter" type="number" ngModel #min="ngModel" disabled id="minText" name="min" [value]="rangePric"
+                              [(ngModel)]="rangePric" placeholder="0" #val3 />
+                            </span>
+                            <span>
+                              <label for="maxText"><span class="main-color line">Max </span> value</label>
+                              <input class="input-filter" type="number" ngModel #max="ngModel" disabled id="maxText" name="max" [value]="rangePrice"
+                                [(ngModel)]="rangePrice" placeholder="5000" />
+                              </span>
+                              <div class="range">
+                                <input type="range" #val min="0" max="5000" value="0" step="10" id="minRange"
+                                  (change)="rangePri1(val)" />
+                                  <input type="range" #val2 min="0" max="5000" value="5000" id="maxRange"
+                                    (change)="rangePri2(val2)" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                          </form>
+                        </section>
+                      </div>
+                      <!-- travel-excursions -->
+                      <div class="col-12 col-md-9">
+
+                        @if (!loading) {
+                          <div class=" pl-0 pt-3">
+                            <div   class="head-title des-text text-center mb-4 ">
+                              <app-safe-html class=" inner-html" [htmlContent]="getSafeContent(description)"></app-safe-html>
+                            </div>
+                          </div>
+                        }
+
+                        @if (loading) {
+                          <div class="ph-item">
+                            <div class="ph-col-12">
+                              <div class="ph-row">
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-8 empty"></div>
+                                <div class="ph-col-6"></div>
+                                <div class="ph-col-6 empty"></div>
+                                <div class="ph-col-12"></div>
+                              </div>
+                            </div>
+                          </div>
+                        }
+
+                        <section>
+                          <!-- <h2 class="info main-bg text-white font-weight-bold">{{count}}  {{name?.destination_name}} {{"Travel Excursions"|translate}}
+                        </h2> -->
+
+                        @if (!loading) {
+                          <div>
+                            @for (ex of Filter; track $index) {
+                              <div class="data-box bg-white mt-3 p-2">
+                                <div class="row mx-0">
+                                  <div class="col-xl-10">
+                                    <div class="card border-0">
+                                      <div class="row px-0">
+                                        <div class="col-md-5 px-0">
+                                          <img loading="lazy"   src="{{ex.thumb}}" alt="{{ex.thumb_alt}}"
+                                            class="img-fluid package-img w-100">
+                                            <div class="deals-ufi-card__floating-badge-container ">
+                                              <span class="bui-badge bui-badge--constructive">
+                                                <span class="bui-badge__text">
+                                                  {{ "Hot Offer" | translate }}
+                                                </span>
+                                              </span>
+                                            </div>
+                                            @if (ex.best_sale) {
+                                              <p class="sale-ufi-card__floating-badge-container ">
+                                                <span class="sale-badge sale-badge--constructive ">
+                                                  <span class="sale-badge__text">{{ "Best Sale" | translate }} </span>
+                                                </span>
+                                              </p>
+                                            }
+                                            @if (ex.discount) {
+                                              <p class="per-ufi-card__floating-badge-container ">
+                                                @if (ex.discount!==null) {
+                                                  <span class="per-badge per-badge--constructive ">
+                                                    <span class="per-badge__text">{{ ex.discount  + "% off" }} </span>
+                                                  </span>
+                                                }
+                                              </p>
+                                            }
+                                          </div>
+                                          <div class="col-md-7 px-0">
+                                            <div
+                                              class="card-body package-content pt-0 pb-1 h-100  d-flex flex-column justify-content-between">
+                                              <h5 class="card-title font-weight-bold mb-2 mt-3">
+                                                {{ex.name}}
+                                              </h5>
+                                              <div class="rate mt-2" >
+                                                <!-- <rating [(ngModel)]="ex.rate" [max]="maxx" [readonly]="readonly">
+                                              </rating> -->
+                                              <!-- {{ex.rate}} -->
+                                              <ngb-rating class="rate" [rate]="ex.rate" [max]="5" [readonly]="isReadonly"></ngb-rating>
+                                              <span class="reviews"> of
+                                                <!-- {{ex.reviews}} -->
+                                              {{"Reviews"|translate}}</span>
+                                            </div>
+                                                                                     <app-safe-html class="package-text pt-1 inner-html" [htmlContent]="getSafeContent(ex.description, 250)"></app-safe-html>
+                                            <div class="  pl-1  tour "> {{"Number Of Travellers"|translate}}: <i class="fas fa-suitcase-rolling"></i> {{ex.travellers}} </div>
+                                            <div class="row  pack-icons ">
+                                              <div class="col-6 col-sm-6 px-0">
+                                                <div class="advatnage">
+                                                  <i class="fas fa-utensils main-color"></i>
+                                                  <span class="text-center ml-1">{{ex.meals}} {{" meals"|translate}}</span>
+                                                </div>
+                                              </div>
+                                              <div class="col-6 col-sm-6 px-0">
+                                                <div class="advatnage">
+                                                  <i class="fab fa-servicestack main-color"></i>
+                                                  <span class="text-center ml-1">{{ex.services_number}}{{" Services"|translate}}</span>
+                                                </div>
+                                              </div>
+                                              <div class="col-6 col-sm-6 px-0">
+                                                <div class="advatnage">
+                                                  <i class="fas fa-snowboarding main-color"></i>
+                                                  <span class="text-center ml-1">{{ex.activities_number}}{{" Activities"|translate}}</span>
+                                                </div>
+                                              </div>
+                                              <div class="col-6 col-sm-6 px-0">
+                                                <div class="advatnage">
+                                                  <i class="fab fa-guilded main-color"></i>
+                                                  <span class="text-center ml-1">{{ex.guide_tour}}{{" Guided Tour"|translate}}</span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-xl-2 px-0">
+                                    <div class="pricing text-center pt-4 h-100 sec-bg">
+                                      <span>{{"Pricing"|translate}}</span>
+                                      <h4 class="font-weight-bold mb-2">{{"Start From"|translate}}</h4>
+                                      <span class="price main-color font-weight-bold">${{ex.start_price}} USD</span>
+                                      <p class="text-center my-2 mb-3">{{ex?.duration}} {{"hours"|translate}}</p>
+                                      <a class="main-btn p-2 d-block mb-2 font-weight-bold view py-2"
+                                      routerLink="/all-destinations/{{desSlug}}/travel-excursions/{{id}}/{{ex.slug}}">{{"View Tour Details"|translate}}</a>
+                                      <a class="main-btn book bg-white p-2 d-block font-weight-bold pt-2"
+                                      (click)="openVerticallyCentered(content)">{{"Booking Inquiry"|translate}}</a>
+                                    </div>
+                                    <ng-template #content let-modal>
+                                      <div class="modal-body">
+                                        <section class="bg-white mt-3 px-3 py-4 booking">
+                                          <div class="head mb-2">
+                                            <h3 class="font-weight-bolder">{{"Excursion Booking"|translate}}</h3>
+                                          </div>
+                                          <iframe onload="javascript:parent.scrollTo(0,0);" height="2000" allowTransparency="true" scrolling="no" frameborder="0" style="width:100%;border:none" src="https://ask-aladdin.com/machform/embed.php?id=4" title="AskAladdin Tour Booking Center:"><a href="https://ask-aladdin.com/machform/view.php?id=4" title="AskAladdin Tour Booking Center:">AskAladdin Tour Booking Center:</a></iframe>
+                                        </section>
+                                      </div>
+                                    </ng-template>
+                                  </div>
+                                </div>
+                              </div>
+                            }
+                          </div>
+                        }
+
+                        @if (loading) {
+                          <div class="row">
+                            @for (n of numSequence(32); track $index) {
+                              <div class="col-md-12">
+                                <div class="ph-item">
+                                  <div class="ph-col-12">
+                                    <div class="ph-picture"></div>
+                                    <div class="ph-row">
+                                      <div class="ph-col-6 big"></div>
+                                      <div class="ph-col-4 empty big"></div>
+                                      <div class="ph-col-2 big"></div>
+                                      <div class="ph-col-4"></div>
+                                      <div class="ph-col-8 empty"></div>
+                                      <div class="ph-col-6"></div>
+                                      <div class="ph-col-6 empty"></div>
+                                      <div class="ph-col-12"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            }
+                          </div>
+                        }
+                      </section>
+                    </div>
+                    <!-- End travel-excursions -->
+                  </div>
+                </div>
+              </section>
+
+

@@ -1,0 +1,39 @@
+@if (package) {
+  <section  class="bg-white mt-3 px-2 py-4">
+    <div class="container">
+      <div class="head mb-4">
+        <h3 class="font-weight-bold"><span class="single-style">Package</span> {{ " Travel Experiences" | translate }}</h3>
+      </div>
+      <div class="">
+        <ul class="list-group p-0">
+          @for (e of datapackage; track $index) {
+            <li  class="list-group-item align-items-center d-flex px-0 py-2">
+              <i class="far fa-dot-circle"></i>
+              <app-safe-html class="inner-html" [htmlContent]="getSafeContent(e)"></app-safe-html>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+}
+
+@if (cruise) {
+  <section id="trav" class="bg-white mt-3 px-2 py-4">
+    <div class="container">
+      <div class="head mb-4">
+        <h3 class="font-weight-bold">{{ "Cruise Experiences" | translate }}</h3>
+      </div>
+      <div class="">
+        <ul class="list-group p-0">
+          @for (experience of datapackage; track $index) {
+            <li class="list-group-item d-flex px-0 py-2">
+              <i class="far fa-dot-circle mx-1"></i>
+              <app-safe-html class="inner-html" [htmlContent]="getSafeContent(experience)"></app-safe-html>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+}

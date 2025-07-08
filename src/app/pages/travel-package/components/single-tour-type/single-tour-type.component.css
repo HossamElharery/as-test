@@ -1,0 +1,42 @@
+
+.cat-pack{
+
+  color: #444444 ;
+  display: block !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 30px !important;
+  padding: 5px 20px !important;
+  text-align: left;
+
+}
+.cat-pack:hover{
+  color:white !important;
+  text-decoration: none;
+}
+
+.cat-pack:hover {
+  color:white;
+  background-color: #f68800 !important;
+  text-decoration: none;
+}
+
+
+ input[type="checkbox"]:checked {
+   content:"";
+  box-shadow: 0 0 0 3px #f68800;
+  background-color: blueviolet !important;
+  color: #f68800;
+}
+/* ================ tablet Responsive ========== */
+@media only screen and (min-width: 768px) and (max-width:992px){
+  .package-content .advatnage{
+    height: 63px;
+  }
+  .head h3{
+    font-size: 1.5rem;
+  }
+  .form span label{
+    font-size: 0.8rem;
+  }
+}

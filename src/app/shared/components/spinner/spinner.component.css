@@ -1,0 +1,12 @@
+.spiin{
+  position: fixed;
+    width: 100%;
+    z-index: 9999;
+    height: 100vh;
+  transition: all .5s ease;
+    top: 0px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

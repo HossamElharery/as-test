@@ -1,0 +1,82 @@
+@if (package) {
+  <section>
+    <section   class="bg-white mt-3 px-2 py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-7">
+            <div class="head mb-4">
+              <h5 class="font-weight-bold"> <span class="single-style" >What's </span>{{"Included"|translate}}</h5>
+            </div>
+            <div class="">
+              <ul class="list-group p-0">
+                @for (include of includ?.included; track $index) {
+                  <li class="list-group-item d-flex px-0 py-2">
+                    <img   loading="lazy"  alt="right" src="assets/imgs/right.png" class="img-fluid">
+                    <span>{{include?.content}}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-md-5">
+            <div class="head mb-4">
+              <h5 class="font-weight-bold"><span class="single-style" >What's </span> {{"Not Included"|translate}}</h5>
+            </div>
+            <div class="">
+              <ul class="p-0">
+                @for (include of includ?.excluded; track $index) {
+                  <li class="list-group-item d-flex px-0 py-2">
+                    <img   loading="lazy"  alt="wrong"  src="assets/imgs/Wrong.png" class="img-fluid">
+                    <span>{{include?.content}}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+}
+
+
+@if (excur) {
+  <section>
+    <section  id="included2" class="bg-white mt-3 px-2 py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-7">
+            <div class="head mb-4">
+              <h5 class="font-weight-bold">{{"What's Included"|translate}}</h5>
+            </div>
+            <div class="">
+              <ul class="list-group p-0">
+                @for (include of includ?.included; track $index) {
+                  <li class="list-group-item d-flex px-0 py-2">
+                    <img   loading="lazy" alt="right"  src="assets/imgs/right.png" class="img-fluid">
+                    <span>{{include?.content}}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-md-5">
+            <div class="head mb-4">
+              <h5 class="font-weight-bold">{{"What's Not Included"|translate}}</h5>
+            </div>
+            <div class="">
+              <ul class="p-0">
+                @for (include of includ?.excluded; track $index) {
+                  <li class="list-group-item d-flex px-0 py-2">
+                    <img   loading="lazy"  alt="wrong"  src="assets/imgs/Wrong.png" class="img-fluid">
+                    <span>{{include?.content}}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+}

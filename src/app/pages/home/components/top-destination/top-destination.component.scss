@@ -1,0 +1,23 @@
+.destination-details{
+  overflow:  hidden !important;
+}
+.destination-details .turkey {
+  height: 530px;
+}
+.text-white:hover{
+  text-decoration: none;
+}
+
+.desc p{
+color: #D0D2D3 ;
+font-weight: 100;
+}
+
+
+
+/* ================ Mobile & tablet Responsive ========== */
+@media (max-width:992px){
+  .destination-details .overlay a {
+      visibility: visible;
+  }
+}

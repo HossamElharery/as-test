@@ -1,0 +1,245 @@
+@if (!loading) {
+  <section  class="fiixx">
+    @for (page of singlePageContent; track $index) {
+      <section >
+        <section class="banner text-center"
+          [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + page.banner }">
+          <div class="container">
+            <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+              <h1><span class="main-color des-Name font-weight-bold"> {{page.name}}</span>  </h1>
+            </div>
+            <app-ask-expert-btn></app-ask-expert-btn>
+          </div>
+        </section>
+      </section>
+    }
+  </section>
+}
+
+@if (loading) {
+  <section class="min-banner">
+    <section>
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> loading..</span> </h1>
+          </div>
+          <p class="mt-2"></p>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </section>
+  </section>
+}
+
+<!-- Bread Crumb -->
+@for (page of singlePageContent; track $index) {
+  <section>
+    <div class="container">
+      <div  class="page-links py-2">
+        <a class="hover-color" routerLink="/"> <span >{{"Home"|translate}} / </span>  </a>
+        <span class="main-color">{{page.name}}</span>
+      </div>
+    </div>
+  </section>
+}
+
+@if (loading) {
+  <section class="sec-bg py-4 ">
+    <div class="container px-5 ">
+      <div   class="row " >
+        <div class="col-lg-9 col-md-9 col-sm-12  p-4 bg-white">
+          <div class="ph-item" >
+            @for (n of numSequence(19); track $index) {
+              <div class="ph-col-12">
+                <div class="ph-row">
+                  <div class="ph-col-6 big"></div>
+                  <div class="ph-col-4 empty big"></div>
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-4"></div>
+                  <div class="ph-col-8 empty"></div>
+                  <div class="ph-col-6"></div>
+                  <div class="ph-col-6 empty"></div>
+                  <div class="ph-col-12"></div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <app-expert-reviews [name]="'articles'"></app-expert-reviews>
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
+@if (!loading) {
+  <section class="sec-bg py-4 ">
+    <div class="container px-5 ">
+      @for (page of singlePageContent; track $index) {
+        <div  class="row " >
+          <div class="col-lg-9 col-md-9 col-sm-12  p-4 bg-white">
+            <div class="single-blog-content w-100 mb-5 splendor">
+              <app-safe-html class="inner-html" [htmlContent]="getSafeContent(page.description)"></app-safe-html>
+            </div>
+            @if (script!==null) {
+              <div>
+                <app-safe-html [htmlContent]="getSafeContent(script)"></app-safe-html>
+              </div>
+            }
+
+            @if (accordion?.length>0) {
+              <section class="mb-5" >
+                @for (acc of accordion ; track $index; let i = $index) {
+                  <div>
+                    <div id="accordion{{i}}" class=" mt-2  ocorrd">
+                      <div class="card ">
+                        <div class="card-header" id="headingOne{{i}}">
+                          <div class="d-flex justify-content-between "  data-toggle="collapse" [attr.data-target]="'#collapseOne' + i" [attr.aria-controls]="'#collapseOne' + i">
+                            <div>
+                              <h5 class="mb-0">
+                                <button class="btn  main-color name-tab" data-toggle="collapse" [attr.data-target]="'#collapseOne' + i" [attr.aria-controls]="'#collapseOne' + i"   >
+                                  {{acc?.category_title}}
+                                </button>
+                              </h5>
+                            </div>
+                            <div class="">
+                              <i class="fas fa-sort-down"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="collapseOne{{i}}" class="collapse " [attr.aria-labelledby]="'headingOne' + i" [attr.data-parent]="'#collapseOne' + i"  >
+                          <div class="card-body inner-html"><app-safe-html [htmlContent]="getSafeContent(acc?.category_description)"></app-safe-html></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </section>
+            }
+
+            <div class="">
+              @if (relatedPages.length>0) {
+                <div class="   pt-2">
+                  <h2 class=" relatedd"> {{ page.related_pages_title !== '' ? page.related_pages_title : ('Related Articles' | translate) }}</h2>
+                  <hr class="hr mb-3 mt-3">
+                  <div class="row">
+                    @for (relatedPage of relatedPages; track $index) {
+                      <div class="col-md-3 mb-3 ">
+                        <app-related-card-ribbon
+                          [url]="'/all-destinations/'+relatedPage.destination.slug+'/category/'+relatedPage.category.slug+'/page/'+'/'+relatedPage.slug"
+                        [title]="relatedPage.name" [des]="''" [img]="relatedPage.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+
+              @if (related_blogs.length>0) {
+                <div class="   pt-2">
+                  <h2 class=" relatedd">{{ page.related_blogs_title !== '' ? page.related_blogs_title : ('Related Blogs' | translate) }}</h2>
+                  <hr class="hr mb-3 mt-3">
+                  <div class="row">
+                    @for (blog of related_blogs; track $index) {
+                      <div class="col-md-3 mb-3 ">
+                        <app-related-card-ribbon [des]="blog.description |slice:0:80"
+                          [url]="'/all-destinations/'+blog.destination.slug+'/blog/'+'/'+blog.slug" [title]="blog.name"
+                        [img]="blog.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+
+              @if (related_packages.length>0) {
+                <div class="   pt-2">
+                  <h2 class=" relatedd">{{ page.related_packages_title !== '' ? page.related_packages_title : ('Related Packages' | translate) }} </h2>
+                  <hr class="hr mb-3 mt-3">
+                  <div class="row">
+                    @for (packageItem of related_packages; track $index) {
+                      <div class="col-md-3 mb-3 ">
+                        <app-related-card-ribbon [des]="packageItem.description|slice:0:80"
+                          [url]="'/all-destinations/'+packageItem.destination.slug+'/travel-packages/'+'/'+packageItem.slug" [title]="packageItem.name"
+                        [img]="packageItem.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+
+              @if (related_cruises.length>0) {
+                <div class="   pt-2">
+                  <h2 class=" relatedd">{{ page.related_cruises_title !== '' ? page.related_cruises_title : ('Related Cruises' | translate) }}</h2>
+                  <hr class="hr mb-3 mt-3">
+                  <div class="row">
+                    @for (cruise of related_cruises; track $index) {
+                      <div class="col-md-3 mb-3 ">
+                        <app-related-card-ribbon [des]="cruise.description|slice:0:80"
+                          [url]="'/all-destinations/'+cruise.destination.slug+'/travel-cruises/'+'/'+cruise.slug" [title]="cruise.name"
+                        [img]="cruise.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+
+              @if (related_travel_guides.length>0) {
+                <div class="   pt-2">
+                  <h2 class=" relatedd">{{ page.related_travel_guides_title !== '' ? page.related_travel_guides_title : ('Related Guides' | translate) }}</h2>
+                  <hr class="hr mb-3 mt-3">
+                  <div class="row">
+                    @for (guide of related_travel_guides; track $index) {
+                      <div class="col-md-3 mb-3 ">
+                        <app-related-card-ribbon [des]="guide.description|slice:0:80"
+                          [url]="'/all-destinations/'+guide.destination.slug+'/travel-guide/'+'/'+guide.slug" [title]="guide.name"
+                        [img]="guide.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+
+              @if (related_excursions.length>0) {
+                <div class="pt-2">
+                  <h2 class=" relatedd">{{ page.related_excursions_title !== '' ? page.related_excursions_title : ('Related Excursions' | translate) }}</h2>
+                  <hr class="hr mb-3 mt-3">
+                  <div class="row">
+                    @for (excursion of related_excursions; track $index) {
+                      <div class="col-md-3 mb-3 ">
+                        <app-related-card-ribbon [des]="excursion.description|slice:0:80"
+                          [url]="'/all-destinations/'+excursion.destination.slug+'/travel-excursions/'+'/'+excursion.city.slug+'/'+excursion.slug" [title]="excursion.name"
+                        [img]="excursion.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+
+              @if (related_categories.length>0) {
+                <div class="pt-2">
+                  <h2 class=" relatedd">{{ page.related_categories_title !== '' ? page.related_categories_title : ('Related Categories' | translate) }}</h2>
+                  <hr class="hr mb-3 mt-3">
+                  <div class="row">
+                    @for (category of related_categories; track $index) {
+                      <div class="col-md-3 mb-3 ">
+                        <app-related-card-ribbon [des]="category.description|slice:0:80"
+                          [url]="'/all-destinations/'+category.destination.slug+'/category/'+'/'+category.slug" [title]="category.name"
+                        [img]="category.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+            <app-expert-reviews [name]="'articles'"></app-expert-reviews>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+}
+<app-scroll-button></app-scroll-button>

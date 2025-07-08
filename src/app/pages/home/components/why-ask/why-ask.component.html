@@ -1,0 +1,68 @@
+<section class="about mb-5 py-5">
+  @for (about of aboutContainer; track $index) {
+  <div class="container " >
+      <div class="head-title text-center mb-1">
+          <p class="sat-font main-color mb-0">{{ "About Us" | translate }}</p>
+          <h2 class=" text-white">{{about.title}}</h2>
+      </div>
+      <div class="about-more">
+          <div class="row mr-0 ml-0">
+              <ng-container >
+
+                  <div class="video col-lg-6 col-md-10 col-sm-12 m-auto " >
+                       <img loading="lazy" class="img-fluid" src="assets/imgs/why-ask-alaadin.jpg" data-toggle="modal"
+                          data-target=".bd-example-modal-lg" alt="splen">
+                          @if (hideIcon) {
+                      <span  data-toggle="modal"
+                      data-target=".bd-example-modal-lg">
+                          <i class="fas fa-play main-color"></i>
+                      </span>
+                    }
+                       <div class="modal fade bd-example-modal-lg" #pause id="myModal" tabindex="-1" role="dialog"
+                          aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="video " (click)="toggleVideo()">
+                                      <div class="videoPlay">
+                                          <div class="source">
+                                            @if (pause) {
+                                              <video controls  src="{{about.video}}" alt="iimg"  #videoPlayer type="video/mp4">
+                                                  <source media="(min-width: )" src="{{about.video}}">
+                                              </video>
+                                            }
+                                          </div>
+                                      </div>
+                                      @if (hideIcon) {
+                                        <span  class="span">
+                                          <i class="fas fa-play main-color"></i>
+                                      </span>
+                                      }
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-- <div class="modal-dialog modal-dialog-centered">
+                          ...
+                        </div> -->
+
+                  </div>
+                  <div class="col-lg-6 col-md-10 mx-auto mt-md-2 col-sm-12 ">
+                      <div class="about-text p-4 m-2">
+                          <!-- <h3 class="about-title" [innerHtml]="about.title| codeHtml:'html'"></h3> -->
+                          <div class="about-des splendor inner-html">
+                            <app-safe-html [htmlContent]="getSafeContent(about.description)"></app-safe-html>
+                          </div>
+                      </div>
+
+
+                  </div>
+
+
+              </ng-container>
+          </div>
+      </div>
+  </div>
+}
+</section>

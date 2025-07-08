@@ -1,0 +1,70 @@
+<section class="my-5" [@.disabled]="true">
+  <div class="container">
+      <div class="head-title text-center">
+          <h2 class="">{{"Destinations Tours" |translate}}</h2>
+      </div>
+      <div class="tour-package mt-5">
+        @if (!loading) {
+          <div class="row" >
+            @for (package of packageContainer; track $index  ) {
+              <ng-container >
+
+                  <div class="col-12 col-md-3 mb-3" >
+                    <div class="packagee overflow-hidden position-relative">
+                        <a [attr.aria-label]="package.name" routerLink="/all-destinations/{{package.destination.slug}}/travel-packages/{{package.slug}}">
+                             <img loading="lazy" height="auto" width="240px" class="img-fluid" src="{{package.thumb}}" alt="{{package.thumb_alt || package.name}}" title="{{package.name}}" />
+                            <div class="overlay">
+                                <div class="tour-info">
+                                    <h3 class="font-weight-bold text-white h6">{{package.name}}</h3>
+                                    <div class="rate d-flex justify-content-between my-1">
+                                        <p class="text-white"><i class="far fa-star"></i> {{package.reviews}}</p>
+                                        <p class="main-color font-weight-bold">${{package.start_price}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+            </ng-container>
+            }
+
+
+        </div>
+        }@else {
+          <div  >
+            @for (n of numSequence(20); track $index) {
+              <div class="col-12 col-md-3 mb-3" >
+                <div class="row" >
+                  <div class="col-md-12" >
+                    <div class="ph-item">
+                      <div class="ph-col-12">
+                          <div class="ph-picture"></div>
+                          <div class="ph-row">
+                              <div class="ph-col-6 big"></div>
+                              <div class="ph-col-4 empty big"></div>
+                              <div class="ph-col-2 big"></div>
+                              <div class="ph-col-4"></div>
+                              <div class="ph-col-8 empty"></div>
+                              <div class="ph-col-6"></div>
+                              <div class="ph-col-6 empty"></div>
+
+                              <div class="ph-col-12"></div>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+
+
+                </div>
+              </div>
+            }
+
+          </div>
+        }
+      </div>
+  </div>
+</section>

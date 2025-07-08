@@ -1,0 +1,116 @@
+
+.card {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 16px !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #fff !important;
+  padding: 16px 20px !important;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-header:hover {
+  background-color: rgba(246, 136, 0, 0.05) !important;
+}
+
+.btn-link {
+  color: #f68800;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 0;
+}
+
+.btn-link:hover, .btn-link:focus {
+  color: #d67700;
+  text-decoration: none;
+}
+
+.accordion-arrow {
+  color: #f68800;
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+/* Content animation */
+.accordion-closed {
+  display: none !important;
+}
+
+.accordion-open {
+  display: block !important;
+  animation: fadeDown 0.5s ease;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Content styling improvements */
+.card-body {
+  padding: 24px;
+  background-color: #fff;
+}
+
+.type-name h3 {
+  color: #333;
+  margin-top: 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.thumb {
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.thumb img {
+  transition: transform 0.3s ease;
+}
+
+.card:hover .thumb img {
+  transform: scale(1.02);
+}
+
+.cate-date {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* Make the accordion head line more attractive */
+.accordion-head-line {
+  border-bottom: 2px solid #f68800;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.head-accordion {
+  background-color: #f68800;
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 4px 4px 0 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  position: relative;
+  top: 2px;
+  margin-bottom: 0;
+}
+.btn.focus, .btn:focus{
+  box-shadow: 0 0 0 .2rem rgb(246 136 0 / 0%) !important;
+}

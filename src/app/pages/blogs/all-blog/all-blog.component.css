@@ -1,0 +1,30 @@
+.blogs a {
+  text-decoration: none;
+}
+.blogs img {
+  height: 200px;
+  object-fit: cover;
+  transition: all 0.5s ease 0s;
+}
+.blogs:hover img {
+  transform: scale(1.1)
+}
+/* .blog-btn:hover {
+  transition: all 0.8s ease 0s;
+  background-color: transparent;
+  color: #f68800;
+} */
+.card-body{
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-text{
+  min-height: 75px;
+}
+.card-title{
+  min-height: 40px;
+}
+
+

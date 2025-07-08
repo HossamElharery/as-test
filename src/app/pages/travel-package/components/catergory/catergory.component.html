@@ -1,0 +1,213 @@
+<div>
+  @for (singleDes of Filter; track $index) {
+    <div class="data-box   bg-white mt-3 p-2">
+      <div id="pack" class="row mx-0 ">
+        <div class="col-xl-10 ">
+          <div class="card border-0">
+            <div class="row px-0 ">
+              <div class="col-md-5 px-0">
+                <img loading="lazy"
+                  class="img-fluid package-img"
+                  src="{{ singleDes.thumb == '1' ? image : singleDes.thumb }}"
+                  />
+                  @if (singleDes.hot_offer) {
+                    <p class="affe">
+                      <span class="offerr"> {{ "Hot Offer" | translate }} </span>
+                    </p>
+                  }
+                  @if (singleDes.top_sale) {
+                    <p class="top-sale">
+                      <span class="sale "> {{ "Best Sale" | translate }} </span>
+                    </p>
+                  }
+                  @if (singleDes.discount) {
+                    <p class="orang">
+                      @if (singleDes.discount !== null) {
+                        <span class="orang-sale ">
+                          {{ singleDes.discount + "% off" }}
+                        </span>
+                      }
+                    </p>
+                  }
+                  <div class="map-details border mt-2">
+                    <div class="row mx-0 px-0">
+                      <div class="col-12 px-0">
+                        <div class="embed-responsive">
+                          <iframe
+                            class="embed-responsive-item"
+                            [src]="singleDes.location_package_map | safe"
+                            allowfullscreen=""
+                          ></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-7 px-0">
+                  <div class="card-body  package-content pt-0 pb-1 h-100  d-flex flex-column justify-content-between">
+                    <h5 class="card-title font-weight-bold mb-2 mt-3">{{ singleDes.name }}</h5>
+                    <div>
+                      <div>
+                        <!-- <rating class="rate" [(ngModel)]="singleDes.rate" [readonly]="isReadonly"> </rating> -->
+                        <span class="reviews"> of {{ "Reviews" | translate }}</span>
+                      </div>
+                    </div>
+                    <p class="package-text inner-html" [innerHTML]="singleDes.description| codeHtml:'html'"></p>
+                    <div class="tour">
+                      <div class="  font-weight-bold pl-2  d-flex justify-content-between ">
+                        {{ "Tour Type" | translate }}:
+                      </div>
+                      @for (x of singleDes.tour_type; track $index) {
+                        <div class="pl-2 ">
+                          <i class="far fa-dot-circle"></i> {{ x }}
+                        </div>
+                      }
+                    </div>
+                    <div class="row mt-2 px-0">
+                      <div class="col-6 col-sm-4 px-0">
+                        <div class="advatnage">
+                          <i class="fas fa-eye main-color"></i>
+                          <span class="text-center ml-1"
+                            >{{ singleDes?.number_highlights }} {{ "Highlights" | translate }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-6 col-sm-4 px-0">
+                        <div class="advatnage">
+                          <i class="fas fa-clipboard-list main-color"></i>
+                          <span class="text-center ml-1">{{ singleDes?.itinerary }} {{ "Days" | translate }}</span>
+                        </div>
+                      </div>
+                      <div class="col-6 col-sm-4 px-0">
+                        <div class="advatnage">
+                          <i class="fas fa-hotel main-color"></i>
+                          <span class="text-center ml-1"
+                            >{{ singleDes?.accommodations }} {{ "Hotels" | translate }}</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 px-0">
+                          <div class="advatnage">
+                            <i class="fas fa-utensils main-color"></i>
+                            <span class="text-center ml-1">{{ singleDes?.meals }} {{ "Meals" | translate }}</span>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 px-0">
+                          <div class="advatnage">
+                            <i class="fas fa-plane main-color"></i>
+                            <span class="text-center ml-1">{{ singleDes?.flights }} {{ "Flights" | translate }}</span>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 px-0">
+                          <div class="advatnage">
+                            <i class="fab fa-guilded main-color"></i>
+                            <span class="text-center ml-1"
+                              >{{ singleDes?.guid_tour }} {{ "Guided Tour" | translate }}</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 px-0 ">
+                <div class="pricing text-center h-100 sec-bg">
+                  <div class="mt-3 ">
+                    <span class="mt-3">{{ "Pricing" | translate }}</span>
+                    <h4 class="font-weight-bold mb-2 mt-2">{{ "Start From" | translate }}</h4>
+                    <span class="price main-color font-weight-bold">${{ singleDes.start_price }} USD</span>
+                    <h6 class="text-center my-2 mb-3 mt-2 night">
+                      {{ singleDes.duration_in_days }} {{ "Days" | translate }}/{{ singleDes.duration_in_days }}
+                      {{ "Nights" | translate }}
+                    </h6>
+                    <a
+                      class="main-btn p-2 view d-block mb-2 mt-3 font-weight-bold"
+                      routerLink="/{{ singleDes.destination_slug }}/travel-packages/{{ singleDes.slug }}"
+                      >{{ "View Tour Details" | translate }}</a
+                      >
+                      <a
+                        class="main-btn book bg-white p-2 d-block mt-3 font-weight-bold pt-2"
+                        (click)="openVerticallyCentered(content)"
+                        >{{ "Booking Inquiry" | translate }}</a
+                        >
+                      </div>
+                    </div>
+                    <ng-template #content let-modal>
+                      <div class="modal-body">
+                        <section class="bg-white mt-3 px-3 py-4 booking">
+                          <div class="head mb-2">
+                            <h3 class="font-weight-bolder">{{ "Package Booking" | translate }}</h3>
+                          </div>
+                          <form class="mt-4">
+                            <div class="starting-date">
+                              <h6>Preferred starting Date</h6>
+                              <div class="form-row text-center">
+                                <div class="col">
+                                  <input class="form-control" type="text" /> <span class="text-center">MM</span>
+                                </div>
+                                <div class="col">
+                                  <input class="form-control" type="text" /> <span class="text-center">DD</span>
+                                </div>
+                                <div class="col">
+                                  <input class="form-control" type="text" /> <span class="text-center">YY</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="select-package mt-3">
+                              <h5>Select Your Tour Package</h5>
+                              <div class="form-row">
+                                <div class="col">
+                                  <select class="form-control">
+                                    <option>Select Your Tour Package</option>
+                                    <option>Test</option>
+                                    <option>Test</option>
+                                    <option>Test</option>
+                                    <option>Test</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="select-package mt-3">
+                              <h5>Total number of Travelers</h5>
+                              <div class="form-row">
+                                <div class="col">
+                                  <select class="form-control">
+                                    <option></option>
+                                    <option>Test</option>
+                                    <option>Test</option>
+                                    <option>Test</option>
+                                    <option>Test</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="informations mt-3">
+                              <h5>Your Information</h5>
+                              <div class="form-row">
+                                <div class="col-12 mb-3">
+                                  <label for="email">Your E-mail</label> <input type="text" class="form-control" />
+                                </div>
+                                <div class="col">
+                                  <label>Your Name</label> <input type="text" class="form-control" placeholder="First Name" />
+                                </div>
+                                <div class="col">
+                                  <label>Last Name</label> <input type="text" class="form-control" placeholder="Last Name" />
+                                </div>
+                                <div class="col-12 mt-3">
+                                  <label>Any additional request to add?</label>
+                                  <textarea class="form-control" rows="5"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <button type="submit" class="main-btn w-100 mt-3">{{ "Send Your Enquiry" | translate }}</button>
+                          </form>
+                        </section>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>

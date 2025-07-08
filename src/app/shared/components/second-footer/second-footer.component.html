@@ -1,0 +1,40 @@
+<!-- <section *ngIf="categoryFooter.length > 0 "  class=" main">
+<div class="container ">
+  <div  class="row" style="justify-content: space-between;">
+    <div *ngFor="let category of categoryFooter|slice :0:5" class="col-sm-6 col-lg-2 col-md-6 fix-res p-0">
+      <ul  class="list pl-3">
+        <h3 class="title-category">{{category.title}}</h3>
+        <div *ngFor="let cate of category.categories ">
+          <a  [attr.aria-label]="cate.name" (click)="footerCat(cate)"  class="hover-color"><li><i class="fa fa-angle-double-right pr-2"></i>{{cate.name}}</li></a>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+-->
+@if (categoryFooter.length > 0) {
+  <section class="main">
+    <div class="container">
+      <div class="row" style="justify-content: space-between;">
+        @for (category of categoryFooter | slice:0:5; track $index) {
+          <div class="col-sm-6 col-lg-2 col-md-6 fix-res p-0">
+            <ul class="list pl-3">
+              <h3 class="title-category">{{category.title}}</h3>
+              @for (cate of category.categories; track $index) {
+                <div>
+                  <a [attr.aria-label]="cate.name"
+                    [routerLink]="['/all-destinations', cate.destination.slug, 'category', cate.slug]"
+                    (click)="emitCategorySlug(cate.slug)"
+                    class="hover-color">
+                    <li><i class="fa fa-angle-double-right pr-2"></i>{{cate.name}}</li>
+                  </a>
+                </div>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+}

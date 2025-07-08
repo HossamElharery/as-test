@@ -1,0 +1,182 @@
+
+@if (!loading) {
+  <section>
+    @for (guide of singleGuide; track $index) {
+      <section>
+        <section >
+          <section class="banner text-center"
+            [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + guide.banner + ')' }">
+            <div class="container">
+              <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+                <h1><span class="main-color des-Name font-weight-bold"> {{guide.name}}</span> </h1>
+              </div>
+              <app-ask-expert-btn></app-ask-expert-btn>
+            </div>
+          </section>
+        </section>
+        <section>
+          <div class="container">
+            <div class="page-links py-2">
+              <a class="hover-color" routerLink="/"> <span>{{"Home"|translate}} / </span> </a>
+              <a class="hover-color" routerLink="/all-destinations/{{id}}"> <span> {{desName}} / </span> </a>
+              <a class="hover-color" routerLink="/all-destinations/{{id}}/travel-guides"> <span> {{GuideName}} / </span> </a>
+              <span class="main-color">{{guide.name}}</span>
+            </div>
+          </div>
+        </section>
+        <section class="sec-bg py-4">
+          <div class="container">
+            <div  class="row">
+              <div class="col-lg-9 col-md-9 col-sm-12  bg-white ">
+                @if (!loading) {
+                  <div class="single-blog-content w-100 mb-5 splendor">
+                    <div class="inner-html" [innerHTML]="guide.overview |safeHtml"></div>
+                  </div>
+                }
+                @if (loading) {
+                  <div class="ph-item">
+                    @for (n of numSequence(20); track $index) {
+                      <div class="ph-col-12">
+                        <div class="ph-row">
+                          <div class="ph-col-4"></div>
+                          <div class="ph-col-8 empty"></div>
+                          <div class="ph-col-6"></div>
+                          <div class="ph-col-6 empty"></div>
+                          <div class="ph-col-12"></div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+                <div class="text-center ">
+                  @if (guide.related_travel_guides.length>0) {
+                    <div>
+                      <h2 class="mb-3 text-left relatedd">{{"Related Travel Guides"|translate}}</h2>
+                      <hr class="hr mb-3 mt-3">
+                    </div>
+                  }
+                  <div class="row">
+                    @for (gui of guide.related_travel_guides; track $index) {
+                      <div class="col-lg-3 col-md-4 mb-3">
+                        <app-related-card-ribbon   [url]="'all-destinations/'+gui.destination.slug+'/travel-guide/'+gui.slug" [title]="gui.name" [des]="gui.description|slice:0:80" [alt]="gui.name" [img]="gui.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                  @if (guide.related_pages.length>0) {
+                    <div>
+                      <h2   class="mb-1 text-left relatedd">{{"Related Articles"|translate}}</h2>
+                      <hr class="hr mb-3 mt-3">
+                    </div>
+                  }
+                  <div class="row">
+                    @for (gui of guide.related_pages; track $index) {
+                      <div class="col-lg-3 col-md-4  mb-3 ">
+                        <app-related-card-ribbon [title]="gui.name" [url]="'/all-destinations/'+gui.destination.slug+'/category/'+gui.category.slug+'/page/'+'/'+gui.slug"  [des]="gui.description|slice:0:80"  [alt]="gui.name" [img]="gui.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                  @if (guide.related_packages.length>0) {
+                    <div>
+                      <h2   class="mb-1 text-left relatedd">{{"Related Package"|translate}}</h2>
+                      <hr class="hr mb-3 mt-3">
+                    </div>
+                  }
+                  <div class="row">
+                    @for (gui of  guide.related_packages; track $index) {
+                      <div class="col-md-3 mb-3">
+                        <!-- <app-related-card  [url]="'all-destinations/'+gui.destination.slug+'/travel-packages/'+gui.slug" [title]="gui.name" [des]="gui.description |slice:0:80" [alt]="gui.name" [img]="gui.thumb"></app-related-card> -->
+                        <app-related-card-ribbon [top_sale]="gui.top_sale"   [url]="'all-destinations/'+gui.destination.slug+'/travel-packages/'+gui.slug" [title]="gui.name" [des]="gui.description |slice:0:80" [alt]="gui.name" [img]="gui.thumb"></app-related-card-ribbon>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-3">
+                <app-expert-reviews [name]="'travel-guides'"></app-expert-reviews>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    }
+  </section>
+}
+<app-scroll-button></app-scroll-button>
+
+
+
+@if (loading) {
+  <section>
+    <section >
+      <section   class="min-banner">
+        <section  >
+          <section class="banner text-center"
+            [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(../../../../../../assets/imgs/default-banner.webp)' }">
+            <div class="container">
+              <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+                <h1><span class="main-color des-Name font-weight-bold"> loading..</span>  </h1>
+              </div>
+              <div class="over_banner">
+              </div>
+              <p class="mt-2"></p>
+              <app-ask-expert-btn></app-ask-expert-btn>
+            </div>
+          </section>
+        </section>
+      </section>
+    </section>
+    <section class="sec-bg py-4">
+      <div class="container">
+        <div  class="row">
+          <div class="col-lg-9 col-md-9 col-sm-12 bg-white ">
+            <div  class="ph-item">
+              @for (n of numSequence(30); track $index) {
+                <div class="ph-col-12">
+                  <div class="ph-row">
+                    <div class="ph-col-4"></div>
+                    <div class="ph-col-8 empty"></div>
+                    <div class="ph-col-6"></div>
+                    <div class="ph-col-6 empty"></div>
+                    <div class="ph-col-12"></div>
+                  </div>
+                </div>
+              }
+            </div>
+            <div class="text-center ">
+              <div >
+                <h2 class="mb-3 text-left relatedd">{{"Related Travel Guides"|translate}}</h2>
+                <hr class="hr mb-3 mt-3">
+              </div>
+              <div class="">
+                <div  class="row">
+                  @for (n of numSequence(6); track $index) {
+                    <div class="col-md-4">
+                      <div class="ph-item">
+                        <div class="ph-col-12">
+                          <div class="ph-picture"></div>
+                          <div class="ph-row">
+                            <div class="ph-col-6 big"></div>
+                            <div class="ph-col-4 empty big"></div>
+                            <div class="ph-col-2 big"></div>
+                            <div class="ph-col-4"></div>
+                            <div class="ph-col-8 empty"></div>
+                            <div class="ph-col-6"></div>
+                            <div class="ph-col-6 empty"></div>
+                            <div class="ph-col-12"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+            <app-expert-reviews [name]="'travel-guides'"></app-expert-reviews>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+}

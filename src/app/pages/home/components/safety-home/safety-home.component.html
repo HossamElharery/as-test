@@ -1,0 +1,50 @@
+@if (comeData) {
+<section class="safety">
+  <div class="layer">
+    <div class="container">
+      @for (item of data; track $index) {
+      <div class="">
+        <div class="w-100 d-flex flex-column justify-content-center text-center">
+          <h2 class="head-tit">
+            <strong> {{ item.second_title }}</strong>
+          </h2>
+          <img loading="lazy" height="21px" width="50%" src="../../../assets/imgs/rowheading_lineblack.png"
+            class=" m-auto" alt="heading">
+        </div>
+        <div class="descrip">
+          <p class="inner-html text-center">
+            <app-safe-html [htmlContent]="getSafeContent(item.second_block)"></app-safe-html>
+          </p>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+}@else {
+<section class="safety">
+  <div class="layer">
+    <div class="container">
+      <div class="">
+        <div class="w-100 d-flex flex-column justify-content-center text-center">
+          <h2 class="head-tit">
+            <strong> ....</strong>
+          </h2>
+          <img loading="lazy" src="../../../assets/imgs/rowheading_lineblack.png" class=" m-auto" alt="row heading">
+        </div>
+        @for (n of numSequence(5); track $index) {
+        <div class="descrip">
+          <div class="ph-row">
+            <div class="ph-col-6 big"></div>
+            <div class="ph-col-2 big"></div>
+            <div class="ph-col-4"></div>
+            <div class="ph-col-6"></div>
+            <div class="ph-col-12"></div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+}

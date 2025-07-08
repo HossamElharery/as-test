@@ -1,0 +1,37 @@
+.cat-pack{
+
+  color: #444444 ;
+  display: block !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 30px !important;
+  padding: 5px 20px !important;
+  text-align: left;
+
+}
+
+
+
+/* ================ tablet Responsive ========== */
+@media only screen and (min-width: 768px) and (max-width:992px){
+  .package-content .advatnage{
+    height: 63px;
+    display: grid;
+  }
+  .head h3{
+    font-size: 1.5rem;
+  }
+  .form span label{
+    font-size: 0.8rem;
+  }
+  .cat-pack{
+    font-size: 13px!important;
+    line-height: 20px!important;
+    padding: 3px 12px !important;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .touur i{
+    padding-right:.25rem;
+  }
+}

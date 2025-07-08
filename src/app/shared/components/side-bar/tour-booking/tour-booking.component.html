@@ -1,0 +1,99 @@
+<div class="submit">
+  <div class="position-relative trip-dossier">
+    <button (click)="openVertically(Trip)" data-toggle="modal" data-target="#exampleModalLong"
+      class="btn main-btn w-100 mt-3 trip" style="font-weight: 600;"><span>{{ "DOWNLOAD" | translate }}</span>
+    {{ "TRIP DOSSIER" | translate }}</button>
+    <div class="send"> <i class="fas fa-download fa-2x mt-2"></i> </div>
+  </div>
+
+  <div class="position-relative ">
+    <button (click)="openVerticallyCentered(content)" data-toggle="modal" data-target="#exampleModalLong"
+      class="main-btn w-100 mt-3  " style="font-weight: 600;"> <span>{{ "Send " | translate }}</span>{{ "Booking Enquiry" | translate }}</button>
+      <div class="send"><i class="fab fa-telegram-plane fa-2x mt-2"></i></div>
+    </div>
+
+  </div>
+
+
+
+
+
+  <ng-template #content let-modal>
+    <i class="fas fa-times-circle close-booking" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
+    <!-- <picture>
+      <source [attr.srcset]="'assets/imgs/ask.png'" >
+      <img  style="object-fit: cover;" [ngSrc]="'assets/imgs/ask.png'" alt="ask-aladdin" title="ask-aladdin" class="logo" width="200" height="88" priority>
+    </picture> -->
+
+    <div class="modal-body">
+      <section class="bg-white  px-3   booking">
+        <!-- <div class="head mb-2">
+        <h3 class="font-weight-bolder">{{ "Booking" | translate }}</h3>
+      </div> -->
+      <!-- <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button> -->
+      <!-- <iframe onload="javascript:parent.scrollTo(0,0);" height="1300" allowTransparency="true" scrolling="no" frameborder="0" sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation" style="width:100%;border:none" src="https://www.ask-aladdin.com/machform/embed.php?id=4" title="AskAladdin Tour Package Booking Center:"><a href="https://www.ask-aladdin.com/machform/view.php?id=4" title="AskAladdin Tour Package Booking Center:">AskAladdin Tour Package Booking Center:</a></iframe> -->
+
+
+      <iframe onload=" " height="1300" allowTransparency="true" scrolling="no" frameborder="0" sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation" style="width:100%;border:none" src="https://www.ask-aladdin.com/machform/embed.php?id=20675" title="Check Trip Availability With AskAladdin Travel"><a href="https://www.ask-aladdin.com/machform/view.php?id=20675" title="Check Trip Availability With AskAladdin Travel">Check Trip Availability With AskAladdin Travel</a></iframe>
+
+    </section>
+
+  </div>
+  <!-- <div class="modal-footer">
+  <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+</div> -->
+</ng-template>
+
+<ng-template #Trip let-modal>
+  <i class="fas fa-times-circle close-booking" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
+
+  <div class="modal-body">
+    <section class="bg-white  px-3 booking">
+      <div class="head mb-2">
+        <h3 class="font-weight-bolder head ">{{ "Please fill the form" | translate}}</h3>
+        <hr>
+        </div>
+
+
+        <form class="mt-4" [formGroup]="profileForm" >
+          <div class="informations mt-3">
+
+            <input [class.is-valid]="profileForm.controls['name'].errors==null" id="name" name="name" class="form-control" type="text" placeholder="Enter Your Name" formControlName="name" >
+            @if (profileForm.controls['name'].invalid && (profileForm.controls['name'].dirty || profileForm.controls['name'].touched)) {
+              <div class="alert alert-danger mt-2">
+                Enter Valid Name
+              </div>
+            }
+
+            <input [class.is-valid]="profileForm.controls['email'].errors==null" class="form-control mt-3" type="text" placeholder="Enter Your Email ID" formControlName="email">
+            @if (profileForm.controls['email'].invalid && (profileForm.controls['email'].dirty || profileForm.controls['email'].touched)) {
+              <div class="alert alert-danger mt-2">
+                Enter Valid Email
+              </div>
+            }
+
+            <input  [class.is-valid]="profileForm.controls['phone'].errors==null" class="form-control mt-3" type="tel" placeholder="Enter Your Phone Number" formControlName="phone" >
+            @if (profileForm.controls['phone'].invalid&&profileForm.controls['phone'].errors && (profileForm.controls['phone'].dirty || profileForm.controls['phone'].touched)) {
+              <div class="alert alert-danger mt-2">
+                Enter Valid phone
+              </div>
+            }
+
+            <textarea [class.is-valid]="profileForm.controls['comment'].errors==null" class="form-control mt-3" rows="5" placeholder="Enter Your Comments" formControlName="comment"></textarea>
+            @if (profileForm.controls['comment'].invalid && (profileForm.controls['comment'].dirty || profileForm.controls['comment'].touched)) {
+              <div class="alert alert-danger mt-2">
+                Please Enter Your Comments
+              </div>
+            }
+          </div>
+          <button type="submit" class="main-btn w-100 mt-3" (click)="onSubmit(profileForm , id)" [disabled]="!profileForm.valid">Submit</button>
+          @if (alert) {
+            <div class="text-center mt-2 alert alert-primary"><p>Thank you for your interest in AskAladdin, the Egypt travel expert. We have emailed you a download link with the Trip Factsheet. Please check your email</p></div>
+          }
+        </form>
+      </section>
+
+    </div>
+
+
+  </ng-template>

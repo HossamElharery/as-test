@@ -1,0 +1,13 @@
+.list-group-item img {
+    height: 15px;
+    margin-top: 6px;
+}
+.list-group-item{
+    border: 0px;
+}
+.list-group-item span {
+    font-size: .9rem;
+    margin-left: 0.6rem;
+    color: #707070;
+    line-height: 1.6rem;
+}

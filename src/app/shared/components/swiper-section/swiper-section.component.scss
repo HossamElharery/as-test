@@ -1,0 +1,73 @@
+.swiper-section {
+    position: relative;
+    .general-swiper {
+        padding-bottom: 70px;
+        ::ng-deep {
+            .swiper-pagination-bullet {
+                width: 22px;
+                height: 7px;
+                background-color: #C6C6C6;
+                border-radius: 5px;
+                margin: 0px 3px;
+                opacity: 1;
+                &-active {
+                    width: 35px;
+                    background: var(--primary);
+                }
+            }
+        }
+    }
+
+    &.no-pagination {
+        .general-swiper {
+            padding-bottom: 0px;
+        }
+    }
+    &.has-navigation {
+        padding: 0 70px;
+        @media (max-width: 991.98px) {
+            padding: 0;
+        }
+        ::ng-deep {
+            .swiper {
+                position: static;
+            }
+            .swiper-button-prev {
+                right: -4px;
+                // &::after {
+                //     content: url('../../../../assets/imgs/icons/arrow-mcolor-right.svg');
+                // }
+            }
+            .swiper-button-next {
+                left: -4px;
+                // &::after {
+                //     content: url('../../../../assets/imgs/icons/arrow-mcolor-left.svg');
+                // }
+            }
+            @media (max-width: 991.98px) {
+                .swiper-button-prev, .swiper-button-next {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 991.98px) {
+        .general-swiper {
+            padding-bottom: 60px;
+            ::ng-deep {
+                .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+                    bottom: 15px;    
+                }
+                .swiper-pagination-bullet {
+                    width: 15px;
+                    height: 5px;
+                    margin: 0px 2px;
+                    &-active {
+                        width: 25px;
+                    }
+                }
+            }
+        }
+    }
+}

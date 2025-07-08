@@ -1,0 +1,296 @@
+.services{
+    position: sticky;
+    top: 5%;
+    z-index: 555555;
+}
+.services-content {
+    flex: 1 1 auto
+}
+.services-content i , .services-content p {
+    font-size: 18px;
+}
+.services-content p {
+    font-size: .8rem;
+}
+.services-content {
+    border-right: 1px solid #f4f4f9 ;
+}
+.services {
+    padding: .8rem 0;
+}
+a{
+    color: black;
+}
+a:hover
+{
+    color:#f68800;
+    text-decoration: none;
+}
+.splendor p {
+
+    margin-bottom: 0.2rem;
+}
+.package {
+    border-left: 3px dotted #f68800;
+    padding-left: 4rem;
+    margin-left: 1rem;
+}
+
+.meal img  {
+    height: 25px;
+}
+.meal span , .detail span {
+    font-size: 13px;
+    margin-left: 0.2rem;
+}
+.detail img{
+    height: 20px;
+}
+.buttons{
+    border-radius: none;
+}
+ .buttons a
+{
+    line-height: 40px;
+    color: rgb(245, 150, 9);
+    margin-left: 5px;
+    border-left: 1px solid #f68800;
+    border-top: 1px solid #f68800;
+    border-right: 1px solid #f68800;
+    border-radius: 0;
+}
+.buttons a.active{
+    background-color: #f68800;
+    color: #fff;
+}
+
+
+
+
+
+
+.opsnltrrow_top_colr_label{
+  display: block;
+    width: 126px;
+    height: 116px;
+    background: url(../../../../../assets/imgs/opsnltrrow_top_colr_label_bg.png) no-repeat;
+     position: absolute;
+    bottom: -30px;
+    /* right: 160px; */
+    left: -81px;
+    text-align: center;
+}
+.opsnltrrow_top_colr_label h5{
+  font-size: 15px;
+  transform: rotate(-20deg);
+  margin: 24px 15px 0 0;
+  color: #fff;
+}
+.opsnltrrow_top_colr_label h5 span{
+  font-size: 20px;
+}
+.img-fluid{
+  width: 335px;
+  border-radius: 5px;
+}
+    /* ============= Mobile Responsive=============== */
+
+    @media only screen  and (max-width:767px){
+
+        .opsnltrrow_top_colr_label{
+          right: -13px;
+          top: -7px;
+          bottom: inherit;
+          left: inherit;
+        }
+        .mobile-container{
+          padding: 12px 0px!important;
+        }
+
+    }
+    /* ================ tablet Responsive ========== */
+    @media only screen and (min-width: 768px) and (max-width:992px) {
+        /* .sec-banne {
+            height: 37vh!important;
+        } */
+        .opsnltrrow_top_colr_label{
+          background-size: contain;
+          left: -62px;
+          font-size: 15px;
+          width: 100px;
+          height: 100px;
+        }
+        .opsnltrrow_top_colr_label h5{
+          font-size: 11px;
+
+        }
+        .opsnltrrow_top_colr_label h5 span{
+          font-size: 16px;
+
+        }
+        .services-content p{
+          display: none!important;
+        }
+    }
+
+.over_banner img{
+
+max-height:100px ;
+width: 335px;
+min-height: 85px;
+}
+
+
+.dot-img {
+    height: 20px;
+    margin-top: 3px;
+}
+.rev{
+    color: #f68800;
+}
+.rev0{
+    height: 50px;
+    /* width:200px; */
+    /* border: solid 1px #f68800; */
+    border-radius:50%;
+}
+h4 img {
+    height: 20px;
+    margin-top: 2px;
+}
+.frame-youtupe{
+    height: 250px;
+}
+.modal-dialog{
+    max-width: 1000px;
+}
+.modal-content{
+    width: 100%;
+    height: 500px;
+    background-color: #f68800;
+
+}
+.modal-body{
+    width: 100%;
+    height: 100%;
+}
+.fa-play:before{
+    content: "\f04b";
+    font-size: 25px;
+    color: #fff;
+    padding: 14px 25px;
+    border-radius: 5%;
+    background-color: #f68800;
+}
+.layer-youtupe i
+{
+    font-size: 35px;
+    padding: 20px;
+    border-radius: 50%;
+}
+.layer-youtupe{
+    position: absolute;
+    top: 4%;
+    display: none;
+    left: 5%;
+    background-color: #00000000;
+    width: 90%;
+    height: 87%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#videos ,#accomodation,#overview,#included,#Itinerary,#optional,#highlights,#prices,#trav,#reviews,#map{
+  scroll-margin-top: 200px;
+ }
+
+
+/* tags */
+
+.services{
+  position: sticky;
+  top: 85px;
+  z-index: 333;
+  background-color: rgba(255, 255, 255) !important;
+  box-shadow: 0px 5px 10px 5px #cccccc80;
+}
+.hover-color{
+  color: #000 !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.hover-color:hover {
+  color: #f68800 !important;
+}
+.services-content {
+  flex: 1 1 auto;
+  cursor: pointer;
+
+}
+.services-content i , .services-content p {
+  font-size: 18px;
+}
+.services-content p {
+  font-size: .8rem;
+}
+.services-content {
+  border-right: 1px solid #f4f4f9 ;
+}
+.services {
+  padding: 1.3rem 0;
+}
+a,.services-content{
+  color: grey!important;
+}
+
+.services a:hover
+{
+    color:#f68800 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.IncludedTag , .highlightsTag , .IItineraryTag , .accomodationTag , .videosTag , .OptionalTag , .travTag , .priceTag{
+  color: #f68800;
+}
+ a.active {
+  color: #f68800 !important;
+}
+.services a:active
+{
+    color:#f68800 !important;
+
+}
+
+
+
+
+nav a.active {
+  color: yellow;
+}
+
+.services-content:active{
+  color:#f68800 !important;
+
+}
+
+.actives{
+  color:#f68800 !important;
+
+}
+nav a.active {
+  color: yellow !important;
+  background-color: red;
+}
+.minn{
+  min-height: 700px;
+}
+
+.embed-responsive{
+  height: 450px !important;
+}
+

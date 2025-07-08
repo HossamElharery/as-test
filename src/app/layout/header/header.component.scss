@@ -1,0 +1,262 @@
+
+.dropdown-menu {
+  width: 75px !important;
+  transform: translateX(-40px ) !important;
+  z-index: 999999;
+}
+.list-style{
+  background-color: black;border: 0px;
+}
+.dropdown-menu  a {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+.lang-btn {
+  margin-left: 40px;
+}
+}
+
+.flag , .img-lang
+{
+  width: 20px;
+
+  margin-bottom: 10px;
+
+
+}
+.main-btn{
+padding: 10px 25px 10px 10px;
+  background-color: transparent;
+  .dropdown-item{
+    cursor: pointer;
+  }
+}
+.main-btn::after{
+display: none;
+}
+
+
+.list-dropdown {
+h3 {
+  font-size: 14px;
+}
+}
+
+
+.input-group {
+i {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px !important;
+  margin:8px 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: all ease .5s;
+  background-color: #f68800;
+}
+i:hover {
+  padding: 10px;
+  background-color: #f68800;
+  border-radius: 50%;
+}
+}
+
+
+.searchTitle {
+h2  {
+  font-family: 'Goudy Bookletter 1911', serif;
+  color: #f68800;
+  font-size: 1.5rem;
+  text-align: left;
+  a{
+    color: #f68800;
+    text-decoration: none;
+
+}
+a:hover{
+  color: #fff;
+  }
+}
+}
+.modal{
+  padding-right: 0 !important;
+  background-color: rgba(0, 0, 0, 0.541) !important;
+  z-index: 99999999;
+  .close{
+    margin: 0px;
+    padding: 0px !important;
+    font-size: 45px;
+    font-weight: 100;
+    position: absolute;
+    right: 3%;
+    top: 60px !important;
+    color: #ffffff;
+    z-index: 9999 !important;
+    transition: all ease .5s;
+  }
+  .close:hover {
+    transform: rotate(360deg);
+    color: #f68800;
+}
+  .modal-dialog{
+    width: 100%;
+    max-width: 100%;
+    .modal-content{
+      background: none !important;
+      .modal-header{
+        border-bottom: none !important;
+        .modal-body {
+          .labelSearch {
+            i{
+            transform: translatex(300px);
+            }
+          }
+          input{
+            background-color: transparent;
+            color: #f68800;
+            border-top: none ;
+            height: 63px;
+            border-left: none;
+            border-right: none;
+            padding: 20px 5px;
+            border-radius: 0;
+            width: 75%;
+            margin: auto;
+        }
+        input:focus{
+          box-shadow: none;
+          border-color: #f68800;
+      }
+      input::before{
+          content: \f002;
+          width: 100px;
+          color: #f68800;
+          background-color: #f68800;
+      }
+        }
+    }
+  }
+}
+
+}
+/* card for search style */
+.blogs{
+  border-radius: 0;
+  a {
+    text-decoration: none;
+    .main-card{
+      box-shadow: 0 0 0 0 rgba(0,0,0,0.5);
+      overflow: hidden;
+      position: relative;
+      height: 160px;
+      width: 190px;
+      margin: 10px;
+      img {
+        height: 300px;
+        object-fit: cover;
+        transform: scale(1);
+        transition: all 0.5s ease 0s;
+    }
+    .card-detailss{
+      position: absolute;
+      top: 85%;
+      width: 100%;
+      height: 50px;
+      padding: 0.9rem;
+      color: #f68800;
+      background: rgba(0,0,0,0.8);
+      transition: ease .5s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      top: 50%;
+      height: 80px;
+      overflow: hidden;
+      .card-title{
+        font-size: 16px;
+        margin: 0;
+    }
+    }
+
+  }
+  .main-card:hover {
+    .card-detailss{
+      background-color: rgba(0,0,0,0.5);
+      height: 100%;
+      top: 0;
+      color: #fff;
+    }
+    }
+
+}
+
+}
+.blogs:hover a{
+.main-card{
+  img {
+    transform: scale(1.1);
+}
+}
+}
+.empty-result{
+  color: #f68800;
+}
+
+.link-social{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  i{
+    color: #fff;
+    font-size: .7rem !important;
+ }
+  .fb:hover {
+    i{
+      color: rgb(3, 30, 185);
+  }
+  }
+  .ins:hover{
+    i{
+      color: rgb(172, 12, 187);
+  }
+  }
+  .twt:hover {
+    i{
+      color: rgb(6, 126, 238);
+    }
+  }
+  .lin:hover{
+    i{
+      color: rgb(6, 126, 238);
+    }
+  }
+  .pain:hover {
+    i{
+      color: rgb(238, 6, 6);
+     }
+    }
+  .yout:hover {
+    i{
+      color: rgb(238, 6, 6);
+  }
+}
+
+}
+.modal-header{
+padding:0px !important
+}
+
+@media only  screen and (max-width:480px) {
+.contacts{
+  width: 100%;
+}
+
+  .main-btn:after{
+    display:none;
+  }
+
+}

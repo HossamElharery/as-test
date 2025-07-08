@@ -1,0 +1,99 @@
+
+<section class="min-banner">
+  @for (guide of allGuides|slice:0:1; track $index) {
+    <div >
+      <section class="banner text-center"
+        [ngStyle]="{'background-image':'linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0 ,0 ,0, .5)) , url(' + guide.banner + ')' }">
+        <div class="container">
+          <div class="head first-character-c d-inline-block font-weight-bold pb-1">
+            <h1><span class="main-color des-Name font-weight-bold"> {{guide.name}}</span>  </h1>
+          </div>
+          <app-ask-expert-btn></app-ask-expert-btn>
+        </div>
+      </section>
+    </div>
+  }
+</section>
+
+
+<section>
+  <div class="container">
+    <div  class="page-links py-2">
+      <a class="hover-color" routerLink="/"> <span > {{"Home"}} / </span>  </a>
+      <a class="hover-color" routerLink="/all-destinations/{{desSlug}}"> <span > {{desName}} / </span>  </a>
+      <span class="main-color">{{name}}</span>
+    </div>
+  </div>
+</section>
+<section class="sec-bg py-4 min-sec-gu">
+  <div class="container">
+    <!-- <div class="head-title text-center mb-5">
+    <h2 class="">{{desName}} {{name}}</h2>
+  </div> -->
+
+
+  @for (des of allGuides | slice:0:1; track $index) {
+    <div  class="head-title text-center mb-4">
+      <!-- <h2 class="font-weight-bold">{{ des.name }}</h2> -->
+      @if (des.description != '') {
+        <p class="des-text inner-html"><app-safe-html [htmlContent]="getSafeContent(des.description)"></app-safe-html></p>
+      }
+    </div>
+  }
+
+
+  @if (!loading) {
+    <div class="row">
+      @for (guide of guidesContainer; track $index) {
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+          <div class="blogs overflow-hidden">
+            <div class="card text-center">
+              <a routerLink="/all-destinations/{{desSlug}}/travel-guide/{{guide.slug}}" class="text-dark">
+                <img loading="lazy" src="{{guide.thumb}}" class="card-img-top" alt="{{guide.thumb_alt}}">
+              </a>
+              <div class="card-body">
+                <a routerLink="/all-destinations/{{desSlug}}/travel-guide/{{guide.slug}}" class="text-dark">
+                  <h2 class="card-title title-category ">{{guide.name}}</h2>
+                </a>
+                <p class="card-text inner-html"><app-safe-html [htmlContent]="getSafeContent(guide.description, 135)"></app-safe-html></p>
+                <a routerLink="/all-destinations/{{desSlug}}/travel-guide/{{guide.slug}}" class="btn w-75 main-btn blog-btn"> {{"Read More"|translate}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+
+  @if (loading) {
+    <div class="row mt-3">
+      @for (n of numSequence(12); track $index) {
+        <div class="col-md-4">
+          <div class="ph-item">
+            <div class="ph-col-12">
+              <div class="ph-picture"></div>
+              <div class="ph-row">
+                <div class="ph-col-6 big"></div>
+                <div class="ph-col-4 empty big"></div>
+                <div class="ph-col-2 big"></div>
+                <div class="ph-col-4"></div>
+                <div class="ph-col-8 empty"></div>
+                <div class="ph-col-6"></div>
+                <div class="ph-col-6 empty"></div>
+                <div class="ph-col-12"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+</div>
+
+</section>
+
+
+
+<app-scroll-button></app-scroll-button>

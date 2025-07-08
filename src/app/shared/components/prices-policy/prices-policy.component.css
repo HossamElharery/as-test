@@ -1,0 +1,45 @@
+/* myaccordion */
+.myaccordion {
+    margin: 16px auto;
+    /* box-shadow: 0 0 1px rgba(0,0,0,0.1); */
+  }
+
+  .myaccordion .card,
+  .myaccordion .card:last-child .card-header {
+    border: none;
+    margin: 4px 0px 4px 0px;
+
+  }
+
+  .myaccordion .card-header {
+    border-bottom-color: #EDEFF0;
+    background: transparent;
+  }
+
+  .myaccordion .fa-stack ,.iccon{
+    font-size: 14px;
+  }
+
+
+
+  .myaccordion .btn {
+    width: 100%;
+    font-weight: bold;
+    color: #ff8200;
+    padding: 0;
+  }
+
+  .myaccordion .btn-link:hover,
+  .myaccordion .btn-link:focus {
+    text-decoration: none;
+  }
+
+  .myaccordion li + li {
+    margin-top: 10px;
+  }
+
+  .btn.focus, .btn:focus{
+    box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 25%);
+  }
+
+

@@ -1,0 +1,51 @@
+<app-banner></app-banner>
+<app-breadcumbs></app-breadcumbs>
+<section class="sec-bg py-4">
+  <div class="container">
+      <div class="head-title text-center">
+          <h2 class="sat-font main-color mb-0">{{"All Destinations"|translate}}</h2>
+      </div>
+
+      <div class=" pl-0 mt-4">
+        <div   class="head-title text-center mb-2">
+          <p class="des-text inner-html" [innerHTML]="description| codeHtml:'html'"> </p>
+        </div>
+      </div>
+
+
+      @if (loading) {
+        <div class="row mt-3">
+          @for (n of numSequence(6); track $index) {
+            <div class="col-md-4" >
+              <shimmer [width]="'350px'" [height]="'300px'"></shimmer>
+            </div>
+          }
+        </div>
+      }@else {
+        <div  class="row">
+          @for (des of destinationContainer; track $index) {
+            <div class="col-12 col-md-4 mb-4" >
+              <div class="destination-details" >
+                <a [attr.aria-label]="des.name" [routerLink]="'/all-destinations/' + des.slug">
+                  <img
+                    loading="lazy"
+                    height="250px"
+                    width="100%"
+                    [src]="des.thumb"
+                    class="img-fluid w-100"
+                    [alt]="des.thumb_alt"
+                  />
+                </a>
+                <div class="overlay">
+                  <a [attr.aria-label]="des.name" class="text-white" [routerLink]="'/all-destinations/' + des.slug">
+                    {{ des.name }}
+                  </a>
+                </div>
+              </div>
+          </div>
+          }
+
+      </div>
+      }
+  </div>
+</section>
