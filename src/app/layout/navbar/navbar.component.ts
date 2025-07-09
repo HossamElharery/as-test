@@ -4,16 +4,11 @@ import { Component, ElementRef, HostListener, Inject, OnDestroy, OnInit, ViewChi
 import { Router, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../core/services/auth/auth.service';
-import { MessagesService } from '../../core/services/messages/messages.service';
-import { TourTypeTransferService } from '../../core/services/tour-type-transfer.service';
-import { HomeserviceService } from '../../core/services/homeservice.service';
-import { CommonModule, DOCUMENT, NgClass, NgOptimizedImage, NgStyle, SlicePipe, TitleCasePipe } from '@angular/common';
+import { CommonModule, DOCUMENT,  NgOptimizedImage,   } from '@angular/common';
 import { destination } from '../../core/interfaces/destination';
 import { Faq } from '../../core/interfaces/faq';
 import { TravelGuide } from '../../core/interfaces/travel-guide';
 import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
-import config from '../../../assets/locales.json';
 
 @Component({
     selector: 'app-navbar',
@@ -76,7 +71,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: any,
     public _Navbar: LayoutService,
     public _router: Router,
-    public _TourTypeTransferService: TourTypeTransferService,
     private translate:TranslateService
   ) {
     this.lang = this.translate.currentLang

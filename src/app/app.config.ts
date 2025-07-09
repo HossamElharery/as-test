@@ -11,7 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LANGUAGE_TOKEN } from './core/languages/language-token';
 import { TranslationService } from './core/services/translate/language.service';
 import { TransferStateInterceptor } from './core/languages/translation.interceptor';
-import { SkipPublicInterceptor } from './core/interceptor/skip-link/skip-link.interceptor';
+// import { SkipPublicInterceptor } from './core/interceptor/skip-link/skip-link.interceptor';
 import { SsrSkipApiInterceptor } from './core/interceptor/ssr-skip-api.interceptor';
 import { RateLimitInterceptor } from './core/services/interceptors/rate-limit';
 import { ErrorHandlingInterceptor } from './core/services/interceptors/error-handling';
@@ -82,7 +82,7 @@ export const appConfig: ApplicationConfig = {
 
     // Order matters: first SsrSkip handles SSR special logic, then SkipPublic, RateLimit.
     { provide: HTTP_INTERCEPTORS, useClass: SsrSkipApiInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: SkipPublicInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: SkipPublicInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: RateLimitInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: SeoResponseInterceptor, multi: true },

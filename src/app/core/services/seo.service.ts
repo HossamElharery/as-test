@@ -3,6 +3,7 @@ import { Inject, Injectable, makeStateKey, PLATFORM_ID, Renderer2, RendererFacto
 import { Meta, Title } from '@angular/platform-browser';
 import { author, description, fb, google_site_verification, keywords, msvalidate, og, revisit_after, robots, twitter, viewport, yahoo, yandex_verification } from '../models/seo';
 import { HomeserviceService } from './homeservice.service';
+import { firstValueFrom } from 'rxjs';
 
 const SEO_KEY = makeStateKey<any>('seo-data');
 
@@ -72,6 +73,7 @@ export class SeoService {
     element.setAttribute('href', url);
   }
 
+  // ORIGINAL METHOD - RESTORED EXACTLY AS IT WAS
   globalSeo(lang:any) {
     const seoData = this.transferState.get(SEO_KEY, null);
 
@@ -84,6 +86,30 @@ export class SeoService {
         this.transferState.set(SEO_KEY, res.data[0]);  // Save data for client-side rendering
       });
     }
+  }
+
+  // NEW: MINIMAL METHOD ONLY FOR SSR - RETURNS PROMISE
+  globalSeoForSSR(lang: string): Promise<void> {
+    const seoData = this.transferState.get(SEO_KEY, null);
+
+    if (seoData) {
+      this.setMetaTags(seoData);
+      return Promise.resolve();
+    }
+
+    // Convert the Observable to Promise for APP_INITIALIZER
+    return firstValueFrom(this.seo.globalSeo(lang))
+      .then((res: any) => {
+        if (res && res.data && res.data[0]) {
+          this.chat = res.data[0].live_chat_tag;
+          this.setMetaTags(res.data[0]);
+          this.transferState.set(SEO_KEY, res.data[0]);
+        }
+      })
+      .catch((error) => {
+        console.error('SSR SEO failed:', error);
+        // Don't throw - let SSR continue
+      });
   }
 
   setMetaTags(data: any) {
@@ -194,6 +220,64 @@ export class SeoService {
     this.updateCanonicalUrl(`https://www.ask-aladdin.com${this.location.path()}`);
   }
 
+  /**
+   * Handle complete SEO data from API response (both global and page-specific)
+   * Use this method for direct API responses with facebook_title, facebook_description etc.
+   */
+  updateCompleteMetaTags(data: any) {
+    console.log('Setting complete meta tags from API:', data);
+
+    // Basic SEO tags
+    if (data.title) {
+      this._title.setTitle(data.title);
+    }
+
+    if (data.description) {
+      this.updateDesTag(data.description);
+    }
+
+    if (data.keywords) {
+      this.updateKeywords(data.keywords);
+    }
+
+    if (data.robots) {
+      this.updateRobots(data.robots);
+    }
+
+    // Open Graph tags (using API field names)
+    if (data.facebook_title) {
+      this._meta.updateTag({property: 'og:title', content: data.facebook_title});
+    }
+
+    if (data.facebook_description) {
+      this._meta.updateTag({property: 'og:description', content: data.facebook_description});
+    }
+
+    if (data.facebook_image) {
+      this._meta.updateTag({property: 'og:image', content: data.facebook_image});
+    }
+
+    // Twitter tags (using API field names)
+    if (data.twitter_title) {
+      this._meta.updateTag({name: 'twitter:title', content: data.twitter_title});
+    }
+
+    if (data.twitter_description) {
+      this._meta.updateTag({name: 'twitter:description', content: data.twitter_description});
+    }
+
+    if (data.twitter_image) {
+      this._meta.updateTag({name: 'twitter:image', content: data.twitter_image});
+    }
+
+    // Set URL for current page
+    this._meta.updateTag({property: 'og:url', content: `https://www.ask-aladdin.com${this.location.path()}`});
+    this._meta.updateTag({name: 'twitter:url', content: `https://www.ask-aladdin.com${this.location.path()}`});
+
+    // Update canonical URL
+    this.updateCanonicalUrl(`https://www.ask-aladdin.com${this.location.path()}`);
+  }
+
   updateDesTag(des: any) {
     let descriptionTag;
     if (!this._meta.getTag(`name='${description.description}'`)) {
@@ -278,7 +362,7 @@ export class SeoService {
     return ogImage;
   }
 
-    updateTags(data: any) {
+  updateTags(data: any) {
     console.log('Setting page-specific meta tags:', data);
 
     // Basic SEO tags
@@ -325,64 +409,6 @@ export class SeoService {
     }
 
     // Update canonical URL for the specific page
-    this.updateCanonicalUrl(`https://www.ask-aladdin.com${this.location.path()}`);
-  }
-
-  /**
-   * Handle complete SEO data from API response (both global and page-specific)
-   * Use this method for direct API responses with facebook_title, facebook_description etc.
-   */
-  updateCompleteMetaTags(data: any) {
-    console.log('Setting complete meta tags from API:', data);
-
-    // Basic SEO tags
-    if (data.title) {
-      this._title.setTitle(data.title);
-    }
-
-    if (data.description) {
-      this.updateDesTag(data.description);
-    }
-
-    if (data.keywords) {
-      this.updateKeywords(data.keywords);
-    }
-
-    if (data.robots) {
-      this.updateRobots(data.robots);
-    }
-
-    // Open Graph tags (using API field names)
-    if (data.facebook_title) {
-      this._meta.updateTag({property: 'og:title', content: data.facebook_title});
-    }
-
-    if (data.facebook_description) {
-      this._meta.updateTag({property: 'og:description', content: data.facebook_description});
-    }
-
-    if (data.facebook_image) {
-      this._meta.updateTag({property: 'og:image', content: data.facebook_image});
-    }
-
-    // Twitter tags (using API field names)
-    if (data.twitter_title) {
-      this._meta.updateTag({name: 'twitter:title', content: data.twitter_title});
-    }
-
-    if (data.twitter_description) {
-      this._meta.updateTag({name: 'twitter:description', content: data.twitter_description});
-    }
-
-    if (data.twitter_image) {
-      this._meta.updateTag({name: 'twitter:image', content: data.twitter_image});
-    }
-
-    // Set URL for current page
-    this._meta.updateTag({property: 'og:url', content: `https://www.ask-aladdin.com${this.location.path()}`});
-    this._meta.updateTag({name: 'twitter:url', content: `https://www.ask-aladdin.com${this.location.path()}`});
-
-    // Update canonical URL
     this.updateCanonicalUrl(`https://www.ask-aladdin.com${this.location.path()}`);
   }
 }

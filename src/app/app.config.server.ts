@@ -6,7 +6,7 @@ import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromD
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslationService } from './core/services/translate/language.service';
 import { SeoService } from './core/services/seo.service';
-import { SkipPublicInterceptor } from './core/interceptor/skip-link/skip-link.interceptor';
+// import { SkipPublicInterceptor } from './core/interceptor/skip-link/skip-link.interceptor';
 import { SeoResponseInterceptor } from './core/interceptor/seo-response.interceptor';
 import { LANGUAGE_TOKEN } from './core/languages/language-token';
 import { SsrSkipApiInterceptor } from './core/interceptor/ssr-skip-api.interceptor';
@@ -26,7 +26,6 @@ export function initializeApp(translationService: TranslationService): () => Pro
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/');
   // return new TranslateHttpLoader(httpClient, '../assets/i18n/');
-
 }
 
 const serverConfig: ApplicationConfig = {
@@ -50,19 +49,17 @@ const serverConfig: ApplicationConfig = {
       deps: [TranslationService],
       multi: true
     },
-    // Pre-fetch global SEO data for the current language so that meta tags are set during SSR
+    // FIXED: Only change this part - now properly waits for API completion
     {
       provide: APP_INITIALIZER,
       useFactory: (seo: SeoService, translate: TranslateService) => {
         return () => {
-          // Ensure a Promise is returned so Angular waits for completion
-          return new Promise<void>((resolve) => {
-            seo.globalSeo(translate.currentLang || 'en');
-            // Because globalSeo uses HttpClient.subscribe internally,
-            // wait a short tick to allow the async call to finish but do not block indefinitely.
-            // You may adjust the timeout if API latency is high.
-            setTimeout(() => resolve(), 1500);
-          });
+          // Use the new SSR method that returns a Promise
+          return seo.globalSeoForSSR(translate.currentLang || 'en')
+            .catch((error) => {
+              console.error('SEO initialization failed during SSR:', error);
+              // Don't block SSR even if SEO fails
+            });
         };
       },
       deps: [SeoService, TranslateService],
@@ -74,7 +71,7 @@ const serverConfig: ApplicationConfig = {
       deps: [TranslateService]
     },
     { provide: HTTP_INTERCEPTORS, useClass: SsrSkipApiInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: SkipPublicInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: SkipPublicInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: RateLimitInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: SeoResponseInterceptor, multi: true },
