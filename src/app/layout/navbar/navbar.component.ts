@@ -65,7 +65,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   tourTypes: any[] = [];
 
   isLoading: boolean = false;
-  lang!: string;
+  lang: string;
+
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -82,6 +83,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.subscription.unsubscribe();
 
   }
 
@@ -89,29 +91,91 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.subscription.add(this._Navbar.getMegaMenu()
       .subscribe({
         next: res => {
-          // tour_type
-          this.destinationsArray = res.data.destinations;
-          this.hot_offer_packages = res.data.hot_offer_packages;
-          this.hotOfferDesHover(this.hot_offer_packages[0][0].destination?.slug, 0)
-          this.city_excursions = res.data.city_excursions;
+          try {
+            // SAFE array access with proper null checks
+            console.log('MegaMenu response:', res);
 
-          this.ExcursionDesHover(this.city_excursions[0][0].destination?.slug, 0)
-          this.travel_guides = res.data.travel_guides;
-          this.guideDesHover(this.travel_guides[0][0].destination?.slug, 0)
+            // Initialize arrays safely
+            this.destinationsArray = res?.data?.destinations || [];
+            this.hot_offer_packages = res?.data?.hot_offer_packages || [];
+            this.city_excursions = res?.data?.city_excursions || [];
+            this.travel_guides = res?.data?.travel_guides || [];
+            this.categories = res?.data?.categories || [];
+            this.tour_type = res?.data?.tour_type || [];
 
-          this.categories = res.data.categories
-          this.destinatios(this.categories[0][0].destination?.slug, 0)
-          this.tour_type = res.data.tour_type
-          this.tourTypeDesHover(this.tour_type[0][0].destination?.slug, 0)
+            // SAFE: Check if arrays exist and have data before accessing
+            if (this.hot_offer_packages.length > 0 &&
+                this.hot_offer_packages[0] &&
+                this.hot_offer_packages[0].length > 0 &&
+                this.hot_offer_packages[0][0]?.destination?.slug) {
+              this.hotOfferDesHover(this.hot_offer_packages[0][0].destination.slug, 0);
+            }
+
+            if (this.city_excursions.length > 0 &&
+                this.city_excursions[0] &&
+                this.city_excursions[0].length > 0 &&
+                this.city_excursions[0][0]?.destination?.slug) {
+              this.ExcursionDesHover(this.city_excursions[0][0].destination.slug, 0);
+            }
+
+            if (this.travel_guides.length > 0 &&
+                this.travel_guides[0] &&
+                this.travel_guides[0].length > 0 &&
+                this.travel_guides[0][0]?.destination?.slug) {
+              this.guideDesHover(this.travel_guides[0][0].destination.slug, 0);
+            }
+
+            if (this.categories.length > 0 &&
+                this.categories[0] &&
+                this.categories[0].length > 0 &&
+                this.categories[0][0]?.destination?.slug) {
+              this.destinatios(this.categories[0][0].destination.slug, 0);
+            }
+
+            if (this.tour_type.length > 0 &&
+                this.tour_type[0] &&
+                this.tour_type[0].length > 0 &&
+                this.tour_type[0][0]?.destination?.slug) {
+              this.tourTypeDesHover(this.tour_type[0][0].destination.slug, 0);
+            }
+
+          } catch (error) {
+            console.error('Error processing MegaMenu data:', error);
+            // Set fallback empty arrays
+            this.destinationsArray = [];
+            this.hot_offer_packages = [];
+            this.city_excursions = [];
+            this.travel_guides = [];
+            this.categories = [];
+            this.tour_type = [];
+          }
+        },
+        error: (error) => {
+          console.error('Error loading MegaMenu:', error);
+          // Set fallback empty arrays
+          this.destinationsArray = [];
+          this.hot_offer_packages = [];
+          this.city_excursions = [];
+          this.travel_guides = [];
+          this.categories = [];
+          this.tour_type = [];
         }
       })
     )
   }
+  private safeArrayAccess(array: any[], index1: number, index2: number): boolean {
+    return array &&
+           array.length > index1 &&
+           array[index1] &&
+           array[index1].length > index2 &&
+           array[index1][index2];
+  }
+
   // megaDestinatios
-  chooseSlug(slug:any){
-    if (slug == 'myths-facts' || slug == 'blogs' || slug == 'travel-cruises' || slug == 'travel-excursions' || slug == 'travel-packages' || slug == 'travel-guides' || slug == 'hotels' ) {
+ chooseSlug(slug: any) {
+    if (slug == 'myths-facts' || slug == 'blogs' || slug == 'travel-cruises' || slug == 'travel-excursions' || slug == 'travel-packages' || slug == 'travel-guides' || slug == 'hotels') {
       this.slugCheck = true
-    }else {
+    } else {
       this.slugCheck = false
     }
   }

@@ -3,7 +3,8 @@ import { Inject, Injectable, makeStateKey, PLATFORM_ID, Renderer2, RendererFacto
 import { Meta, Title } from '@angular/platform-browser';
 import { author, description, fb, google_site_verification, keywords, msvalidate, og, revisit_after, robots, twitter, viewport, yahoo, yandex_verification } from '../models/seo';
 import { HomeserviceService } from './homeservice.service';
-import { firstValueFrom } from 'rxjs';
+import { catchError, firstValueFrom, of, timeout } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 const SEO_KEY = makeStateKey<any>('seo-data');
 
@@ -72,7 +73,32 @@ export class SeoService {
     element.setAttribute('hreflang', 'x-default');
     element.setAttribute('href', url);
   }
+  setFallbackMetaTags(): void {
+    console.log('Setting fallback meta tags during SSR');
 
+    const fallbackData = {
+      title: 'Ask Aladdin - Egypt Travel & Tours',
+      description: 'Discover Egypt with Ask Aladdin - Your trusted travel companion for unforgettable experiences.',
+      keywords: 'Egypt travel, tours, vacation, Ask Aladdin',
+      robots: 'index,follow',
+      og_title: 'Ask Aladdin - Egypt Travel & Tours',
+      facebook_description: 'Discover Egypt with Ask Aladdin - Your trusted travel companion for unforgettable experiences.',
+      facebook_image: 'https://www.ask-aladdin.com/assets/imgs/ask.png',
+      facebook_site_name: 'Ask Aladdin Travel',
+      facebook_page_id: '590763524',
+      facebook_admins: '590763524',
+      twitter_title: 'Ask Aladdin - Egypt Travel & Tours',
+      twitter_description: 'Discover Egypt with Ask Aladdin - Your trusted travel companion for unforgettable experiences.',
+      twitter_image: 'https://www.ask-aladdin.com/assets/imgs/ask.png',
+      twitter_site: '@AskAladdin',
+      twitter_card: 'summary_large_image',
+      author: 'Ask Aladdin Travel',
+      revisit_after: '7 days',
+      og_type: 'website'
+    };
+
+    this.setMetaTags(fallbackData);
+  }
   // ORIGINAL METHOD - RESTORED EXACTLY AS IT WAS
   globalSeo(lang:any) {
     const seoData = this.transferState.get(SEO_KEY, null);
@@ -91,25 +117,35 @@ export class SeoService {
   // NEW: MINIMAL METHOD ONLY FOR SSR - RETURNS PROMISE
   globalSeoForSSR(lang: string): Promise<void> {
     const seoData = this.transferState.get(SEO_KEY, null);
-
     if (seoData) {
       this.setMetaTags(seoData);
       return Promise.resolve();
     }
 
-    // Convert the Observable to Promise for APP_INITIALIZER
-    return firstValueFrom(this.seo.globalSeo(lang))
-      .then((res: any) => {
-        if (res && res.data && res.data[0]) {
-          this.chat = res.data[0].live_chat_tag;
-          this.setMetaTags(res.data[0]);
-          this.transferState.set(SEO_KEY, res.data[0]);
-        }
-      })
-      .catch((error) => {
-        console.error('SSR SEO failed:', error);
-        // Don't throw - let SSR continue
-      });
+    const ssrTimeout = environment.ssrApiTimeout || 5000;
+    console.log(`SSR SEO call with ${ssrTimeout}ms timeout`);
+
+    return firstValueFrom(
+      this.seo.globalSeo(lang).pipe(
+        timeout(ssrTimeout),
+        catchError((error) => {
+          console.error('SSR SEO failed:', error);
+          this.setFallbackMetaTags();
+          return of(null);
+        })
+      )
+    )
+    .then((res: any) => {
+      if (res && res.data && res.data[0]) {
+        this.setMetaTags(res.data[0]);
+        this.transferState.set(SEO_KEY, res.data[0]);
+      } else {
+        this.setFallbackMetaTags();
+      }
+    })
+    .catch(() => {
+      this.setFallbackMetaTags();
+    });
   }
 
   setMetaTags(data: any) {

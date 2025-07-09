@@ -88,11 +88,11 @@
             @for (language of Languages|slice:0:1; track $index) {
             <li class="list-dropdown " role="menuitem">
               <a aria-label="lang" #on (click)="changeCurrentLang('en', on) "
-                href="/{{language.lang == 'en' ? '' : language.lang}}" class="dropdown-item">
+                href="/{{language?.lang == 'en' ? '' : language?.lang}}" class="dropdown-item">
                 <div>
-                  <h3> {{language.lnaguage}}</h3>
+                  <h3> {{language?.lnaguage}}</h3>
                 </div>
-                <div> <img loading="lazy" alt="img" class="flag " [src]="language.image" /></div>
+                <div> <img loading="lazy" alt="img" class="flag " [src]="language?.image" /></div>
               </a>
             </li>
             }
@@ -135,10 +135,10 @@
                       @for (packag of package; track $index) {
                       <div class="blogs overflow-hidden">
                         <a aria-label="result" [title]="packag?.name" (click)="ddToggle()"
-                          routerLink="/all-destinations/{{packag.destination.slug}}/travel-packages/{{packag?.slug}}"
+                          routerLink="/all-destinations/{{packag?.destination?.slug}}/travel-packages/{{packag?.slug}}"
                           class="text-dark">
                           <div class="card main-card text-center blogCard anotherCard">
-                            <img loading="lazy" width="300" height="300" [src]="packag.thumb=='1'?img: packag.thumb"
+                            <img loading="lazy" width="300" height="300" [src]="packag?.thumb=='1'?img: packag?.thumb"
                               class="img-fluid" alt="{{ packag?.thumb_alt }}" />
                             <div class="card-body card-detailss des-antherCard">
                               <h6 class="card-title">{{ packag?.name }}</h6>
@@ -165,11 +165,11 @@
                     <div class="d-flex flex-wrap">
                       @for (destination of destinations; track $index) {
                       <div class="blogs overflow-hidden">
-                        <a [title]="destination?.name" routerLink="/all-destinations/{{destination.slug}}"
+                        <a [title]="destination?.name" routerLink="/all-destinations/{{destination?.slug}}"
                           (click)="ddToggle()" class="text-dark">
                           <div class="card main-card text-center blogCard anotherCard">
-                            <img loading="lazy" width="300" height="300" [src]="destination.thumb" class="img-fluid"
-                              alt="{{ destination.thumb_alt }}" />
+                            <img loading="lazy" width="300" height="300" [src]="destination?.thumb" class="img-fluid"
+                              alt="{{ destination?.thumb_alt }}" />
                             <div class="card-body card-detailss des-antherCard">
                               <h6 class="card-title">{{ destination?.name }}</h6>
                             </div>
@@ -191,9 +191,9 @@
                       @for (blog of blogs; track $index) {
                       <div class="blogs overflow-hidden">
                         <a (click)="ddToggle()" [title]="blog?.name"
-                          routerLink="/all-destinations/{{blog.destination.slug}}/blog/{{blog.slug}}" class="text-dark">
+                          routerLink="/all-destinations/{{blog?.destination?.slug}}/blog/{{blog?.slug}}" class="text-dark">
                           <div class="card main-card text-center blogCard anotherCard">
-                            <img loading="lazy" width="300" height="300" [src]="blog.thumb" class="img-fluid"
+                            <img loading="lazy" width="300" height="300" [src]="blog?.thumb" class="img-fluid"
                               alt="{{ blog?.thumb_alt }}" />
                             <div class="card-body card-detailss des-antherCard">
                               <h6 class="card-title">{{ blog?.name }}</h6>
@@ -217,13 +217,13 @@
                       @for (blog of cruise; track $index) {
                       <div class="blogs overflow-hidden">
                         <a (click)="ddToggle()" [title]="blog?.name"
-                          routerLink="/all-destinations/{{blog.destination.slug}}/travel-cruises/{{blog.slug}}"
+                          routerLink="/all-destinations/{{blog?.destination?.slug}}/travel-cruises/{{blog?.slug}}"
                           class="text-dark">
                           <div class="card main-card text-center blogCard anotherCard">
-                            <img loading="lazy" width="300" height="300" [src]="blog.thumb" class="img-fluid"
-                              alt="{{ blog.thumb_alt }}" />
+                            <img loading="lazy" width="300" height="300" [src]="blog?.thumb" class="img-fluid"
+                              alt="{{ blog?.thumb_alt }}" />
                             <div class="card-body card-detailss des-antherCard">
-                              <h6 class="card-title">{{ blog.name }}</h6>
+                              <h6 class="card-title">{{ blog?.name }}</h6>
                             </div>
                           </div>
                         </a>
@@ -245,7 +245,7 @@
                       @for (blog of excursion; track $index) {
                       <div class="blogs overflow-hidden">
                         <a (click)="ddToggle()" [title]="blog?.name"
-                          routerLink="/all-destinations/{{blog.destination.slug}}/travel-excursions/{{blog.city.slug}}/{{blog?.slug}}"
+                          routerLink="/all-destinations/{{blog?.destination?.slug}}/travel-excursions/{{blog?.city?.slug}}/{{blog?.slug}}"
                           class="text-dark">
                           <div class="card main-card text-center blogCard anotherCard">
                             <img loading="lazy" width="300" height="300" [src]="blog?.thumb" class="img-fluid"
@@ -301,13 +301,13 @@
                       @for (blog of travel_guide; track $index) {
                       <div class="blogs overflow-hidden">
                         <a (click)="ddToggle()" [title]="blog?.name"
-                          routerLink="/all-destinations/{{blog.destination.slug}}/travel-guide/{{blog.slug}}"
+                          routerLink="/all-destinations/{{blog?.destination?.slug}}/travel-guide/{{blog?.slug}}"
                           class="text-dark">
                           <div class="card main-card text-center blogCard anotherCard">
-                            <img loading="lazy" width="300" height="300" [src]="blog.thumb" class="img-fluid"
-                              alt="{{ blog.thumb_alt }}" />
+                            <img loading="lazy" width="300" height="300" [src]="blog?.thumb" class="img-fluid"
+                              alt="{{ blog?.thumb_alt }}" />
                             <div class="card-body card-detailss des-antherCard">
-                              <h6 class="card-title">{{ blog.name }}</h6>
+                              <h6 class="card-title">{{ blog?.name }}</h6>
                             </div>
                           </div>
                         </a>
@@ -330,13 +330,13 @@
                       @for (blog of hotel; track $index) {
                       <div class="blogs overflow-hidden">
                         <a (click)="ddToggle()" [title]="blog?.name"
-                          routerLink="/all-destinations/{{blog.destination.slug}}/hotel/{{blog.slug}}"
+                          routerLink="/all-destinations/{{blog?.destination?.slug}}/hotel/{{blog?.slug}}"
                           class="text-dark">
                           <div class="card main-card text-center blogCard anotherCard">
-                            <img loading="lazy" width="300" height="300" [src]="blog.thumb" class="img-fluid"
-                              alt="{{ blog.thumb_alt }}" />
+                            <img loading="lazy" width="300" height="300" [src]="blog?.thumb" class="img-fluid"
+                              alt="{{ blog?.thumb_alt }}" />
                             <div class="card-body card-detailss des-antherCard">
-                              <h6 class="card-title">{{ blog.name }}</h6>
+                              <h6 class="card-title">{{ blog?.name }}</h6>
                             </div>
                           </div>
                         </a>
@@ -358,13 +358,13 @@
                       @for (blog of page; track $index) {
                       <div class="blogs overflow-hidden">
                         <a (click)="ddToggle()" [title]="blog?.name"
-                          routerLink="/all-destinations/{{blog.destination.slug}}/category/{{blog?.category?.slug}}/page/{{blog?.slug}}"
+                          routerLink="/all-destinations/{{blog?.destination?.slug}}/category/{{blog?.category?.slug}}/page/{{blog?.slug}}"
                           class="text-dark">
                           <div class="card main-card text-center blogCard anotherCard">
-                            <img loading="lazy" width="300" height="300" [src]="blog.thumb" class="img-fluid"
-                              alt="{{ blog.thumb_alt }}" />
+                            <img loading="lazy" width="300" height="300" [src]="blog?.thumb" class="img-fluid"
+                              alt="{{ blog?.thumb_alt }}" />
                             <div class="card-body card-detailss des-antherCard">
-                              <h6 class="card-title">{{ blog.name }}</h6>
+                              <h6 class="card-title">{{ blog?.name }}</h6>
                             </div>
                           </div>
                         </a>
