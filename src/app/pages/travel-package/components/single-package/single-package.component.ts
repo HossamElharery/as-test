@@ -102,55 +102,105 @@ export class SinglePackageComponent implements OnInit  ,OnDestroy {
       this.idPack=params.get('slug')
       this.subscription.add(this._highlights.getSinglepackage(this.id,this.idPack).subscribe({
         next: (result) => {
-          //seo
-          this.seo.data.title = result.data[0].seo.title
-          this.seo.data.description =  result.data[0].seo.description
-          this.seo.data.robots =  result.data[0].seo.robots
-          this.seo.data.keywords =  result.data[0].seo.keywords
-          this.seo.data.fbDes =  result.data[0].seo.facebook_description
-          this.seo.data.fbImg =  result.data[0].seo.facebook_image
-          this.seo.data.fbTit =  result.data[0].seo.facebook_title
-          this.seo.data.twitterDes =  result.data[0].seo.twitter_description
-          this.seo.data.twitterImage =  result.data[0].seo.twitter_image
-          this.seo.data.twitterTit =  result.data[0].seo.twitter_title
-          this.seo.updateTags(this.seo.data)
-          if (result.data[0].seo.schema) {
-            this.schema.injectSchema(result.data[0].seo.schema)
+          try {
+            // SAFE: Add comprehensive null checks
+            const packageData = result?.data?.[0];
+            const seoData = packageData?.seo;
+
+            if (packageData && seoData) {
+              //seo
+              this.seo.data.title = seoData.title || 'Ask Aladdin Travel Package';
+              this.seo.data.description = seoData.description || '';
+              this.seo.data.robots = seoData.robots || 'index,follow';
+              this.seo.data.keywords = seoData.keywords || '';
+              this.seo.data.fbDes = seoData.facebook_description || '';
+              this.seo.data.fbImg = seoData.facebook_image || '';
+              this.seo.data.fbTit = seoData.facebook_title || '';
+              this.seo.data.twitterDes = seoData.twitter_description || '';
+              this.seo.data.twitterImage = seoData.twitter_image || '';
+              this.seo.data.twitterTit = seoData.twitter_title || '';
+
+              this.seo.updateTags(this.seo.data);
+
+              if (seoData.schema) {
+                this.schema.injectSchema(seoData.schema);
+              }
+
+              // SAFE: Set package content with null checks
+              this.lights = packageData;
+              this.tours = packageData;
+              this.banner_alt = packageData.banner_alt || '';
+              this.desName = packageData.destination?.name || '';
+              this.desSlug = packageData.destination?.slug || '';
+              this.toHighlight = packageData.highlight || [];
+              this.travel_experiences = packageData.travel_experiences || [];
+              this.flag1 = packageData.standard_hotels || [];
+              this.flag2 = packageData.comfort_hotels || [];
+              this.flag3 = packageData.deluxe_hotels || [];
+              this.flag4 = packageData.cruise_hotels || [];
+              this.pricesCompnent = packageData.prices || [];
+              this.ptional = packageData.optional_tours || [];
+              this.price_policy = packageData.price_policy || '';
+              this.payment_policy = packageData.payment_policy || '';
+              this.repeated_travellers = packageData.repeated_travellers || '';
+              this.travel_schedule = packageData.travel_schedule || '';
+              this.video = packageData.videos || [];
+              this.location_url = packageData.location_package_map || '';
+              this.packName = packageData.category?.name || '';
+            } else {
+              console.warn('Package data is incomplete or missing');
+              // Set fallback data
+              this.lights = {};
+              this.tours = {};
+              this.banner_alt = '';
+              this.desName = '';
+              this.desSlug = '';
+              this.toHighlight = [];
+              this.travel_experiences = [];
+              this.flag1 = [];
+              this.flag2 = [];
+              this.flag3 = [];
+              this.flag4 = [];
+              this.pricesCompnent = [];
+              this.ptional = [];
+              this.price_policy = '';
+              this.payment_policy = '';
+              this.repeated_travellers = '';
+              this.travel_schedule = '';
+              this.video = [];
+              this.location_url = '';
+              this.packName = '';
+            }
+
+            this.loading = false;
+            this.getHeight();
+
+            // SAFE: Handle destination details call
+            this.subscription.add(this._highlights.getOneDestinationDetails(2).subscribe({
+              next: (res) => {
+                this.overBanner = packageData?.image_over_banner || '';
+              },
+              error: (error) => {
+                console.warn('Error loading destination details:', error);
+                this.overBanner = '';
+              }
+            }));
+          } catch (error) {
+            console.error('Error processing package data:', error);
+            this.loading = false;
+            // Set fallback data
+            this.lights = {};
+            this.tours = {};
+            this.banner_alt = '';
+            this.desName = '';
+            this.desSlug = '';
+            this.toHighlight = [];
+            this.travel_experiences = [];
           }
-          // end seo
-          this.lights = result.data[0]
-          this.tours = result.data[0]
-          console.log(this.lights);
-
-
-          this.banner_alt=result.data[0].banner_alt
-          this.desName = result.data[0].destination.name;
-          this.desSlug = result.data[0].destination.slug;
-         this.toHighlight= result.data[0].highlight
-         this.loading=false
-         this.travel_experiences= result.data[0].travel_experiences
-          this.flag1 = result.data[0].standard_hotels
-          this.flag2= result.data[0].comfort_hotels
-          this.flag3 = result.data[0].deluxe_hotels
-          this.flag4 = result.data[0].cruise_hotels
-          this.pricesCompnent = result.data[0].prices;
-          // this.flag = result.data[0].prices[0]?.attributes.season_start_date
-          // console.log(this.flag);
-          this.ptional = result.data[0].optional_tours
-          this.price_policy = result.data[0].price_policy
-          this.payment_policy = result.data[0].payment_policy
-          this.repeated_travellers = result.data[0].repeated_travellers
-          this.travel_schedule = result.data[0].travel_schedule
-          this.video = result.data[0].videos
-          this.location_url= result.data[0].location_package_map
-          this.getHeight()
-          this.packName = result.data[0].category.name
-          this.subscription.add(this._highlights.getOneDestinationDetails(2).subscribe(res => {
-
-            this.overBanner = result.data[0].image_over_banner;
-          }))
         },
         error: (e) => {
+          console.error('Error loading package:', e);
+          this.loading = false;
           this.router.navigate(['/404']);
         },
        }));

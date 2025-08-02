@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { SeoResolver } from './core/guards/seo-resolve';
-import { CitiesBlogsComponent } from './pages/blogs/cities-blogs/cities-blogs.component';
+ import { CitiesBlogsComponent } from './pages/blogs/cities-blogs/cities-blogs.component';
 import { AboutUsComponent } from './core/components/about-us/about-us.component';
 import { ContactUsComponent } from './core/components/contact-us/contact-us.component';
 import { MeetTheTeamComponent } from './core/components/meet-the-team/meet-the-team.component';
@@ -13,7 +13,7 @@ import { UsefulLinksComponent } from './core/components/useful-links/useful-link
 import { MultiCountryPackagesComponent } from './pages/travel-package/components/multi-country-packages/multi-country-packages.component';
 import { AskExpertsComponent } from './shared/components/ask-experts/ask-experts.component';
 export const routes: Routes = [
-  { path: '', loadChildren: () => import('./pages/home/home-routes').then(c => c.default) },
+  { path: '', loadChildren: () => import('./pages/home/home-routes').then(c => c.default), resolve: { seoData: SeoResolver } },
   {
     path: 'all-destinations',
     loadChildren: () => import('./pages/destinations/destination-routes').then(c => c.default)

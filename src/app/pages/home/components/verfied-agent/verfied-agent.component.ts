@@ -1,8 +1,8 @@
-import { Component, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { Count } from '../../../../core/interfaces/count';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { HomeserviceService } from '../../../../core/services/homeservice.service';
-import { CountUpDirective, CountUpModule } from 'ngx-countup';
+import { CountUpModule } from 'ngx-countup';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -11,40 +11,74 @@ import { TranslateModule } from '@ngx-translate/core';
     templateUrl: './verfied-agent.component.html',
     styleUrl: './verfied-agent.component.scss'
 })
-export class VerfiedAgentComponent {
-  countNum:Count[]=[];
-  Verified : any;
-  Tour:any;
-  opts:any
-  satisfied:any;
-  @ViewChild('countUp') countUp!: CountUpDirective;
-  count!: boolean;
+export class VerfiedAgentComponent implements OnInit {
+  // SAFE: Initialize all properties to prevent undefined errors
+  countNum: Count[] = [];
+  Verified: number = 0;
+  Tour: number = 0;
+  satisfied: number = 0;
+  opts: any = {
+    duration: 3,
+  };
 
-  constructor( private _home:HomeserviceService , @Inject(DOCUMENT) private document: any , @Inject(PLATFORM_ID) private platformId:any) {}
+  private isBrowser: boolean;
 
+  constructor(
+    private _home: HomeserviceService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit(): void {
+    // Set default options
     this.opts = {
       duration: 3,
     };
 
-    this._home.Counter().subscribe(res => {
-      this.countNum = res.data
-      this.Verified = res.data.verified_agent
-      this.Tour = res.data.tour_listed
-      this.satisfied = res.data.satisfied_customer
+    // Only load counter data in browser to prevent SSR errors
+    if (this.isBrowser) {
+      this.loadCounterData();
+    } else {
+      // Set fallback values for SSR
+      this.setFallbackData();
     }
-    )
   }
-   @HostListener("window:scroll", [])
-   onWindowScroll() {
-    if (isPlatformBrowser(this.platformId)) {
-      const offset = window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
-      if (offset >= 2800) {
-       this.count = true
 
+  private loadCounterData(): void {
+    this._home.Counter().subscribe({
+      next: (res) => {
+        try {
+          // SAFE: Add comprehensive null checks for all property access
+          this.countNum = res?.data || [];
+
+          // SAFE: Extract specific values with fallbacks
+          if (res?.data) {
+            this.Verified = res.data.verified_agent || 0;
+            this.Tour = res.data.tour_listed || 0;
+            this.satisfied = res.data.satisfied_customer || 0;
+          } else {
+            this.setFallbackData();
+          }
+        } catch (error) {
+          console.warn('Error processing counter data:', error);
+          this.setFallbackData();
+        }
+      },
+      error: (error) => {
+        console.warn('Error loading counter data:', error);
+        this.setFallbackData();
       }
-    }
-   }
+    });
+  }
 
+  private setFallbackData(): void {
+    // Set safe fallback values
+    this.countNum = [];
+    this.Verified = 0;
+    this.Tour = 0;
+    this.satisfied = 0;
+  }
+
+  // Animation removed to prevent hydration issues
 }

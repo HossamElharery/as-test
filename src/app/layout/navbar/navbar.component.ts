@@ -1,10 +1,10 @@
 import { LayoutService } from './../services/layout.service';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
-import { Component, ElementRef, HostListener, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, OnDestroy, OnInit, ViewChild, Renderer2, PLATFORM_ID } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { CommonModule, DOCUMENT,  NgOptimizedImage,   } from '@angular/common';
+import { CommonModule, DOCUMENT, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
 import { destination } from '../../core/interfaces/destination';
 import { Faq } from '../../core/interfaces/faq';
 import { TravelGuide } from '../../core/interfaces/travel-guide';
@@ -67,14 +67,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   lang: string;
 
+  // SAFE: Add platform detection for SSR compatibility
+  private isBrowser: boolean;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private renderer: Renderer2,
     public _Navbar: LayoutService,
     public _router: Router,
-    private translate:TranslateService
+    private translate: TranslateService
   ) {
     this.lang = this.translate.currentLang
+    this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit(): void {
@@ -95,45 +100,46 @@ export class NavbarComponent implements OnInit, OnDestroy {
             // SAFE array access with proper null checks
             console.log('MegaMenu response:', res);
 
-            // Initialize arrays safely
-            this.destinationsArray = res?.data?.destinations || [];
-            this.hot_offer_packages = res?.data?.hot_offer_packages || [];
-            this.city_excursions = res?.data?.city_excursions || [];
-            this.travel_guides = res?.data?.travel_guides || [];
-            this.categories = res?.data?.categories || [];
-            this.tour_type = res?.data?.tour_type || [];
+            // SAFE: Initialize arrays with proper fallbacks
+            const data = res?.data || {};
+            this.destinationsArray = Array.isArray(data.destinations) ? data.destinations : [];
+            this.hot_offer_packages = Array.isArray(data.hot_offer_packages) ? data.hot_offer_packages : [];
+            this.city_excursions = Array.isArray(data.city_excursions) ? data.city_excursions : [];
+            this.travel_guides = Array.isArray(data.travel_guides) ? data.travel_guides : [];
+            this.categories = Array.isArray(data.categories) ? data.categories : [];
+            this.tour_type = Array.isArray(data.tour_type) ? data.tour_type : [];
 
-            // SAFE: Check if arrays exist and have data before accessing
+            // SAFE: Check if arrays exist and have valid nested structure before accessing
             if (this.hot_offer_packages.length > 0 &&
-                this.hot_offer_packages[0] &&
+                Array.isArray(this.hot_offer_packages[0]) &&
                 this.hot_offer_packages[0].length > 0 &&
                 this.hot_offer_packages[0][0]?.destination?.slug) {
               this.hotOfferDesHover(this.hot_offer_packages[0][0].destination.slug, 0);
             }
 
             if (this.city_excursions.length > 0 &&
-                this.city_excursions[0] &&
+                Array.isArray(this.city_excursions[0]) &&
                 this.city_excursions[0].length > 0 &&
                 this.city_excursions[0][0]?.destination?.slug) {
               this.ExcursionDesHover(this.city_excursions[0][0].destination.slug, 0);
             }
 
             if (this.travel_guides.length > 0 &&
-                this.travel_guides[0] &&
+                Array.isArray(this.travel_guides[0]) &&
                 this.travel_guides[0].length > 0 &&
                 this.travel_guides[0][0]?.destination?.slug) {
               this.guideDesHover(this.travel_guides[0][0].destination.slug, 0);
             }
 
             if (this.categories.length > 0 &&
-                this.categories[0] &&
+                Array.isArray(this.categories[0]) &&
                 this.categories[0].length > 0 &&
                 this.categories[0][0]?.destination?.slug) {
               this.destinatios(this.categories[0][0].destination.slug, 0);
             }
 
             if (this.tour_type.length > 0 &&
-                this.tour_type[0] &&
+                Array.isArray(this.tour_type[0]) &&
                 this.tour_type[0].length > 0 &&
                 this.tour_type[0][0]?.destination?.slug) {
               this.tourTypeDesHover(this.tour_type[0][0].destination.slug, 0);
@@ -184,27 +190,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (slug !== this.lastSlug) {
       this.slugDestinatios = slug
 
-      // this._Navbar.getOneDestinationDetails(slug).subscribe(result => {
-      //   this.singleDestinationContent = result.data[0].categories;
-      //   this.slide = result.data[0]?.destination?.banner;
-
-      // },
-      //   error => {
-      //   })
-      //@ts-ignore
-      // if (this.singleDestinationContent[i]) {
-      //   this.singleDestinationContent[i].slug = slug;
-      // }
-      let arr  = this.categories.filter(res => {
-        return res
-    })
-    let arr2 = arr.filter((des : any) => {
-     return des[0]?.destination?.slug == slug
-     })
-     this.singleDestinationContent = arr2[0]
-
+      // SAFE: Filter categories with proper array checks
+      try {
+        let arr = Array.isArray(this.categories) ? this.categories.filter(res => res) : [];
+        let arr2 = arr.filter((des: any) => {
+          return Array.isArray(des) && des[0]?.destination?.slug == slug
+        })
+        this.singleDestinationContent = Array.isArray(arr2[0]) ? arr2[0] : []
+      } catch (error) {
+        console.error('Error in destinatios:', error);
+        this.singleDestinationContent = [];
+      }
     }
-
   }
   routedDestinatios(s: any) {
     this._router.navigate([`/all-destinations/${this.slugDestinatios}/${s}`]);
@@ -236,15 +233,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
   guideDesHover(slug: any, i: any) {
     if (slug !== this.lastSlug) {
       this.guideDes = slug
-      let arr  = this.travel_guides.filter(res => {
-        return res
-    })
-    let arr2 = arr.filter((excur : any) => {
-     return excur[0]?.destination?.slug == slug
-     })
-     this.guidesContainer = arr2[0]
-    }
 
+      // SAFE: Filter travel_guides with proper array checks
+      try {
+        let arr = Array.isArray(this.travel_guides) ? this.travel_guides.filter(res => res) : [];
+        let arr2 = arr.filter((excur: any) => {
+          return Array.isArray(excur) && excur[0]?.destination?.slug == slug
+        })
+        this.guidesContainer = Array.isArray(arr2[0]) ? arr2[0] : []
+      } catch (error) {
+        console.error('Error in guideDesHover:', error);
+        this.guidesContainer = [];
+      }
+    }
   }
 
 
@@ -263,64 +264,59 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ExcursionDesHover(slug: any, i: any) {
-
     if (slug !== this.lastSlug) {
       this.Excursionslug = slug
       this.excursionsIndex = i
-      let arr  = this.city_excursions.filter(res => {
-        return res
-    })
-    let arr2 = arr.filter((excur : any) => {
-     return excur[0]?.destination?.slug == slug
-     })
-     this.citys = arr2[0]
-      // this._Navbar.ExcursionCity(slug).subscribe(result => {
-      //   this.thumb = result.data.cities[0]?.thumb
-      //   this.citys = result.data.cities;
 
-
-      // })
-
-      //@ts-ignore
-      // if (this.destinationContainer[i]) {
-      //   this.destinationContainer[i].slug = slug
-      // }
-
+      // SAFE: Filter city_excursions with proper array checks
+      try {
+        let arr = Array.isArray(this.city_excursions) ? this.city_excursions.filter(res => res) : [];
+        let arr2 = arr.filter((excur: any) => {
+          return Array.isArray(excur) && excur[0]?.destination?.slug == slug
+        })
+        this.citys = Array.isArray(arr2[0]) ? arr2[0] : []
+      } catch (error) {
+        console.error('Error in ExcursionDesHover:', error);
+        this.citys = [];
+      }
     }
-
-
   }
 
   tourTypeDesHover(slug: any, i: any) {
     if (slug !== this.lastSlug) {
       this.tourTypes = slug
 
-      let arr  = this.tour_type.filter(res => {
-        return res
-    })
-    let arr2 = arr.filter((excur : any) => {
-     return excur[0]?.destination?.slug == slug
-     })
-     this.tourTypes = arr2[0]
+      // SAFE: Filter tour_type with proper array checks
+      try {
+        let arr = Array.isArray(this.tour_type) ? this.tour_type.filter(res => res) : [];
+        let arr2 = arr.filter((excur: any) => {
+          return Array.isArray(excur) && excur[0]?.destination?.slug == slug
+        })
+        this.tourTypes = Array.isArray(arr2[0]) ? arr2[0] : []
+      } catch (error) {
+        console.error('Error in tourTypeDesHover:', error);
+        this.tourTypes = [];
+      }
     }
-
   }
-  hotOfferDesHover(slug: any, i: any) {
 
+  hotOfferDesHover(slug: any, i: any) {
     if (slug !== this.lastSlug) {
       this.hotOfferSlug = slug
       this.excursionsIndex = i
-      let arr  = this.hot_offer_packages.filter(res => {
-        return res
-    })
-    let arr2 = arr.filter((hot : any) => {
-     return hot[0]?.destination?.slug == slug
-     })
-     this.hotOffers = arr2[0]
 
+      // SAFE: Filter hot_offer_packages with proper array checks
+      try {
+        let arr = Array.isArray(this.hot_offer_packages) ? this.hot_offer_packages.filter(res => res) : [];
+        let arr2 = arr.filter((hot: any) => {
+          return Array.isArray(hot) && hot[0]?.destination?.slug == slug
+        })
+        this.hotOffers = Array.isArray(arr2[0]) ? arr2[0] : []
+      } catch (error) {
+        console.error('Error in hotOfferDesHover:', error);
+        this.hotOffers = [];
+      }
     }
-
-
   }
 
   routedExcursion(s: any) {
@@ -331,24 +327,37 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   @HostListener("window:scroll", [])
   onWindowScroll() {
+    // SAFE: Only execute DOM manipulation in browser
+    if (!this.isBrowser) {
+      return;
+    }
+
     const offset = window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
-    const list = document.getElementById("nav-bar")?.classList;
+    const navBarElement = this.document.getElementById("nav-bar");
+
+    if (!navBarElement) {
+      return;
+    }
 
     if (offset >= 10) {
-      list?.add("position-fixed");
-      list?.add("sticky-top");
-    }
-    else {
-      list?.remove("sticky-top");
+      this.renderer.addClass(navBarElement, "position-fixed");
+      this.renderer.addClass(navBarElement, "sticky-top");
+    } else {
+      this.renderer.removeClass(navBarElement, "sticky-top");
     }
   }
 
   ddToggle(): void {
-
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      this.closee.nativeElement.click()
-
+    // SAFE: Only execute browser-specific code in browser environment
+    if (!this.isBrowser) {
+      return;
     }
 
+    // SAFE: Check for mobile using a more reliable method
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile && this.closee?.nativeElement) {
+      this.closee.nativeElement.click();
+    }
   }
 }

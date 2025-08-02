@@ -50,18 +50,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _Home: HomeService,
     private seo: SeoService,
     private schema: SchemaInjectionService,
-    private meta: Meta,
-    private applicationRef: ApplicationRef,
+
   ) {
     this.initializeSeoData();
-    this.meta.addTags([
-      { name: 'description', content: 'Your page description' },
-      { name: 'keywords', content: 'Angular, SSR, SEO' },
-      { property: 'og:title', content: 'Your Page Title' },
-      { property: 'og:description', content: 'Your page description' },
-      { property: 'og:type', content: 'website' },
-      // Add more meta tags as needed
-    ]);
+
   }
 
   ngOnInit(): void {
@@ -72,24 +64,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private initializeSeoData(): void {
+    // Get SEO data from resolver (already fetched during SSR)
     const seoData = this.route.snapshot.data['seoData']?.data[0];
+
     if (seoData) {
-      this.seo.data.title = seoData.title;
-      this.seo.data.description = seoData.description;
-      this.seo.data.robots = seoData.robots;
-      this.seo.data.keywords = seoData.keywords;
-      this.seo.data.fbDes = seoData.facebook_description;
-      this.seo.data.fbImg = seoData.facebook_image;
-      this.seo.data.fbTit = seoData.og_title;
-      this.seo.data.twitterDes = seoData.twitter_description;
-      this.seo.data.twitterImage = seoData.twitter_image;
-      this.seo.data.twitterTit = seoData.twitter_title;
-      this.seo.updateTags(this.seo.data);
+      // Use the complete meta tags method that properly handles all fields
+      this.seo.updateCompleteMetaTags(seoData);
+
+      // Inject schema if available
       if (seoData.seo_schema) {
         this.schema.injectSchema(seoData.seo_schema);
       }
     } else {
-      console.warn('SEO data is not available');
+      console.warn('SEO data is not available in route resolver');
     }
   }
 

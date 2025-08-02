@@ -9,10 +9,7 @@ declare const $: any;
     imports: [TranslateModule, SafeHtmlComponent],
     selector: 'app-prices-policy',
     templateUrl: './prices-policy.component.html',
-    styleUrls: ['./prices-policy.component.css'],
-    host: {
-      'ngSkipHydration': 'true'
-    }
+    styleUrls: ['./prices-policy.component.css']
 })
 export class PricesPolicyComponent implements OnInit {
 

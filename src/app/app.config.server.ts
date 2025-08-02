@@ -1,51 +1,78 @@
-import { mergeApplicationConfig, ApplicationConfig, importProvidersFrom, APP_INITIALIZER } from '@angular/core';
+import { mergeApplicationConfig, ApplicationConfig, importProvidersFrom, inject, TransferState, PLATFORM_ID } from '@angular/core';
+import { provideAppInitializer } from '@angular/core';
 import { provideServerRendering } from '@angular/platform-server';
+import { isPlatformServer } from '@angular/common';
 import { appConfig } from './app.config';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LANGUAGE_TOKEN } from './core/languages/language-token';
+// import { SsrSkipApiInterceptor } from './core/interceptor/ssr-skip-api.interceptor';
+import { ErrorHandlingInterceptor } from './core/services/interceptors/error-handling';
+import { SeoResponseInterceptor } from './core/interceptor/seo-response.interceptor';
+import { TranslateServerLoader } from './core/loaders/translate-server.loader';
 import { TranslationService } from './core/services/translate/language.service';
 import { SeoService } from './core/services/seo.service';
-import { SeoResponseInterceptor } from './core/interceptor/seo-response.interceptor';
-import { LANGUAGE_TOKEN } from './core/languages/language-token';
-import { SsrSkipApiInterceptor } from './core/interceptor/ssr-skip-api.interceptor';
-import { RateLimitInterceptor } from './core/services/interceptors/rate-limit';
-import { ErrorHandlingInterceptor } from './core/services/interceptors/error-handling';
+import { PlatformService } from './core/services/platform.service';
+import { LayoutService } from './layout/services/layout.service';
+import { HomeserviceService } from './core/services/homeservice.service';
+import { SsrSeoDebugService } from './core/services/ssr-seo-debug.service';
+import { SsrApiService } from './core/services/ssr-api.service';
 
-export function initializeTranslation(translationService: TranslationService): () => Promise<void> {
-  return () => {
-    return new Promise<void>((resolve) => {
-      translationService.initializeLanguage();
-      resolve();
-    });
-  };
+
+// SERVER-SIDE: HttpLoaderFactory for server
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateServerLoader();
 }
 
-// CRITICAL: This must complete BEFORE rendering starts
-export function initializeSSRSeo(seoService: SeoService, translateService: TranslateService): () => Promise<void> {
-  return () => {
-    console.log('Starting SSR SEO initialization...');
-    const lang = translateService.currentLang || 'en';
+// SAFE: Minimal language token provider
+export function provideLanguageToken(): string {
+  return 'en'; // Default fallback for SSR
+}
 
-    return seoService.globalSeoForSSR(lang)
-      .then(() => {
-        console.log('SSR SEO initialization completed successfully');
-      })
-      .catch((error) => {
-        console.error('SSR SEO initialization failed:', error);
-        // Set fallback meta tags to prevent empty tags
+// DIRECT SSR SEO initialization
+export function initializeSsrSeo(
+  ssrApiService: SsrApiService,
+  seoService: SeoService,
+  platformId: Object
+): () => Promise<void> {
+  return async () => {
+    if (isPlatformServer(platformId)) {
+      console.log('[SSR-SERVER] ========== DIRECT SSR SEO INIT START ==========');
+
+      try {
+        // Fetch SEO data directly
+        const seoData = await ssrApiService.fetchGlobalSeoForSSR('en');
+
+        if (seoData) {
+          console.log('[SSR-SERVER] Applying SEO data:', seoData.title);
+          // Apply meta tags immediately
+          seoService.setMetaTags(seoData);
+        } else {
+          console.log('[SSR-SERVER] No SEO data, applying fallback');
+          seoService.setFallbackMetaTags();
+        }
+      } catch (error) {
+        console.error('[SSR-SERVER] SEO init error:', error);
         seoService.setFallbackMetaTags();
-      });
-  };
-}
+      }
 
-export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient, './assets/i18n/');
+      console.log('[SSR-SERVER] ========== DIRECT SSR SEO INIT END ==========');
+    }
+  };
 }
 
 const serverConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
+    provideServerRendering(),
+
+    // EXACT MATCH: Same service order as client
+    PlatformService,
+    TranslationService,
+    SeoService,
+    LayoutService,
+    HomeserviceService,
+
     importProvidersFrom(
       TranslateModule.forRoot({
         loader: {
@@ -56,35 +83,26 @@ const serverConfig: ApplicationConfig = {
         defaultLanguage: 'en'
       })
     ),
-    provideServerRendering(),
-    TranslationService,
 
-    // STEP 1: Initialize translation first
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeTranslation,
-      deps: [TranslationService],
-      multi: true
-    },
-
-    // STEP 2: Initialize SEO data after translation is ready
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeSSRSeo,
-      deps: [SeoService, TranslateService],
-      multi: true
-    },
-
+    // EXACT MATCH: Same language token configuration as client
     {
       provide: LANGUAGE_TOKEN,
-      useFactory: (translateService: TranslateService) => translateService.currentLang || 'en',
-      deps: [TranslateService]
+      useFactory: provideLanguageToken,
+      deps: [] // No dependencies to prevent injection errors
     },
 
-    { provide: HTTP_INTERCEPTORS, useClass: SsrSkipApiInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlingInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: RateLimitInterceptor, multi: true },
+    // SSR-specific SEO initializer
+    provideAppInitializer(() => {
+      const ssrApiService = inject(SsrApiService);
+      const seoService = inject(SeoService);
+      const platformId = inject(PLATFORM_ID);
+      return initializeSsrSeo(ssrApiService, seoService, platformId)();
+    }),
+
+    // EXACT MATCH: Same interceptor configuration as client
+    // { provide: HTTP_INTERCEPTORS, useClass: SsrSkipApiInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: SeoResponseInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlingInterceptor, multi: true },
   ]
 };
 

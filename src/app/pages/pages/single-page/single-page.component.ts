@@ -80,67 +80,101 @@ export class SinglePageComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
+    // First check if we have resolver data (from SSR)
+    const resolverData = this._Active.snapshot.data['pageData'];
+    if (resolverData?.page?.[0]) {
+      // Use resolver data immediately (already loaded during SSR)
+      this.handlePageData(resolverData);
+    }
+
+    // Still subscribe for client-side navigation
     this.subscription.add(this._Active.paramMap.subscribe((params: ParamMap) => {
       this.loading = true
 
       this.id = params.get('page');
-
       this.caat = params.get('cat');
       this.des = params.get('slug');
-      this.subscription.add(this._page.getSinglePage(this.des,this.caat ,this.id).subscribe({
-        next: (result) => {
-          //seo
-          this.seo.data.title = result.page[0].seo.title;
-          this.seo.data.description = result.page[0].seo.description;
-          this.seo.data.robots = result.page[0].seo.robots;
-          this.seo.data.keywords = result.page[0].seo.keywords;
-          this.seo.data.fbDes = result.page[0].seo.facebook_description;
-          this.seo.data.fbImg = result.page[0].seo.facebook_image;
-          this.seo.data.fbTit = result.page[0].seo.facebook_title;
-          this.seo.data.twitterDes = result.page[0].seo.twitter_description;
-          this.seo.data.twitterImage = result.page[0].seo.twitter_image;
-          this.seo.data.twitterTit = result.page[0].seo.twitter_title;
-          // if (result.page[0].seo.schema) {
-          //   this.schemaInjectionService.injectSchema(result.page[0].seo.schema)
-          // }
 
-          this.seo.updateTags(this.seo.data);
-          if (result.page[0].seo.schema) {
-            this.schemaInjectionService.injectSchema(result.page[0].seo.schema)
+      // Skip API call if we already have resolver data for this route
+      if (!resolverData || resolverData.page[0]?.page_slug !== this.id) {
+        this.subscription.add(this._page.getSinglePage(this.des,this.caat ,this.id).subscribe({
+          next: (result) => {
+            this.handlePageData(result);
+          },
+          error: (error) => {
+            console.error('Error fetching page data:', error);
+            this.loading = false;
+            this.router.navigate(['/404']);
           }
-
-
-
-
-
-          // const schema  =result.page[0].form
-
-
-          // this.schemaInjectionService.injectSchema(schema);
-
-
-          this.singlePageContent = result.page;
-          this.loading = false
-          this.gallery = result.page[0].gallery;
-          this.destination = result.page[0].destination;
-          this.category = result.page[0].category;
-          this.relatedPages = result.page[0].related_pages;
-          this.related_blogs = result.page[0].related_blogs;
-          this.related_packages = result.page[0].related_packages;
-          this.related_cruises = result.page[0].related_cruises;
-          this.related_excursions = result.page[0].related_excursions;
-          this.related_travel_guides = result.page[0].related_travel_guides;
-          this.related_categories = result.page[0].related_categories;
-
-          if(this.id=='the-treasures-of-egypt-tour-booking-centre'){
-            this.iframe=true
-          }
-        },
-                error: (e) => {
-           this.router.navigate(['/404']);
-        },
-      }));
+        }));
+      }
     }));
+  }
+
+  private handlePageData(result: any): void {
+    try {
+      // SAFE: Add comprehensive null checks
+      const pageData = result?.page?.[0];
+      const seoData = pageData?.seo;
+
+      if (pageData && seoData) {
+        // Use the comprehensive SEO update method
+        this.seo.updateCompleteMetaTags(seoData);
+
+        if (seoData.schema) {
+          this.schemaInjectionService.injectSchema(seoData.schema);
+        }
+
+        // SAFE: Set page content with null checks
+        this.singlePageContent = result.page || [];
+        this.gallery = pageData.gallery || [];
+        this.destination = pageData.destination || {};
+        this.category = pageData.category || {};
+        this.relatedPages = pageData.related_pages || [];
+        this.related_blogs = pageData.related_blogs || [];
+        this.related_packages = pageData.related_packages || [];
+        this.related_cruises = pageData.related_cruises || [];
+        this.related_excursions = pageData.related_excursions || [];
+        this.related_travel_guides = pageData.related_travel_guides || [];
+        this.related_categories = pageData.related_categories || [];
+
+        // Handle special iframe case
+        if(this.id=='the-treasures-of-egypt-tour-booking-centre'){
+          this.iframe=true;
+        }
+      } else {
+        console.warn('Single page data is incomplete or missing');
+        // Set fallback data
+        this.singlePageContent = [];
+        this.gallery = [];
+        this.destination = {};
+        this.category = {};
+        this.relatedPages = [];
+        this.related_blogs = [];
+        this.related_packages = [];
+        this.related_cruises = [];
+        this.related_excursions = [];
+        this.related_travel_guides = [];
+        this.related_categories = [];
+      }
+
+      this.loading = false;
+    } catch (error) {
+      console.error('Error processing single page data:', error);
+      this.loading = false;
+      // Set fallback data
+      this.singlePageContent = [];
+      this.gallery = [];
+      this.destination = {};
+      this.category = {};
+      this.relatedPages = [];
+      this.related_blogs = [];
+      this.related_packages = [];
+      this.related_cruises = [];
+      this.related_excursions = [];
+      this.related_travel_guides = [];
+      this.related_categories = [];
+    }
   }
   customOptions: OwlOptions = {
     loop: true,

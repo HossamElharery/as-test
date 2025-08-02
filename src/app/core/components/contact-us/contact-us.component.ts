@@ -14,10 +14,7 @@ import { AskExpertBtnComponent } from '../../../shared/components/ask-expert-btn
         AskExpertBtnComponent,
     ],
     templateUrl: './contact-us.component.html',
-    styleUrls: ['./contact-us.component.css'],
-    host: {
-      'ngSkipHydration': 'true'
-    }
+    styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
   socialsContainer: any;

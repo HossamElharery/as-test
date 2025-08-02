@@ -28,7 +28,7 @@ export class DestinationsService {
   }
 
   lang(): Observable<any> {
-    return this.http.get(`${environment.url}lang-control`);
+    return this.http.get(`${environment.url}lang-control/en`);
   }
 
   search(term: string): Observable<any> {
@@ -40,10 +40,8 @@ export class DestinationsService {
     return this.http.post(`${environment.url}email-subscription`, email);
   }
 
-  getSinglePageGeneral(id: any): Observable<any> {
-    return this.http.get(
-      `${environment.url}page/general/general/${id}/en`
-    )
+  getSinglePageGeneral(slug: string | number): Observable<any> {
+    return this.http.get(`${environment.url}page/general/general/${slug}/en`);
   }
 
 

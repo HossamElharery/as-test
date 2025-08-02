@@ -1,8 +1,9 @@
-import { Injectable, Inject, PLATFORM_ID, TransferState, makeStateKey } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID, TransferState, makeStateKey, Optional, StateKey } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { isPlatformServer, isPlatformBrowser } from '@angular/common';
 import { tap } from 'rxjs/operators';
+import { LANGUAGE_TOKEN } from './language-token';
 
 @Injectable()
 export class TransferStateInterceptor implements HttpInterceptor {
@@ -15,44 +16,53 @@ export class TransferStateInterceptor implements HttpInterceptor {
   constructor(
     private transferState: TransferState,
     @Inject(PLATFORM_ID) private platformId: any,
-    @Inject('CURRENT_LANG') private currentLang: string // Inject the language token instead of TranslationService
+    @Optional() @Inject(LANGUAGE_TOKEN) private currentLang: string | null // SAFE: Make optional to prevent injection errors
   ) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Append the language to the URL
-    const shouldExclude = this.excludedUrls.some(url => req.url.includes(url));
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const url = request.url;
 
-    // If the URL is excluded, proceed with the original request
-    if (shouldExclude) {
-      return next.handle(req);
-    }
-    let modifiedUrl = req.url;
-    if (!req.url.includes(`/${this.currentLang}`)) {
-      modifiedUrl = `${req.url}/${this.currentLang}`;
+    // Skip non-API requests and excluded URLs
+    if (!url.includes('api.ask-aladdin.com') ||
+        this.excludedUrls.some(excluded => url.includes(excluded))) {
+      return next.handle(request);
     }
 
-    const modifiedReq = req.clone({ url: modifiedUrl });
+    // SAFE: Get language with fallback
+    const lang = this.currentLang || 'en';
+    const key: StateKey<any> = makeStateKey<any>(`http-${request.urlWithParams}-${lang}`);
 
-    const key = makeStateKey<HttpResponse<any>>(modifiedReq.urlWithParams);
-
-    // Server-side logic for caching
+    // Server-side: Store response in transfer state
     if (isPlatformServer(this.platformId)) {
-      return next.handle(modifiedReq).pipe(
+      return next.handle(request).pipe(
         tap(event => {
           if (event instanceof HttpResponse) {
-            this.transferState.set(key, event.body);
+            try {
+              this.transferState.set(key, event.body);
+            } catch (error) {
+              console.warn('Failed to store transfer state:', error);
+            }
           }
         })
       );
     }
 
-    // Client-side logic for retrieving cached response
-    if (isPlatformBrowser(this.platformId) && this.transferState.hasKey(key)) {
-      const cachedResponse = this.transferState.get(key, null);
-      this.transferState.remove(key); // Prevent stale data
-      return of(new HttpResponse({ body: cachedResponse }));
+    // Client-side: Check transfer state first, then make request
+    if (isPlatformBrowser(this.platformId)) {
+      const storedResponse = this.transferState.get(key, null);
+
+      if (storedResponse) {
+        // Remove from transfer state to prevent memory leaks
+        this.transferState.remove(key);
+        return of(new HttpResponse({
+          body: storedResponse,
+          status: 200,
+          statusText: 'OK'
+        }));
+      }
     }
 
-    return next.handle(modifiedReq);
+    // Fallback: Make the request normally
+    return next.handle(request);
   }
 }

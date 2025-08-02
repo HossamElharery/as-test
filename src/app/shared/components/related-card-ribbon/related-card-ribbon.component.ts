@@ -8,10 +8,7 @@ import { SafeHtmlComponent } from '../safe-html/safe-html.component';
     imports: [RouterLink, TranslateModule, SafeHtmlComponent],
     selector: 'app-related-card-ribbon',
     templateUrl: './related-card-ribbon.component.html',
-    styleUrls: ['./related-card-ribbon.component.css'],
-    host: {
-      'ngSkipHydration': 'true'
-    }
+    styleUrls: ['./related-card-ribbon.component.css']
 })
 export class RelatedCardRibbonComponent  implements OnInit{
 

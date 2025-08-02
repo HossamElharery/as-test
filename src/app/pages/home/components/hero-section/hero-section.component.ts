@@ -62,7 +62,7 @@ HomeConfig = {slidesToShow: 1,
   constructor(private _slider: HomeService) {}
   ngOnInit(): void {
     this.loading=true
-    this.subscription.add(this._slider.getSlider().subscribe(result => {
+    this.subscription.add(this._slider.getSliders().subscribe((result: any) => {
       this.sliderContainer = result.data
       this.imageSlide = result.data
       this.smallSlider=result.data[0].slider_data

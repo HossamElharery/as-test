@@ -1,4 +1,5 @@
-import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { provideAppInitializer } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
@@ -10,40 +11,34 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LANGUAGE_TOKEN } from './core/languages/language-token';
 import { TranslationService } from './core/services/translate/language.service';
-import { TransferStateInterceptor } from './core/languages/translation.interceptor';
-// import { SkipPublicInterceptor } from './core/interceptor/skip-link/skip-link.interceptor';
-import { SsrSkipApiInterceptor } from './core/interceptor/ssr-skip-api.interceptor';
-import { RateLimitInterceptor } from './core/services/interceptors/rate-limit';
+// import { SsrSkipApiInterceptor } from './core/interceptor/ssr-skip-api.interceptor';
 import { ErrorHandlingInterceptor } from './core/services/interceptors/error-handling';
 import { SeoResponseInterceptor } from './core/interceptor/seo-response.interceptor';
 import { PlatformService } from './core/services/platform.service';
+import { SeoService } from './core/services/seo.service';
+import { LayoutService } from './layout/services/layout.service';
+import { HomeserviceService } from './core/services/homeservice.service';
 
-export function initializeApp(
-  platformService: PlatformService
-): () => Promise<void> {
-  return () => {
-    return new Promise<void>((resolve) => {
-      // Skip API calls during SSR
-      if (platformService.isServer()) {
-        console.log('Skipping app initialization during SSR');
-        resolve();
-        return;
-      }
-
-      // Just resolve for now, no API calls
-      resolve();
-    });
-  };
+// CRITICAL: HttpLoaderFactory for client-side translation loading
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient, './assets/i18n/');
+// ROBUST: Safe language token provider that never fails
+export function provideLanguageToken(): string {
+  // Always return 'en' during hydration to prevent injection errors
+  return 'en';
+}
+
+// SAFE: Minimal app initialization that never fails
+export function initializeApp(): Promise<void> {
+  return Promise.resolve(); // Always resolve immediately to prevent blocking
 }
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withFetch()),
-    provideHttpClient(withInterceptorsFromDi()),
+    // STEP 1: Core providers that must come first
+    provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideClientHydration(),
     provideRouter(routes, withInMemoryScrolling({
       anchorScrolling: 'enabled',
@@ -51,6 +46,15 @@ export const appConfig: ApplicationConfig = {
     })),
     provideAnimations(),
     importProvidersFrom(MatSnackBarModule),
+
+    // STEP 2: Essential services
+    PlatformService,
+    TranslationService,
+    SeoService,
+    LayoutService,
+    HomeserviceService,
+
+    // STEP 3: Translation module configuration
     importProvidersFrom(
       TranslateModule.forRoot({
         loader: {
@@ -62,30 +66,19 @@ export const appConfig: ApplicationConfig = {
       })
     ),
 
-    // Provide TranslationService and initialize language globally
-    TranslationService,
-
-    // APP_INITIALIZER to ensure that the language is set before the app loads
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp,
-      deps: [PlatformService, TranslationService],
-      multi: true
-    },
-
-    // Provide current language
+    // STEP 4: Simple language token that never fails
     {
       provide: LANGUAGE_TOKEN,
-      useFactory: (translateService: TranslateService) => translateService.currentLang || 'en',
-      deps: [TranslateService]
+      useFactory: provideLanguageToken,
+      deps: [] // No dependencies to prevent injection errors
     },
 
-    // Order matters: first SsrSkip handles SSR special logic, then SkipPublic, RateLimit.
-    { provide: HTTP_INTERCEPTORS, useClass: SsrSkipApiInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: SkipPublicInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: RateLimitInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlingInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: SeoResponseInterceptor, multi: true },
+    // STEP 5: Minimal app initializer
+    provideAppInitializer(() => initializeApp()),
 
+    // STEP 6: Interceptors (minimal set to prevent conflicts)
+    // { provide: HTTP_INTERCEPTORS, useClass: SsrSkipApiInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SeoResponseInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlingInterceptor, multi: true },
   ]
 };

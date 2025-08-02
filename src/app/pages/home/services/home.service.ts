@@ -17,27 +17,30 @@ export class HomeService {
 
   //en
 
-  getSlider(): Observable<any> {
+  getSliders(): Observable<any> {
+    // ORIGINAL URL PATTERN - REVERTED
     return this.http.get(`${environment.url}sliders/en`);
   }
 
   getAboutAs(): Observable<any> {
+    // ORIGINAL URL PATTERN - REVERTED
     return this.http.get(`${environment.url}abouts/en`);
   }
 
   getAlldestination(): Observable<any> {
+    // ORIGINAL URL PATTERN - REVERTED
     return this.http.get(
       `${environment.url}destinations/en`
     );
   }
 
   getHomeBlog(): Observable<any> {
-    return this.http.get(
-      `${environment.url}home/blog/en`
-    );
+    // ORIGINAL URL PATTERN - REVERTED
+    return this.http.get(`${environment.url}home/blog/en`);
   }
 
   getPackages(): Observable<any> {
+    // ORIGINAL URL PATTERN - REVERTED
     return this.http.get(`${environment.url}packages/en`);
   }
 

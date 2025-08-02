@@ -3,8 +3,9 @@ import { Inject, Injectable, makeStateKey, PLATFORM_ID, Renderer2, RendererFacto
 import { Meta, Title } from '@angular/platform-browser';
 import { author, description, fb, google_site_verification, keywords, msvalidate, og, revisit_after, robots, twitter, viewport, yahoo, yandex_verification } from '../models/seo';
 import { HomeserviceService } from './homeservice.service';
-import { catchError, firstValueFrom, of, timeout } from 'rxjs';
+import { catchError, firstValueFrom, of, timeout, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { logSSR, logSSRTiming, logSSRTimingEnd } from '../utils/ssr-debug';
 
 const SEO_KEY = makeStateKey<any>('seo-data');
 
@@ -17,9 +18,12 @@ export class SeoService {
   private renderer!: Renderer2;
   data = { title: '', twitterImage: '', twitterDes: '', twitterTit: '', fbImg: '', fbDes: '', fbTit: '', keywords: '', robots: '', description: '' }
   currentlang: any;
+  private isBrowser: boolean;
+  private baseUrl: string;
 
   constructor(
     @Inject(DOCUMENT) private dom: any,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private rendererFactory: RendererFactory2,
     private _meta: Meta,
     private _title: Title,
@@ -28,10 +32,18 @@ export class SeoService {
     private transferState: TransferState,
   ) {
     this.renderer = rendererFactory.createRenderer(null, null);
-    // this._lang.initializeLanguage();
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    // SAFE: Use environment baseUrl for consistent URL generation
+    this.baseUrl = environment.baseUrl || 'https://new.ask-aladdin.com';
   }
 
   updateCanonicalUrl(url: string) {
+    if (!this.isBrowser) {
+      // For SSR, create link elements using Renderer2
+      this.setCanonicalLinkSSR(url);
+      return;
+    }
+
     const head = this.dom.getElementsByTagName('head')[0];
     let element: HTMLLinkElement = this.dom.querySelector(`link[rel='canonical']`) || null;
     if (element == null) {
@@ -44,7 +56,33 @@ export class SeoService {
     this.updateAlternateXdefault(url);
   }
 
+  private setCanonicalLinkSSR(url: string) {
+    // SAFE: SSR-safe way to set canonical link
+    try {
+      const existingCanonical = this.dom.querySelector('link[rel="canonical"]');
+      if (existingCanonical) {
+        this.renderer.setAttribute(existingCanonical, 'href', url);
+      } else {
+        const head = this.dom.querySelector('head');
+        if (head) {
+          const linkElement = this.renderer.createElement('link');
+          this.renderer.setAttribute(linkElement, 'rel', 'canonical');
+          this.renderer.setAttribute(linkElement, 'href', url);
+          this.renderer.appendChild(head, linkElement);
+        }
+      }
+      this.updateAlternateUrlSSR(url);
+    } catch (error) {
+      console.warn('SSR canonical link creation failed:', error);
+    }
+  }
+
   updateAlternateUrl(url: string) {
+    if (!this.isBrowser) {
+      this.updateAlternateUrlSSR(url);
+      return;
+    }
+
     const head = this.dom.getElementsByTagName('head')[0];
     let element: HTMLLinkElement = this.dom.querySelector(`link[hreflang='en-us']`) || null;
 
@@ -62,6 +100,29 @@ export class SeoService {
     }
   }
 
+  private updateAlternateUrlSSR(url: string) {
+    try {
+      const head = this.dom.querySelector('head');
+      if (head) {
+        // Create en-us alternate link
+        const enLinkElement = this.renderer.createElement('link');
+        this.renderer.setAttribute(enLinkElement, 'rel', 'alternate');
+        this.renderer.setAttribute(enLinkElement, 'hreflang', 'en-us');
+        this.renderer.setAttribute(enLinkElement, 'href', url);
+        this.renderer.appendChild(head, enLinkElement);
+
+        // Create x-default alternate link
+        const defaultLinkElement = this.renderer.createElement('link');
+        this.renderer.setAttribute(defaultLinkElement, 'rel', 'alternate');
+        this.renderer.setAttribute(defaultLinkElement, 'hreflang', 'x-default');
+        this.renderer.setAttribute(defaultLinkElement, 'href', url);
+        this.renderer.appendChild(head, defaultLinkElement);
+      }
+    } catch (error) {
+      console.warn('SSR alternate link creation failed:', error);
+    }
+  }
+
   updateAlternateXdefault(url: string) {
     const head = this.dom.getElementsByTagName('head')[0];
     let element: HTMLLinkElement = this.dom.querySelector(`link[hreflang='x-default']`) || null;
@@ -76,28 +137,40 @@ export class SeoService {
   setFallbackMetaTags(): void {
     console.log('Setting fallback meta tags during SSR');
 
+    const currentPath = this.location.path();
+    const fullUrl = `${this.baseUrl}${currentPath}`;
+
+    // Comprehensive fallback meta data with actual content
     const fallbackData = {
-      title: 'Ask Aladdin - Egypt Travel & Tours',
-      description: 'Discover Egypt with Ask Aladdin - Your trusted travel companion for unforgettable experiences.',
-      keywords: 'Egypt travel, tours, vacation, Ask Aladdin',
+      title: 'Ask Aladdin - Egypt Travel & Tours | Discover Ancient Wonders',
+      description: 'Explore the magnificent wonders of Egypt with Ask Aladdin. From pyramids to Nile cruises, experience authentic Egyptian adventures with expert local guides and discover the magic of ancient civilization.',
+      keywords: 'Egypt travel, pyramids tours, Nile cruise, Cairo tours, Luxor tours, ancient Egypt, travel packages, Egyptian adventures, cultural tours, historical sites',
       robots: 'index,follow',
-      og_title: 'Ask Aladdin - Egypt Travel & Tours',
-      facebook_description: 'Discover Egypt with Ask Aladdin - Your trusted travel companion for unforgettable experiences.',
-      facebook_image: 'https://www.ask-aladdin.com/assets/imgs/ask.png',
+      og_title: 'Ask Aladdin - Egypt Travel & Tours | Discover Ancient Wonders',
+      facebook_description: 'Explore the magnificent wonders of Egypt with Ask Aladdin. From pyramids to Nile cruises, experience authentic Egyptian adventures with expert local guides.',
+      facebook_image: `${this.baseUrl}/assets/imgs/ask.png`,
+      facebook_title: 'Ask Aladdin - Egypt Travel & Tours',
       facebook_site_name: 'Ask Aladdin Travel',
       facebook_page_id: '590763524',
       facebook_admins: '590763524',
       twitter_title: 'Ask Aladdin - Egypt Travel & Tours',
-      twitter_description: 'Discover Egypt with Ask Aladdin - Your trusted travel companion for unforgettable experiences.',
-      twitter_image: 'https://www.ask-aladdin.com/assets/imgs/ask.png',
+      twitter_description: 'Explore the magnificent wonders of Egypt with Ask Aladdin. From pyramids to Nile cruises, experience authentic Egyptian adventures.',
+      twitter_image: `${this.baseUrl}/assets/imgs/ask.png`,
       twitter_site: '@AskAladdin',
       twitter_card: 'summary_large_image',
       author: 'Ask Aladdin Travel',
-      revisit_after: '7 days',
-      og_type: 'website'
+      revisit_after: '7',
+      og_type: 'website',
+      microsoft_validate: '',
+      google_site_verification: '',
+      yandex_verification: ''
     };
 
+    // Use the comprehensive setMetaTags method
     this.setMetaTags(fallbackData);
+    this.updateCanonicalUrl(fullUrl);
+
+    console.log('Fallback meta tags applied successfully');
   }
   // ORIGINAL METHOD - RESTORED EXACTLY AS IT WAS
   globalSeo(lang:any) {
@@ -106,51 +179,73 @@ export class SeoService {
     if (seoData) {
       this.setMetaTags(seoData);
     } else {
-      this.seo.globalSeo(lang).subscribe(res => {
-        this.chat = res.data[0].live_chat_tag;
-        this.setMetaTags(res.data[0]);
-        this.transferState.set(SEO_KEY, res.data[0]);  // Save data for client-side rendering
+      this.seo.globalSeo(lang).subscribe({
+        next: (res) => {
+          if (res && res.data && res.data[0]) {
+            this.chat = res.data[0].live_chat_tag;
+            this.setMetaTags(res.data[0]);
+            this.transferState.set(SEO_KEY, res.data[0]);  // Save data for client-side rendering
+          }
+        },
+        error: (error) => {
+          console.error('globalSeo API failed:', error);
+        }
       });
     }
   }
 
-  // NEW: MINIMAL METHOD ONLY FOR SSR - RETURNS PROMISE
+  // ENHANCED: Better method for SSR with fallbacks only when needed
   globalSeoForSSR(lang: string): Promise<void> {
+    logSSR('globalSeoForSSR called with lang:', lang);
+    logSSRTiming('globalSeoForSSR');
+
     const seoData = this.transferState.get(SEO_KEY, null);
+
     if (seoData) {
+      logSSR('Using cached SEO data from TransferState');
       this.setMetaTags(seoData);
+      logSSRTimingEnd('globalSeoForSSR');
       return Promise.resolve();
-    }
+    } else {
+      logSSR('Fetching SEO data from API...');
+      const ssrTimeout = environment.ssrApiTimeout || 2000;
+      logSSR(`Using SSR timeout: ${ssrTimeout}ms`);
 
-    const ssrTimeout = environment.ssrApiTimeout || 5000;
-    console.log(`SSR SEO call with ${ssrTimeout}ms timeout`);
-
-    return firstValueFrom(
-      this.seo.globalSeo(lang).pipe(
-        timeout(ssrTimeout),
-        catchError((error) => {
-          console.error('SSR SEO failed:', error);
+      return firstValueFrom(this.seo.globalSeo(lang).pipe(
+        timeout(ssrTimeout), // Use environment-specific SSR timeout
+        tap(res => {
+          logSSR('API response received:', JSON.stringify(res).substring(0, 200));
+          if (res && res.data && res.data[0]) {
+            logSSR('Setting meta tags from API response');
+            logSSR('Title from API:', res.data[0].title);
+            logSSR('Description from API:', res.data[0].description);
+            this.setMetaTags(res.data[0]);
+            // Only set transfer state on server
+            if (!this.isBrowser) {
+              this.transferState.set(SEO_KEY, res.data[0]);
+            }
+          } else {
+            logSSR('No SEO data in response, using fallback');
+            this.setFallbackMetaTags();
+          }
+        }),
+        catchError(error => {
+          logSSR('globalSeoForSSR API failed:', error.message || error);
+          logSSR('Error type:', error.name);
+          if (error.name === 'TimeoutError') {
+            logSSR('API call timed out - check if SSR server can reach API');
+          }
           this.setFallbackMetaTags();
           return of(null);
         })
-      )
-    )
-    .then((res: any) => {
-      if (res && res.data && res.data[0]) {
-        this.setMetaTags(res.data[0]);
-        this.transferState.set(SEO_KEY, res.data[0]);
-      } else {
-        this.setFallbackMetaTags();
-      }
-    })
-    .catch(() => {
-      this.setFallbackMetaTags();
-    });
+      )).then(() => {
+        logSSR('globalSeoForSSR completed');
+        logSSRTimingEnd('globalSeoForSSR');
+      });
+    }
   }
 
   setMetaTags(data: any) {
-    console.log('Setting global meta tags:', data);
-
     // Basic SEO tags
     if (data.title) {
       this._title.setTitle(data.title);
@@ -189,7 +284,9 @@ export class SeoService {
       this._meta.updateTag({property: 'og:type', content: data.og_type});
     }
 
-    this._meta.updateTag({property: 'og:url', content: `https://www.ask-aladdin.com${this.location.path()}`});
+    const currentPath = this.location.path();
+    const fullUrl = `${this.baseUrl}${currentPath}`;
+    this._meta.updateTag({property: 'og:url', content: fullUrl});
 
     // Facebook specific tags
     if (data.facebook_page_id) {
@@ -221,7 +318,7 @@ export class SeoService {
       this._meta.updateTag({name: 'twitter:card', content: data.twitter_card});
     }
 
-    this._meta.updateTag({name: 'twitter:url', content: `https://www.ask-aladdin.com${this.location.path()}`});
+    this._meta.updateTag({name: 'twitter:url', content: fullUrl});
 
     if (data.twitter_label1) {
       this._meta.updateTag({name: 'twitter:label1', content: data.twitter_label1});
@@ -261,7 +358,10 @@ export class SeoService {
    * Use this method for direct API responses with facebook_title, facebook_description etc.
    */
   updateCompleteMetaTags(data: any) {
-    console.log('Setting complete meta tags from API:', data);
+    // Only log in browser to avoid confusion
+    if (this.isBrowser) {
+      console.log('Setting complete meta tags from API:', data);
+    }
 
     // Basic SEO tags
     if (data.title) {
@@ -307,19 +407,21 @@ export class SeoService {
     }
 
     // Set URL for current page
-    this._meta.updateTag({property: 'og:url', content: `https://www.ask-aladdin.com${this.location.path()}`});
-    this._meta.updateTag({name: 'twitter:url', content: `https://www.ask-aladdin.com${this.location.path()}`});
+    const currentPath = this.location.path();
+    const fullUrl = `${this.baseUrl}${currentPath}`;
+    this._meta.updateTag({property: 'og:url', content: fullUrl});
+    this._meta.updateTag({name: 'twitter:url', content: fullUrl});
 
     // Update canonical URL
-    this.updateCanonicalUrl(`https://www.ask-aladdin.com${this.location.path()}`);
+    this.updateCanonicalUrl(fullUrl);
   }
 
   updateDesTag(des: any) {
     let descriptionTag;
-    if (!this._meta.getTag(`name='${description.description}'`)) {
-      descriptionTag = this._meta.addTag({ name: `${description.description}`, content: `${des}` });
+    if (!this._meta.getTag(`name='description'`)) {
+      descriptionTag = this._meta.addTag({ name: 'description', content: `${des}` });
     } else {
-      descriptionTag = this._meta.updateTag({ name: `${description.description}`, content: `${des}` });
+      descriptionTag = this._meta.updateTag({ name: 'description', content: `${des}` });
     }
     return descriptionTag;
   }
@@ -445,6 +547,8 @@ export class SeoService {
     }
 
     // Update canonical URL for the specific page
-    this.updateCanonicalUrl(`https://www.ask-aladdin.com${this.location.path()}`);
+    const currentPath = this.location.path();
+    const fullUrl = `${this.baseUrl}${currentPath}`;
+    this.updateCanonicalUrl(fullUrl);
   }
 }

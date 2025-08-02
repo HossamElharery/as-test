@@ -43,9 +43,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.seo.globalSeo(this.translate.currentLang);
+    // Initialize global SEO - use SSR-safe method
+    const currentLang = this.translate.currentLang || 'en';
 
+    // For SSR, this is already handled by the app initializer
+    // For browser, we still need to call it
     if (this.isBrowser) {
+      this.seo.globalSeo(currentLang);
       this.checkLanguage();
       this.getUserData();
       this.checkChangeLang();

@@ -1,0 +1,1 @@
+import{Ca as e,qc as s,wa as r}from"./chunk-5YDBO5D6.js";var c=(()=>{class t{constructor(i){this.sanitizer=i}transform(i){return this.sanitizer.bypassSecurityTrustResourceUrl(i)}static{this.\u0275fac=function(a){return new(a||t)(r(s,16))}}static{this.\u0275pipe=e({name:"safe",type:t,pure:!0})}}return t})();export{c as a};
