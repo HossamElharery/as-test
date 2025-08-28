@@ -246,13 +246,25 @@ export class SeoService {
   }
 
   setMetaTags(data: any) {
+
+    console.log(`[${this.isBrowser ? 'CLIENT' : 'SERVER'}] Setting meta tags:`, {
+      title: data.title,
+      description: data.description?.substring(0, 50) + '...',
+      hasOgTitle: !!data.og_title,
+      hasTwitterTitle: !!data.twitter_title
+    });
+
+    console.log();
+
     // Basic SEO tags
     if (data.title) {
       this._title.setTitle(data.title);
+      console.log(`[${this.isBrowser ? 'CLIENT' : 'SERVER'}] Title set:`, data.title);
     }
 
     if (data.description) {
       this.updateDesTag(data.description);
+      console.log(`[${this.isBrowser ? 'CLIENT' : 'SERVER'}] Description set`);
     }
 
     if (data.keywords) {
@@ -270,10 +282,12 @@ export class SeoService {
 
     if (data.og_title) {
       this._meta.updateTag({property: 'og:title', content: data.og_title});
+      console.log(`[${this.isBrowser ? 'CLIENT' : 'SERVER'}] OG title set:`, data.og_title);
     }
 
     if (data.facebook_description) {
       this._meta.updateTag({property: 'og:description', content: data.facebook_description});
+      console.log(`[${this.isBrowser ? 'CLIENT' : 'SERVER'}] OG description set`);
     }
 
     if (data.facebook_image) {
@@ -300,10 +314,12 @@ export class SeoService {
     // Twitter tags
     if (data.twitter_title) {
       this._meta.updateTag({name: 'twitter:title', content: data.twitter_title});
+      console.log(`[${this.isBrowser ? 'CLIENT' : 'SERVER'}] Twitter title set:`, data.twitter_title);
     }
 
     if (data.twitter_description) {
       this._meta.updateTag({name: 'twitter:description', content: data.twitter_description});
+      console.log(`[${this.isBrowser ? 'CLIENT' : 'SERVER'}] Twitter description set`);
     }
 
     if (data.twitter_image) {

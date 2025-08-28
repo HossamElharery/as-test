@@ -29,7 +29,7 @@ export function provideLanguageToken(): string {
   return 'en'; // Default fallback for SSR
 }
 
-// DIRECT SSR SEO initialization
+// ENHANCED SSR SEO initialization with immediate meta rendering
 export function initializeSsrSeo(
   ssrApiService: SsrApiService,
   seoService: SeoService,
@@ -37,26 +37,30 @@ export function initializeSsrSeo(
 ): () => Promise<void> {
   return async () => {
     if (isPlatformServer(platformId)) {
-      console.log('[SSR-SERVER] ========== DIRECT SSR SEO INIT START ==========');
+      console.log('[SSR-SERVER] ========== ENHANCED SSR SEO INIT START ==========');
 
       try {
-        // Fetch SEO data directly
+        // Fetch SEO data directly with timeout
         const seoData = await ssrApiService.fetchGlobalSeoForSSR('en');
 
         if (seoData) {
           console.log('[SSR-SERVER] Applying SEO data:', seoData.title);
-          // Apply meta tags immediately
+          // Apply meta tags immediately - this is critical for SSR
           seoService.setMetaTags(seoData);
+
+          // Force immediate application of meta tags for SSR
+          console.log('[SSR-SERVER] Meta tags applied for SSR rendering');
         } else {
           console.log('[SSR-SERVER] No SEO data, applying fallback');
           seoService.setFallbackMetaTags();
         }
       } catch (error) {
         console.error('[SSR-SERVER] SEO init error:', error);
+        // Always apply fallback to ensure meta tags exist
         seoService.setFallbackMetaTags();
       }
 
-      console.log('[SSR-SERVER] ========== DIRECT SSR SEO INIT END ==========');
+      console.log('[SSR-SERVER] ========== ENHANCED SSR SEO INIT END ==========');
     }
   };
 }
@@ -91,13 +95,8 @@ const serverConfig: ApplicationConfig = {
       deps: [] // No dependencies to prevent injection errors
     },
 
-    // SSR-specific SEO initializer
-    provideAppInitializer(() => {
-      const ssrApiService = inject(SsrApiService);
-      const seoService = inject(SeoService);
-      const platformId = inject(PLATFORM_ID);
-      return initializeSsrSeo(ssrApiService, seoService, platformId)();
-    }),
+    // NOTE: SEO initialization is now handled by route resolvers
+    // This ensures meta tags are applied during route resolution for proper SSR
 
     // EXACT MATCH: Same interceptor configuration as client
     // { provide: HTTP_INTERCEPTORS, useClass: SsrSkipApiInterceptor, multi: true },

@@ -2,16 +2,16 @@ import { createRequire } from 'module';const require = createRequire(import.meta
 import {
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR
-} from "./chunk-QXJMCWWW.js";
+} from "./chunk-JAWBYGBI.js";
 import {
   NgTemplateOutlet,
   PercentPipe,
   formatDate
-} from "./chunk-NXN3ZPLG.js";
+} from "./chunk-G5QYQ4W5.js";
 import {
   DOCUMENT,
   isPlatformBrowser
-} from "./chunk-NR56HENA.js";
+} from "./chunk-O7FFD2NS.js";
 import {
   ApplicationRef,
   Attribute,
@@ -39,6 +39,8 @@ import {
   ViewChildren,
   ViewContainerRef,
   ViewEncapsulation,
+  afterNextRender,
+  afterRender,
   assertInInjectionContext,
   createComponent,
   forwardRef,
@@ -62,6 +64,7 @@ import {
   ɵɵdefineNgModule,
   ɵɵdirectiveInject,
   ɵɵelement,
+  ɵɵelementContainer,
   ɵɵelementContainerEnd,
   ɵɵelementContainerStart,
   ɵɵelementEnd,
@@ -1599,7 +1602,9 @@ var createPopper3 = popperGenerator({
 });
 
 // node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap.mjs
-var _c0 = ["*"];
+var _c0 = ["container"];
+var _c1 = ["ngbAccordionBody", ""];
+var _c2 = ["*"];
 function NgbAlert_Conditional_1_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = ɵɵgetCurrentView();
@@ -1688,9 +1693,9 @@ function NgbCarousel_Conditional_6_Template(rf, ctx) {
     ɵɵproperty("id", ctx_r2.id + "-next");
   }
 }
-var _c1 = ["ngbDatepickerDayView", ""];
-var _c2 = ["month"];
-var _c3 = ["year"];
+var _c3 = ["ngbDatepickerDayView", ""];
+var _c4 = ["month"];
+var _c5 = ["year"];
 function NgbDatepickerNavigationSelect_For_3_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementStart(0, "option", 3);
@@ -1885,9 +1890,9 @@ function NgbDatepickerMonth_For_2_Template(rf, ctx) {
     ɵɵconditional(!week_r3.collapsed ? 0 : -1);
   }
 }
-var _c4 = ["defaultDayTemplate"];
-var _c5 = ["content"];
-var _c6 = (a0) => ({
+var _c6 = ["defaultDayTemplate"];
+var _c7 = ["content"];
+var _c8 = (a0) => ({
   $implicit: a0
 });
 function NgbDatepicker_ng_template_0_Template(rf, ctx) {
@@ -1965,8 +1970,8 @@ function NgbDatepicker_ng_template_8_Template(rf, ctx) {
 }
 function NgbDatepicker_ng_template_9_Template(rf, ctx) {
 }
-var _c7 = ["dialog"];
-var _c8 = ["ngbNavOutlet", ""];
+var _c9 = ["dialog"];
+var _c10 = ["ngbNavOutlet", ""];
 function NgbNavOutlet_For_1_Conditional_0_ng_template_1_Template(rf, ctx) {
 }
 function NgbNavOutlet_For_1_Conditional_0_Template(rf, ctx) {
@@ -1980,7 +1985,7 @@ function NgbNavOutlet_For_1_Conditional_0_Template(rf, ctx) {
     const ctx_r1 = ɵɵnextContext();
     ɵɵproperty("item", item_r1)("nav", ctx_r1.nav)("role", ctx_r1.paneRole);
     ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", (item_r1.contentTpl == null ? null : item_r1.contentTpl.templateRef) || null)("ngTemplateOutletContext", ɵɵpureFunction1(5, _c6, item_r1.active || ctx_r1.isPanelTransitioning(item_r1)));
+    ɵɵproperty("ngTemplateOutlet", (item_r1.contentTpl == null ? null : item_r1.contentTpl.templateRef) || null)("ngTemplateOutletContext", ɵɵpureFunction1(5, _c8, item_r1.active || ctx_r1.isPanelTransitioning(item_r1)));
   }
 }
 function NgbNavOutlet_For_1_Template(rf, ctx) {
@@ -1993,25 +1998,25 @@ function NgbNavOutlet_For_1_Template(rf, ctx) {
     ɵɵconditional(item_r1.isPanelInDom() || ctx_r1.isPanelTransitioning(item_r1) ? 0 : -1);
   }
 }
-var _c9 = (a0, a1, a2) => ({
+var _c11 = (a0, a1, a2) => ({
   $implicit: a0,
   pages: a1,
   disabled: a2
 });
-var _c10 = (a0) => ({
+var _c12 = (a0) => ({
   disabled: true,
   currentPage: a0
 });
-var _c11 = (a0, a1, a2) => ({
+var _c13 = (a0, a1, a2) => ({
   disabled: a0,
   $implicit: a1,
   currentPage: a2
 });
-var _c12 = (a0, a1) => ({
+var _c14 = (a0, a1) => ({
   disabled: a0,
   currentPage: a1
 });
-var _c13 = (a0) => ({
+var _c15 = (a0) => ({
   disabled: a0
 });
 function NgbPagination_ng_template_0_Template(rf, ctx) {
@@ -2069,7 +2074,7 @@ function NgbPagination_ng_template_12_For_1_Conditional_1_Template(rf, ctx) {
     const ctx_r2 = ɵɵnextContext();
     const ellipsis_r4 = ɵɵreference(9);
     ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplEllipsis == null ? null : ctx_r2.tplEllipsis.templateRef) || ellipsis_r4)("ngTemplateOutletContext", ɵɵpureFunction1(2, _c10, page_r2));
+    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplEllipsis == null ? null : ctx_r2.tplEllipsis.templateRef) || ellipsis_r4)("ngTemplateOutletContext", ɵɵpureFunction1(2, _c12, page_r2));
   }
 }
 function NgbPagination_ng_template_12_For_1_Conditional_2_ng_template_1_Template(rf, ctx) {
@@ -2097,7 +2102,7 @@ function NgbPagination_ng_template_12_For_1_Conditional_2_Template(rf, ctx) {
     const defaultNumber_r9 = ɵɵreference(11);
     ɵɵattribute("tabindex", disabled_r8 ? "-1" : null)("aria-disabled", disabled_r8 ? "true" : null);
     ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplNumber == null ? null : ctx_r2.tplNumber.templateRef) || defaultNumber_r9)("ngTemplateOutletContext", ɵɵpureFunction3(4, _c11, disabled_r8, pageNumber_r6, page_r2));
+    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplNumber == null ? null : ctx_r2.tplNumber.templateRef) || defaultNumber_r9)("ngTemplateOutletContext", ɵɵpureFunction3(4, _c13, disabled_r8, pageNumber_r6, page_r2));
   }
 }
 function NgbPagination_ng_template_12_For_1_Template(rf, ctx) {
@@ -2149,7 +2154,7 @@ function NgbPagination_Conditional_15_Template(rf, ctx) {
     ɵɵadvance();
     ɵɵattribute("tabindex", ctx_r2.previousDisabled() ? "-1" : null)("aria-disabled", ctx_r2.previousDisabled() ? "true" : null);
     ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplFirst == null ? null : ctx_r2.tplFirst.templateRef) || first_r12)("ngTemplateOutletContext", ɵɵpureFunction2(6, _c12, ctx_r2.previousDisabled(), ctx_r2.page));
+    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplFirst == null ? null : ctx_r2.tplFirst.templateRef) || first_r12)("ngTemplateOutletContext", ɵɵpureFunction2(6, _c14, ctx_r2.previousDisabled(), ctx_r2.page));
   }
 }
 function NgbPagination_Conditional_16_ng_template_2_Template(rf, ctx) {
@@ -2174,7 +2179,7 @@ function NgbPagination_Conditional_16_Template(rf, ctx) {
     ɵɵadvance();
     ɵɵattribute("tabindex", ctx_r2.previousDisabled() ? "-1" : null)("aria-disabled", ctx_r2.previousDisabled() ? "true" : null);
     ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplPrevious == null ? null : ctx_r2.tplPrevious.templateRef) || previous_r14)("ngTemplateOutletContext", ɵɵpureFunction1(6, _c13, ctx_r2.previousDisabled()));
+    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplPrevious == null ? null : ctx_r2.tplPrevious.templateRef) || previous_r14)("ngTemplateOutletContext", ɵɵpureFunction1(6, _c15, ctx_r2.previousDisabled()));
   }
 }
 function NgbPagination_ng_template_17_Template(rf, ctx) {
@@ -2201,7 +2206,7 @@ function NgbPagination_Conditional_18_Template(rf, ctx) {
     ɵɵadvance();
     ɵɵattribute("tabindex", ctx_r2.nextDisabled() ? "-1" : null)("aria-disabled", ctx_r2.nextDisabled() ? "true" : null);
     ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplNext == null ? null : ctx_r2.tplNext.templateRef) || next_r16)("ngTemplateOutletContext", ɵɵpureFunction2(6, _c12, ctx_r2.nextDisabled(), ctx_r2.page));
+    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplNext == null ? null : ctx_r2.tplNext.templateRef) || next_r16)("ngTemplateOutletContext", ɵɵpureFunction2(6, _c14, ctx_r2.nextDisabled(), ctx_r2.page));
   }
 }
 function NgbPagination_Conditional_19_ng_template_2_Template(rf, ctx) {
@@ -2226,7 +2231,7 @@ function NgbPagination_Conditional_19_Template(rf, ctx) {
     ɵɵadvance();
     ɵɵattribute("tabindex", ctx_r2.nextDisabled() ? "-1" : null)("aria-disabled", ctx_r2.nextDisabled() ? "true" : null);
     ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplLast == null ? null : ctx_r2.tplLast.templateRef) || last_r18)("ngTemplateOutletContext", ɵɵpureFunction2(6, _c12, ctx_r2.nextDisabled(), ctx_r2.page));
+    ɵɵproperty("ngTemplateOutlet", (ctx_r2.tplLast == null ? null : ctx_r2.tplLast.templateRef) || last_r18)("ngTemplateOutletContext", ɵɵpureFunction2(6, _c14, ctx_r2.nextDisabled(), ctx_r2.page));
   }
 }
 function NgbPopoverWindow_Conditional_1_ng_template_1_Template(rf, ctx) {
@@ -2592,7 +2597,7 @@ function NgbHighlight_For_1_Template(rf, ctx) {
     ɵɵconditional(ɵ$index_1_r3 % 2 !== 0 ? 0 : 1);
   }
 }
-var _c14 = (a0, a1, a2) => ({
+var _c16 = (a0, a1, a2) => ({
   result: a0,
   term: a1,
   formatter: a2
@@ -2634,7 +2639,7 @@ function NgbTypeaheadWindow_For_3_Template(rf, ctx) {
     ɵɵclassProp("active", $index_r5 === ctx_r5.activeIdx);
     ɵɵproperty("id", ctx_r5.id + "-" + $index_r5);
     ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", ctx_r5.resultTemplate || rt_r8)("ngTemplateOutletContext", ɵɵpureFunction3(5, _c14, result_r7, ctx_r5.term, ctx_r5.formatter));
+    ɵɵproperty("ngTemplateOutlet", ctx_r5.resultTemplate || rt_r8)("ngTemplateOutletContext", ɵɵpureFunction3(5, _c16, result_r7, ctx_r5.term, ctx_r5.formatter));
   }
 }
 var environment = {
@@ -3048,10 +3053,9 @@ var NgbCollapse = class _NgbCollapse {
 var nextId$3 = 0;
 var NgbAccordionBody = class _NgbAccordionBody {
   constructor() {
-    this._vcr = inject(ViewContainerRef);
-    this._element = inject(ElementRef).nativeElement;
     this._item = inject(NgbAccordionItem);
     this._viewRef = null;
+    this.elementRef = inject(ElementRef);
   }
   ngAfterContentChecked() {
     if (this._bodyTpl) {
@@ -3073,9 +3077,6 @@ var NgbAccordionBody = class _NgbAccordionBody {
     if (!this._viewRef) {
       this._viewRef = this._vcr.createEmbeddedView(this._bodyTpl);
       this._viewRef.detectChanges();
-      for (const node of this._viewRef.rootNodes) {
-        this._element.appendChild(node);
-      }
     }
   }
   static {
@@ -3084,7 +3085,7 @@ var NgbAccordionBody = class _NgbAccordionBody {
     };
   }
   static {
-    this.ɵdir = ɵɵdefineDirective({
+    this.ɵcmp = ɵɵdefineComponent({
       type: _NgbAccordionBody,
       selectors: [["", "ngbAccordionBody", ""]],
       contentQueries: function NgbAccordionBody_ContentQueries(rf, ctx, dirIndex) {
@@ -3096,21 +3097,54 @@ var NgbAccordionBody = class _NgbAccordionBody {
           ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx._bodyTpl = _t.first);
         }
       },
-      hostAttrs: [1, "accordion-body"]
+      viewQuery: function NgbAccordionBody_Query(rf, ctx) {
+        if (rf & 1) {
+          ɵɵviewQuery(_c0, 7, ViewContainerRef);
+        }
+        if (rf & 2) {
+          let _t;
+          ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx._vcr = _t.first);
+        }
+      },
+      hostAttrs: [1, "accordion-body"],
+      attrs: _c1,
+      ngContentSelectors: _c2,
+      decls: 3,
+      vars: 0,
+      consts: [["container", ""]],
+      template: function NgbAccordionBody_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵprojectionDef();
+          ɵɵelementContainer(0, null, 0);
+          ɵɵprojection(2);
+        }
+      },
+      encapsulation: 2
     });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(NgbAccordionBody, [{
-    type: Directive,
+    type: Component,
     args: [{
       selector: "[ngbAccordionBody]",
       standalone: true,
+      template: `
+		<ng-container #container />
+		<ng-content />
+	`,
       host: {
         class: "accordion-body"
       }
     }]
   }], null, {
+    _vcr: [{
+      type: ViewChild,
+      args: ["container", {
+        read: ViewContainerRef,
+        static: true
+      }]
+    }],
     _bodyTpl: [{
       type: ContentChild,
       args: [TemplateRef, {
@@ -3358,10 +3392,12 @@ var NgbAccordionItem = class _NgbAccordionItem {
       this._collapseAnimationRunning = false;
       this.hidden.emit();
       this._accordion.hidden.emit(this.id);
+      this._cd.markForCheck();
     });
     ngbCollapse.shown.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
       this.shown.emit();
       this._accordion.shown.emit(this.id);
+      this._cd.markForCheck();
     });
   }
   /**
@@ -3780,7 +3816,7 @@ var NgbAlert = class _NgbAlert {
         closed: "closed"
       },
       exportAs: ["ngbAlert"],
-      ngContentSelectors: _c0,
+      ngContentSelectors: _c2,
       decls: 2,
       vars: 1,
       consts: () => {
@@ -4030,6 +4066,7 @@ var NgbCarousel = class _NgbCarousel {
     this._cd = inject(ChangeDetectorRef);
     this._container = inject(ElementRef);
     this._destroyRef = inject(DestroyRef);
+    this._injector = inject(Injector);
     this._interval$ = new import_rxjs2.BehaviorSubject(this._config.interval);
     this._mouseHover$ = new import_rxjs2.BehaviorSubject(false);
     this._focused$ = new import_rxjs2.BehaviorSubject(false);
@@ -4119,17 +4156,21 @@ var NgbCarousel = class _NgbCarousel {
       this._transitionIds?.forEach((id) => ngbCompleteTransition(this._getSlideElement(id)));
       this._transitionIds = null;
       this._cd.markForCheck();
-      this._ngZone.onStable.pipe((0, import_operators2.take)(1)).subscribe(() => {
-        for (const {
-          id
-        } of this.slides) {
-          const element = this._getSlideElement(id);
-          if (id === this.activeId) {
-            element.classList.add("active");
-          } else {
-            element.classList.remove("active");
+      afterNextRender({
+        mixedReadWrite: () => {
+          for (const {
+            id
+          } of this.slides) {
+            const element = this._getSlideElement(id);
+            if (id === this.activeId) {
+              element.classList.add("active");
+            } else {
+              element.classList.remove("active");
+            }
           }
         }
+      }, {
+        injector: this._injector
       });
     });
   }
@@ -4391,7 +4432,6 @@ var NgbCarousel = class _NgbCarousel {
     args: [{
       selector: "ngb-carousel",
       exportAs: "ngbCarousel",
-      standalone: true,
       imports: [NgTemplateOutlet],
       changeDetection: ChangeDetectionStrategy.OnPush,
       encapsulation: ViewEncapsulation.None,
@@ -4999,17 +5039,19 @@ var NgbDatepickerI18nDefault = class _NgbDatepickerI18nDefault extends NgbDatepi
     super(...arguments);
     this._locale = inject(LOCALE_ID);
     this._monthsShort = [...Array(12).keys()].map((month) => Intl.DateTimeFormat(this._locale, {
-      month: "short"
-    }).format(new Date(2e3, month)));
+      month: "short",
+      timeZone: "UTC"
+    }).format(Date.UTC(2e3, month)));
     this._monthsFull = [...Array(12).keys()].map((month) => Intl.DateTimeFormat(this._locale, {
-      month: "long"
-    }).format(new Date(2e3, month)));
+      month: "long",
+      timeZone: "UTC"
+    }).format(Date.UTC(2e3, month)));
   }
   getWeekdayLabel(weekday, width = "narrow") {
-    const weekdaysStartingOnSunday = [...Array(7).keys()].map((day) => Intl.DateTimeFormat(this._locale, {
-      weekday: width
-    }).format(new Date(Date.UTC(2021, 5, day - 1))));
-    const weekdays = weekdaysStartingOnSunday.map((day, index) => weekdaysStartingOnSunday[(index + 1) % 7]);
+    const weekdays = [1, 2, 3, 4, 5, 6, 7].map((day) => Intl.DateTimeFormat(this._locale, {
+      weekday: width,
+      timeZone: "UTC"
+    }).format(Date.UTC(2e3, 4, day)));
     return weekdays[weekday - 1] || "";
   }
   getMonthShortName(month) {
@@ -5538,7 +5580,7 @@ var NgbDatepickerDayView = class _NgbDatepickerDayView {
         focused: "focused",
         selected: "selected"
       },
-      attrs: _c1,
+      attrs: _c3,
       decls: 1,
       vars: 1,
       template: function NgbDatepickerDayView_Template(rf, ctx) {
@@ -5628,8 +5670,8 @@ var NgbDatepickerNavigationSelect = class _NgbDatepickerNavigationSelect {
       selectors: [["ngb-datepicker-navigation-select"]],
       viewQuery: function NgbDatepickerNavigationSelect_Query(rf, ctx) {
         if (rf & 1) {
-          ɵɵviewQuery(_c2, 7, ElementRef);
-          ɵɵviewQuery(_c3, 7, ElementRef);
+          ɵɵviewQuery(_c4, 7, ElementRef);
+          ɵɵviewQuery(_c5, 7, ElementRef);
         }
         if (rf & 2) {
           let _t;
@@ -5896,7 +5938,6 @@ var NgbDatepickerNavigation = class _NgbDatepickerNavigation {
     type: Component,
     args: [{
       selector: "ngb-datepicker-navigation",
-      standalone: true,
       imports: [NgbDatepickerNavigationSelect],
       changeDetection: ChangeDetectionStrategy.OnPush,
       encapsulation: ViewEncapsulation.None,
@@ -6080,7 +6121,6 @@ var NgbDatepickerMonth = class _NgbDatepickerMonth {
     type: Component,
     args: [{
       selector: "ngb-datepicker-month",
-      standalone: true,
       imports: [NgTemplateOutlet],
       host: {
         role: "grid",
@@ -6143,8 +6183,10 @@ var NgbDatepicker = class _NgbDatepicker {
     this._ngbDateAdapter = inject(NgbDateAdapter);
     this._ngZone = inject(NgZone);
     this._destroyRef = inject(DestroyRef);
+    this._injector = inject(Injector);
     this._controlValue = null;
     this._publicState = {};
+    this._initialized = false;
     this.dayTemplate = this._config.dayTemplate;
     this.dayTemplateData = this._config.dayTemplateData;
     this.displayMonths = this._config.displayMonths;
@@ -6249,7 +6291,13 @@ var NgbDatepicker = class _NgbDatepicker {
     this._service.focusSelect();
   }
   focus() {
-    this._ngZone.onStable.asObservable().pipe((0, import_operators2.take)(1)).subscribe(() => this._nativeElement.querySelector('div.ngb-dp-day[tabindex="0"]')?.focus());
+    afterNextRender({
+      read: () => {
+        this._nativeElement.querySelector('div.ngb-dp-day[tabindex="0"]')?.focus();
+      }
+    }, {
+      injector: this._injector
+    });
   }
   /**
    * Navigates to the provided date.
@@ -6289,12 +6337,13 @@ var NgbDatepicker = class _NgbDatepicker {
     if (!this.dayTemplate) {
       this.dayTemplate = this._defaultDayTemplate;
     }
+    this._initialized = true;
   }
   ngOnChanges(changes) {
     const inputs = {};
     ["dayTemplateData", "displayMonths", "markDisabled", "firstDayOfWeek", "navigation", "minDate", "maxDate", "outsideDays", "weekdays"].filter((name) => name in changes).forEach((name) => inputs[name] = this[name]);
     this._service.set(inputs);
-    if ("startDate" in changes) {
+    if ("startDate" in changes && this._initialized) {
       const {
         currentValue,
         previousValue
@@ -6358,8 +6407,8 @@ var NgbDatepicker = class _NgbDatepicker {
       },
       viewQuery: function NgbDatepicker_Query(rf, ctx) {
         if (rf & 1) {
-          ɵɵviewQuery(_c4, 7);
-          ɵɵviewQuery(_c5, 7);
+          ɵɵviewQuery(_c6, 7);
+          ɵɵviewQuery(_c7, 7);
         }
         if (rf & 2) {
           let _t;
@@ -6420,7 +6469,7 @@ var NgbDatepicker = class _NgbDatepicker {
           ɵɵadvance();
           ɵɵclassProp("ngb-dp-months", !ctx.contentTemplate);
           ɵɵadvance(2);
-          ɵɵproperty("ngTemplateOutlet", ctx.contentTemplate || (ctx.contentTemplateFromContent == null ? null : ctx.contentTemplateFromContent.templateRef) || defaultContentTemplate_r9)("ngTemplateOutletContext", ɵɵpureFunction1(7, _c6, ctx))("ngTemplateOutletInjector", ctx.injector);
+          ɵɵproperty("ngTemplateOutlet", ctx.contentTemplate || (ctx.contentTemplateFromContent == null ? null : ctx.contentTemplateFromContent.templateRef) || defaultContentTemplate_r9)("ngTemplateOutletContext", ɵɵpureFunction1(7, _c8, ctx))("ngTemplateOutletInjector", ctx.injector);
           ɵɵadvance();
           ɵɵproperty("ngTemplateOutlet", ctx.footerTemplate);
         }
@@ -6438,7 +6487,6 @@ var NgbDatepicker = class _NgbDatepicker {
     args: [{
       exportAs: "ngbDatepicker",
       selector: "ngb-datepicker",
-      standalone: true,
       imports: [NgTemplateOutlet, NgbDatepickerDayView, NgbDatepickerMonth, NgbDatepickerNavigation],
       changeDetection: ChangeDetectionStrategy.OnPush,
       encapsulation: ViewEncapsulation.None,
@@ -6762,12 +6810,6 @@ function getPopperOptions({
       options: {
         fallbackPlacements: popperPlacements
       }
-    }, {
-      enabled: true,
-      name: "preventOverflow",
-      phase: "main",
-      fn: function() {
-      }
     }]
   };
 }
@@ -6933,6 +6975,7 @@ var NgbInputDatepicker = class _NgbInputDatepicker {
     this._dateAdapter = inject(NgbDateAdapter);
     this._document = inject(DOCUMENT);
     this._changeDetector = inject(ChangeDetectorRef);
+    this._injector = inject(Injector);
     this._config = inject(NgbInputDatepickerConfig);
     this._cRef = null;
     this._disabled = false;
@@ -7039,7 +7082,9 @@ var NgbInputDatepicker = class _NgbInputDatepicker {
    */
   open() {
     if (!this.isOpen()) {
-      this._cRef = this._vcRef.createComponent(NgbDatepicker);
+      this._cRef = this._vcRef.createComponent(NgbDatepicker, {
+        injector: this._injector
+      });
       this._applyPopupStyling(this._cRef.location.nativeElement);
       this._applyDatepickerInputs(this._cRef);
       this._subscribeForDatepickerOutputs(this._cRef.instance);
@@ -7077,7 +7122,13 @@ var NgbInputDatepicker = class _NgbInputDatepicker {
             placement: this.placement,
             updatePopperOptions: (options) => this.popperOptions(addPopperOffset([0, 2])(options))
           });
-          this._zoneSubscription = this._ngZone.onStable.subscribe(() => this._positioning.update());
+          this._afterRenderRef = afterRender({
+            mixedReadWrite: () => {
+              this._positioning.update();
+            }
+          }, {
+            injector: this._injector
+          });
         }
       });
       this._setCloseHandlers();
@@ -7091,7 +7142,7 @@ var NgbInputDatepicker = class _NgbInputDatepicker {
       this._cRef?.destroy();
       this._cRef = null;
       this._positioning.destroy();
-      this._zoneSubscription?.unsubscribe();
+      this._afterRenderRef?.destroy();
       this._destroyCloseHandlers$.next();
       this.closed.emit();
       this._changeDetector.markForCheck();
@@ -9349,6 +9400,7 @@ var NgbDropdown = class _NgbDropdown {
     this._changeDetector = inject(ChangeDetectorRef);
     this._config = inject(NgbDropdownConfig);
     this._document = inject(DOCUMENT);
+    this._injector = inject(Injector);
     this._ngZone = inject(NgZone);
     this._nativeElement = inject(ElementRef).nativeElement;
     this._destroyCloseHandlers$ = new import_rxjs2.Subject();
@@ -9367,11 +9419,15 @@ var NgbDropdown = class _NgbDropdown {
     }
   }
   ngAfterContentInit() {
-    this._ngZone.onStable.pipe((0, import_operators2.take)(1)).subscribe(() => {
-      this._applyPlacementClasses();
-      if (this._open) {
-        this._setCloseHandlers();
+    afterNextRender({
+      write: () => {
+        this._applyPlacementClasses();
+        if (this._open) {
+          this._setCloseHandlers();
+        }
       }
+    }, {
+      injector: this._injector
     });
   }
   ngOnChanges(changes) {
@@ -9424,7 +9480,13 @@ var NgbDropdown = class _NgbDropdown {
               updatePopperOptions: (options) => this.popperOptions(addPopperOffset([0, 2])(options))
             });
             this._applyPlacementClasses();
-            this._zoneSubscription = this._ngZone.onStable.subscribe(() => this._positionMenu());
+            this._afterRenderRef = afterRender({
+              write: () => {
+                this._positionMenu();
+              }
+            }, {
+              injector: this._injector
+            });
           });
         }
       }
@@ -9447,7 +9509,7 @@ var NgbDropdown = class _NgbDropdown {
       this._open = false;
       this._resetContainer();
       this._positioning.destroy();
-      this._zoneSubscription?.unsubscribe();
+      this._afterRenderRef?.destroy();
       this._destroyCloseHandlers$.next();
       this.openChange.emit(false);
       this._changeDetector.markForCheck();
@@ -9754,6 +9816,7 @@ var NgbModalConfig = class _NgbModalConfig {
     this.backdrop = true;
     this.fullscreen = false;
     this.keyboard = true;
+    this.role = "dialog";
   }
   get animation() {
     return this._animation ?? this._ngbConfig.animation;
@@ -9811,7 +9874,16 @@ var PopupService = class {
     const {
       nativeElement
     } = this._windowRef.location;
-    const transition$ = this._ngZone.onStable.pipe((0, import_operators2.take)(1), (0, import_operators2.mergeMap)(() => ngbRunTransition(this._ngZone, nativeElement, ({
+    const nextRenderSubject = new import_rxjs2.Subject();
+    afterNextRender({
+      mixedReadWrite: () => {
+        nextRenderSubject.next();
+        nextRenderSubject.complete();
+      }
+    }, {
+      injector: this._injector
+    });
+    const transition$ = nextRenderSubject.pipe((0, import_operators2.mergeMap)(() => ngbRunTransition(this._ngZone, nativeElement, ({
       classList
     }) => classList.add("show"), {
       animation,
@@ -9907,10 +9979,11 @@ var NgbModalBackdrop = class _NgbModalBackdrop {
   constructor() {
     this._nativeElement = inject(ElementRef).nativeElement;
     this._zone = inject(NgZone);
+    this._injector = inject(Injector);
   }
   ngOnInit() {
-    this._zone.onStable.asObservable().pipe((0, import_operators2.take)(1)).subscribe(() => {
-      ngbRunTransition(this._zone, this._nativeElement, (element, animation) => {
+    afterNextRender({
+      mixedReadWrite: () => ngbRunTransition(this._zone, this._nativeElement, (element, animation) => {
         if (animation) {
           reflow(element);
         }
@@ -9918,7 +9991,9 @@ var NgbModalBackdrop = class _NgbModalBackdrop {
       }, {
         animation: this.animation,
         runningTransition: "continue"
-      });
+      })
+    }, {
+      injector: this._injector
     });
   }
   hide() {
@@ -10005,7 +10080,7 @@ var NgbActiveModal = class {
   dismiss(reason) {
   }
 };
-var WINDOW_ATTRIBUTES = ["animation", "ariaLabelledBy", "ariaDescribedBy", "backdrop", "centered", "fullscreen", "keyboard", "scrollable", "size", "windowClass", "modalDialogClass"];
+var WINDOW_ATTRIBUTES = ["animation", "ariaLabelledBy", "ariaDescribedBy", "backdrop", "centered", "fullscreen", "keyboard", "role", "scrollable", "size", "windowClass", "modalDialogClass"];
 var BACKDROP_ATTRIBUTES = ["animation", "backdropClass"];
 var NgbModalRef = class {
   _applyWindowOptions(windowInstance, options) {
@@ -10185,10 +10260,12 @@ var NgbModalWindow = class _NgbModalWindow {
     this._document = inject(DOCUMENT);
     this._elRef = inject(ElementRef);
     this._zone = inject(NgZone);
+    this._injector = inject(Injector);
     this._closed$ = new import_rxjs2.Subject();
     this._elWithFocus = null;
     this.backdrop = true;
     this.keyboard = true;
+    this.role = "dialog";
     this.dismissEvent = new EventEmitter();
     this.shown = new import_rxjs2.Subject();
     this.hidden = new import_rxjs2.Subject();
@@ -10201,8 +10278,10 @@ var NgbModalWindow = class _NgbModalWindow {
   }
   ngOnInit() {
     this._elWithFocus = this._document.activeElement;
-    this._zone.onStable.asObservable().pipe((0, import_operators2.take)(1)).subscribe(() => {
-      this._show();
+    afterNextRender({
+      mixedReadWrite: () => this._show()
+    }, {
+      injector: this._injector
     });
   }
   ngOnDestroy() {
@@ -10336,18 +10415,18 @@ var NgbModalWindow = class _NgbModalWindow {
       selectors: [["ngb-modal-window"]],
       viewQuery: function NgbModalWindow_Query(rf, ctx) {
         if (rf & 1) {
-          ɵɵviewQuery(_c7, 7);
+          ɵɵviewQuery(_c9, 7);
         }
         if (rf & 2) {
           let _t;
           ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx._dialogEl = _t.first);
         }
       },
-      hostAttrs: ["role", "dialog", "tabindex", "-1"],
-      hostVars: 7,
+      hostAttrs: ["tabindex", "-1"],
+      hostVars: 8,
       hostBindings: function NgbModalWindow_HostBindings(rf, ctx) {
         if (rf & 2) {
-          ɵɵattribute("aria-modal", true)("aria-labelledby", ctx.ariaLabelledBy)("aria-describedby", ctx.ariaDescribedBy);
+          ɵɵattribute("aria-modal", true)("aria-labelledby", ctx.ariaLabelledBy)("aria-describedby", ctx.ariaDescribedBy)("role", ctx.role);
           ɵɵclassMap("modal d-block" + (ctx.windowClass ? " " + ctx.windowClass : ""));
           ɵɵclassProp("fade", ctx.animation);
         }
@@ -10360,6 +10439,7 @@ var NgbModalWindow = class _NgbModalWindow {
         centered: "centered",
         fullscreen: "fullscreen",
         keyboard: "keyboard",
+        role: "role",
         scrollable: "scrollable",
         size: "size",
         windowClass: "windowClass",
@@ -10368,7 +10448,7 @@ var NgbModalWindow = class _NgbModalWindow {
       outputs: {
         dismissEvent: "dismiss"
       },
-      ngContentSelectors: _c0,
+      ngContentSelectors: _c2,
       decls: 4,
       vars: 2,
       consts: [["dialog", ""], ["role", "document"], [1, "modal-content"]],
@@ -10397,11 +10477,11 @@ var NgbModalWindow = class _NgbModalWindow {
       host: {
         "[class]": '"modal d-block" + (windowClass ? " " + windowClass : "")',
         "[class.fade]": "animation",
-        role: "dialog",
         tabindex: "-1",
         "[attr.aria-modal]": "true",
         "[attr.aria-labelledby]": "ariaLabelledBy",
-        "[attr.aria-describedby]": "ariaDescribedBy"
+        "[attr.aria-describedby]": "ariaDescribedBy",
+        "[attr.role]": "role"
       },
       template: `
 		<div
@@ -10448,6 +10528,9 @@ var NgbModalWindow = class _NgbModalWindow {
       type: Input
     }],
     keyboard: [{
+      type: Input
+    }],
+    role: [{
       type: Input
     }],
     scrollable: [{
@@ -11523,7 +11606,7 @@ var NgbNavOutlet = class _NgbNavOutlet {
         paneRole: "paneRole",
         nav: [0, "ngbNavOutlet", "nav"]
       },
-      attrs: _c8,
+      attrs: _c10,
       decls: 2,
       vars: 0,
       consts: [["ngbNavPane", "", 3, "item", "nav", "role"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"]],
@@ -11546,7 +11629,6 @@ var NgbNavOutlet = class _NgbNavOutlet {
     type: Component,
     args: [{
       selector: "[ngbNavOutlet]",
-      standalone: true,
       imports: [NgbNavPane, NgTemplateOutlet],
       host: {
         class: "tab-content"
@@ -12058,7 +12140,7 @@ var NgbPagination = class _NgbPagination {
           ɵɵadvance();
           ɵɵconditional(ctx.directionLinks ? 16 : -1);
           ɵɵadvance();
-          ɵɵproperty("ngTemplateOutlet", (ctx.tplPages == null ? null : ctx.tplPages.templateRef) || defaultPages_r19)("ngTemplateOutletContext", ɵɵpureFunction3(8, _c9, ctx.page, ctx.pages, ctx.disabled));
+          ɵɵproperty("ngTemplateOutlet", (ctx.tplPages == null ? null : ctx.tplPages.templateRef) || defaultPages_r19)("ngTemplateOutletContext", ɵɵpureFunction3(8, _c11, ctx.page, ctx.pages, ctx.disabled));
           ɵɵadvance();
           ɵɵconditional(ctx.directionLinks ? 18 : -1);
           ɵɵadvance();
@@ -12076,7 +12158,6 @@ var NgbPagination = class _NgbPagination {
     type: Component,
     args: [{
       selector: "ngb-pagination",
-      standalone: true,
       imports: [NgTemplateOutlet],
       changeDetection: ChangeDetectionStrategy.OnPush,
       host: {
@@ -12433,7 +12514,7 @@ var NgbPopoverWindow = class _NgbPopoverWindow {
         popoverClass: "popoverClass",
         context: "context"
       },
-      ngContentSelectors: _c0,
+      ngContentSelectors: _c2,
       decls: 4,
       vars: 1,
       consts: [["simpleTitle", ""], ["data-popper-arrow", "", 1, "popover-arrow"], [1, "popover-header"], [1, "popover-body"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"]],
@@ -12462,7 +12543,6 @@ var NgbPopoverWindow = class _NgbPopoverWindow {
     type: Component,
     args: [{
       selector: "ngb-popover-window",
-      standalone: true,
       imports: [NgTemplateOutlet],
       changeDetection: ChangeDetectionStrategy.OnPush,
       encapsulation: ViewEncapsulation.None,
@@ -12526,6 +12606,7 @@ var NgbPopover = class _NgbPopover {
     this._ngZone = inject(NgZone);
     this._document = inject(DOCUMENT);
     this._changeDetector = inject(ChangeDetectorRef);
+    this._injector = inject(Injector);
     this._ngbPopoverWindowId = `ngb-popover-${nextId$1++}`;
     this._popupService = new PopupService(NgbPopoverWindow);
     this._windowRef = null;
@@ -12565,7 +12646,13 @@ var NgbPopover = class _NgbPopover {
         });
         Promise.resolve().then(() => {
           this._positioning.update();
-          this._zoneSubscription = this._ngZone.onStable.subscribe(() => this._positioning.update());
+        });
+        this._afterRenderRef = afterRender({
+          mixedReadWrite: () => {
+            this._positioning.update();
+          }
+        }, {
+          injector: this._injector
         });
       });
       ngbAutoClose(this._ngZone, this._document, this.autoClose, () => this.close(), this.hidden, [this._windowRef.location.nativeElement]);
@@ -12583,7 +12670,7 @@ var NgbPopover = class _NgbPopover {
       this._popupService.close(animation).subscribe(() => {
         this._windowRef = null;
         this._positioning.destroy();
-        this._zoneSubscription?.unsubscribe();
+        this._afterRenderRef?.destroy();
         this.hidden.emit();
         this._changeDetector.markForCheck();
       });
@@ -12842,7 +12929,7 @@ var NgbProgressbar = class _NgbProgressbar {
         value: "value",
         height: "height"
       },
-      ngContentSelectors: _c0,
+      ngContentSelectors: _c2,
       decls: 3,
       vars: 11,
       consts: () => {
@@ -12888,7 +12975,6 @@ var NgbProgressbar = class _NgbProgressbar {
     type: Component,
     args: [{
       selector: "ngb-progressbar",
-      standalone: true,
       imports: [PercentPipe],
       changeDetection: ChangeDetectionStrategy.OnPush,
       encapsulation: ViewEncapsulation.None,
@@ -12962,7 +13048,7 @@ var NgbProgressbarStacked = class _NgbProgressbarStacked {
       type: _NgbProgressbarStacked,
       selectors: [["ngb-progressbar-stacked"]],
       hostAttrs: [1, "progress-stacked"],
-      ngContentSelectors: _c0,
+      ngContentSelectors: _c2,
       decls: 1,
       vars: 0,
       template: function NgbProgressbarStacked_Template(rf, ctx) {
@@ -13247,7 +13333,6 @@ var NgbRating = class _NgbRating {
     type: Component,
     args: [{
       selector: "ngb-rating",
-      standalone: true,
       imports: [NgTemplateOutlet],
       changeDetection: ChangeDetectionStrategy.OnPush,
       encapsulation: ViewEncapsulation.None,
@@ -14956,6 +15041,7 @@ var NgbToast = class _NgbToast {
     this.ariaLive = ariaLive;
     this._config = inject(NgbToastConfig);
     this._zone = inject(NgZone);
+    this._injector = inject(Injector);
     this._element = inject(ElementRef);
     this.animation = this._config.animation;
     this.delay = this._config.delay;
@@ -14966,9 +15052,13 @@ var NgbToast = class _NgbToast {
     this.ariaLive ??= this._config.ariaLive;
   }
   ngAfterContentInit() {
-    this._zone.onStable.asObservable().pipe((0, import_operators2.take)(1)).subscribe(() => {
-      this._init();
-      this.show();
+    afterNextRender({
+      mixedReadWrite: () => {
+        this._init();
+        this.show();
+      }
+    }, {
+      injector: this._injector
     });
   }
   ngOnChanges(changes) {
@@ -15067,7 +15157,7 @@ var NgbToast = class _NgbToast {
       },
       exportAs: ["ngbToast"],
       features: [ɵɵNgOnChangesFeature],
-      ngContentSelectors: _c0,
+      ngContentSelectors: _c2,
       decls: 5,
       vars: 1,
       consts: () => {
@@ -15105,7 +15195,6 @@ var NgbToast = class _NgbToast {
     args: [{
       selector: "ngb-toast",
       exportAs: "ngbToast",
-      standalone: true,
       imports: [NgTemplateOutlet],
       encapsulation: ViewEncapsulation.None,
       host: {
@@ -15261,7 +15350,7 @@ var NgbTooltipWindow = class _NgbTooltipWindow {
         id: "id",
         tooltipClass: "tooltipClass"
       },
-      ngContentSelectors: _c0,
+      ngContentSelectors: _c2,
       decls: 3,
       vars: 0,
       consts: [["data-popper-arrow", "", 1, "tooltip-arrow"], [1, "tooltip-inner"]],
@@ -15333,6 +15422,7 @@ var NgbTooltip = class _NgbTooltip {
     this._ngZone = inject(NgZone);
     this._document = inject(DOCUMENT);
     this._changeDetector = inject(ChangeDetectorRef);
+    this._injector = inject(Injector);
     this._ngbTooltipWindowId = `ngb-tooltip-${nextId++}`;
     this._popupService = new PopupService(NgbTooltipWindow);
     this._windowRef = null;
@@ -15384,7 +15474,13 @@ var NgbTooltip = class _NgbTooltip {
         });
         Promise.resolve().then(() => {
           this._positioning.update();
-          this._zoneSubscription = this._ngZone.onStable.subscribe(() => this._positioning.update());
+        });
+        this._afterRenderRef = afterRender({
+          mixedReadWrite: () => {
+            this._positioning.update();
+          }
+        }, {
+          injector: this._injector
         });
       });
       ngbAutoClose(this._ngZone, this._document, this.autoClose, () => this.close(), this.hidden, [this._windowRef.location.nativeElement], [this._nativeElement]);
@@ -15402,7 +15498,7 @@ var NgbTooltip = class _NgbTooltip {
       this._popupService.close(animation).subscribe(() => {
         this._windowRef = null;
         this._positioning.destroy();
-        this._zoneSubscription?.unsubscribe();
+        this._afterRenderRef?.destroy();
         this.hidden.emit();
         this._changeDetector.markForCheck();
       });
@@ -15421,7 +15517,7 @@ var NgbTooltip = class _NgbTooltip {
     }
   }
   /**
-   * Returns `true`, if the popover is currently shown.
+   * Returns `true`, if the tooltip is currently shown.
    */
   isOpen() {
     return this._windowRef != null;
@@ -15854,7 +15950,6 @@ var NgbTypeaheadWindow = class _NgbTypeaheadWindow {
     args: [{
       selector: "ngb-typeahead-window",
       exportAs: "ngbTypeaheadWindow",
-      standalone: true,
       imports: [NgbHighlight, NgTemplateOutlet],
       encapsulation: ViewEncapsulation.None,
       host: {
@@ -15926,6 +16021,7 @@ var NgbTypeahead = class _NgbTypeahead {
     this._document = inject(DOCUMENT);
     this._ngZone = inject(NgZone);
     this._changeDetector = inject(ChangeDetectorRef);
+    this._injector = inject(Injector);
     this._popupService = new PopupService(NgbTypeaheadWindow);
     this._positioning = ngbPositioning();
     this._subscription = null;
@@ -16056,7 +16152,13 @@ var NgbTypeahead = class _NgbTypeahead {
             placement: this.placement,
             updatePopperOptions: (options) => this.popperOptions(addPopperOffset([0, 2])(options))
           });
-          this._zoneSubscription = this._ngZone.onStable.subscribe(() => this._positioning.update());
+          this._afterRenderRef = afterRender({
+            mixedReadWrite: () => {
+              this._positioning.update();
+            }
+          }, {
+            injector: this._injector
+          });
         }
       });
       ngbAutoClose(this._ngZone, this._document, "outside", () => this.dismissPopup(), this._closed$, [this._nativeElement, this._windowRef.location.nativeElement]);
@@ -16065,7 +16167,7 @@ var NgbTypeahead = class _NgbTypeahead {
   _closePopup() {
     this._popupService.close().subscribe(() => {
       this._positioning.destroy();
-      this._zoneSubscription?.unsubscribe();
+      this._afterRenderRef?.destroy();
       this._closed$.next();
       this._windowRef = null;
       this.activeDescendant = null;
@@ -16495,11 +16597,12 @@ var NgbOffcanvasBackdrop = class _NgbOffcanvasBackdrop {
   constructor() {
     this._nativeElement = inject(ElementRef).nativeElement;
     this._zone = inject(NgZone);
+    this._injector = inject(Injector);
     this.dismissEvent = new EventEmitter();
   }
   ngOnInit() {
-    this._zone.onStable.asObservable().pipe((0, import_operators2.take)(1)).subscribe(() => {
-      ngbRunTransition(this._zone, this._nativeElement, (element, animation) => {
+    afterNextRender({
+      mixedReadWrite: () => ngbRunTransition(this._zone, this._nativeElement, (element, animation) => {
         if (animation) {
           reflow(element);
         }
@@ -16507,7 +16610,9 @@ var NgbOffcanvasBackdrop = class _NgbOffcanvasBackdrop {
       }, {
         animation: this.animation,
         runningTransition: "continue"
-      });
+      })
+    }, {
+      injector: this._injector
     });
   }
   hide() {
@@ -16596,6 +16701,7 @@ var NgbOffcanvasPanel = class _NgbOffcanvasPanel {
     this._document = inject(DOCUMENT);
     this._elRef = inject(ElementRef);
     this._zone = inject(NgZone);
+    this._injector = inject(Injector);
     this._closed$ = new import_rxjs2.Subject();
     this._elWithFocus = null;
     this.keyboard = true;
@@ -16609,8 +16715,10 @@ var NgbOffcanvasPanel = class _NgbOffcanvasPanel {
   }
   ngOnInit() {
     this._elWithFocus = this._document.activeElement;
-    this._zone.onStable.asObservable().pipe((0, import_operators2.take)(1)).subscribe(() => {
-      this._show();
+    afterNextRender({
+      mixedReadWrite: () => this._show()
+    }, {
+      injector: this._injector
     });
   }
   ngOnDestroy() {
@@ -16725,7 +16833,7 @@ var NgbOffcanvasPanel = class _NgbOffcanvasPanel {
       outputs: {
         dismissEvent: "dismiss"
       },
-      ngContentSelectors: _c0,
+      ngContentSelectors: _c2,
       decls: 1,
       vars: 0,
       template: function NgbOffcanvasPanel_Template(rf, ctx) {

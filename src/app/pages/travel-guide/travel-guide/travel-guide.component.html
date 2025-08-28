@@ -48,15 +48,15 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
           <div class="blogs overflow-hidden">
             <div class="card text-center">
-              <a routerLink="/all-destinations/{{desSlug}}/travel-guide/{{guide.slug}}" class="text-dark">
+              <a routerLink="/all-destinations/{{desSlug}}/travel-guide/{{getEncodedSlug(guide.slug)}}" class="text-dark">
                 <img loading="lazy" src="{{guide.thumb}}" class="card-img-top" alt="{{guide.thumb_alt}}">
               </a>
               <div class="card-body">
-                <a routerLink="/all-destinations/{{desSlug}}/travel-guide/{{guide.slug}}" class="text-dark">
+                <a routerLink="/all-destinations/{{desSlug}}/travel-guide/{{getEncodedSlug(guide.slug)}}" class="text-dark">
                   <h2 class="card-title title-category ">{{guide.name}}</h2>
                 </a>
                 <p class="card-text inner-html"><app-safe-html [htmlContent]="getSafeContent(guide.description, 135)"></app-safe-html></p>
-                <a routerLink="/all-destinations/{{desSlug}}/travel-guide/{{guide.slug}}" class="btn w-75 main-btn blog-btn"> {{"Read More"|translate}}</a>
+                <a routerLink="/all-destinations/{{desSlug}}/travel-guide/{{getEncodedSlug(guide.slug)}}" class="btn w-75 main-btn blog-btn"> {{"Read More"|translate}}</a>
               </div>
             </div>
           </div>

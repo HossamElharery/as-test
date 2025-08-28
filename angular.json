@@ -50,6 +50,7 @@
             "ssr": {
               "entry": "server.ts"
             },
+            "prerender": true,
             "optimization": true,
             "outputHashing": "all",
             "sourceMap": false,

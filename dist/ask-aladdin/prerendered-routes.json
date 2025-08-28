@@ -1,3 +1,19 @@
 {
-  "routes": {}
+  "routes": {
+    "/": {},
+    "/about-us": {},
+    "/all-blogs": {},
+    "/all-destinations": {},
+    "/all-destinations/multi-country-packages": {},
+    "/all-packages": {},
+    "/ask-experts": {},
+    "/contact-us": {},
+    "/meet-the-team/development-team": {},
+    "/multi-country-tours": {},
+    "/myths-facts": {},
+    "/our-story": {},
+    "/privacy-policy": {},
+    "/thanks": {},
+    "/travel-guides": {}
+  }
 }

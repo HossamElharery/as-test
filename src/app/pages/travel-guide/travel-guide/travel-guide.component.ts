@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { destination } from '../../../core/interfaces/destination';
@@ -28,7 +28,7 @@ import { AskExpertBtnComponent } from "../../../shared/components/ask-expert-btn
       'ngSkipHydration': 'true'
     }
 })
-export class TravelGuideComponent implements OnInit ,OnDestroy{
+export class TravelGuideComponent implements OnInit ,OnDestroy,AfterViewInit{
 
   guidesContainer: TravelGuide[] = [];
   blogDes: string = '';
@@ -49,15 +49,16 @@ export class TravelGuideComponent implements OnInit ,OnDestroy{
   constructor(private _blogs: HomeserviceService, private _active: ActivatedRoute, private seo: SeoService
   ,private schema : SchemaInjectionService
   ) {}
-
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.subscription.add( this._active.paramMap.subscribe((params: ParamMap) => {
       this.id = params.get('slug')
+      const encodedSlug = encodeURIComponent(this.id || '');
 
-      this._blogs.getDestinationGuides(this.id).subscribe(result => {
+      this._blogs.getDestinationGuides(encodedSlug).subscribe(result => {
 
         this.category = result.data.category.slug
-        this._blogs.getSeoCategory(this.id, this.category).subscribe({
+        const encodedCategory = encodeURIComponent(this.category);
+        this._blogs.getSeoCategory(encodedSlug, encodedCategory).subscribe({
           next: res => {
             this.getSeo(res)
             this.allGuides = res.data
@@ -68,11 +69,15 @@ export class TravelGuideComponent implements OnInit ,OnDestroy{
 
         this.guidesContainer = result.data.travelGuides
         this.desName = result.data.destination[0].name,
-        this.desSlug = result.data.destination[0].slug,
+        this.desSlug = encodeURIComponent(result.data.destination[0].slug),
         this.loading=false
       })
 
     }))
+
+  }
+
+  ngOnInit(): void {
 
   }
   getSeo(result: any) {
@@ -119,5 +124,9 @@ export class TravelGuideComponent implements OnInit ,OnDestroy{
 
     // Return the content - SafeHtmlComponent will handle sanitization
     return finalContent;
+  }
+
+  getEncodedSlug(slug: string): string {
+    return encodeURIComponent(slug || '');
   }
 }

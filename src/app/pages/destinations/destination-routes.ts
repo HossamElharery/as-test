@@ -14,9 +14,16 @@ import { FaqsComponent } from "../faqs/faqs/faqs.component";
 import { TravelGuideComponent } from "../travel-guide/travel-guide/travel-guide.component";
 import { SingleGuideComponent } from "../travel-guide/single-guide/single-guide.component";
 import { CityExcursionComponent } from "../travel-excursion/city-excursion/city-excursion.component";
+import { PageSeoResolver } from "../../core/guards/page-seo.resolver";
 
 export default [
-    { path: '', component: DestinationsComponent, children:[
+    {
+        path: '',
+        component: DestinationsComponent,
+        resolve: {
+            seoData: PageSeoResolver
+        },
+        children:[
       {path:'' , component:AllDestinationComponent},
       { path: ':slug', component: OneDestinationComponent },
       {path:':id/travel-packages', component:TourPackageComponent},

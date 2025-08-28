@@ -95,6 +95,8 @@ export function app(): express.Express {
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
 
+    console.log(`[SSR] Rendering: ${originalUrl}`);
+
     commonEngine
       .render({
         bootstrap,
@@ -104,12 +106,35 @@ export function app(): express.Express {
         providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
       })
       .then((html) => {
+        console.log(`[SSR] Successfully rendered: ${originalUrl}`);
+        // Set proper headers for SEO
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.setHeader('Cache-Control', 'public, max-age=300'); // 5 minute cache
         res.send(html);
       })
       .catch((err) => {
-        console.error('SSR Error:', err);
-        // Fall back to serving static HTML
-        res.sendFile(join(browserDistFolder, 'index.html'));
+        console.error('SSR Error for', originalUrl, ':', err.message);
+        console.error('SSR Stack:', err.stack);
+
+        // CRITICAL FIX: Don't fall back to empty HTML
+        // Instead, try to render with minimal SEO data
+        res.status(500).send(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Ask Aladdin - Egypt Travel & Tours</title>
+            <meta name="description" content="Explore Egypt with Ask Aladdin - Your trusted Egypt travel expert">
+            <meta property="og:title" content="Ask Aladdin - Egypt Travel & Tours">
+            <meta property="og:description" content="Explore Egypt with Ask Aladdin - Your trusted Egypt travel expert">
+            <meta name="twitter:title" content="Ask Aladdin - Egypt Travel & Tours">
+            <meta name="twitter:description" content="Explore Egypt with Ask Aladdin - Your trusted Egypt travel expert">
+          </head>
+          <body>
+            <div>SSR Error - Please refresh the page</div>
+            <script>setTimeout(() => window.location.reload(), 3000);</script>
+          </body>
+          </html>
+        `);
       });
   });
 

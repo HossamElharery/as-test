@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { SeoResolver } from './core/guards/seo-resolve';
- import { CitiesBlogsComponent } from './pages/blogs/cities-blogs/cities-blogs.component';
+import { CitiesBlogsComponent } from './pages/blogs/cities-blogs/cities-blogs.component';
 import { AboutUsComponent } from './core/components/about-us/about-us.component';
 import { ContactUsComponent } from './core/components/contact-us/contact-us.component';
 import { MeetTheTeamComponent } from './core/components/meet-the-team/meet-the-team.component';
@@ -12,8 +11,9 @@ import { ThanksComponent } from './core/components/thanks/thanks.component';
 import { UsefulLinksComponent } from './core/components/useful-links/useful-links.component';
 import { MultiCountryPackagesComponent } from './pages/travel-package/components/multi-country-packages/multi-country-packages.component';
 import { AskExpertsComponent } from './shared/components/ask-experts/ask-experts.component';
+import { PageSeoResolver } from './core/guards/page-seo.resolver';
 export const routes: Routes = [
-  { path: '', loadChildren: () => import('./pages/home/home-routes').then(c => c.default), resolve: { seoData: SeoResolver } },
+  { path: '', loadChildren: () => import('./pages/home/home-routes').then(c => c.default) },
   {
     path: 'all-destinations',
     loadChildren: () => import('./pages/destinations/destination-routes').then(c => c.default)
@@ -23,7 +23,7 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./pages/pages/pages-routes').then(
         (c) => c.default
-      ),
+      )
 
   },
   {
@@ -60,11 +60,19 @@ export const routes: Routes = [
 
 
   {
-    path: 'all-blogs', component: CitiesBlogsComponent
+    path: 'all-blogs', 
+    component: CitiesBlogsComponent,
+    resolve: {
+      seoData: PageSeoResolver
+    }
   },
 
   {
-    path: 'about-us', component: AboutUsComponent
+    path: 'about-us', 
+    component: AboutUsComponent,
+    resolve: {
+      seoData: PageSeoResolver
+    }
   },
   {
     path: 'useful-links/:slug', component: UsefulLinksComponent

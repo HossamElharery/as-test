@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Diagnostic</title>
+</head>
+<body>
+    <h1>Server Diagnostic</h1>
+    <p>If you see this page, your server is serving static HTML files, not running SSR.</p>
+    
+    <script>
+        // Check if this is client-side rendering
+        document.addEventListener('DOMContentLoaded', function() {
+            const info = {
+                userAgent: navigator.userAgent,
+                url: window.location.href,
+                timestamp: new Date().toISOString(),
+                isClientSide: true
+            };
+            
+            console.log('CLIENT-SIDE RENDERING DETECTED:', info);
+            
+            // Create a visible indicator
+            const indicator = document.createElement('div');
+            indicator.style.cssText = 'position:fixed;top:10px;right:10px;background:red;color:white;padding:10px;z-index:9999;';
+            indicator.innerHTML = 'CLIENT-SIDE RENDERING<br>SSR NOT WORKING';
+            document.body.appendChild(indicator);
+        });
+    </script>
+</body>
+</html>

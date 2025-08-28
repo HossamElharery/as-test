@@ -7,8 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:ask-aladdin": "node dist/ask-aladdin/server/server.mjs"
+    "serve:ssr:ask-aladdin": "node dist/ask-aladdin/server/server.mjs",
+    "start:prod": "node production-server.js",
+    "deploy": "npm run build && npm run start:prod"
   },
+  "type": "module",
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.2.8",

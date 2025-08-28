@@ -18,8 +18,6 @@ import {
   CommonModule,
   LocationStrategy,
   NgClass,
-  NgForOf,
-  NgIf,
   NgStyle,
   NgTemplateOutlet
 } from "./chunk-OLTUIOEL.js";
@@ -55,6 +53,7 @@ import {
   ɵɵProvidersFeature,
   ɵɵadvance,
   ɵɵattribute,
+  ɵɵconditional,
   ɵɵcontentQuery,
   ɵɵdefineComponent,
   ɵɵdefineDirective,
@@ -63,8 +62,6 @@ import {
   ɵɵdefineNgModule,
   ɵɵdirectiveInject,
   ɵɵelement,
-  ɵɵelementContainerEnd,
-  ɵɵelementContainerStart,
   ɵɵelementEnd,
   ɵɵelementStart,
   ɵɵgetCurrentView,
@@ -80,6 +77,8 @@ import {
   ɵɵpureFunction4,
   ɵɵpureFunction5,
   ɵɵqueryRefresh,
+  ɵɵrepeater,
+  ɵɵrepeaterCreate,
   ɵɵresetView,
   ɵɵresolveDocument,
   ɵɵrestoreView,
@@ -129,40 +128,38 @@ var _c2 = (a0, a1) => ({
   $implicit: a0,
   index: a1
 });
-function StageComponent_ng_container_2_2_ng_template_0_Template(rf, ctx) {
+var _forTrack0 = ($index, $item) => $item.id;
+function StageComponent_For_3_Conditional_1_ng_template_0_Template(rf, ctx) {
 }
-function StageComponent_ng_container_2_2_Template(rf, ctx) {
+function StageComponent_For_3_Conditional_1_Template(rf, ctx) {
   if (rf & 1) {
-    ɵɵtemplate(0, StageComponent_ng_container_2_2_ng_template_0_Template, 0, 0, "ng-template", 4);
+    ɵɵtemplate(0, StageComponent_For_3_Conditional_1_ng_template_0_Template, 0, 0, "ng-template", 3);
   }
   if (rf & 2) {
     const ctx_r3 = ɵɵnextContext();
     const slide_r2 = ctx_r3.$implicit;
-    const i_r5 = ctx_r3.index;
+    const ɵ$index_5_r5 = ctx_r3.$index;
     const ctx_r2 = ɵɵnextContext();
-    ɵɵproperty("ngTemplateOutlet", slide_r2.tplRef)("ngTemplateOutletContext", ɵɵpureFunction2(2, _c2, ctx_r2.preparePublicSlide(slide_r2), i_r5));
+    ɵɵproperty("ngTemplateOutlet", slide_r2.tplRef)("ngTemplateOutletContext", ɵɵpureFunction2(2, _c2, ctx_r2.preparePublicSlide(slide_r2), ɵ$index_5_r5));
   }
 }
-function StageComponent_ng_container_2_Template(rf, ctx) {
+function StageComponent_For_3_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = ɵɵgetCurrentView();
-    ɵɵelementContainerStart(0);
-    ɵɵelementStart(1, "div", 2);
-    ɵɵlistener("animationend", function StageComponent_ng_container_2_Template_div_animationend_1_listener() {
+    ɵɵelementStart(0, "div", 2);
+    ɵɵlistener("animationend", function StageComponent_For_3_Template_div_animationend_0_listener() {
       const slide_r2 = ɵɵrestoreView(_r1).$implicit;
       const ctx_r2 = ɵɵnextContext();
       return ɵɵresetView(ctx_r2.clear(slide_r2.id));
     });
-    ɵɵtemplate(2, StageComponent_ng_container_2_2_Template, 1, 5, null, 3);
+    ɵɵtemplate(1, StageComponent_For_3_Conditional_1_Template, 1, 5, null, 3);
     ɵɵelementEnd();
-    ɵɵelementContainerEnd();
   }
   if (rf & 2) {
     const slide_r2 = ctx.$implicit;
-    ɵɵadvance();
     ɵɵproperty("ngClass", slide_r2.classes)("ngStyle", ɵɵpureFunction4(4, _c1, slide_r2.width + "px", slide_r2.marginL ? slide_r2.marginL + "px" : "", slide_r2.marginR ? slide_r2.marginR + "px" : "", slide_r2.left))("@autoHeight", slide_r2.heightState);
     ɵɵadvance();
-    ɵɵproperty("ngIf", slide_r2.load);
+    ɵɵconditional(slide_r2.load ? 1 : -1);
   }
 }
 var _c3 = (a0, a1, a2, a3, a4) => ({
@@ -183,10 +180,10 @@ var _c6 = (a0, a1) => ({
   "active": a0,
   "owl-dot-text": a1
 });
-function CarouselComponent_div_2_Template(rf, ctx) {
+function CarouselComponent_Conditional_2_Template(rf, ctx) {
   if (rf & 1) {
-    ɵɵelementStart(0, "div", 4);
-    ɵɵelement(1, "owl-stage", 5);
+    ɵɵelementStart(0, "div", 2);
+    ɵɵelement(1, "owl-stage", 3);
     ɵɵelementEnd();
   }
   if (rf & 2) {
@@ -195,16 +192,16 @@ function CarouselComponent_div_2_Template(rf, ctx) {
     ɵɵproperty("owlDraggable", ɵɵpureFunction2(3, _c4, ctx_r1.owlDOMData == null ? null : ctx_r1.owlDOMData.isMouseDragable, ctx_r1.owlDOMData == null ? null : ctx_r1.owlDOMData.isTouchDragable))("stageData", ctx_r1.stageData)("slidesData", ctx_r1.slidesData);
   }
 }
-function CarouselComponent_ng_container_3_div_5_Template(rf, ctx) {
+function CarouselComponent_Conditional_3_For_5_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "div", 11);
-    ɵɵlistener("click", function CarouselComponent_ng_container_3_div_5_Template_div_click_0_listener() {
+    ɵɵelementStart(0, "div", 9);
+    ɵɵlistener("click", function CarouselComponent_Conditional_3_For_5_Template_div_click_0_listener() {
       const dot_r5 = ɵɵrestoreView(_r4).$implicit;
       const ctx_r1 = ɵɵnextContext(2);
       return ɵɵresetView(ctx_r1.moveByDot(dot_r5.id));
     });
-    ɵɵelement(1, "span", 12);
+    ɵɵelement(1, "span", 10);
     ɵɵelementEnd();
   }
   if (rf & 2) {
@@ -214,41 +211,38 @@ function CarouselComponent_ng_container_3_div_5_Template(rf, ctx) {
     ɵɵproperty("innerHTML", dot_r5.innerContent, ɵɵsanitizeHtml);
   }
 }
-function CarouselComponent_ng_container_3_Template(rf, ctx) {
+function CarouselComponent_Conditional_3_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = ɵɵgetCurrentView();
-    ɵɵelementContainerStart(0);
-    ɵɵelementStart(1, "div", 6)(2, "div", 7);
-    ɵɵlistener("click", function CarouselComponent_ng_container_3_Template_div_click_2_listener() {
+    ɵɵelementStart(0, "div", 4)(1, "div", 5);
+    ɵɵlistener("click", function CarouselComponent_Conditional_3_Template_div_click_1_listener() {
       ɵɵrestoreView(_r3);
       const ctx_r1 = ɵɵnextContext();
       return ɵɵresetView(ctx_r1.prev());
     });
     ɵɵelementEnd();
-    ɵɵelementStart(3, "div", 8);
-    ɵɵlistener("click", function CarouselComponent_ng_container_3_Template_div_click_3_listener() {
+    ɵɵelementStart(2, "div", 6);
+    ɵɵlistener("click", function CarouselComponent_Conditional_3_Template_div_click_2_listener() {
       ɵɵrestoreView(_r3);
       const ctx_r1 = ɵɵnextContext();
       return ɵɵresetView(ctx_r1.next());
     });
     ɵɵelementEnd()();
-    ɵɵelementStart(4, "div", 9);
-    ɵɵtemplate(5, CarouselComponent_ng_container_3_div_5_Template, 2, 5, "div", 10);
+    ɵɵelementStart(3, "div", 7);
+    ɵɵrepeaterCreate(4, CarouselComponent_Conditional_3_For_5_Template, 2, 5, "div", 8, _forTrack0);
     ɵɵelementEnd();
-    ɵɵelementContainerEnd();
   }
   if (rf & 2) {
     const ctx_r1 = ɵɵnextContext();
+    ɵɵproperty("ngClass", ɵɵpureFunction1(6, _c5, ctx_r1.navData == null ? null : ctx_r1.navData.disabled));
     ɵɵadvance();
-    ɵɵproperty("ngClass", ɵɵpureFunction1(7, _c5, ctx_r1.navData == null ? null : ctx_r1.navData.disabled));
+    ɵɵproperty("ngClass", ɵɵpureFunction1(8, _c5, ctx_r1.navData == null ? null : ctx_r1.navData.prev == null ? null : ctx_r1.navData.prev.disabled))("innerHTML", ctx_r1.navData == null ? null : ctx_r1.navData.prev == null ? null : ctx_r1.navData.prev.htmlText, ɵɵsanitizeHtml);
     ɵɵadvance();
-    ɵɵproperty("ngClass", ɵɵpureFunction1(9, _c5, ctx_r1.navData == null ? null : ctx_r1.navData.prev == null ? null : ctx_r1.navData.prev.disabled))("innerHTML", ctx_r1.navData == null ? null : ctx_r1.navData.prev == null ? null : ctx_r1.navData.prev.htmlText, ɵɵsanitizeHtml);
+    ɵɵproperty("ngClass", ɵɵpureFunction1(10, _c5, ctx_r1.navData == null ? null : ctx_r1.navData.next == null ? null : ctx_r1.navData.next.disabled))("innerHTML", ctx_r1.navData == null ? null : ctx_r1.navData.next == null ? null : ctx_r1.navData.next.htmlText, ɵɵsanitizeHtml);
     ɵɵadvance();
-    ɵɵproperty("ngClass", ɵɵpureFunction1(11, _c5, ctx_r1.navData == null ? null : ctx_r1.navData.next == null ? null : ctx_r1.navData.next.disabled))("innerHTML", ctx_r1.navData == null ? null : ctx_r1.navData.next == null ? null : ctx_r1.navData.next.htmlText, ɵɵsanitizeHtml);
+    ɵɵproperty("ngClass", ɵɵpureFunction1(12, _c5, ctx_r1.dotsData == null ? null : ctx_r1.dotsData.disabled));
     ɵɵadvance();
-    ɵɵproperty("ngClass", ɵɵpureFunction1(13, _c5, ctx_r1.dotsData == null ? null : ctx_r1.dotsData.disabled));
-    ɵɵadvance();
-    ɵɵproperty("ngForOf", ctx_r1.dotsData == null ? null : ctx_r1.dotsData.dots);
+    ɵɵrepeater(ctx_r1.dotsData == null ? null : ctx_r1.dotsData.dots);
   }
 }
 var OwlCarouselOConfig = class {
@@ -641,18 +635,16 @@ var CarouselService = class _CarouselService {
           prepend.unshift(__spreadValues({}, this.slidesData[clones[clones.length - 1]]));
         }
         this._clones = clones;
-        append = append.map((slide) => {
-          slide.id = `${this.clonedIdPrefix}${slide.id}`;
-          slide.isActive = false;
-          slide.isCloned = true;
-          return slide;
-        });
-        prepend = prepend.map((slide) => {
-          slide.id = `${this.clonedIdPrefix}${slide.id}`;
-          slide.isActive = false;
-          slide.isCloned = true;
-          return slide;
-        });
+        append = append.map((slide) => __spreadProps(__spreadValues({}, slide), {
+          id: `${this.clonedIdPrefix}${slide.id}-append`,
+          isActive: false,
+          isCloned: true
+        }));
+        prepend = prepend.map((slide) => __spreadProps(__spreadValues({}, slide), {
+          id: `${this.clonedIdPrefix}${slide.id}`,
+          isActive: false,
+          isCloned: true
+        }));
         this.slidesData = prepend.concat(this.slidesData).concat(append);
       }
     },
@@ -2824,7 +2816,8 @@ var CarouselSlideDirective = class _CarouselSlideDirective {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CarouselSlideDirective, [{
     type: Directive,
     args: [{
-      selector: "ng-template[carouselSlide]"
+      selector: "ng-template[carouselSlide]",
+      standalone: false
     }]
   }], () => [{
     type: TemplateRef
@@ -2848,18 +2841,20 @@ var CarouselSlideDirective = class _CarouselSlideDirective {
 })();
 var ResizeService = class _ResizeService {
   resizeObservable$;
+  docRef;
   /**
    * Makes resizeSubject become Observable
    * @returns Observable of resizeSubject
    */
   get onResize$() {
-    return this.resizeObservable$;
+    return this.resizeObservable$.pipe(filter(() => !this.docRef?.fullscreenElement));
   }
-  constructor(winRef, platformId) {
+  constructor(winRef, docRef, platformId) {
+    this.docRef = docRef;
     this.resizeObservable$ = isPlatformBrowser(platformId) ? fromEvent(winRef, "resize") : new Subject().asObservable();
   }
   static ɵfac = function ResizeService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ResizeService)(ɵɵinject(WINDOW), ɵɵinject(PLATFORM_ID));
+    return new (__ngFactoryType__ || _ResizeService)(ɵɵinject(WINDOW), ɵɵinject(DOCUMENT), ɵɵinject(PLATFORM_ID));
   };
   static ɵprov = ɵɵdefineInjectable({
     token: _ResizeService,
@@ -2874,6 +2869,12 @@ var ResizeService = class _ResizeService {
     decorators: [{
       type: Inject,
       args: [WINDOW]
+    }]
+  }, {
+    type: void 0,
+    decorators: [{
+      type: Inject,
+      args: [DOCUMENT]
     }]
   }, {
     type: Object,
@@ -3018,11 +3019,11 @@ var StageComponent = class _StageComponent {
     this._onDragEnd(ev);
   };
   /**
-     * Handles `touchstart` and `mousedown` events.
-     * @todo Horizontal swipe threshold as option
-     * @todo #261
-     * @param event - The event arguments.
-     */
+   * Handles `touchstart` and `mousedown` events.
+   * @todo Horizontal swipe threshold as option
+   * @todo #261
+   * @param event - The event arguments.
+   */
   _onDragStart(event) {
     let stage = null;
     if (event.which === 3) {
@@ -3080,10 +3081,10 @@ var StageComponent = class _StageComponent {
     }
   }
   /**
-   * Handles the `touchmove` and `mousemove` events.
-   * @todo #261
-   * @param event - The event arguments.
-   */
+  * Handles the `touchmove` and `mousemove` events.
+  * @todo #261
+  * @param event - The event arguments.
+  */
   _onDragMove(event) {
     let stage;
     const stageOrExit = this.carouselService.defineNewCoordsDrag(event, this._drag);
@@ -3104,11 +3105,11 @@ var StageComponent = class _StageComponent {
     this.renderer.setStyle(this.el.nativeElement.children[0], "transition", "0s");
   }
   /**
-     * Handles the `touchend` and `mouseup` events.
-     * @todo #261
-     * @todo Threshold for click event
-     * @param event - The event arguments.
-     */
+   * Handles the `touchend` and `mouseup` events.
+   * @todo #261
+   * @todo Threshold for click event
+   * @param event - The event arguments.
+   */
   _onDragEnd(event) {
     this.carouselService.owlDOMData.isGrab = false;
     this.listenerOneMouseMove();
@@ -3136,10 +3137,10 @@ var StageComponent = class _StageComponent {
     this.listenerTouchEnd();
   }
   /**
-     * Prepares data for dragging carousel. It starts after firing `touchstart` and `mousedown` events.
-     * @param event - The event arguments.
-     * @returns stage - object with 'x' and 'y' coordinates of .owl-stage
-     */
+   * Prepares data for dragging carousel. It starts after firing `touchstart` and `mousedown` events.
+   * @param event - The event arguments.
+   * @returns stage - object with 'x' and 'y' coordinates of .owl-stage
+   */
   _prepareDragging(event) {
     return this.carouselService.prepareDragging(event);
   }
@@ -3158,27 +3159,27 @@ var StageComponent = class _StageComponent {
     this.carouselService.finishDragging(event, this._drag, this._oneClickHandler);
   }
   /**
-     * Gets unified pointer coordinates from event.
-     * @param event The `mousedown` or `touchstart` event.
-     * @returns Contains `x` and `y` coordinates of current pointer position.
-     */
+   * Gets unified pointer coordinates from event.
+   * @param event The `mousedown` or `touchstart` event.
+   * @returns Contains `x` and `y` coordinates of current pointer position.
+   */
   _pointer(event) {
     return this.carouselService.pointer(event);
   }
   /**
-     * Gets the difference of two vectors.
-     * @param first The first vector.
-     * @param second The second vector.
-     * @returns The difference.
-     */
+   * Gets the difference of two vectors.
+   * @param first The first vector.
+   * @param second The second vector.
+   * @returns The difference.
+   */
   _difference(firstC, second) {
     return this.carouselService.difference(firstC, second);
   }
   /**
-     * Checks whether the carousel is in a specific state or not.
-     * @param specificState The state to check.
-     * @returns The flag which indicates if the carousel is busy.
-     */
+   * Checks whether the carousel is in a specific state or not.
+   * @param specificState The state to check.
+   * @returns The flag which indicates if the carousel is busy.
+   */
   _is(specificState) {
     return this.carouselService.is(specificState);
   }
@@ -3190,8 +3191,8 @@ var StageComponent = class _StageComponent {
     this.carouselService.enter(name);
   }
   /**
-     * Sends all data needed for View.
-     */
+   * Sends all data needed for View.
+   */
   _sendChanges() {
     this.carouselService.sendChanges();
   }
@@ -3202,8 +3203,8 @@ var StageComponent = class _StageComponent {
     this.carouselService.onTransitionEnd();
   }
   /**
-     * Enters into a 'dragging' state
-     */
+   * Enters into a 'dragging' state
+   */
   _enterDragging() {
     this.carouselService.enterDragging();
   }
@@ -3241,26 +3242,26 @@ var StageComponent = class _StageComponent {
       slidesData: "slidesData"
     },
     standalone: false,
-    decls: 3,
-    vars: 8,
-    consts: [[1, "owl-stage", 3, "transitionend", "ngStyle"], [4, "ngFor", "ngForOf"], [1, "owl-item", 3, "animationend", "ngClass", "ngStyle"], [4, "ngIf"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"]],
+    decls: 4,
+    vars: 7,
+    consts: [[1, "owl-stage", 3, "transitionend", "ngStyle"], [1, "owl-item", 3, "ngClass", "ngStyle"], [1, "owl-item", 3, "animationend", "ngClass", "ngStyle"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"]],
     template: function StageComponent_Template(rf, ctx) {
       if (rf & 1) {
         ɵɵelementStart(0, "div")(1, "div", 0);
         ɵɵlistener("transitionend", function StageComponent_Template_div_transitionend_1_listener() {
           return ctx.onTransitionEnd();
         });
-        ɵɵtemplate(2, StageComponent_ng_container_2_Template, 3, 9, "ng-container", 1);
+        ɵɵrepeaterCreate(2, StageComponent_For_3_Template, 2, 9, "div", 1, _forTrack0);
         ɵɵelementEnd()();
       }
       if (rf & 2) {
         ɵɵadvance();
-        ɵɵproperty("ngStyle", ɵɵpureFunction5(2, _c0, ctx.stageData.width + "px", ctx.stageData.transform, ctx.stageData.transition, ctx.stageData.paddingL ? ctx.stageData.paddingL + "px" : "", ctx.stageData.paddingR ? ctx.stageData.paddingR + "px" : ""));
+        ɵɵproperty("ngStyle", ɵɵpureFunction5(1, _c0, ctx.stageData.width + "px", ctx.stageData.transform, ctx.stageData.transition, ctx.stageData.paddingL ? ctx.stageData.paddingL + "px" : "", ctx.stageData.paddingR ? ctx.stageData.paddingR + "px" : ""));
         ɵɵadvance();
-        ɵɵproperty("ngForOf", ctx.slidesData);
+        ɵɵrepeater(ctx.slidesData);
       }
     },
-    dependencies: [NgClass, NgForOf, NgIf, NgTemplateOutlet, NgStyle],
+    dependencies: [NgClass, NgTemplateOutlet, NgStyle],
     encapsulation: 2,
     data: {
       animation: [trigger("autoHeight", [state("nulled", style({
@@ -3289,8 +3290,10 @@ var StageComponent = class _StageComponent {
                                         'transition': stageData.transition,
                                         'padding-left': stageData.paddingL ? stageData.paddingL + 'px' : '',
                                         'padding-right': stageData.paddingR ? stageData.paddingR + 'px' : '' }"
-          (transitionend)="onTransitionEnd()">
-        <ng-container *ngFor="let slide of slidesData; let i = index">
+          (transitionend)="onTransitionEnd()"
+      >
+
+        @for(slide of slidesData; track slide.id; let i = $index) {
           <div class="owl-item" [ngClass]="slide.classes"
                                 [ngStyle]="{'width': slide.width + 'px',
                                             'margin-left': slide.marginL ? slide.marginL + 'px' : '',
@@ -3298,9 +3301,16 @@ var StageComponent = class _StageComponent {
                                             'left': slide.left}"
                                 (animationend)="clear(slide.id)"
                                 [@autoHeight]="slide.heightState">
-            <ng-template *ngIf="slide.load" [ngTemplateOutlet]="slide.tplRef" [ngTemplateOutletContext]="{ $implicit: preparePublicSlide(slide), index: i }"></ng-template>
+              @if(slide.load) {
+                <ng-template  [ngTemplateOutlet]="slide.tplRef" [ngTemplateOutletContext]="{ 
+                  $implicit: preparePublicSlide(slide), 
+                  index: i
+                }">
+                </ng-template>
+              }
           </div><!-- /.owl-item -->
-        </ng-container>
+        }  
+      
       </div><!-- /.owl-stage -->
     </div>
   `,
@@ -3314,7 +3324,8 @@ var StageComponent = class _StageComponent {
       ]), transition("nulled => full", [
         // style({height: 0}),
         animate(350)
-      ])])]
+      ])])],
+      standalone: false
     }]
   }], () => [{
     type: NgZone
@@ -3731,7 +3742,7 @@ var CarouselComponent = class _CarouselComponent {
     features: [ɵɵProvidersFeature([NavigationService, AutoplayService, CarouselService, LazyLoadService, AnimateService, AutoHeightService, HashService]), ɵɵNgOnChangesFeature],
     decls: 4,
     vars: 9,
-    consts: [["owlCarousel", ""], [1, "owl-carousel", "owl-theme", 3, "mouseover", "mouseleave", "touchstart", "touchend", "ngClass"], ["class", "owl-stage-outer", 4, "ngIf"], [4, "ngIf"], [1, "owl-stage-outer"], [3, "owlDraggable", "stageData", "slidesData"], [1, "owl-nav", 3, "ngClass"], [1, "owl-prev", 3, "click", "ngClass", "innerHTML"], [1, "owl-next", 3, "click", "ngClass", "innerHTML"], [1, "owl-dots", 3, "ngClass"], ["class", "owl-dot", 3, "ngClass", "click", 4, "ngFor", "ngForOf"], [1, "owl-dot", 3, "click", "ngClass"], [3, "innerHTML"]],
+    consts: [["owlCarousel", ""], [1, "owl-carousel", "owl-theme", 3, "mouseover", "mouseleave", "touchstart", "touchend", "ngClass"], [1, "owl-stage-outer"], [3, "owlDraggable", "stageData", "slidesData"], [1, "owl-nav", 3, "ngClass"], [1, "owl-prev", 3, "click", "ngClass", "innerHTML"], [1, "owl-next", 3, "click", "ngClass", "innerHTML"], [1, "owl-dots", 3, "ngClass"], [1, "owl-dot", 3, "ngClass"], [1, "owl-dot", 3, "click", "ngClass"], [3, "innerHTML"]],
     template: function CarouselComponent_Template(rf, ctx) {
       if (rf & 1) {
         const _r1 = ɵɵgetCurrentView();
@@ -3749,18 +3760,18 @@ var CarouselComponent = class _CarouselComponent {
           ɵɵrestoreView(_r1);
           return ɵɵresetView(ctx.startPlayTE());
         });
-        ɵɵtemplate(2, CarouselComponent_div_2_Template, 2, 6, "div", 2)(3, CarouselComponent_ng_container_3_Template, 6, 15, "ng-container", 3);
+        ɵɵtemplate(2, CarouselComponent_Conditional_2_Template, 2, 6, "div", 2)(3, CarouselComponent_Conditional_3_Template, 6, 14);
         ɵɵelementEnd();
       }
       if (rf & 2) {
         ɵɵproperty("ngClass", ɵɵpureFunction5(3, _c3, ctx.owlDOMData == null ? null : ctx.owlDOMData.rtl, ctx.owlDOMData == null ? null : ctx.owlDOMData.isLoaded, ctx.owlDOMData == null ? null : ctx.owlDOMData.isResponsive, ctx.owlDOMData == null ? null : ctx.owlDOMData.isMouseDragable, ctx.owlDOMData == null ? null : ctx.owlDOMData.isGrab));
         ɵɵadvance(2);
-        ɵɵproperty("ngIf", ctx.carouselLoaded);
+        ɵɵconditional(ctx.carouselLoaded ? 2 : -1);
         ɵɵadvance();
-        ɵɵproperty("ngIf", ctx.slides.toArray().length);
+        ɵɵconditional(ctx.slides.toArray().length ? 3 : -1);
       }
     },
-    dependencies: [NgClass, NgForOf, NgIf, StageComponent],
+    dependencies: [NgClass, StageComponent],
     styles: [".owl-theme[_ngcontent-%COMP%]{display:block}"],
     changeDetection: 0
   });
@@ -3782,26 +3793,34 @@ var CarouselComponent = class _CarouselComponent {
       (touchstart)="startPausing()"
       (touchend)="startPlayTE()">
 
-      <div *ngIf="carouselLoaded" class="owl-stage-outer">
-        <owl-stage [owlDraggable]="{'isMouseDragable': owlDOMData?.isMouseDragable, 'isTouchDragable': owlDOMData?.isTouchDragable}"
-                    [stageData]="stageData"
-                    [slidesData]="slidesData"></owl-stage>
-      </div> <!-- /.owl-stage-outer -->
-      <ng-container *ngIf="slides.toArray().length">
-        <div class="owl-nav" [ngClass]="{'disabled': navData?.disabled}">
-          <div class="owl-prev" [ngClass]="{'disabled': navData?.prev?.disabled}" (click)="prev()" [innerHTML]="navData?.prev?.htmlText"></div>
-          <div class="owl-next" [ngClass]="{'disabled': navData?.next?.disabled}" (click)="next()" [innerHTML]="navData?.next?.htmlText"></div>
-        </div> <!-- /.owl-nav -->
-        <div class="owl-dots" [ngClass]="{'disabled': dotsData?.disabled}">
-          <div *ngFor="let dot of dotsData?.dots" class="owl-dot" [ngClass]="{'active': dot.active, 'owl-dot-text': dot.showInnerContent}" (click)="moveByDot(dot.id)">
-            <span [innerHTML]="dot.innerContent"></span>
-          </div>
-        </div> <!-- /.owl-dots -->
-      </ng-container>
+      @if(carouselLoaded) {
+        <div class="owl-stage-outer">
+          <owl-stage [owlDraggable]="{'isMouseDragable': owlDOMData?.isMouseDragable, 'isTouchDragable': owlDOMData?.isTouchDragable}"
+                      [stageData]="stageData"
+                      [slidesData]="slidesData"></owl-stage>
+        </div> <!-- /.owl-stage-outer -->
+      }
+
+      @if(slides.toArray().length) {
+          <div class="owl-nav" [ngClass]="{'disabled': navData?.disabled}">
+            <div class="owl-prev" [ngClass]="{'disabled': navData?.prev?.disabled}" (click)="prev()" [innerHTML]="navData?.prev?.htmlText"></div>
+            <div class="owl-next" [ngClass]="{'disabled': navData?.next?.disabled}" (click)="next()" [innerHTML]="navData?.next?.htmlText"></div>
+          </div> <!-- /.owl-nav -->
+          <div class="owl-dots" [ngClass]="{'disabled': dotsData?.disabled}">
+
+            @for (dot of dotsData?.dots; track dot.id) {
+              <div  class="owl-dot" [ngClass]="{'active': dot.active, 'owl-dot-text': dot.showInnerContent}" (click)="moveByDot(dot.id)">
+                <span [innerHTML]="dot.innerContent"></span>
+              </div>
+            }
+            
+          </div> <!-- /.owl-dots -->
+      }
     </div> <!-- /.owl-carousel owl-loaded -->
   `,
       providers: [NavigationService, AutoplayService, CarouselService, LazyLoadService, AnimateService, AutoHeightService, HashService],
       changeDetection: ChangeDetectionStrategy.OnPush,
+      standalone: false,
       styles: [".owl-theme{display:block}\n"]
     }]
   }], () => [{
@@ -3954,7 +3973,8 @@ var OwlRouterLinkDirective = class _OwlRouterLinkDirective {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(OwlRouterLinkDirective, [{
     type: Directive,
     args: [{
-      selector: ":not(a)[owlRouterLink]"
+      selector: ":not(a)[owlRouterLink]",
+      standalone: false
     }]
   }], () => [{
     type: Router
@@ -4126,7 +4146,8 @@ var OwlRouterLinkWithHrefDirective = class _OwlRouterLinkWithHrefDirective {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(OwlRouterLinkWithHrefDirective, [{
     type: Directive,
     args: [{
-      selector: "a[owlRouterLink]"
+      selector: "a[owlRouterLink]",
+      standalone: false
     }]
   }], () => [{
     type: Router
